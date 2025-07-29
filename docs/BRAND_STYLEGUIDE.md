@@ -1,5 +1,5 @@
 # Effuse Labs & Lumina: Brand Style Guide
-**Version:** 1.0
+**Version:** 2.1
 **Date:** July 29, 2025
 **Status:** Finalized
 
@@ -15,13 +15,23 @@ This document is the official brand style guide for Effuse Labs and its flagship
 
 Our brand is the thoughtful fusion of two archetypes: **The Sage & The Creator**. We provide trusted wisdom (Sage) through our innovative tools (Creator).
 
-* **Core Values:**
-    * **Clarity:** We make the complex simple.
-    * **Empowerment:** We give users tools to build their own success.
-    * **Innovation:** We are always thinking ahead.
-    * **Accessibility:** Our tools are intuitive and built for everyone.
-* **Brand Keywords:** Illuminate, Flow, Growth, Clarity, Effortless, Insight, Radiate, Pour, Potential.
+#### 1.1 Core Values & Personality
+* **Values:** Clarity, Empowerment, Innovation, Accessibility.
+* **Keywords:** Illuminate, Flow, Growth, Clarity, Effortless, Insight, Radiate, Pour, Potential.
 * **Desired Emotional Response:** Users should feel **relieved, confident, and empowered.**
+
+#### 1.2 Tagline
+* **Primary Tagline:** Intelligent Software for Small Business Growth.
+
+#### 1.3 Core Messaging Pillars
+These are the foundational messages that all our copy is built upon.
+
+* **Pillar 1: For Salon & Barbershop Owners (The End User)**
+    * **Core Message:** "Stop managing your business and start building your passion. Lumina handles the administrative burdens—scheduling, payroll, reporting—so you can focus on your craft and your clients."
+* **Pillar 2: For Lumina's AI-Powered Advantage (The Differentiator)**
+    * **Core Message:** "Go beyond simple booking. Lumina is your intelligent partner, actively analyzing your data to give you clear, actionable suggestions that illuminate the path to higher revenue and happier clients."
+* **Pillar 3: For Effuse Labs Corporate Identity (Investors, Partners, Future Hires)**
+    * **Core Message:** "We believe local businesses are the backbone of our communities. Effuse Labs exists to democratize the power of technology, building intelligent and accessible software that levels the playing field and empowers small enterprises to build resilient, profitable futures."
 
 ---
 
@@ -30,110 +40,103 @@ Our brand is the thoughtful fusion of two archetypes: **The Sage & The Creator**
 Our logo system is built on the concept of **"Source & Expression."** Effuse Labs is the foundational source of innovation, while Lumina is the radiant expression of that innovation.
 
 #### 2.1 Primary Logos
-
-* **Effuse Labs Logo:** The "Signature Flow." A stylized lowercase 'e' where the tail extends into a gentle wave. It is rendered with a dimensional teal gradient. This mark is personal, foundational, and represents the flow of ideas.
-* **Lumina Logo:** The "Radiant Spark." A dynamic sunrise or spark shape made of flowing arcs. It is rendered in a vibrant gold-to-coral gradient. This mark is energetic and represents light, clarity, and growth.
+* **Effuse Labs Logo:** The "Signature Flow." A stylized lowercase 'e' with a flowing tail and dimensional teal gradient.
+* **Lumina Logo:** The "Radiant Spark." A dynamic sunrise shape with a vibrant gold-to-coral gradient.
 
 #### 2.2 Logo Usage Rules
-
-* **Clear Space:** To ensure legibility and impact, always maintain a minimum clear space around the logos. This exclusion zone should be equal to the height of the 'e' in the Effuse Labs logo or the height of the 'L' in the Lumina wordmark. No other elements should enter this zone.
-* **Minimum Size:**
-    * **Digital:** The logos should never be displayed smaller than 40 pixels in height.
-    * **Print:** The logos should never be printed smaller than 15mm in height.
+* **Clear Space:** Maintain a minimum clear space around the logos equal to the height of the 'e' in the Effuse Labs logo or the 'L' in the Lumina wordmark.
+* **Minimum Size:** Digital: 40px height. Print: 15mm height.
 
 #### 2.3 Logo Misuse
-
-To maintain brand integrity, never alter the logos.
-* **DO NOT** stretch, condense, or change the proportions.
+* **DO NOT** stretch, condense, rotate, or change proportions.
 * **DO NOT** change the approved brand colours or gradients.
 * **DO NOT** add outlines, drop shadows, or other visual effects.
-* **DO NOT** place the logo on a visually cluttered background. Use a solid colour background whenever possible.
-* **DO NOT** rotate the logo.
+* **DO NOT** place on a visually cluttered background.
 
 ---
 
 ### 3. Colour Palette
 
-Our colour palette is designed as a flexible system to serve both the Effuse Labs corporate brand and the Lumina product. Each has a distinct primary palette but shares a connection through its accent colours.
+Our colour palette is a flexible system serving the Effuse Labs corporate brand and the Lumina product.
 
 #### 3.1 Core Palettes
-
-* **Effuse Teal Gradient:** Used for the Effuse Labs logo.
-    * Start: `#0B2B33` (Deep Teal)
-    * End: `#22C5C3` (Vibrant Teal)
-* **Lumina Radiant Gradient:** Used for the Lumina logo and primary UI actions.
-    * Start: `#FFD25A` (Gold)
-    * End: `#FF7A5A` (Coral)
-* **Neutral & Text Palette:** Shared across all brand applications.
-    * `#1D1D21` (Off-Black for Text)
-    * `#808285` (Medium Grey for Secondary Text)
-    * `#F1F3F5` (Light Grey for Backgrounds)
-    * `#FFFFFF` (White)
+* **Effuse Teal Gradient:** Start: `#0B2B33`, End: `#22C5C3`.
+* **Lumina Radiant Gradient:** Start: `#FFD25A`, End: `#FF7A5A`.
+* **Neutral & Text Palette:** `#1D1D21` (Off-Black), `#808285` (Medium Grey), `#F1F3F5` (Light Grey), `#FFFFFF` (White).
 
 #### 3.2 Application & Usage
-
-**For the Effuse Labs Brand (Website, Corporate Materials):**
-* **Primary Feel:** Professional, calm, trustworthy.
-* **Dominant Colours:** Use the Neutral Palette as the foundation.
-* **Hero Element:** The Effuse Teal Gradient should be used for major branding moments.
-* **Primary Accent:** Use **Solid Gold (`#FFD25A`)** for all interactive elements like buttons and links.
-
-**For the Lumina Product (Application, Product Marketing):**
-* **Primary Feel:** Energetic, intuitive, empowering.
-* **Dominant Elements:** Use the Neutral Palette for UI structure and text. The **Lumina Radiant Gradient** is the star, used for primary buttons, dashboards, and highlights.
-* **Secondary Accent:** Use **Solid Deep Teal (`#0B2B33`)** for secondary buttons, containers, or structural elements where a less vibrant accent is needed.
+* **For the Effuse Labs Brand:** Dominated by the Neutral Palette, with the Effuse Teal Gradient for hero moments and **Solid Gold (`#FFD25A`)** for interactive accents.
+* **For the Lumina Product:** Built on the Neutral Palette, with the **Lumina Radiant Gradient** for primary actions and **Solid Deep Teal (`#0B2B33`)** for secondary accents.
 
 ---
 
 ### 4. Typography
 
-Our typography system is built on a primary brand typeface for broad communication and specific, stylized logotypes that act as graphical assets.
+Our system uses a primary typeface for communication and stylized logotypes for branding.
 
 #### 4.1 Logotypes
-
-The logotypes for Effuse Labs and Lumina are custom-kerned assets and should be treated as immutable graphics. They should not be recreated by manually typing them out.
-
-* **Effuse Labs Logotype:**
-    * **Font Basis:** Inter SemiBold
-    * **Style:** Title Case with custom letter-spacing. It uses our primary brand typeface to create a seamless and harmonious brand presence.
-* **Lumina Logotype:**
-    * **Font Basis:** Montserrat Bold
-    * **Style:** All Caps with increased letter-spacing. The 'A' has been **customized with a flat top**, creating a unique, architectural look that reinforces precision and growth. This makes the logotype a distinct and ownable brand asset.
+The logotypes are custom-kerned assets and should be treated as immutable graphics.
+* **Effuse Labs Logotype:** Font Basis: Inter SemiBold. Title Case.
+* **Lumina Logotype:** Font Basis: Montserrat Bold. All Caps. The 'A' is customized with a flat top.
 
 #### 4.2 Primary Typeface
-
-* **Font:** **Inter**
-    * **Usage:** For all headlines, sub-headlines, body copy, and UI text across both the Effuse Labs website and the Lumina application. Its versatility allows it to be both commanding and highly legible.
-    * **H1 Headlines:** Inter Bold (700)
-    * **H2 Headlines:** Inter SemiBold (600)
-    * **Body & UI Text:** Inter Regular (400)
+* **Font:** **Inter** (For all headlines, body, and UI text).
+* **Weights:** Bold (700) for H1, SemiBold (600) for H2, Regular (400) for Body.
 
 #### 4.3 Accent Typeface
-
-* **Font:** **IBM Plex Mono**
-    * **Usage:** To be used sparingly for displaying data, code snippets, or to add a subtle technical flavour in specific contexts like financial reports.
-    * **Style:** IBM Plex Mono Regular (400)
+* **Font:** **IBM Plex Mono** (Used sparingly for data/code snippets).
 
 ---
 
 ### 5. Brand Voice & Tone
 
-Our voice is how we sound. Our tone is how we adapt that voice to different situations.
-
-* **Our Voice is:**
-    * **Empowering, not prescriptive.** (We suggest and guide, we don't command.)
-    * **Clear, not jargon-filled.** (We make complex ideas simple.)
-    * **Warm, not clinical.** (We are a partner in their business.)
-    * **Inspiring, not over-hyped.** (We are confident but grounded.)
+* **Our Voice is:** Empowering, not prescriptive. Clear, not jargon-filled. Warm, not clinical. Inspiring, not over-hyped.
 
 ---
 
 ### 6. Imagery Style
 
-Our visual style for photography and illustration should align with our core values.
+* **Photography:** Warm, authentic, soft-focus. Feature creative professionals in their natural element.
+* **Illustration:** Clean, minimalist, and abstract. Use subtle light refractions and fluid shapes.
 
-* **Photography:** Warm, authentic, and soft-focus. Feature creative professionals in their natural environment, feeling empowered and focused. Avoid corporate stock photos.
-* **Illustration:** Clean, minimalist, and abstract. Use subtle light refractions, fluid shapes, and textures that evoke our "Water and Light" theme.
+---
+
+### 7. Application Examples
+
+This section shows our brand system in action, providing a clear visual reference for how the brand should look and feel.
+
+* **Effuse Labs Homepage:** Demonstrates the creative and professional application of the Effuse Labs brand identity, using abstract graphics and color blocking to create a dynamic feel.
+    * `[Image: Final Effuse Labs Homepage Mockup]`
+
+* **Lumina Dashboard:** Demonstrates the intuitive and empowering application of the Lumina product identity, using the radiant gradient to guide user attention and create a distinct brand experience.
+    * `[Image: Final Lumina Dashboard Mockup]`
+
+---
+
+### 8. Social Media Guidelines
+
+This section outlines the strategy for building a consistent and engaging presence on social media.
+
+#### 8.1 Platform-Specific Tone
+Our core voice remains the same, but the tone adapts to the platform's context:
+
+* **LinkedIn:** More professional and industry-focused. Share insights on small business tech, company milestones, and the Effuse Labs mission. The tone is authoritative yet approachable.
+
+* **Instagram/Facebook:** More visual, personal, and community-focused. Use authentic imagery, share user success stories, and post quick tips from Lumina. The tone is warm, encouraging, and celebratory.
+
+* **Twitter (X) & BlueSky:** More conversational, concise, and immediate. Ideal for sharing quick insights, company news, blog post links, and engaging in real-time industry conversations. The tone is direct and helpful. The use of emojis can be appropriate to add personality and warmth.
+
+#### 8.2 Visual Strategy
+* **Profile Pictures:** Use the mark-only versions of the logos (the abstract "e" and "spark") for clear recognition.
+* **Templates:** Create a set of branded templates using our approved fonts and color palettes for different post types (e.g., quote graphics, feature announcements, tips). This ensures visual consistency.
+* **Imagery:** All imagery must align with the primary Imagery Style (Section 6). Focus on authentic people and beautiful, abstract brand textures.
+
+#### 8.3 Content Pillars
+Our social media content should revolve around these four themes:
+1.  **Education & Empowerment:** Sharing valuable business tips for our target audience.
+2.  **Product Showcase:** Highlighting Lumina's features and the problems they solve.
+3.  **Community Spotlight:** Celebrating the successes of our clients.
+4.  **Company Vision:** Communicating the "why" behind Effuse Labs and our commitment to accessibility.
 
 ---
 **End of Guide**
