@@ -62,7 +62,9 @@ Our corporate website and platform are built with modern, performance-focused te
 - **Accessibility**: Our tools are for everyone, intuitive and easy to use
 
 ### Color Palette
-- **Effuse Teal Gradient**: `#0B2B33` → `#22C5C3`
+- **Slate Grey**: `#2E3440`
+- **Effuse Teal**: `#22C5C3`
+- **Lumina Gold**: `#FFD25A`
 - **Lumina Radiant Gradient**: `#FFD25A` → `#FF7A5A`
 - **Neutrals**: `#1D1D21` (Off-Black), `#808285` (Medium Grey), `#F1F3F5` (Light Grey)
 
@@ -212,8 +214,8 @@ Required environment variables are documented in `.env.example`. Contact the dev
 
 ### Development Team
 - **Technical Lead**: Jeremy Shields
-- **Email**: jeremy.shields@effuse.io
-- **GitHub**: [@effuselabs](https://github.com/effuselabs)
+- **Email**: dev@scootr.ca
+- **GitHub**: [@jshields-ca](https://github.com/jshields-ca)
 
 ### Support
 - **Issues**: [GitHub Issues](https://github.com/effuselabs/effuse-website/issues)
