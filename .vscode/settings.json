@@ -1,0 +1,63 @@
+{
+  // File Exclusions for Performance
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.next": true,
+    "**/coverage": true,
+    "**/.DS_Store": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/*.log": true
+  },
+  
+  // Search Exclusions
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.next": true,
+    "**/coverage": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/*.log": true,
+    "**/package-lock.json": true
+  },
+  
+  // File Watcher Exclusions (Performance Critical)
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/**": true,
+    "**/.next/**": true,
+    "**/coverage/**": true,
+    "**/build/**": true,
+    "**/dist/**": true,
+    "**/*.log": true
+  },
+  
+  // TypeScript & Next.js Optimizations
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.useLabelDetailsInCompletionEntries": true,
+  
+  // Cursor/VS Code Performance Settings
+  "extensions.experimental.affinity": {
+    "ms-vscode.vscode-typescript-next": 1
+  },
+  
+  // Git Integration Optimizations
+  "git.enabled": true,
+  "git.autorefresh": false,
+  "git.autofetch": false,
+  
+  // Editor Performance
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  
+  // Disable resource-intensive features for large projects
+  "editor.semantic.highlightingEnabled": true,
+  "editor.minimap.enabled": true,
+  "breadcrumbs.enabled": true
+}

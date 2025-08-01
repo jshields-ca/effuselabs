@@ -10,8 +10,8 @@
 
 | Metric               | Status                                              |
 | -------------------- | --------------------------------------------------- |
-| **Overall Progress** | ✅ 12.5% Complete (Sprint 1 Done)                  |
-| **Current Sprint**   | Sprint 2: Core Infrastructure & UI Foundation      |
+| **Overall Progress** | ✅ 12.5% Complete (v0.1.0 - Sprint 1 Done)         |
+| **Current Sprint**   | Sprint 2: Core Infrastructure & UI Foundation (v0.2.0) |
 | **Active Issues**    | 18 created, 4 completed                            |
 | **Days Elapsed**     | 1 / 44 days                                         |
 | **Target Launch**    | Week 8 (TBD)                                        |
@@ -290,6 +290,16 @@ Overall: ✅⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.5%
 
 ## 📝 Status Update History
 
+### August 1, 2025
+
+- 🎉 **Custom Domain Live** - Website now available at [https://effuse.io](https://effuse.io)
+- ✅ **Production Build Issues Resolved** - Fixed Tailwind CSS v4 incompatibility
+- ✅ **Dependencies Optimized** - Moved tailwindcss v3.4.17, postcss, autoprefixer to production dependencies
+- ✅ **Performance Improvements** - Added VS Code workspace settings for large project optimization
+- ✅ **Documentation Enhanced** - Created comprehensive CHANGELOG and updated all references
+- ✅ **Railway DNS Configuration** - Successfully connected custom domain with SSL certificate
+- 🔄 **Ready for Sprint 2** - All foundation issues resolved, development pipeline optimized
+
 ### July 31, 2025
 
 - ✅ **Sprint 1 Completed Successfully** - All deliverables achieved in 1 day
@@ -325,3 +335,5 @@ Overall: ✅⬜⬜⬜⬜⬜⬜⬜⬜⬜ 12.5%
 **📌 Note:** This document is automatically updated as issues progress through the development lifecycle. For real-time status updates, refer to the [Linear project dashboard](https://linear.app/scootr-ca/project/effuseio-7194bedc3fdf).
 
 **🏷️ Project Management:** All issues follow our systematic [Linear Labeling Guide](./LINEAR_LABELING_GUIDE.md) for consistent categorization and powerful filtering capabilities.
+
+**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.1.0 with full production infrastructure ready for Sprint 2 development.

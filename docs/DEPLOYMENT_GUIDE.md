@@ -12,7 +12,7 @@ Development (Local) → Staging (Railway) → Production (Railway)
 |-------------|---------|-----|
 | **Development** | Local development & testing | `http://localhost:3000` |
 | **Staging** | QA, client preview, integration testing | `https://effuselabs-staging.up.railway.app` |
-| **Production** | Live site for end users | `https://effuselabs-production.up.railway.app` |
+| **Production** | Live site for end users | `https://effuse.io` |
 
 ## Environment Variables Setup
 
@@ -116,7 +116,7 @@ NEXT_TELEMETRY_DISABLED=1
 ### Production Environment (Railway)
 ```bash
 NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://effuselabs-production.up.railway.app
+NEXT_PUBLIC_SITE_URL=https://effuse.io
 NEXT_TELEMETRY_DISABLED=1
 ```
 
