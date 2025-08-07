@@ -3,17 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 29, 29, 33;
-  --background-start-rgb: 241, 243, 245;
+  /* Brand Colors */
+  --off-black: 29, 29, 33;
+  --medium-grey: 128, 130, 133;
+  --light-grey: 241, 243, 245;
+  --slate-grey: 46, 52, 64;
+  --brand-gold: 255, 210, 90;
+  --brand-teal-dark: 11, 43, 51;
+  --brand-teal-light: 34, 197, 195;
+  
+  /* Default theme */
+  --foreground-rgb: var(--off-black);
+  --background-start-rgb: var(--light-grey);
   --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 241, 243, 245;
-    --background-start-rgb: 29, 29, 33;
-    --background-end-rgb: 29, 29, 33;
+    --foreground-rgb: var(--light-grey);
+    --background-start-rgb: var(--off-black);
+    --background-end-rgb: var(--off-black);
   }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,17 +51,71 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Focus styles for accessibility */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid rgb(var(--brand-gold));
+    outline-offset: 2px;
+  }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets on mobile */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize text selection */
+  .touch-callout-none {
+    -webkit-touch-callout: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-gradient-to-b {
+    background: white;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
 }

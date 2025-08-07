@@ -1,0 +1,218 @@
+'use client'
+
+import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigation } from '@/lib/hooks/useNavigation'
+import { Button } from '@/components/ui'
+import { cn } from '@/lib/utils'
+
+interface NavLinkProps {
+  href: string
+  children: React.ReactNode
+  onClick?: () => void
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="text-off-black hover:text-brand-teal-light transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md px-2 py-1"
+      tabIndex={0}
+    >
+      {children}
+    </a>
+  )
+}
+
+const MobileMenuButton: React.FC<{
+  isOpen: boolean
+  onClick: () => void
+}> = ({ isOpen, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="md:hidden p-2 rounded-md text-off-black hover:text-brand-teal-light hover:bg-light-grey transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={isOpen}
+    >
+      <motion.div
+        animate={isOpen ? 'open' : 'closed'}
+        className="w-6 h-6 relative"
+      >
+        <motion.span
+          variants={{
+            closed: { rotate: 0, y: 0 },
+            open: { rotate: 45, y: 8 }
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center"
+        />
+        <motion.span
+          variants={{
+            closed: { opacity: 1 },
+            open: { opacity: 0 }
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-3 left-0 w-6 h-0.5 bg-current"
+        />
+        <motion.span
+          variants={{
+            closed: { rotate: 0, y: 0 },
+            open: { rotate: -45, y: -8 }
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center"
+        />
+      </motion.div>
+    </button>
+  )
+}
+
+const MobileMenu: React.FC<{
+  isOpen: boolean
+  onClose: () => void
+}> = ({ isOpen, onClose }) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden"
+            onClick={onClose}
+          />
+          
+          {/* Mobile Menu */}
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'tween', duration: 0.3 }}
+            className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden"
+          >
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-light-grey">
+                <span className="font-bold text-xl text-off-black">Menu</span>
+                <button
+                  onClick={onClose}
+                  className="p-2 rounded-md text-off-black hover:text-brand-teal-light hover:bg-light-grey transition-colors duration-200"
+                  aria-label="Close menu"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Navigation Links */}
+              <nav className="flex-1 px-6 py-8">
+                <div className="space-y-6">
+                  <NavLink href="#products" onClick={onClose}>
+                    <span className="text-lg">Products</span>
+                  </NavLink>
+                  <NavLink href="#solutions" onClick={onClose}>
+                    <span className="text-lg">Solutions</span>
+                  </NavLink>
+                  <NavLink href="#about" onClick={onClose}>
+                    <span className="text-lg">About</span>
+                  </NavLink>
+                  <NavLink href="#contact" onClick={onClose}>
+                    <span className="text-lg">Contact</span>
+                  </NavLink>
+                </div>
+                
+                {/* CTA Button */}
+                <div className="mt-8">
+                  <Button variant="primary" size="lg" className="w-full">
+                    Get Started
+                  </Button>
+                </div>
+              </nav>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  )
+}
+
+export const Navbar: React.FC = () => {
+  const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } = useNavigation()
+
+  return (
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className={cn(
+          'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
+          isScrolled 
+            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+            : 'bg-white'
+        )}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex-shrink-0"
+            >
+              <a
+                href="/"
+                className="text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
+              >
+                Effuse Labs
+              </a>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <motion.nav
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="hidden md:flex items-center space-x-8"
+            >
+              <NavLink href="#products">Products</NavLink>
+              <NavLink href="#solutions">Solutions</NavLink>
+              <NavLink href="#about">About</NavLink>
+              <NavLink href="#contact">Contact</NavLink>
+            </motion.nav>
+
+            {/* Desktop CTA & Mobile Menu Button */}
+            <div className="flex items-center space-x-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="hidden md:block"
+              >
+                <Button variant="primary">Get Started</Button>
+              </motion.div>
+              
+              <MobileMenuButton
+                isOpen={isMobileMenuOpen}
+                onClick={toggleMobileMenu}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu */}
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
+      
+      {/* Spacer to prevent content from being hidden behind fixed navbar */}
+      <div className="h-16 lg:h-20" />
+    </>
+  )
+}
