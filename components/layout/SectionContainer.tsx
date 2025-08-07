@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 interface SectionContainerProps {
   children: React.ReactNode
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
   background?: 'white' | 'light' | 'dark' | 'gradient'
@@ -36,15 +36,20 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
     gradient: 'bg-gradient-to-b from-light-grey to-white'
   }
 
+  const props: any = {
+    className: cn(
+      backgroundClasses[background],
+      paddingClasses[padding],
+      className
+    )
+  }
+  
+  if (id) {
+    props.id = id
+  }
+
   return (
-    <Component
-      id={id}
-      className={cn(
-        backgroundClasses[background],
-        paddingClasses[padding],
-        className
-      )}
-    >
+    <Component {...props}>
       <Container size={size}>
         {children}
       </Container>

@@ -5,7 +5,7 @@ interface ContainerProps {
   children: React.ReactNode
   className?: string
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
@@ -18,15 +18,18 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
       full: 'max-w-full'
     }
     
+    const componentProps: any = {
+      ref,
+      className: cn(
+        'mx-auto px-4 sm:px-6 lg:px-8',
+        sizes[size],
+        className
+      ),
+      ...props
+    }
+
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'mx-auto px-4 sm:px-6 lg:px-8',
-          sizes[size],
-          className
-        )}
-        {...props}
+      <Component {...componentProps}
       >
         {children}
       </Component>

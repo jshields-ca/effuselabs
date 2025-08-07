@@ -6,25 +6,25 @@ interface CardProps {
   className?: string
   variant?: 'default' | 'elevated' | 'outline'
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 interface CardHeaderProps {
   children: React.ReactNode
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 interface CardContentProps {
   children: React.ReactNode
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 interface CardFooterProps {
   children: React.ReactNode
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
@@ -43,16 +43,19 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       xl: 'p-10'
     }
     
+    const componentProps: any = {
+      ref,
+      className: cn(
+        'rounded-lg transition-all duration-200',
+        variants[variant],
+        paddings[padding],
+        className
+      ),
+      ...props
+    }
+
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'rounded-lg transition-all duration-200',
-          variants[variant],
-          paddings[padding],
-          className
-        )}
-        {...props}
+      <Component {...componentProps}
       >
         {children}
       </Component>
@@ -62,15 +65,14 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
+    const componentProps: any = {
+      ref,
+      className: cn('mb-4', className),
+      ...props
+    }
+    
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'mb-4',
-          className
-        )}
-        {...props}
-      >
+      <Component {...componentProps}>
         {children}
       </Component>
     )
@@ -79,15 +81,14 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
+    const componentProps: any = {
+      ref,
+      className: cn('mb-4', className),
+      ...props
+    }
+    
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'mb-4',
-          className
-        )}
-        {...props}
-      >
+      <Component {...componentProps}>
         {children}
       </Component>
     )
@@ -96,15 +97,14 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
 
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
+    const componentProps: any = {
+      ref,
+      className: cn('mt-4 pt-4 border-t border-light-grey', className),
+      ...props
+    }
+    
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'mt-4 pt-4 border-t border-light-grey',
-          className
-        )}
-        {...props}
-      >
+      <Component {...componentProps}>
         {children}
       </Component>
     )

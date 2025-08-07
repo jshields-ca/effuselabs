@@ -6,14 +6,14 @@ interface GridProps {
   className?: string
   cols?: 1 | 2 | 3 | 4 | 5 | 6 | 12
   gap?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 interface GridItemProps {
   children: React.ReactNode
   className?: string
   span?: 1 | 2 | 3 | 4 | 5 | 6 | 12 | 'full'
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 const Grid = React.forwardRef<HTMLDivElement, GridProps>(
@@ -36,17 +36,19 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       xl: 'gap-8'
     }
     
+    const componentProps: any = {
+      ref,
+      className: cn(
+        'grid',
+        colClasses[cols],
+        gapClasses[gap],
+        className
+      ),
+      ...props
+    }
+
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          'grid',
-          colClasses[cols],
-          gapClasses[gap],
-          className
-        )}
-        {...props}
-      >
+      <Component {...componentProps}>
         {children}
       </Component>
     )
@@ -66,15 +68,17 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
       full: 'col-span-full'
     }
     
+    const componentProps: any = {
+      ref,
+      className: cn(
+        spanClasses[span],
+        className
+      ),
+      ...props
+    }
+
     return (
-      <Component
-        ref={ref}
-        className={cn(
-          spanClasses[span],
-          className
-        )}
-        {...props}
-      >
+      <Component {...componentProps}>
         {children}
       </Component>
     )

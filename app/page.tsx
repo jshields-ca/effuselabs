@@ -1,50 +1,22 @@
-import { H1, H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer, AnimatedItem } from '@/components/ui'
+import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer } from '@/components/ui'
 import { PageWrapper, SectionContainer } from '@/components/layout'
+import { HatchingCoreHeroSection } from '@/components/sections'
 
 export default function Home() {
   return (
     <PageWrapper>
       {/* Hero Section */}
-      <SectionContainer background="gradient" padding="xl">
-        <AnimatedContainer animation="fadeIn" className="text-center">
-          <AnimatedItem animation="slideUp" delay={0.1}>
-            <H1 className="mb-6">
-              Effuse Labs
-            </H1>
-          </AnimatedItem>
-          <AnimatedItem animation="slideUp" delay={0.2}>
-            <H2 className="text-medium-grey mb-8">
-              Intelligent Software for Small Business Growth
-            </H2>
-          </AnimatedItem>
-          <AnimatedItem animation="slideUp" delay={0.3}>
-            <Text className="max-w-2xl mx-auto mb-12">
-              We pour out innovative solutions that transform operational burdens
-              into competitive strengths for small businesses.
-            </Text>
-          </AnimatedItem>
-          <AnimatedItem animation="scale" delay={0.4}>
-            <div className="inline-flex gap-4">
-              <Button variant="primary" size="lg">
-                Get Started
-              </Button>
-              <Button variant="secondary" size="lg">
-                Learn More
-              </Button>
-            </div>
-          </AnimatedItem>
-        </AnimatedContainer>
-      </SectionContainer>
+      <HatchingCoreHeroSection />
 
       {/* Sprint Progress Section */}
       <SectionContainer background="white" padding="lg">
         <AnimatedContainer animation="slideUp" delay={0.6}>
           <div className="bg-brand-gold text-off-black px-8 py-6 rounded-lg text-center mb-16">
             <Text className="text-off-black font-semibold mb-2">
-              🚀 Sprint 3: Layout Components & Navigation Complete
+              🚀 Sprint 4: Hero Section & 3D Graphics Complete
             </Text>
             <Text className="text-off-black text-sm">
-              ✅ Navigation System • ✅ Footer Component • ✅ Layout Components • ✅ Responsive Design
+              ✅ Hero Layout Development • ✅ 3D Graphics Integration • ✅ CMS Integration • ✅ Performance Optimization
             </Text>
           </div>
         </AnimatedContainer>
