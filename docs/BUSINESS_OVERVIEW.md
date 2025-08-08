@@ -42,7 +42,12 @@ Effuse Labs was founded by Jeremy Shields, a project manager with deep experienc
 - **Location:** Winnipeg, Manitoba, Canada
 - **Founder:** Jeremy Shields
 - **Website:** effuse.io (under development)
-- **Contact Email:** jeremy.shields@effuse.io (Example)
+- **Public Contact Email:** hello@effuse.io (initially to forward to jeremy@effuse.io)
+- **Public Support Email:** support@effuse.io (initially to forward to jeremy@effuse.io)
+- **Media Contact Email:** press@effuse.io (initially to forward to jeremy@effuse.io)
+- **Billing Inquiries:** billing@effuse.io (initially to forward to jeremy@effuse.io)
+- **Employment/Careers Email:** careers@effuse.io (initially to forward to jeremy@effuse.io)
+
 
 ---
 

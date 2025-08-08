@@ -17,7 +17,5 @@ export type { CardProps, CardHeaderProps, CardContentProps, CardFooterProps } fr
 export { AnimatedContainer, AnimatedItem } from './AnimatedContainer'
 export type { AnimatedContainerProps } from './AnimatedContainer'
 
-export { TealWave3D } from './TealWave3D'
-export { default as LiquidFlow } from './LiquidFlow'
-export { default as LiquidFlowBackground } from './LiquidFlowBackground'
-export { default as HatchingCoreBackground } from './HatchingCoreBackground'
+export { default as FluidParallaxBackground } from './FluidParallaxBackground'
+export { default as HeroCanvas } from './HeroCanvas'

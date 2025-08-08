@@ -17,7 +17,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`min-h-screen flex flex-col ${className}`}>
+    <div className={`min-h-screen flex flex-col overflow-x-clip bg-white` + (className ? ` ${className}` : '')}>
       {/* Skip Navigation for Accessibility */}
       <SkipNav />
       
@@ -25,7 +25,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
       {showNavbar && <Navbar />}
       
       {/* Main Content */}
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 overflow-x-clip">
         {children}
       </main>
       

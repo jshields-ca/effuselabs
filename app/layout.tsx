@@ -1,6 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { PageWrapper } from '@/components/layout/PageWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,12 @@ export const metadata: Metadata = {
   creator: 'Effuse Labs',
   publisher: 'Effuse Labs',
   robots: 'index, follow',
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+// Next.js 14: configure viewport via dedicated export instead of metadata.viewport
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -27,8 +33,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} antialiased`}>
+        <PageWrapper>
+          {children}
+        </PageWrapper>
+      </body>
     </html>
   )
 }

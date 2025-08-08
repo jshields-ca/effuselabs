@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { H1, Text, Button, TealWave3D } from '@/components/ui'
+import { H1, Text, Button } from '@/components/ui'
 import { AnimatedContainer, AnimatedItem } from '@/components/ui'
 import { getHeroContent } from '@/lib/sanity/api'
 import type { HeroSectionContent } from '@/lib/sanity/types'
@@ -84,14 +84,7 @@ export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps)
       <div className="absolute inset-0 bg-gradient-to-t from-off-black/50 to-transparent z-10" />
       
       {/* 3D Graphics Container */}
-      <div className="absolute inset-0 z-0">
-        <TealWave3D className="opacity-60" />
-        {/* Fallback gradient for devices without WebGL */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-brand-teal-light/20 to-transparent rounded-full blur-3xl transform rotate-12" />
-          <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-gradient-to-r from-brand-gold/20 to-transparent rounded-full blur-2xl transform -rotate-12" />
-        </div>
-      </div>
+      <div className="absolute inset-0 z-0" />
 
       {/* Content */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

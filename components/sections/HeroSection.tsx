@@ -1,6 +1,6 @@
 'use client'
 
-import { H1, Text, Button, LiquidFlowBackground } from '@/components/ui'
+import { H1, Text, Button } from '@/components/ui'
 import { AnimatedContainer, AnimatedItem } from '@/components/ui'
 
 interface HeroSectionProps {
@@ -27,8 +27,7 @@ export function HeroSection({
       {/* Background overlay for better text contrast */}
       <div className="absolute inset-0 bg-gradient-to-t from-off-black/50 to-transparent z-10" />
       
-      {/* Stunning Liquid Flow Background */}
-      <LiquidFlowBackground className="z-0" />
+      {/* Deprecated background removed */}
 
       {/* Content */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

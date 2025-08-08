@@ -7,11 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Sprint 4 (v0.4.0) - In Progress August 2025
-- Hero Section Layout Development ✅
-- 3D Graphics Integration with React Three Fiber 🔄
-- Hero Content Management with Sanity CMS ⏳
-- Performance Optimization & Mobile Support ⏳
+### Planned
+- Hero animation refinement exploration (clusters, gold data flow, DOF glow) [EFF-34]
+- CMS integration for hero content (Sanity) [EFF-32]
+- Performance/mobile polish [EFF-33]
+
+## [0.4.1] - Unreleased
+
+### Sprint 4 In Progress: Hero Simplification & Cleanup
+
+#### Changed
+- Simplified hero to a premium vapour-only GPU background using React Three Fiber (flowfield shader)
+- Implemented reduced-motion SVG fallback for accessibility
+- Removed legacy tubes/threads and related code, resolved right-side banding by simplifying overlays
+
+#### Fixed
+- Addressed initial hydration/viewport warning by using Next.js `viewport` export
+- Eliminated duplicate footer and excessive header height from earlier iterations
+
+#### Notes
+- Sprint 4 remains in progress; 2 issues remaining before completion: EFF-32 (CMS) and EFF-33 (Performance/Mobile)
+- Further hero refinements moved to a future sprint (see EFF-34)
 
 ## [0.4.0] - 2025-08-07
 
@@ -114,7 +130,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Development Milestones
 
-### [0.4.0] - 2025-08-07 (Current)
+### [0.4.1] - In Progress (Current)
 **Sprint 4 In Progress**: Hero Section & Sophisticated Animations 🔄
 
 ### [0.3.0] - 2025-08-07 (Completed)
@@ -182,7 +198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Dependencies Timeline
 
-#### Current Production Dependencies (v0.4.0)
+#### Current Production Dependencies (v0.4.1-in-progress)
 ```json
 {
   "autoprefixer": "^10.4.21",
@@ -237,7 +253,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Sprint 1**: 5 tasks completed in 1 day (ahead of 5-day estimate)
 - **Sprint 2**: 4 tasks completed in 1 day (ahead of 5-day estimate)
 - **Sprint 3**: 4 tasks completed in 1 day (ahead of 5-day estimate)
-- **Sprint 4**: 2/4 tasks completed (in progress with sophisticated animations)
+- **Sprint 4**: 2/4 tasks completed
 - **Overall Efficiency**: 500% velocity improvement over planned timeline
 - **Quality**: Zero-warning code standards maintained across all sprints
 
@@ -260,8 +276,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Current Sprint (Sprint 4)
 - **Focus**: Hero Section & Sophisticated Animations
 - **Duration**: 7 days
-- **Key Tasks**: Complete 3D graphics integration, CMS management, performance optimization
-- **Progress**: 2/4 tasks completed with advanced animation system
+- **Key Tasks**: CMS integration (EFF-32), Performance & Mobile optimization (EFF-33)
+- **Progress**: 2/4 tasks completed (2 remaining: EFF-32, EFF-33)
 
 ### Upcoming Milestones
 - **Week 4**: Hero section with sophisticated animations complete (Sprint 4)

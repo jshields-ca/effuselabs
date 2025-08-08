@@ -10,9 +10,9 @@
 
 | Metric               | Status                                              |
 | -------------------- | --------------------------------------------------- |
-| **Overall Progress** | ✅ 50% Complete (v0.4.0 - Sprint 4 In Progress)     |
-| **Current Sprint**   | Sprint 4: Hero Section & 3D Graphics (v0.4.0)     |
-| **Active Issues**    | 28 created, 16 completed, Sprint 4 in progress    |
+| **Overall Progress** | 🟡 50% In Progress (v0.4.1 - Sprint 4 ongoing)     |
+| **Current Sprint**   | Sprint 4: Hero Section & 3D Graphics (v0.4.1)     |
+| **Active Issues**    | 28 created, 16 completed, 2 remaining in Sprint 4 |
 | **Days Elapsed**     | 9 / 44 days                                         |
 | **Target Launch**    | Week 8 (TBD)                                        |
 
@@ -138,16 +138,16 @@
 
 ### Sprint 4: Hero Section & 3D Graphics
 
-**🚀 Status:** In Progress (2/4 Tasks Complete)  
+**🔄 Status:** In Progress (scope simplified)  
 **📅 Duration:** 7 days  
-**🎯 Goal:** Create engaging hero section with sophisticated animations
+**🎯 Goal:** Deliver premium hero experience with performant GPU vapour background
 
 | Task                     | Issue                                               | Status     | Assignee |
 | ------------------------ | --------------------------------------------------- | ---------- | -------- |
 | Hero Section Layout Development | [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | ✅ Completed | AI       |
-| 3D Graphics Integration with React Three Fiber | [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | 🔄 In Progress | AI       |
-| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | ⏳ Backlog | -        |
-| Performance Optimization & Mobile Support | [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | ⏳ Backlog | -        |
+| 3D Graphics Integration (vapour-only R3F) | [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | ✅ Completed | AI       |
+| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | 🔄 In Progress | -        |
+| Performance Optimization & Mobile Support | [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | 🔄 In Progress | -        |
 
 **Key Deliverables:**
 
@@ -155,18 +155,14 @@
 - [x] Hatching Core background with organic fluid motion and dramatic icon reveal
 - [x] Multi-layered animation system with 5 distinct flowing layers
 - [x] Synchronized text animations with perfect visual hierarchy
-- [ ] CMS-managed hero content with dynamic fields
-- [ ] Performance-optimized 3D loading and mobile support
+- [ ] CMS-managed hero content with dynamic fields (EFF-32)
+- [ ] Performance-optimized 3D loading and mobile support (EFF-33)
 
 **Sprint 4 Achievements:**
-- ✅ **HatchingCoreBackground Component**: Sophisticated fluid animation system
-- ✅ **HatchingCoreHeroSection Component**: Dramatic icon reveal with synchronized animations
-- ✅ **Organic Background Flow**: 5-layer system with variable speeds and ripple distortion
-- ✅ **Dramatic Icon Animation**: Shell peeling with blur effects and light ray bursts
-- ✅ **Breathing Button Animation**: Subtle pulsing with gradient shifts and enhanced hover states
-- ✅ **Enhanced Particle System**: 12 floating elements with organic motion patterns
-- ✅ **Energy Ripples**: Expanding circular waves for depth and visual interest
-- ✅ **Performance Optimization**: GPU-accelerated animations maintaining 60fps
+- ✅ Vapour-only hero delivered with R3F flowfield shader
+- ✅ Reduced-motion coverage and accessibility maintained
+- ✅ Right-side banding eliminated via overlay simplification
+- ✅ Removed unused wire/thread code and exports
 
 **Technical Implementation:**
 - **Multi-Layered Animation**: 5 distinct flowing shapes with staggered timing (12-18s cycles)
@@ -179,7 +175,7 @@
 
 ### Sprint 5: Feature Sections & Content
 
-**⏸️ Status:** Pending Sprint 4 Completion  
+**⏸️ Status:** Pending Sprint 4 completion  
 **📅 Duration:** 7 days  
 **🎯 Goal:** Build feature sections and content areas
 
@@ -282,7 +278,7 @@
 Sprint 1: ✅✅✅✅ 100% (4/4 tasks)
 Sprint 2: ✅✅✅✅ 100% (4/4 tasks)
 Sprint 3: ✅✅✅✅ 100% (4/4 tasks)
-Sprint 4: ✅✅⬜⬜ 50% (2/4 tasks)
+Sprint 4: ✅✅⬜⬜ 50% (2/4 tasks) — Remaining: EFF-32, EFF-33
 Sprint 5: ⬜⬜⬜⬜ 0% (0/4 tasks)
 Sprint 6: ⬜⬜⬜⬜ 0% (0/4 tasks)
 Sprint 7: ⬜⬜⬜⬜ 0% (0/4 tasks)
@@ -309,15 +305,15 @@ Overall: ✅✅✅🟡⬜⬜⬜⬜ 50%
 - **[Brand Style Guide](./BRAND_STYLEGUIDE.md)** - Visual identity guidelines
 - **[Project README](../README.md)** - Project overview and setup instructions
 
-### Sprint 4 Completed Issues (Hero Section & 3D Graphics)
+### Sprint 4 Issues (Hero Section & 3D Graphics)
 
 | Issue | Labels | Description | Status |
 | ----- | ------ | ----------- | ------ |
 | [EFF-29](https://linear.app/scootr-ca/issue/EFF-29) | `Sprint-4` `Epic` `Large` `Frontend` `Animation` | Sprint 4: Hero Section & 3D Graphics | 🔄 In Progress |
 | [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | `Sprint-4` `Feature` `Medium` `Frontend` `Layout` | Hero Section Layout Development | ✅ Done |
-| [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | `Sprint-4` `Feature` `Large` `Frontend` `Animation` `3D` | 3D Graphics Integration with React Three Fiber | 🔄 In Progress |
-| [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | `Sprint-4` `Feature` `Medium` `Backend` `CMS` | Hero Content Management with Sanity CMS | ⏳ Backlog |
-| [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | `Sprint-4` `Feature` `Small` `Performance` `Mobile` | Performance Optimization & Mobile Support | ⏳ Backlog |
+| [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | `Sprint-4` `Feature` `Large` `Frontend` `Animation` `3D` | 3D Graphics Integration with React Three Fiber | ✅ Done |
+| [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | `Sprint-4` `Feature` `Medium` `Backend` `CMS` | Hero Content Management with Sanity CMS | 🔄 In Progress |
+| [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | `Sprint-4` `Feature` `Small` `Performance` `Mobile` | Performance Optimization & Mobile Support | 🔄 In Progress |
 
 ---
 
@@ -325,10 +321,8 @@ Overall: ✅✅✅🟡⬜⬜⬜⬜ 50%
 
 ### Immediate Next Steps
 
-1. **Complete 3D Graphics Integration** - Finish React Three Fiber implementation and optimization
-2. **CMS Integration** - Connect hero content to Sanity CMS for dynamic management
-3. **Performance Optimization** - Optimize animations for mobile and ensure 60fps performance
-4. **Mobile Support** - Ensure responsive behavior across all device sizes
+1. **CMS Integration (EFF-32)** - Connect hero content to Sanity CMS for dynamic management
+2. **Performance & Mobile (EFF-33)** - Optimize animations for mobile, loading strategy, and responsiveness
 
 ### Upcoming Milestones
 
@@ -364,6 +358,6 @@ For complete project history and detailed status updates, see our [**CHANGELOG**
 
 **🏷️ Project Management:** All issues follow our systematic [Linear Labeling Guide](./LINEAR_LABELING_GUIDE.md) for consistent categorization and powerful filtering capabilities.
 
-**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.4.0 with sophisticated hero section animations and Hatching Core background system.
+**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.4.0.
 
 **🎭 Animation Showcase:** The new Hatching Core background features organic fluid motion, dramatic icon reveals, and synchronized text animations that perfectly embody the "fluid innovation" brand concept.

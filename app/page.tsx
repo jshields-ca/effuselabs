@@ -1,10 +1,10 @@
 import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer } from '@/components/ui'
-import { PageWrapper, SectionContainer } from '@/components/layout'
+import { SectionContainer } from '@/components/layout'
 import { HatchingCoreHeroSection } from '@/components/sections'
 
 export default function Home() {
   return (
-    <PageWrapper>
+    <>
       {/* Hero Section */}
       <HatchingCoreHeroSection />
 
@@ -314,6 +314,6 @@ export default function Home() {
           </div>
         </AnimatedContainer>
       </SectionContainer>
-    </PageWrapper>
+    </>
   )
 }

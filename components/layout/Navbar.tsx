@@ -147,19 +147,17 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled 
             ? 'bg-white/95 backdrop-blur-md shadow-lg' 
             : 'bg-white'
         )}
+        aria-label="Primary Navigation"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -206,13 +204,13 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
       
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
-      <div className="h-16 lg:h-20" />
+      <div className="h-14 lg:h-16" />
     </>
   )
 }
