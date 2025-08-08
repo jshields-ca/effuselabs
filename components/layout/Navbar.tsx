@@ -4,6 +4,7 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigation } from '@/lib/hooks/useNavigation'
 import { Button } from '@/components/ui'
+import type { HeaderContent } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 
 interface NavLinkProps {
@@ -72,7 +73,8 @@ const MobileMenuButton: React.FC<{
 const MobileMenu: React.FC<{
   isOpen: boolean
   onClose: () => void
-}> = ({ isOpen, onClose }) => {
+  header: HeaderContent
+}> = ({ isOpen, onClose, header }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -112,26 +114,25 @@ const MobileMenu: React.FC<{
               
               {/* Navigation Links */}
               <nav className="flex-1 px-6 py-8">
-                <div className="space-y-6">
-                  <NavLink href="#products" onClick={onClose}>
-                    <span className="text-lg">Products</span>
-                  </NavLink>
-                  <NavLink href="#solutions" onClick={onClose}>
-                    <span className="text-lg">Solutions</span>
-                  </NavLink>
-                  <NavLink href="#about" onClick={onClose}>
-                    <span className="text-lg">About</span>
-                  </NavLink>
-                  <NavLink href="#contact" onClick={onClose}>
-                    <span className="text-lg">Contact</span>
-                  </NavLink>
+                <div className="flex flex-col space-y-6">
+                  {header.navLinks?.map((link) => (
+                    <NavLink key={`${link.label}-${link.href}`} href={link.href} onClick={onClose}>
+                      <span className="text-lg">{link.label}</span>
+                    </NavLink>
+                  ))}
                 </div>
                 
                 {/* CTA Button */}
                 <div className="mt-8">
-                  <Button variant="primary" size="lg" className="w-full">
-                    Get Started
-                  </Button>
+                  {header.cta?.href ? (
+                    <Button variant="primary" size="lg" className="w-full" href={header.cta.href}>
+                      {header.cta.label}
+                    </Button>
+                  ) : (
+                    <Button variant="primary" size="lg" className="w-full">
+                      Get Started
+                    </Button>
+                  )}
                 </div>
               </nav>
             </div>
@@ -142,7 +143,7 @@ const MobileMenu: React.FC<{
   )
 }
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
   const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } = useNavigation()
 
   return (
@@ -169,7 +170,7 @@ export const Navbar: React.FC = () => {
                 href="/"
                 className="text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
               >
-                Effuse Labs
+                {header.brandName || 'Effuse Labs'}
               </a>
             </motion.div>
 
@@ -180,10 +181,9 @@ export const Navbar: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="hidden md:flex items-center space-x-8"
             >
-              <NavLink href="#products">Products</NavLink>
-              <NavLink href="#solutions">Solutions</NavLink>
-              <NavLink href="#about">About</NavLink>
-              <NavLink href="#contact">Contact</NavLink>
+              {header.navLinks?.map((link) => (
+                <NavLink key={`${link.label}-${link.href}`} href={link.href}>{link.label}</NavLink>
+              ))}
             </motion.nav>
 
             {/* Desktop CTA & Mobile Menu Button */}
@@ -194,7 +194,11 @@ export const Navbar: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="hidden md:block"
               >
-                <Button variant="primary">Get Started</Button>
+                {header.cta?.href ? (
+                  <Button variant="primary" href={header.cta.href}>{header.cta.label}</Button>
+                ) : (
+                  <Button variant="primary">Get Started</Button>
+                )}
               </motion.div>
               
               <MobileMenuButton
@@ -207,7 +211,7 @@ export const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} header={header} />
       
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
       <div className="h-14 lg:h-16" />

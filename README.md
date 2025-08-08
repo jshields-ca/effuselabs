@@ -1,12 +1,10 @@
 <div align="center">
 
-# 🚀 Effuse Labs
+# 🚀 Effuse Labs (Private Repository)
 
 ### *Intelligent Software for Small Business Growth*
 
-[![Version](https://img.shields.io/badge/version-0.4.0-blue?style=for-the-badge)](./CHANGELOG.md)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge)](https://effuse.io)
-[![Deployment](https://img.shields.io/badge/deployed-live-success?style=for-the-badge)](https://effuse.io)
+[![Version](https://img.shields.io/badge/version-0.4.1--in--progress-blue?style=for-the-badge)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.31-black?style=flat&logo=next.js)](https://nextjs.org/)
@@ -25,61 +23,46 @@
 
 ---
 
-**🎯 Sprint Progress:** `4/8 Complete` • **🎭 Hero Section & Animations In Progress** • **🚀 Live at [effuse.io](https://effuse.io)**
+**Sprint 4:** In progress • Hero CMS complete • Perf/mobile optimization remaining
 
 </div>
 
-## 📑 Table of Contents
+## Contents
 
-- [🌟 About Effuse Labs](#-about-effuse-labs)
-
-- [🛠️ Technology Stack](#️-technology-stack)
-
-- [🚦 Getting Started](#-getting-started)
-- [💻 Development Workflow](#-development-workflow)
-- [🌐 Deployment](#-deployment)
-- [📚 Documentation](#-documentation)
-- [♿ Accessibility Commitment](#-accessibility-commitment)
-
-- [🔧 Troubleshooting](#-troubleshooting)
-- [🤝 Contributing](#-contributing)
-- [📞 Contact & Support](#-contact--support)
+- Quick start
+- Environment
+- Commands
+- Documentation
+- Deployment
 
 ---
 
 Effuse Labs is a modern technology company based in Winnipeg, Manitoba, dedicated to building intelligent, industry-specific software (Vertical SaaS) for underserved small and medium-sized businesses across North America. Our mission is to pour out a continuous stream of innovative ideas, elegant code, and intelligent solutions that democratize the power of data for local businesses.
 
-## 🌟 About Effuse Labs
+## Quick start
 
-The name 'Effuse Labs' is derived from the Latin _effundere_ (effusus), meaning "to pour out." We exist to **pour out** innovative solutions that transform operational burdens into competitive strengths for small businesses.
-
-### Our Vision
-
-To democratize the power of data by providing local businesses with the same level of actionable insight and operational efficiency typically reserved for large corporations.
-
-### Brand Archetypes
-
-- **The Sage**: Trusted source of wisdom and insight
-- **The Creator**: Actively building and innovating
+```bash
+npm install
+npm run dev
+# open http://localhost:3000
+```
 
 
 
-## 🛠️ Technology Stack
+## Environment
 
-Our corporate website and platform are built with modern, performance-focused technologies:
+Create `.env.local`:
 
-- **Framework**: [Next.js 14](https://nextjs.org/) with App Router & TypeScript
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3.4.17 with custom brand configuration
-- **Animation**: [Framer Motion](https://www.framer.com/motion/) for fluid interactions
-- **3D Graphics**: [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) for abstract visuals
-- **CMS**: [Sanity.io](https://www.sanity.io/) for headless content management
-- **Deployment**: [Railway](https://railway.app/) with automated CI/CD and custom domain
-- **Containerization**: Docker for consistent development environments
-- **Accessibility**: ESLint plugin for WCAG AA compliance
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=...
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+# Optional: SANITY_READ_TOKEN=... (private dataset)
+```
 
 
 
-## 🚦 Getting Started
+## Commands
 
 ### Prerequisites
 
@@ -113,13 +96,12 @@ Our corporate website and platform are built with modern, performance-focused te
    # Edit .env.local with your configuration
    ```
 
-4. **Run the development server**
-
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```bash
+npm run dev      # start dev server
+npm run build    # production build
+npm run start    # run production server
+npm run lint     # lint code
+```
 
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
@@ -259,27 +241,11 @@ We welcome contributions from the community! Please see our [Contributing Guidel
 - **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)**: Three-environment pipeline setup
 - **[CHANGELOG](./CHANGELOG.md)**: Complete project history and version tracking
 
-## 🌐 Deployment
+## Deployment
 
-### Three-Environment Pipeline
-
-| Environment | Purpose | URL | Deploy Trigger |
-|-------------|---------|-----|----------------|
-| **Development** | Local development & testing | `http://localhost:3000` | `npm run dev` |
-| **Staging** | QA, client preview, integration testing | [effuselabs-staging.up.railway.app](https://effuselabs-staging.up.railway.app) | Manual deployment |
-| **Production** | Live site for end users | [effuse.io](https://effuse.io) | Manual deployment |
-
-### Deployment Workflow
-```bash
-# Develop locally
-npm run dev  # localhost:3000
-
-# Deploy to staging for testing
-railway environment staging && railway up
-
-# Deploy to production after approval
-railway environment production && railway up
-```
+- Development: http://localhost:3000
+- Staging: https://effuselabs-staging.up.railway.app (v0.1.0)
+- Production: https://effuse.io (v0.1.0)
 
 ### Environment Variables
 

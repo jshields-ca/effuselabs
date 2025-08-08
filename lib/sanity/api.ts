@@ -1,5 +1,5 @@
-import { sanityClient, heroSectionQuery } from './config'
-import type { HeroSectionContent } from './types'
+import { sanityClient, heroSectionQuery, headerQuery } from './config'
+import type { HeroSectionContent, HeaderContent } from './types'
 
 // Default hero content (fallback when CMS is not available)
 const defaultHeroContent: Omit<HeroSectionContent, '_id' | '_type'> = {
@@ -48,5 +48,41 @@ export function getHeroContentPreview(initialData: HeroSectionContent) {
     data: initialData,
     loading: false,
     error: null
+  }
+}
+
+// Default header content (fallback when CMS is not available)
+const defaultHeaderContent: HeaderContent = {
+  brandName: 'Effuse Labs',
+  navLinks: [
+    { label: 'Products', href: '#products' },
+    { label: 'Solutions', href: '#solutions' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
+  ],
+  cta: { label: 'Get Started', href: '#contact' }
+}
+
+export async function getHeaderContent(): Promise<HeaderContent> {
+  try {
+    const header = await sanityClient.fetch<Partial<HeaderContent> | null>(headerQuery)
+
+    if (!header) return defaultHeaderContent
+
+    return {
+      brandName: header.brandName || defaultHeaderContent.brandName,
+      navLinks: Array.isArray(header.navLinks) && header.navLinks.length > 0
+        ? header.navLinks.map(link => ({
+            label: link?.label || 'Link',
+            href: link?.href || '#',
+          }))
+        : defaultHeaderContent.navLinks,
+      cta: header.cta?.label && header.cta?.href
+        ? { label: header.cta.label, href: header.cta.href }
+        : defaultHeaderContent.cta,
+    }
+  } catch (error) {
+    console.warn('Failed to fetch header content from Sanity CMS, using default content:', error)
+    return defaultHeaderContent
   }
 }

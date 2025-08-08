@@ -20,13 +20,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Simplified hero to a premium vapour-only GPU background using React Three Fiber (flowfield shader)
 - Implemented reduced-motion SVG fallback for accessibility
 - Removed legacy tubes/threads and related code, resolved right-side banding by simplifying overlays
+- CMS integration: Header and Hero now read content from Sanity (`siteSettings`, `heroSection`)
 
 #### Fixed
 - Addressed initial hydration/viewport warning by using Next.js `viewport` export
 - Eliminated duplicate footer and excessive header height from earlier iterations
 
 #### Notes
-- Sprint 4 remains in progress; 2 issues remaining before completion: EFF-32 (CMS) and EFF-33 (Performance/Mobile)
+- Sprint 4 remains in progress; 1 issue remaining before completion: EFF-33 (Performance/Mobile)
 - Further hero refinements moved to a future sprint (see EFF-34)
 
 ## [0.4.0] - 2025-08-07
@@ -253,7 +254,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Sprint 1**: 5 tasks completed in 1 day (ahead of 5-day estimate)
 - **Sprint 2**: 4 tasks completed in 1 day (ahead of 5-day estimate)
 - **Sprint 3**: 4 tasks completed in 1 day (ahead of 5-day estimate)
-- **Sprint 4**: 2/4 tasks completed
+- **Sprint 4**: 3/4 tasks completed
 - **Overall Efficiency**: 500% velocity improvement over planned timeline
 - **Quality**: Zero-warning code standards maintained across all sprints
 
@@ -276,8 +277,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Current Sprint (Sprint 4)
 - **Focus**: Hero Section & Sophisticated Animations
 - **Duration**: 7 days
-- **Key Tasks**: CMS integration (EFF-32), Performance & Mobile optimization (EFF-33)
-- **Progress**: 2/4 tasks completed (2 remaining: EFF-32, EFF-33)
+- **Key Tasks**: Performance & Mobile optimization (EFF-33)
+- **Progress**: 3/4 tasks completed (1 remaining: EFF-33)
 
 ### Upcoming Milestones
 - **Week 4**: Hero section with sophisticated animations complete (Sprint 4)

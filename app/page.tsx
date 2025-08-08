@@ -1,23 +1,19 @@
 import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer } from '@/components/ui'
 import { SectionContainer } from '@/components/layout'
-import { HatchingCoreHeroSection } from '@/components/sections'
+import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <HatchingCoreHeroSection />
+      {/* Hero Section (CMS-driven) */}
+      <DynamicHeroSection />
 
       {/* Sprint Progress Section */}
       <SectionContainer background="white" padding="lg">
         <AnimatedContainer animation="slideUp" delay={0.6}>
           <div className="bg-brand-gold text-off-black px-8 py-6 rounded-lg text-center mb-16">
-            <Text className="text-off-black font-semibold mb-2">
-              🚀 Sprint 4: Hero Section & 3D Graphics Complete
-            </Text>
-            <Text className="text-off-black text-sm">
-              ✅ Hero Layout Development • ✅ 3D Graphics Integration • ✅ CMS Integration • ✅ Performance Optimization
-            </Text>
+            <Text className="text-off-black font-semibold mb-2">🚀 Sprint 4 In Progress</Text>
+            <Text className="text-off-black text-sm">CMS hero integration and performance/mobile optimization underway</Text>
           </div>
         </AnimatedContainer>
       </SectionContainer>

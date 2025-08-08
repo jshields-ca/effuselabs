@@ -16,7 +16,7 @@ export const sanityClient = createClient(config)
 
 // GROQ queries
 export const heroSectionQuery = `
-  *[_type == "heroSection"][0] {
+  *[_type == "heroSection"] | order(_updatedAt desc)[0] {
     _id,
     title,
     subtitle,
@@ -26,5 +26,13 @@ export const heroSectionQuery = `
     primaryCtaHref,
     secondaryCtaHref,
     backgroundSettings
+  }
+`
+
+export const headerQuery = `
+  *[_type == "siteSettings"][0] {
+    brandName,
+    navLinks[]{label, href},
+    cta{label, href}
   }
 `

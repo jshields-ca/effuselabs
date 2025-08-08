@@ -79,73 +79,68 @@ export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps)
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark">
       {/* Background overlay for better text contrast */}
       <div className="absolute inset-0 bg-gradient-to-t from-off-black/50 to-transparent z-10" />
-      
+
       {/* 3D Graphics Container */}
       <div className="absolute inset-0 z-0" />
 
       {/* Content */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <AnimatedContainer animation="fadeIn" className="space-y-8">
-          {/* Company name */}
-          <AnimatedItem animation="slideUp" delay={0.1}>
-            <div className="mb-4">
-              <Text className="text-brand-teal-light text-lg font-medium tracking-wide uppercase">
-                {heroContent.subtitle}
-              </Text>
-            </div>
-          </AnimatedItem>
-
-          {/* Main headline */}
-          <AnimatedItem animation="slideUp" delay={0.2}>
-            <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
-              {heroContent.title}
-            </H1>
-          </AnimatedItem>
-
-          {/* Description */}
-          <AnimatedItem animation="slideUp" delay={0.3}>
-            <Text className="text-light-grey text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed mb-12">
-              {heroContent.description}
-            </Text>
-          </AnimatedItem>
-
-          {/* Call-to-action buttons */}
-          <AnimatedItem animation="scale" delay={0.4}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                variant="primary" 
-                size="lg"
-                className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4"
-                onClick={() => handleCtaClick(heroContent.primaryCtaHref)}
-              >
-                {heroContent.primaryCtaText}
-              </Button>
-              <Button 
-                variant="secondary" 
-                size="lg"
-                className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-off-black"
-                onClick={() => handleCtaClick(heroContent.secondaryCtaHref)}
-              >
-                {heroContent.secondaryCtaText}
-              </Button>
-            </div>
-          </AnimatedItem>
-
-          {/* Scroll indicator */}
-          <AnimatedItem animation="fadeIn" delay={0.6}>
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-              <div className="flex flex-col items-center space-y-2 text-light-grey">
-                <Text className="text-sm">Scroll to explore</Text>
-                <div className="w-6 h-10 border-2 border-light-grey rounded-full flex justify-center">
-                  <div className="w-1 h-3 bg-light-grey rounded-full mt-2 animate-bounce" />
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+          <div className="text-center lg:text-left">
+            <AnimatedContainer animation="fadeIn" className="space-y-8">
+              {/* Company name */}
+              <AnimatedItem animation="slideUp" delay={0.1}>
+                <div className="mb-4">
+                  <Text className="text-brand-teal-light text-lg font-medium tracking-wide uppercase">
+                    {heroContent.subtitle}
+                  </Text>
                 </div>
-              </div>
-            </div>
-          </AnimatedItem>
-        </AnimatedContainer>
+              </AnimatedItem>
+
+              {/* Main headline */}
+              <AnimatedItem animation="slideUp" delay={0.2}>
+                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
+                  {heroContent.title}
+                </H1>
+              </AnimatedItem>
+
+              {/* Description */}
+              <AnimatedItem animation="slideUp" delay={0.3}>
+                <Text className="text-light-grey text-lg sm:text-xl max-w-3xl lg:max-w-2xl lg:mx-0 mx-auto leading-relaxed mb-12">
+                  {heroContent.description}
+                </Text>
+              </AnimatedItem>
+
+              {/* Call-to-action buttons */}
+              <AnimatedItem animation="scale" delay={0.4}>
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4"
+                    onClick={() => handleCtaClick(heroContent.primaryCtaHref)}
+                  >
+                    {heroContent.primaryCtaText}
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-off-black"
+                    onClick={() => handleCtaClick(heroContent.secondaryCtaHref)}
+                  >
+                    {heroContent.secondaryCtaText}
+                  </Button>
+                </div>
+              </AnimatedItem>
+            </AnimatedContainer>
+          </div>
+
+          {/* Right: empty to balance layout and maintain left anchoring */}
+          <div className="hidden lg:block" aria-hidden="true" />
+        </div>
       </div>
     </section>
   )

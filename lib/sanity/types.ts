@@ -24,3 +24,20 @@ export interface SanityDocument {
   _updatedAt: string
   _rev: string
 }
+
+// Header / Navigation document types
+export interface HeaderNavLink {
+  label: string
+  href: string
+}
+
+export interface HeaderCta {
+  label: string
+  href: string
+}
+
+export interface HeaderContent {
+  brandName: string
+  navLinks: HeaderNavLink[]
+  cta?: HeaderCta
+}

@@ -147,7 +147,7 @@
 | ------------------------ | --------------------------------------------------- | ---------- | -------- |
 | Hero Section Layout Development | [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | ✅ Completed | AI       |
 | 3D Graphics Integration (vapour-only R3F) | [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | ✅ Completed | AI       |
-| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | 🔄 In Progress | -        |
+| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | ✅ Completed | AI       |
 | Performance Optimization & Mobile Support | [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | 🔄 In Progress | -        |
 
 **Key Deliverables:**
@@ -156,7 +156,7 @@
 - [x] Hatching Core background with organic fluid motion and dramatic icon reveal
 - [x] Multi-layered animation system with 5 distinct flowing layers
 - [x] Synchronized text animations with perfect visual hierarchy
-- [ ] CMS-managed hero content with dynamic fields (EFF-32)
+- [x] CMS-managed hero content with dynamic fields (EFF-32)
 - [ ] Performance-optimized 3D loading and mobile support (EFF-33)
 
 **Sprint 4 Achievements:**
@@ -279,7 +279,7 @@
 Sprint 1: ✅✅✅✅ 100% (4/4 tasks)
 Sprint 2: ✅✅✅✅ 100% (4/4 tasks)
 Sprint 3: ✅✅✅✅ 100% (4/4 tasks)
-Sprint 4: ✅✅⬜⬜ 50% (2/4 tasks) — Remaining: EFF-32, EFF-33
+Sprint 4: ✅✅✅⬜ 75% (3/4 tasks) — Remaining: EFF-33
 Sprint 5: ⬜⬜⬜⬜ 0% (0/4 tasks)
 Sprint 6: ⬜⬜⬜⬜ 0% (0/4 tasks)
 Sprint 7: ⬜⬜⬜⬜ 0% (0/4 tasks)
