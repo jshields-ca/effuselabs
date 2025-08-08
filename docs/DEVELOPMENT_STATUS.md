@@ -13,6 +13,7 @@
 | **Overall Progress** | 🟡 50% In Progress (v0.4.1 - Sprint 4 ongoing)     |
 | **Current Sprint**   | Sprint 4: Hero Section & 3D Graphics (v0.4.1)     |
 | **Active Issues**    | 28 created, 16 completed, 2 remaining in Sprint 4 |
+| **Current Version**  | v0.4.1 (unreleased, tracking through sprints)      |
 | **Days Elapsed**     | 9 / 44 days                                         |
 | **Target Launch**    | Week 8 (TBD)                                        |
 
@@ -358,6 +359,7 @@ For complete project history and detailed status updates, see our [**CHANGELOG**
 
 **🏷️ Project Management:** All issues follow our systematic [Linear Labeling Guide](./LINEAR_LABELING_GUIDE.md) for consistent categorization and powerful filtering capabilities.
 
-**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.4.0.
+**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.1.0.
+**🧪 Staging Environment:** [https://effuselabs-staging.up.railway.app](https://effuselabs-staging.up.railway.app) - Currently v0.1.0.
 
 **🎭 Animation Showcase:** The new Hatching Core background features organic fluid motion, dramatic icon reveals, and synchronized text animations that perfectly embody the "fluid innovation" brand concept.

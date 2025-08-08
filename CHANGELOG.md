@@ -296,8 +296,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Links
 
-- **Live Website**: [https://effuse.io](https://effuse.io)
-- **Staging Environment**: [https://effuselabs-staging.up.railway.app](https://effuselabs-staging.up.railway.app)
+- **Live Website**: [https://effuse.io](https://effuse.io) (deployed v0.1.0)
+- **Staging Environment**: [https://effuselabs-staging.up.railway.app](https://effuselabs-staging.up.railway.app) (deployed v0.1.0)
 - **Linear Project**: [Project Dashboard](https://linear.app/scootr-ca/project/effuseio-7194bedc3fdf)
 - **Repository**: Internal development repository
 
