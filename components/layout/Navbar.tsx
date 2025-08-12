@@ -69,6 +69,10 @@ const MobileMenu: React.FC<{
         <div
           className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
           onClick={onClose}
+          onKeyDown={(e) => e.key === 'Escape' && onClose()}
+          role="button"
+          tabIndex={0}
+          aria-label="Close menu"
         />
           
           {/* Mobile Menu */}
