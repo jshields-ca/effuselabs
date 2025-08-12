@@ -2,13 +2,8 @@ import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent } f
 import { SectionContainer } from '@/components/layout'
 import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
 import { getHeroContent } from '@/lib/sanity/api'
-import dynamic from 'next/dynamic'
-
-// Lazy load AnimatedContainer to reduce initial bundle
-const AnimatedContainer = dynamic(() => import('@/components/ui/AnimatedContainer').then(mod => ({ default: mod.AnimatedContainer })), {
-  ssr: true,
-  loading: () => <div className="opacity-0" /> // Invisible placeholder
-})
+// Use lightweight CSS animations instead of Framer Motion
+import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
 
 export default async function Home() {
   const initialHero = await getHeroContent()

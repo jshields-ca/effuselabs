@@ -3,10 +3,7 @@
 import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-// Postprocessing is optional; lazy import type to avoid type resolution issues in some setups
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
+// Remove postprocessing to reduce bundle size - use CSS effects instead
 import { FlowFieldMaterial } from './shaders/FlowFieldMaterial'
 
 interface FlowLayerProps {
@@ -61,7 +58,7 @@ interface HeroCanvasProps {
 
 const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion = false, isVisible = true }) => {
   return (
-    <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`} aria-hidden="true">
+    <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`} aria-hidden="true" style={{ filter: 'brightness(1.1) saturate(1.2)' }}>
       <Canvas
         camera={{ position: [0, 0, 7], fov: 55 }}
         gl={{ 
@@ -115,12 +112,7 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion =
 
         {/* Threads removed: vapour background only */}
 
-        {/* Simplified postprocessing for performance */}
-        {!reducedMotion && isVisible && (
-          <EffectComposer multisampling={0}>
-            <Bloom intensity={0.2} luminanceThreshold={0.8} luminanceSmoothing={0.1} radius={0.5} />
-          </EffectComposer>
-        )}
+        {/* Postprocessing removed to reduce bundle size - using CSS filter instead */}
         {/* Remove environment reflections now that wires are gone */}
       </Canvas>
     </div>
