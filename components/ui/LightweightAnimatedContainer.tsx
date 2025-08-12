@@ -85,7 +85,14 @@ const LightweightAnimatedContainer = React.forwardRef<HTMLDivElement, Lightweigh
   }
 )
 
-LightweightAnimatedContainer.displayName = 'LightweightAnimatedContainer'
+const LightweightAnimatedItem = React.forwardRef<HTMLDivElement, LightweightAnimatedContainerProps>(
+  (props, ref) => {
+    return <LightweightAnimatedContainer {...props} ref={ref} />
+  }
+)
 
-export { LightweightAnimatedContainer }
+LightweightAnimatedContainer.displayName = 'LightweightAnimatedContainer'
+LightweightAnimatedItem.displayName = 'LightweightAnimatedItem'
+
+export { LightweightAnimatedContainer, LightweightAnimatedItem }
 export default LightweightAnimatedContainer

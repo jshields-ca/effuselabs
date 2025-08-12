@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { H1, Text, Button } from '@/components/ui'
-import { AnimatedContainer, AnimatedItem } from '@/components/ui'
-// Lazy load heavy graphics with loading priority
+// Use lightweight CSS animations instead of Framer Motion
+import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui/LightweightAnimatedContainer'
+
+// Lazy load heavy graphics with increased priority delay
 const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), { 
   ssr: false,
-  loading: () => null // No loading spinner to avoid layout shift
+  loading: () => null
 })
 const FluidParallaxBackground = dynamic(() => import('@/components/ui/FluidParallaxBackground'), {
   ssr: false,
@@ -76,7 +78,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
   useEffect(() => {
     const timer = setTimeout(() => {
       setBackgroundLoaded(true)
-    }, 100) // 100ms delay allows text to render first
+    }, 300) // Increase delay to 300ms for better LCP
     return () => clearTimeout(timer)
   }, [])
 
