@@ -1,14 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import dynamic from 'next/dynamic'
 import { H1, Text, Button } from '@/components/ui'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui/LightweightAnimatedContainer'
 
 // Three.js HeroCanvas removed for final performance optimization - using pure CSS background
-// FluidParallaxBackground removed - using simple gradient background
-import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { getHeroContent } from '@/lib/sanity/api'
 import type { HeroSectionContent } from '@/lib/sanity/types'
 
@@ -20,9 +17,6 @@ interface DynamicHeroSectionProps {
 export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicHeroSectionProps) {
   const [heroContent, setHeroContent] = useState<Omit<HeroSectionContent, '_id' | '_type'> | null>(initialContent || null)
   const [isLoading, setIsLoading] = useState(!initialContent)
-  const prefersReduced = usePrefersReducedMotion()
-  const [isVisible, setIsVisible] = useState(true)
-  const [backgroundLoaded, setBackgroundLoaded] = useState(false)
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -52,28 +46,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
     loadHeroContent()
   }, [fallbackContent, initialContent])
 
-  // Pause background when offscreen + delay background loading for LCP
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0]
-        setIsVisible(entry.isIntersecting)
-      },
-      { root: null, threshold: 0.1 }
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
-  // Delay background loading to prioritize text rendering (LCP optimization)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setBackgroundLoaded(true)
-    }, 300) // Increase delay to 300ms for better LCP
-    return () => clearTimeout(timer)
-  }, [])
+  // Background effects removed - using pure CSS for optimal performance
 
   // Show loading state or fallback content while loading
   if (isLoading || !heroContent) {
