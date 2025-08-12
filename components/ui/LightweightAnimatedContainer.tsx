@@ -7,7 +7,7 @@ import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 interface LightweightAnimatedContainerProps {
   children: React.ReactNode
   className?: string
-  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'scale'
+  animation?: 'fadeIn' | 'slideUp' | 'slideLeft' | 'slideRight' | 'scale' | 'emerge' | 'reveal'
   delay?: number
   duration?: number
 }
@@ -55,6 +55,8 @@ const LightweightAnimatedContainer = React.forwardRef<HTMLDivElement, Lightweigh
       slideLeft: isVisible ? 'animate-slide-left' : 'opacity-0 translate-x-8',
       slideRight: isVisible ? 'animate-slide-right' : 'opacity-0 -translate-x-8',
       scale: isVisible ? 'animate-scale' : 'opacity-0 scale-95',
+      emerge: isVisible ? 'animate-scale' : 'opacity-0 scale-95', // Same as scale for simplicity
+      reveal: isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8', // Same as slideUp
     }
 
     return (
