@@ -6,7 +6,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.4.1-blue?style=for-the-badge)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse-81%20Performance-orange?style=for-the-badge)](https://web.dev/lighthouse/)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20desktop%20%7C%2098%20mobile-orange?style=for-the-badge)](https://web.dev/lighthouse/)
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.31-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -24,7 +24,7 @@
 
 ---
 
-**Sprint 4:** ✅ COMPLETED • 81 Lighthouse Performance • Ready for Sprint 5
+**Sprint 4:** ✅ COMPLETED • 100/98 Lighthouse • Sprint 5 in progress (monitoring, analytics, content)
 
 </div>
 
@@ -337,54 +337,13 @@ We welcome contributions! See our [Contributing Guidelines](#-contributing) belo
 
 For detailed project updates and release history, see our [**CHANGELOG**](./CHANGELOG.md) and [**Development Status Dashboard**](./docs/DEVELOPMENT_STATUS.md).
 
-### 🗺️ Version Roadmap
-
-| Version | Sprint | Focus | Status | Target |
-|---------|--------|-------|--------|--------|
-| v0.1.0 | Sprint 1 | Foundation & Environment | ✅ **Complete** | August 2025 |
-| v0.2.0 | Sprint 2 | UI Components & Animations | ✅ **Complete** | August 2025 |
-| v0.3.0 | Sprint 3 | Navigation & Layout | ✅ **Complete** | August 2025 |
-| v0.4.0 | Sprint 4 | Hero Section & 3D Graphics | 🔄 **In Progress** | August 2025 |
-| v0.5.0 | Sprint 5 | Feature Sections & Content | ⏳ Planned | October 2025 |
-| v0.6.0 | Sprint 6 | CMS Integration | ⏳ Planned | October 2025 |
-| v0.7.0 | Sprint 7 | Accessibility & Testing | ⏳ Planned | November 2025 |
-| v0.8.0 | Sprint 8 | Launch Preparation | ⏳ Planned | November 2025 |
-| **v1.0.0** | **Launch** | **🎉 Production Release** | ⏳ **Planned** | **December 2025** |
+<!-- Version roadmap moved to Development Status dashboard to avoid duplication -->
 
 ---
 
-## 📊 Project Stats & Metrics
-
-<div align="center">
-
-### 🏃‍♂️ Development Velocity
-
-```
-📈 Sprint Efficiency: 500% average (1 day vs 5+ day estimates)
-🚀 Sprints Completed: 3.5/8 (Sprint 1, 2, 3, 4 in progress)
-🎯 Code Quality: Zero warnings/errors maintained
-🔄 Build Success Rate: 100% 
-⚡ Hot Reload Speed: ~200-500ms
-🌍 Deploy Environments: 3 (Dev/Staging/Production)
-🎭 Animation Performance: 60fps GPU-accelerated animations
-```
-
-### 🛠️ Technical Metrics
-
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| **Bundle Size** | <250KB | Optimized | ✅ |
-| **Load Time** | <2s | <1s | ✅ |
-| **Lighthouse Score** | 90+ | TBD | ⏳ |
-| **WCAG Compliance** | AA | Configured | ✅ |
-| **TypeScript Coverage** | 100% | 100% | ✅ |
-
-### 🔗 Live Links
-
+<!-- Metrics moved to Development Status dashboard; keep links here: -->
 [![Production](https://img.shields.io/badge/🚀_Production-effuse.io-success?style=for-the-badge)](https://effuse.io)
 [![Preview](https://img.shields.io/badge/🧪_Preview-vercel-orange?style=for-the-badge)](https://effuselabs.vercel.app)
-
-</div>
 
 ---
 

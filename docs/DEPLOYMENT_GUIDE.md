@@ -235,11 +235,11 @@ Set environment variables in **Vercel Dashboard > Project > Settings > Environme
 - Add CNAME record: `effuse.io` → `cname.vercel-dns.com`
 - Add A record: `effuse.io` → Vercel's IP addresses
 
-### 3. SSL Certificate
+### 3. SSL & Security Headers
 
 - ✅ **Automatic SSL** - Vercel provisions and renews certificates
 - ✅ **HTTPS redirect** - HTTP automatically redirects to HTTPS
-- ✅ **HSTS headers** - Security headers included automatically
+- ✅ **HSTS headers** - Enforced via Next.js `headers()` in `next.config.js`
 
 ## Deployment Commands (Optional)
 
