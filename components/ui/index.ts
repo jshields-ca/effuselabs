@@ -17,5 +17,3 @@ export type { CardProps, CardHeaderProps, CardContentProps, CardFooterProps } fr
 // AnimatedContainer and FluidParallaxBackground removed - use LightweightAnimatedContainer instead
 export { LightweightAnimatedContainer, LightweightAnimatedItem } from './LightweightAnimatedContainer'
 
-// HeroCanvas kept for potential future Sprint 5 enhancements
-export { default as HeroCanvas } from './HeroCanvas'

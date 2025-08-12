@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { PageWrapper } from '@/components/layout/PageWrapper'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'Effuse Labs - Intelligent Software for Small Business Growth',
@@ -97,6 +98,7 @@ export default function RootLayout({
           {children}
         </PageWrapper>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )

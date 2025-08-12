@@ -81,25 +81,15 @@ Docker is available but **not recommended for daily development** due to slower 
 
 ### 🪟 **Windows-Specific Setup**
 
-If you encounter `"npm is not recognized"` errors on Windows, use the provided helper scripts:
+If you encounter `"npm is not recognized"` errors on Windows, update PATH for your current PowerShell session (helper scripts deprecated and removed):
 
-**Quick Solution:**
-```bash
-# Option 1: Double-click this file in your project folder
-start-dev-simple.bat
-
-# Option 2: Run in PowerShell for interactive setup
-.\setup-dev-environment.ps1
-```
-
-**Manual PATH Fix:**
 ```powershell
 # Add Node.js and npm to current session PATH
-$env:PATH = "C:\Users\[YourUsername]\AppData\Roaming\npm;C:\Program Files\nodejs;" + $env:PATH
+$env:PATH = "$env:USERPROFILE\AppData\Roaming\npm;C:\\Program Files\\nodejs;" + $env:PATH
 
 # Verify installation
-node --version  # Should show v24.5.0 or similar
-npm --version   # Should show v11.4.2 or similar
+node --version
+npm --version
 
 # Start development server
 npm run dev

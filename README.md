@@ -108,13 +108,10 @@ npm run lint     # lint code
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 6. **Windows PATH Fix (if needed)**
-   If you get "npm is not recognized" errors, use one of these helper scripts:
-   ```bash
-   # Option 1: Double-click this file in your project folder
-   start-dev-simple.bat
-   
-   # Option 2: Run in PowerShell for guided setup
-   .\setup-dev-environment.ps1
+   If you get "npm is not recognized" errors, fix PATH for the current PowerShell session:
+   ```powershell
+   $env:PATH = "$env:USERPROFILE\AppData\Roaming\npm;C:\\Program Files\\nodejs;" + $env:PATH
+   npm run dev
    ```
 
 ### ⚡ **Optimized Development Workflow**
@@ -157,8 +154,6 @@ effuse-website/
 ├── public/                # Static assets
 ├── lib/                   # Helper functions
 ├── docs/                  # Project documentation
-├── start-dev-simple.bat   # Windows dev server helper
-├── setup-dev-environment.ps1 # Windows environment setup
 └── tailwind.config.ts     # Tailwind configuration
 ```
 
