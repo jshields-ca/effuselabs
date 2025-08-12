@@ -62,11 +62,10 @@ const MobileMenu: React.FC<{
   header: HeaderContent
 }> = ({ isOpen, onClose, header }) => {
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
+    {isOpen && (
+      <>
+        {/* Backdrop */}
+        <div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
