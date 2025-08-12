@@ -138,23 +138,29 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
 
               {/* Call-to-action buttons */}
               <AnimatedItem animation="fadeIn" delay={0.2}>
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4"
+                <div className="flex flex-col gap-4 items-center" style={{ marginTop: '2rem' }}>
+                  <button
+                    className="btn btn-primary"
                     onClick={() => handleCtaClick(heroContent.primaryCtaHref)}
+                    style={{ 
+                      minWidth: '200px', 
+                      fontSize: '1.125rem', 
+                      padding: '1rem 2rem' 
+                    }}
                   >
                     {heroContent.primaryCtaText}
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-off-black"
+                  </button>
+                  <button
+                    className="btn btn-secondary"
                     onClick={() => handleCtaClick(heroContent.secondaryCtaHref)}
+                    style={{ 
+                      minWidth: '200px', 
+                      fontSize: '1.125rem', 
+                      padding: '1rem 2rem' 
+                    }}
                   >
                     {heroContent.secondaryCtaText}
-                  </Button>
+                  </button>
                 </div>
               </AnimatedItem>
             </AnimatedContainer>
