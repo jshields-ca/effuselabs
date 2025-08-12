@@ -7,6 +7,11 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
+  async rewrites() {
+    // Example: if you later want to ensure non-www always redirects to www at the edge
+    // we already have this configured in Vercel Domains UI; leaving code path ready if needed.
+    return []
+  },
   // Optimize CSS loading for critical path
   async headers() {
     return [
