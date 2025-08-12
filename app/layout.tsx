@@ -50,10 +50,16 @@ export default function RootLayout({
               position: relative;
               overflow: hidden;
             }
-            .hero-text { color: white; text-align: center; z-index: 20; position: relative; }
-            .hero-title { font-size: 3rem; font-weight: bold; line-height: 1.1; margin-bottom: 1.5rem; }
+            .hero-text { color: white; z-index: 20; position: relative; width: 100%; }
+            .hero-title { font-size: 3rem; font-weight: bold; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
             @media (min-width: 640px) { .hero-title { font-size: 4rem; } }
-            @media (min-width: 1024px) { .hero-title { font-size: 5rem; } }
+            @media (min-width: 1024px) { 
+              .hero-title { font-size: 5rem; }
+              .hero-text { text-align: left; }
+            }
+            @media (max-width: 1023px) { 
+              .hero-text { text-align: center; }
+            }
           `
         }} />
       </head>
