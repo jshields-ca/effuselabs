@@ -364,8 +364,8 @@ For complete project history and detailed status updates, see our [**CHANGELOG**
 
 | Metric                       | Target | Current | Status     |
 | ---------------------------- | ------ | ------- | ---------- |
-| **Lighthouse Performance**   | 90+    | -       | ⏳ Pending |
-| **Lighthouse Accessibility** | 95+    | -       | ⏳ Pending |
+| **Lighthouse Performance**   | 90+    | 100 desktop / 98 mobile | ✅ Achieved |
+| **Lighthouse Accessibility** | 95+    | 96      | ✅ Achieved |
 | **WCAG Compliance**          | AA     | -       | ⏳ Pending |
 | **Code Coverage**            | 80%+   | -       | ⏳ Pending |
 | **Bundle Size**              | <250KB | -       | ⏳ Pending |
