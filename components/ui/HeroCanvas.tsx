@@ -6,7 +6,7 @@ import * as THREE from 'three'
 // Postprocessing is optional; lazy import type to avoid type resolution issues in some setups
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { EffectComposer, Bloom, SMAA } from '@react-three/postprocessing'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { FlowFieldMaterial } from './shaders/FlowFieldMaterial'
 
 interface FlowLayerProps {

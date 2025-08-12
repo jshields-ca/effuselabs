@@ -121,7 +121,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
 
   return (
     <section
-      ref={sectionRef as any}
+      ref={sectionRef}
       className="relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden bg-off-black"
     >
       {/* Animated background - delayed for LCP optimization */}
