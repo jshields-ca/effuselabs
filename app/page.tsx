@@ -5,7 +5,7 @@ import { getHeroContent } from '@/lib/sanity/api'
 import dynamic from 'next/dynamic'
 
 // Lazy load AnimatedContainer to reduce initial bundle
-const AnimatedContainer = dynamic(() => import('@/components/ui/AnimatedContainer'), {
+const AnimatedContainer = dynamic(() => import('@/components/ui/AnimatedContainer').then(mod => ({ default: mod.AnimatedContainer })), {
   ssr: true,
   loading: () => <div className="opacity-0" /> // Invisible placeholder
 })
