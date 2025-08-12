@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   creator: 'Effuse Labs',
   publisher: 'Effuse Labs',
   robots: 'index, follow',
+  // Canonical base for all absolute URLs
+  metadataBase: new URL('https://www.effuse.io'),
+  alternates: { canonical: '/' },
 }
 
 // Next.js 14: configure viewport via dedicated export instead of metadata.viewport
