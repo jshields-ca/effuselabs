@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { H1, Text } from '@/components/ui'
+import { H1, Text, Button } from '@/components/ui'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui/LightweightAnimatedContainer'
 
@@ -92,17 +92,53 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
       ref={sectionRef}
       className="hero-critical relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden"
     >
-      {/* Pure CSS animated background for optimal performance */}
+      {/* Enhanced CSS animated background for optimal performance */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark opacity-90" />
-        {/* Animated gradient overlay for visual interest */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-teal-dark/20 via-transparent to-brand-gold/20 animate-pulse" />
-        {/* Subtle particle effect with CSS */}
-        <div className="absolute inset-0 opacity-10" style={{
-          background: `radial-gradient(circle at 20% 80%, rgba(34, 197, 195, 0.3) 0%, transparent 50%),
-                       radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.3) 0%, transparent 50%),
-                       radial-gradient(circle at 40% 40%, rgba(34, 197, 195, 0.2) 0%, transparent 50%)`
-        }} />
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark" />
+        
+        {/* Animated flowing gradients */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `
+              linear-gradient(45deg, rgba(34, 197, 195, 0.1) 0%, transparent 50%),
+              linear-gradient(-45deg, rgba(255, 193, 7, 0.1) 0%, transparent 50%)
+            `,
+            animation: 'flow-horizontal 8s ease-in-out infinite alternate'
+          }}
+        />
+        
+        {/* Floating orbs animation */}
+        <div className="absolute inset-0 opacity-20">
+          <div 
+            className="absolute w-96 h-96 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(34, 197, 195, 0.3) 0%, transparent 70%)',
+              top: '20%',
+              right: '-10%',
+              animation: 'float-slow 12s ease-in-out infinite'
+            }}
+          />
+          <div 
+            className="absolute w-80 h-80 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
+              bottom: '10%',
+              left: '-5%',
+              animation: 'float-reverse 10s ease-in-out infinite'
+            }}
+          />
+          <div 
+            className="absolute w-64 h-64 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(34, 197, 195, 0.2) 0%, transparent 70%)',
+              top: '60%',
+              left: '70%',
+              animation: 'float-slow 15s ease-in-out infinite reverse'
+            }}
+          />
+        </div>
       </div>
 
       {/* Overlay for better text contrast */}
@@ -138,29 +174,23 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
 
               {/* Call-to-action buttons */}
               <AnimatedItem animation="fadeIn" delay={0.2}>
-                <div className="flex flex-col gap-4 items-center" style={{ marginTop: '2rem' }}>
-                  <button
-                    className="btn btn-primary"
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4"
                     onClick={() => handleCtaClick(heroContent.primaryCtaHref)}
-                    style={{ 
-                      minWidth: '200px', 
-                      fontSize: '1.125rem', 
-                      padding: '1rem 2rem' 
-                    }}
                   >
                     {heroContent.primaryCtaText}
-                  </button>
-                  <button
-                    className="btn btn-secondary"
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto min-w-[200px] text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-off-black"
                     onClick={() => handleCtaClick(heroContent.secondaryCtaHref)}
-                    style={{ 
-                      minWidth: '200px', 
-                      fontSize: '1.125rem', 
-                      padding: '1rem 2rem' 
-                    }}
                   >
                     {heroContent.secondaryCtaText}
-                  </button>
+                  </Button>
                 </div>
               </AnimatedItem>
             </AnimatedContainer>

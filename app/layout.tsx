@@ -39,10 +39,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         {/* Preload critical resources */}
         <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        {/* Complete critical CSS inlined to eliminate blocking */}
+        {/* ONLY Critical above-the-fold CSS inlined */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Critical Hero Styles */
+            /* Critical Hero Section Only */
             .hero-critical { 
               background: linear-gradient(135deg, rgb(29,29,33) 0%, rgb(128,130,133) 50%, rgb(34,67,82) 100%);
               min-height: 100vh;
@@ -52,80 +52,35 @@ export default function RootLayout({
               overflow: hidden;
             }
             .hero-text { color: white; z-index: 20; position: relative; width: 100%; }
-            .hero-title { font-size: 3rem; font-weight: bold; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
-            
-            /* Critical Layout Styles */
-            .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-            .mx-auto { margin-left: auto; margin-right: auto; }
-            .px-4 { padding-left: 1rem; padding-right: 1rem; }
-            .text-center { text-align: center; }
-            .text-white { color: white; }
-            .text-lg { font-size: 1.125rem; }
-            .text-xl { font-size: 1.25rem; }
-            .font-bold { font-weight: bold; }
-            .font-medium { font-medium: 500; }
-            .leading-tight { line-height: 1.25; }
-            .leading-relaxed { line-height: 1.625; }
-            .mb-4 { margin-bottom: 1rem; }
-            .mb-6 { margin-bottom: 1.5rem; }
-            .mb-12 { margin-bottom: 3rem; }
-            .space-y-8 > * + * { margin-top: 2rem; }
-            .grid { display: grid; }
-            .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-            .items-center { align-items: center; }
-            .gap-10 { gap: 2.5rem; }
-            .flex { display: flex; }
-            .flex-col { flex-direction: column; }
-            .justify-center { justify-content: center; }
-            .w-full { width: 100%; }
-            .max-w-7xl { max-width: 80rem; }
-            .max-w-3xl { max-width: 48rem; }
-            .relative { position: relative; }
-            .absolute { position: absolute; }
-            .inset-0 { inset: 0; }
-            .z-10 { z-index: 10; }
-            .z-20 { z-index: 20; }
-            .opacity-10 { opacity: 0.1; }
-            .opacity-90 { opacity: 0.9; }
-            
-            /* Button Styles */
-            .btn { 
-              display: inline-flex; 
-              align-items: center; 
-              padding: 0.75rem 1.5rem; 
-              border-radius: 0.5rem; 
-              font-weight: 500; 
-              text-decoration: none; 
-              transition: all 0.2s; 
-            }
-            .btn-primary { 
-              background: #FFD700; 
-              color: #1d1d21; 
-            }
-            .btn-primary:hover { 
-              background: #ffd900; 
-              transform: translateY(-1px); 
-            }
-            .btn-secondary { 
-              border: 2px solid white; 
+            .hero-title { 
+              font-size: 3rem; 
+              font-weight: bold; 
+              line-height: 1.1; 
+              margin-bottom: 1.5rem; 
               color: white; 
-              background: transparent; 
-            }
-            .btn-secondary:hover { 
-              background: white; 
-              color: #1d1d21; 
             }
             
-            /* Responsive */
+            /* Critical Background Animations */
+            @keyframes flow-horizontal {
+              0% { transform: translateX(-50px) rotate(0deg); }
+              100% { transform: translateX(50px) rotate(5deg); }
+            }
+            @keyframes float-slow {
+              0%, 100% { transform: translateY(0px) scale(1); }
+              50% { transform: translateY(-20px) scale(1.05); }
+            }
+            @keyframes float-reverse {
+              0%, 100% { transform: translateY(0px) translateX(0px); }
+              50% { transform: translateY(20px) translateX(30px); }
+            }
+            
+            /* Critical Responsive */
             @media (min-width: 640px) { 
               .hero-title { font-size: 4rem; }
-              .px-4 { padding-left: 1.5rem; padding-right: 1.5rem; }
             }
             @media (min-width: 1024px) { 
               .hero-title { font-size: 5rem; }
               .hero-text { text-align: left; }
-              .grid-cols-1 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-              .px-4 { padding-left: 2rem; padding-right: 2rem; }
             }
             @media (max-width: 1023px) { 
               .hero-text { text-align: center; }
