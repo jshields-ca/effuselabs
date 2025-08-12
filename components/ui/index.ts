@@ -14,8 +14,7 @@ export type { GridProps, GridItemProps } from './Grid'
 export { Card, CardHeader, CardContent, CardFooter } from './Card'
 export type { CardProps, CardHeaderProps, CardContentProps, CardFooterProps } from './Card'
 
-export { AnimatedContainer, AnimatedItem } from './AnimatedContainer'
-export type { AnimatedContainerProps } from './AnimatedContainer'
+// AnimatedContainer and FluidParallaxBackground removed - use LightweightAnimatedContainer instead
+export { LightweightAnimatedContainer, LightweightAnimatedItem } from './LightweightAnimatedContainer'
 
-export { default as FluidParallaxBackground } from './FluidParallaxBackground'
 export { default as HeroCanvas } from './HeroCanvas'

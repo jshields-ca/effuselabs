@@ -11,10 +11,7 @@ const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), {
   ssr: false,
   loading: () => null
 })
-const FluidParallaxBackground = dynamic(() => import('@/components/ui/FluidParallaxBackground'), {
-  ssr: false,
-  loading: () => null
-})
+// FluidParallaxBackground removed - using simple gradient background
 import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { getHeroContent } from '@/lib/sanity/api'
 import type { HeroSectionContent } from '@/lib/sanity/types'
@@ -128,12 +125,8 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
     >
       {/* Animated background - delayed for LCP optimization */}
       <div className="absolute inset-0 z-0">
-        {backgroundLoaded && (
-          prefersReduced || heroContent.backgroundSettings?.enableParticles === false ? (
-            <FluidParallaxBackground />
-          ) : (
-            <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
-          )
+        {backgroundLoaded && !prefersReduced && heroContent.backgroundSettings?.enableParticles !== false && (
+          <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
         )}
         {/* Static gradient background while loading */}
         {!backgroundLoaded && (

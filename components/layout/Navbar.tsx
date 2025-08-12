@@ -62,26 +62,17 @@ const MobileMenu: React.FC<{
   header: HeaderContent
 }> = ({ isOpen, onClose, header }) => {
   return (
-    {isOpen && (
+    <div>
+      {isOpen && (
       <>
         {/* Backdrop */}
         <div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden"
-            onClick={onClose}
-          />
+          className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
+          onClick={onClose}
+        />
           
           {/* Mobile Menu */}
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden"
-          >
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 translate-x-0">
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-light-grey">
@@ -121,10 +112,10 @@ const MobileMenu: React.FC<{
                 </div>
               </nav>
             </div>
-          </motion.div>
+          </div>
         </>
       )}
-    </AnimatePresence>
+    </div>
   )
 }
 
@@ -145,46 +136,31 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex-shrink-0"
-            >
+            <div className="flex-shrink-0">
               <a
                 href="/"
                 className="text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
               >
                 {header.brandName || 'Effuse Labs'}
               </a>
-            </motion.div>
+            </div>
 
             {/* Desktop Navigation */}
-            <motion.nav
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden md:flex items-center space-x-8"
-            >
+            <nav className="hidden md:flex items-center space-x-8">
               {header.navLinks?.map((link) => (
                 <NavLink key={`${link.label}-${link.href}`} href={link.href}>{link.label}</NavLink>
               ))}
-            </motion.nav>
+            </nav>
 
             {/* Desktop CTA & Mobile Menu Button */}
             <div className="flex items-center space-x-4">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="hidden md:block"
-              >
+              <div className="hidden md:block">
                 {header.cta?.href ? (
                   <Button variant="primary" href={header.cta.href}>{header.cta.label}</Button>
                 ) : (
                   <Button variant="primary">Get Started</Button>
                 )}
-              </motion.div>
+              </div>
               
               <MobileMenuButton
                 isOpen={isMobileMenuOpen}
