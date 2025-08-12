@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { PageWrapper } from '@/components/layout/PageWrapper'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Effuse Labs - Intelligent Software for Small Business Growth',
@@ -35,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`antialiased font-sans`}>
         <PageWrapper>
           {children}
         </PageWrapper>

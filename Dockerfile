@@ -1,10 +1,10 @@
-# Use the official Node.js 18 image
-FROM node:18-alpine AS base
+# Use Node.js 20 on Debian slim for stable Next/SWC glibc binaries
+FROM node:20-bullseye-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
 COPY package.json package-lock.json* ./
@@ -12,6 +12,9 @@ RUN npm ci --omit=dev --legacy-peer-deps
 
 # Rebuild the source code only when needed
 FROM base AS builder
+ENV NEXT_DISABLE_SWC_WORKER=1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV SKIP_CMS_DURING_BUILD=1
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -26,8 +29,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs || true
+RUN adduser --system --uid 1001 nextjs || true
 
 COPY --from=builder /app/public ./public
 
