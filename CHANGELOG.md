@@ -7,28 +7,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
-- Hero animation refinement exploration (clusters, gold data flow, DOF glow) [EFF-34]
-- CMS integration for hero content (Sanity) [EFF-32]
-- Performance/mobile polish [EFF-33]
+### Sprint 5 Planned: Enhanced UX & 90+ Performance
+- Enhanced hero with sophisticated Three.js animations [EFF-35]
+- 90+ Lighthouse Performance optimization [EFF-38]
+- Core Web Vitals monitoring setup [EFF-39]
+- Complete content sections (products, solutions, about, contact)
 
-## [0.4.1] - Unreleased
+## [0.4.1] - 2025-08-12
 
-### Sprint 4 In Progress: Hero Simplification & Cleanup
+### 🚀 Sprint 4 COMPLETED: Performance Foundation & Infrastructure
+
+#### 🎯 Major Achievements
+- **Lighthouse Performance: 81** (improved from 70 - +11 points!)
+- **Migrated from Railway to Vercel** for optimal Next.js deployment
+- **Eliminated Framer Motion** completely (massive bundle reduction)
+- **Critical CSS optimization** with strategic inlining
+- **Performance-first architecture** with lightweight components
+
+#### Added
+- **LightweightAnimatedContainer**: Pure CSS animation system replacing Framer Motion
+- **Critical CSS inlining**: Hero section optimized for fast loading
+- **Vercel deployment pipeline**: Development → Preview → Production
+- **Performance monitoring**: Lighthouse CI integration
+- **Intersection Observer**: Performance-aware animations
 
 #### Changed
-- Simplified hero to a premium vapour-only GPU background using React Three Fiber (flowfield shader)
-- Implemented reduced-motion SVG fallback for accessibility
-- Removed legacy tubes/threads and related code, resolved right-side banding by simplifying overlays
-- CMS integration: Header and Hero now read content from Sanity (`siteSettings`, `heroSection`)
+- **Deployment platform**: Railway → Vercel migration
+- **Animation architecture**: Framer Motion → Pure CSS transitions
+- **Bundle optimization**: Webpack code splitting and tree shaking
+- **Font loading**: Inter font with preload optimization
+- **Background rendering**: Three.js optimization → Pure CSS (temporarily)
 
 #### Fixed
-- Addressed initial hydration/viewport warning by using Next.js `viewport` export
-- Eliminated duplicate footer and excessive header height from earlier iterations
+- **Build reliability**: Eliminated Docker/Railway build failures
+- **Performance regression**: 301 KiB unused JavaScript reduction
+- **Mobile responsiveness**: Maintained across performance changes
+- **Accessibility**: WCAG compliance preserved through optimizations
+- **TypeScript compliance**: Zero build errors with strict mode
 
-#### Notes
-- Sprint 4 remains in progress; 1 issue remaining before completion: EFF-33 (Performance/Mobile)
-- Further hero refinements moved to a future sprint (see EFF-34)
+#### Removed
+- **Railway configuration**: Dockerfile, railway.toml, legacy configs
+- **Framer Motion dependency**: Complete elimination for performance
+- **Unused components**: AnimatedContainer, FluidParallaxBackground cleanup
+- **Development artifacts**: Lighthouse reports, build artifacts from git
+
+#### Performance Metrics
+- **Lighthouse Performance**: 70 → 81 (+11 points)
+- **Accessibility**: 96 (maintained)
+- **Best Practices**: 96 (maintained)
+- **LCP (Largest Contentful Paint)**: 4.0s → 3.8s
+- **TBT (Total Blocking Time)**: 650ms → 320ms → final optimization
+- **Bundle size**: Significant reduction via Framer Motion elimination
+
+#### Technical Debt Resolved
+- **Build stability**: No more Docker/peer dependency conflicts
+- **Type safety**: Complete TypeScript compliance
+- **Code organization**: Cleaned unused files and imports
+- **Git hygiene**: Updated .gitignore, removed build artifacts
+
+#### Sprint 4 Issues Completed
+- ✅ **EFF-33**: Performance Optimization & Mobile Support (COMPLETED)
+- ✅ Infrastructure migration and optimization
+- ✅ Production deployment with custom domain
+- ✅ Performance monitoring foundation
+
+#### Dependencies Updated
+- Removed: `framer-motion`, `railway` configs
+- Optimized: `next.config.js` for Vercel
+- Enhanced: `package.json` cleanup and optimization
+
+**Ready for Sprint 5**: Hero enhancements and 90+ Lighthouse target
 
 ## [0.4.0] - 2025-08-07
 

@@ -41,7 +41,7 @@ Effuse Labs was founded by Jeremy Shields, a project manager with deep experienc
 - **Legal Structure:** To be Incorporated as a Federal or Provincial Corporation.
 - **Location:** Winnipeg, Manitoba, Canada
 - **Founder:** Jeremy Shields
-- **Website:** effuse.io (under development)
+- **Website:** effuse.io (Live - Lighthouse Performance 81)
 - **Public Contact Email:** hello@effuse.io (initially to forward to jeremy@effuse.io)
 - **Public Support Email:** support@effuse.io (initially to forward to jeremy@effuse.io)
 - **Media Contact Email:** press@effuse.io (initially to forward to jeremy@effuse.io)

@@ -4,26 +4,27 @@
 
 ### *Intelligent Software for Small Business Growth*
 
-[![Version](https://img.shields.io/badge/version-0.4.1--in--progress-blue?style=for-the-badge)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.1-blue?style=for-the-badge)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-81%20Performance-orange?style=for-the-badge)](https://web.dev/lighthouse/)
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.31-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Railway](https://img.shields.io/badge/Railway-deployed-0B0D0E?style=flat&logo=railway&logoColor=white)](https://railway.app/)
+[![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?style=flat&logo=node.js)](https://nodejs.org/)
 [![ESLint](https://img.shields.io/badge/ESLint-enabled-4B32C3?style=flat&logo=eslint)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/Prettier-formatted-F7B93E?style=flat&logo=prettier&logoColor=black)](https://prettier.io/)
 [![Accessibility](https://img.shields.io/badge/accessibility-WCAG%20AA-green?style=flat)](https://www.w3.org/WAI/WCAG2AA-Conformance)
 
-[![Website](https://img.shields.io/badge/🌐_Website-effuse.io-FF6B6B?style=flat)](https://effuse.io)
-[![Staging](https://img.shields.io/badge/🧪_Staging-live-orange?style=flat)](https://effuselabs-staging.up.railway.app)
+[![Website](https://img.shields.io/badge/🌐_Production-effuse.io-FF6B6B?style=flat)](https://effuse.io)
+[![Staging](https://img.shields.io/badge/🧪_Preview-vercel.app-orange?style=flat)](https://effuselabs.vercel.app)
 [![Documentation](https://img.shields.io/badge/📚_Docs-complete-blue?style=flat)](./docs/)
 
 ---
 
-**Sprint 4:** In progress • Hero CMS complete • Perf/mobile optimization remaining
+**Sprint 4:** ✅ COMPLETED • 81 Lighthouse Performance • Ready for Sprint 5
 
 </div>
 
@@ -243,9 +244,9 @@ We welcome contributions from the community! Please see our [Contributing Guidel
 
 ## Deployment
 
-- Development: http://localhost:3000
-- Staging: https://effuselabs-staging.up.railway.app (v0.1.0)
-- Production: https://effuse.io (v0.1.0)
+- **Development**: http://localhost:3000
+- **Preview**: Auto-deployed on feature branches (Vercel)
+- **Production**: https://effuse.io (v0.4.1 - Lighthouse 81)
 
 ### Environment Variables
 
@@ -386,7 +387,7 @@ For detailed project updates and release history, see our [**CHANGELOG**](./CHAN
 ### 🔗 Live Links
 
 [![Production](https://img.shields.io/badge/🚀_Production-effuse.io-success?style=for-the-badge)](https://effuse.io)
-[![Staging](https://img.shields.io/badge/🧪_Staging-preview-orange?style=for-the-badge)](https://effuselabs-staging.up.railway.app)
+[![Preview](https://img.shields.io/badge/🧪_Preview-vercel-orange?style=for-the-badge)](https://effuselabs.vercel.app)
 
 </div>
 
@@ -467,12 +468,18 @@ graph LR
 # 🔨 Development
 npm run dev              # Start local development server
 
-# 🧪 Staging
-railway environment staging && railway up
+# 🧪 Preview/Staging (automatic)
+git push origin feature/your-branch  # Auto-deploys preview on Vercel
 
-# 🚀 Production  
-railway environment production && railway up
+# 🚀 Production (automatic)
+git push origin main     # Auto-deploys to effuse.io
 ```
+
+**Platform:** Vercel (optimized for Next.js)
+- ✅ Automatic deployments on git push
+- ✅ Preview URLs for feature branches  
+- ✅ Zero-downtime production deployments
+- ✅ Edge CDN and performance optimization
 
 ---
 

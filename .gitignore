@@ -37,7 +37,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Railway
+# Performance Testing
+lighthouse-*.html
+lighthouse-*.json
+*.lighthouse.json
+
+# Railway (legacy - migrated to Vercel)
 .railway
 
 # IDE (keep .vscode/settings.json for workspace config)
