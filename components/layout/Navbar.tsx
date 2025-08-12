@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+// TEMPORARY: Disable complex animations to fix 269 KiB bundle issue
+// TODO: Implement CSS-only mobile menu animations
 import { useNavigation } from '@/lib/hooks/useNavigation'
 import { Button } from '@/components/ui'
 import type { HeaderContent } from '@/lib/sanity/types'
@@ -37,35 +38,20 @@ const MobileMenuButton: React.FC<{
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
-      <motion.div
-        animate={isOpen ? 'open' : 'closed'}
-        className="w-6 h-6 relative"
-      >
-        <motion.span
-          variants={{
-            closed: { rotate: 0, y: 0 },
-            open: { rotate: 45, y: 8 }
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center"
-        />
-        <motion.span
-          variants={{
-            closed: { opacity: 1 },
-            open: { opacity: 0 }
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-3 left-0 w-6 h-0.5 bg-current"
-        />
-        <motion.span
-          variants={{
-            closed: { rotate: 0, y: 0 },
-            open: { rotate: -45, y: -8 }
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center"
-        />
-      </motion.div>
+      <div className="w-6 h-6 relative">
+        <span className={cn(
+          "absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300",
+          isOpen ? "rotate-45 translate-y-2" : ""
+        )} />
+        <span className={cn(
+          "absolute top-3 left-0 w-6 h-0.5 bg-current transition-all duration-300",
+          isOpen ? "opacity-0" : "opacity-100"
+        )} />
+        <span className={cn(
+          "absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300",
+          isOpen ? "-rotate-45 -translate-y-2" : ""
+        )} />
+      </div>
     </button>
   )
 }
