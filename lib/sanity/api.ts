@@ -20,9 +20,6 @@ const defaultHeroContent: Omit<HeroSectionContent, '_id' | '_type'> = {
 
 export const getHeroContent = unstable_cache(
   async (): Promise<Omit<HeroSectionContent, '_id' | '_type'>> => {
-    if (process.env.SKIP_CMS_DURING_BUILD === '1') {
-      return defaultHeroContent
-    }
     try {
       const heroContent = await sanityClient.fetch<HeroSectionContent>(heroSectionQuery)
       if (heroContent) {
@@ -70,9 +67,6 @@ const defaultHeaderContent: HeaderContent = {
 
 export const getHeaderContent = unstable_cache(
   async (): Promise<HeaderContent> => {
-    if (process.env.SKIP_CMS_DURING_BUILD === '1') {
-      return defaultHeaderContent
-    }
     try {
       const header = await sanityClient.fetch<Partial<HeaderContent> | null>(headerQuery)
       if (!header) return defaultHeaderContent

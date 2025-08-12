@@ -1,2 +1,2 @@
-// next-sanity removed from app deps for staging; keep this file unused in app bundle
-export {}
+// Sanity client disabled for staging deployment
+export const client = null

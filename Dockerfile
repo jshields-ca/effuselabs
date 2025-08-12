@@ -1,52 +1,56 @@
-# Use Node.js 20 on Debian slim for stable Next/SWC glibc binaries
-FROM node:20-bullseye-slim AS base
+# Use nginx to serve static export
+FROM node:20-bullseye-slim AS builder
 
-# Install dependencies only when needed
-FROM base AS deps
-WORKDIR /app
-RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
-
-# Install dependencies
-COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev --legacy-peer-deps
-
-# Rebuild the source code only when needed
-FROM base AS builder
-ENV NEXT_DISABLE_SWC_WORKER=1
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV SKIP_CMS_DURING_BUILD=1
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
 
-# Build the application
+# Install dependencies
+COPY package.json package-lock.json* ./
+RUN npm ci --legacy-peer-deps
+
+# Copy source and build
+COPY . .
 RUN npm run build
 
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
+# Production nginx image
+FROM nginx:alpine
 
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
+# Copy static files to nginx
+COPY --from=builder /app/out /usr/share/nginx/html
 
-RUN addgroup --system --gid 1001 nodejs || true
-RUN adduser --system --uid 1001 nextjs || true
+# Create a startup script that configures nginx with Railway's PORT
+COPY <<'EOF' /start.sh
+#!/bin/sh
+export PORT=${PORT:-80}
+cat > /etc/nginx/conf.d/default.conf <<NGINXEOF
+server {
+    listen $PORT;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    index index.html;
+    
+    location / {
+        try_files \$uri \$uri/ \$uri.html /index.html;
+    }
+    
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    location /health {
+        access_log off;
+        return 200 "healthy\n";
+        add_header Content-Type text/plain;
+    }
+}
+NGINXEOF
 
-COPY --from=builder /app/public ./public
+exec nginx -g "daemon off;"
+EOF
 
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
+RUN chmod +x /start.sh
 
-# Automatically leverage output traces to reduce image size
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT=3000
-
-# Start the application
-CMD ["node", "server.js"]
+EXPOSE $PORT
+CMD ["/start.sh"]

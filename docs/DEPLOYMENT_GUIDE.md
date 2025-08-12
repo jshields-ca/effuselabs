@@ -1,18 +1,35 @@
-# Deployment Guide: Three-Environment Railway Pipeline
+# Deployment Guide: Vercel Multi-Environment Pipeline
 
 ## 🏗️ Environment Architecture
 
-We use a professional three-environment deployment pipeline:
+We use Vercel's modern deployment pipeline with automatic staging via preview deployments:
 
 ```
-Development (Local) → Staging (Railway) → Production (Railway)
+Development (Local) → Preview (Auto-staging) → Production (Vercel)
 ```
 
-| Environment | Purpose | URL |
-|-------------|---------|-----|
-| **Development** | Local development & testing | `http://localhost:3000` |
-| **Staging** | QA, client preview, integration testing | `https://effuselabs-staging.up.railway.app` |
-| **Production** | Live site for end users | `https://effuse.io` |
+| Environment | Purpose | URL | Trigger |
+|-------------|---------|-----|---------|
+| **Development** | Local development & testing | `http://localhost:3000` | `npm run dev` |
+| **Preview (Staging)** | QA, client preview, integration testing | `https://effuselabs-git-[branch].vercel.app` | Any branch push/PR |
+| **Production** | Live site for end users | `https://effuse.io` | Push to `main` branch |
+
+## 🌟 Vercel Advantages Over Railway
+
+**Automatic Staging:**
+- ✅ **Every branch gets a preview URL** - no manual staging deploys
+- ✅ **Pull Request previews** - stakeholders can review before merge
+- ✅ **Branch isolation** - test features independently
+
+**Performance:**
+- ✅ **Global Edge Network** - faster loading worldwide
+- ✅ **Automatic optimizations** - images, fonts, code splitting
+- ✅ **Built for Next.js** - zero configuration needed
+
+**Developer Experience:**
+- ✅ **Instant deployments** - 30 seconds vs 5+ minutes
+- ✅ **Real-time collaboration** - share preview links instantly
+- ✅ **Better debugging** - detailed build logs and error reporting
 
 ## Environment Variables Setup
 
@@ -106,23 +123,23 @@ npm run dev
    - Try different browsers (Chrome, Edge, Firefox)
    - Check antivirus software isn't blocking localhost
 
-### Staging Environment (Railway)
+### Preview Environment Variables (Vercel)
 ```bash
-NODE_ENV=staging
-NEXT_PUBLIC_SITE_URL=https://effuselabs-staging.up.railway.app
+NODE_ENV=preview
+NEXT_PUBLIC_SITE_URL=https://effuselabs-git-[branch].vercel.app
 NEXT_TELEMETRY_DISABLED=1
 ```
 
-### Production Environment (Railway)
+### Production Environment Variables (Vercel)
 ```bash
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://effuse.io
 NEXT_TELEMETRY_DISABLED=1
 ```
 
-## 🚀 Deployment Workflow
+## 🚀 Vercel Deployment Workflow
 
-### Recommended Git Workflow
+### Modern Git Workflow with Automatic Staging
 
 ```bash
 # 1. Feature Development (Local)
@@ -130,77 +147,60 @@ git checkout -b feature/new-component
 # ... develop and test locally on localhost:3000
 npm run dev
 
-# 2. Deploy to Staging for QA
+# 2. Automatic Preview Deployment
 git push origin feature/new-component
-# Manually deploy to staging for testing:
-railway environment staging
-railway up
+# ✨ Vercel automatically creates preview URL:
+# https://effuselabs-git-feature-new-component.vercel.app
 
-# 3. Share staging link for review
-# https://effuselabs-staging.up.railway.app
+# 3. Create Pull Request & Share Preview
+# GitHub PR will show Vercel preview link automatically
+# Share with stakeholders for review
 
-# 4. After approval, merge to main
+# 4. Automatic Production Deployment
 git checkout main
 git merge feature/new-component
 git push origin main
-# Deploy to production:
-railway environment production
-railway up
+# ✨ Vercel automatically deploys to production:
+# https://effuse.io
 ```
 
-### Environment Switching
+### No Environment Switching Needed!
 
-```bash
-# Switch to staging environment
-railway environment staging
-railway status    # Verify you're in staging
-railway up        # Deploy to staging
-
-# Switch to production environment  
-railway environment production
-railway status    # Verify you're in production
-railway up        # Deploy to production
-```
+**With Vercel:**
+- 🔄 **Automatic preview deployments** for every branch
+- 🔄 **Automatic production deployments** on main branch push  
+- 🔄 **No manual commands** - just push your code
+- 🔄 **Environment variables** managed in Vercel dashboard
 
 ### Testing Strategy
 
 | Environment | Testing Focus |
 |-------------|---------------|
 | **Development** | Unit tests, component development, rapid iteration |
-| **Staging** | Integration testing, QA review, client feedback |
+| **Preview (Auto-staging)** | Integration testing, QA review, client feedback |
 | **Production** | Performance monitoring, user analytics, stability |
 
-## Railway Deployment Steps
+## Vercel Deployment Steps
 
-### 1. Initial Railway Setup
+### 1. Initial Vercel Setup
 
-1. Install Railway CLI:
-   ```bash
-   npm install -g @railway/cli
-   ```
+1. **Create Vercel account** at [vercel.com](https://vercel.com)
+2. **Connect GitHub account** for seamless integration
+3. **Import repository** - select your `effuselabs` repo
+4. **Deploy** - Vercel auto-detects Next.js settings
 
-2. Login to Railway:
-   ```bash
-   railway login
-   ```
+### 2. Environment Variables in Vercel
 
-3. Initialize Railway project:
-   ```bash
-   railway init
-   ```
-
-4. Link to your Railway project:
-   ```bash
-   railway link
-   ```
-
-### 2. Environment Variables in Railway
-
-Set the following environment variables in Railway dashboard:
+Set environment variables in **Vercel Dashboard > Project > Settings > Environment Variables**:
 
 **Production Environment:**
 - `NODE_ENV=production`
-- `NEXT_PUBLIC_SITE_URL=https://your-domain.railway.app`
+- `NEXT_PUBLIC_SITE_URL=https://effuse.io`
+- `NEXT_TELEMETRY_DISABLED=1`
+
+**Preview Environment:**
+- `NODE_ENV=preview`
+- `NEXT_PUBLIC_SITE_URL=https://effuselabs-git-branch.vercel.app`
 - `NEXT_TELEMETRY_DISABLED=1`
 
 **Future Variables (Sprint 6):**
@@ -210,40 +210,79 @@ Set the following environment variables in Railway dashboard:
 
 ### 3. Automatic Deployments
 
-Railway automatically deploys when you push to your main branch. Configuration is handled by:
-- `railway.toml` - Railway-specific configuration
-- `Dockerfile` - Container configuration for production builds
+**Vercel automatically handles all deployments:**
+- ✅ **Push to any branch** → Preview deployment
+- ✅ **Push to main branch** → Production deployment
+- ✅ **Pull requests** → Preview comments with deployment links
+- ✅ **Zero configuration** - just push to GitHub
 
-### 4. Preview Environments
+### 4. Preview (Staging) Environments
 
-Railway automatically creates preview environments for pull requests when connected to GitHub.
+**Every branch gets automatic staging:**
+- 🌟 **Unique URL per branch**: `https://effuselabs-git-[branch].vercel.app`
+- 🌟 **Pull request integration**: Preview links in PR comments
+- 🌟 **Isolated testing**: Each feature branch has its own staging
+- 🌟 **Instant updates**: New commits trigger automatic redeployment
 
-## Manual Deployment Commands
+## Custom Domain Setup (effuse.io)
+
+### 1. Configure Domain in Vercel
+
+1. **Go to Vercel Dashboard** → Your Project → Settings → Domains
+2. **Add custom domain**: `effuse.io`
+3. **Add www subdomain**: `www.effuse.io` (optional)
+4. **Vercel provides DNS instructions**
+
+### 2. Update DNS Settings
+
+**Option A: Use Vercel Nameservers (Recommended)**
+- Point your domain's nameservers to Vercel
+- Vercel manages all DNS automatically
+- Includes SSL, CDN, and performance optimizations
+
+**Option B: CNAME/A Records**
+- Keep your current DNS provider
+- Add CNAME record: `effuse.io` → `cname.vercel-dns.com`
+- Add A record: `effuse.io` → Vercel's IP addresses
+
+### 3. SSL Certificate
+
+- ✅ **Automatic SSL** - Vercel provisions and renews certificates
+- ✅ **HTTPS redirect** - HTTP automatically redirects to HTTPS
+- ✅ **HSTS headers** - Security headers included automatically
+
+## Deployment Commands (Optional)
+
+**Vercel CLI** (after `npm install -g vercel`):
 
 ```bash
-# Deploy current branch
-railway up
+# Login to Vercel
+vercel login
 
-# Deploy specific service
-railway up --service frontend
+# Deploy current branch to preview
+vercel
+
+# Deploy to production (main branch only)
+vercel --prod
 
 # Check deployment status
-railway status
+vercel list
 
-# View logs
-railway logs
+# View deployment logs
+vercel logs [deployment-url]
 ```
 
-## Health Checks
+**Note:** CLI deployment is optional - GitHub integration handles everything automatically!
 
-The application includes health check configuration in `railway.toml`:
-- Path: `/`
-- Timeout: 100 seconds
-- Restart policy: On failure (max 3 retries)
+## Environment Variable Management
 
-## Domain Configuration
+**Development (.env.local):**
+```bash
+NODE_ENV=development
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-1. In Railway dashboard, go to your service
-2. Navigate to Settings > Domains
-3. Add your custom domain or use the provided Railway domain
-4. Update `NEXT_PUBLIC_SITE_URL` environment variable accordingly
+**Vercel Dashboard Settings:**
+- **Production**: Applied to `main` branch deployments
+- **Preview**: Applied to all other branch deployments  
+- **Development**: For local development (not used by Vercel)

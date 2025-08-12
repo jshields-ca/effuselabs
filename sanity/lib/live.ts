@@ -1,2 +1,3 @@
-// Placeholder to avoid bundling next-sanity in the app build
-export {}
+// Sanity live disabled for staging deployment
+export const sanityFetch = null
+export const SanityLive = null
