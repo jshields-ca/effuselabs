@@ -13,6 +13,14 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  modularizeImports: {
+    '@react-three/fiber': {
+      transform: '@react-three/fiber/{{member}}',
+    },
+    '@react-three/drei': {
+      transform: '@react-three/drei/{{member}}',
+    },
+  },
   webpack: (config, { dev, isServer }) => {
     // Optimize chunks for better TBT
     if (!dev && !isServer) {

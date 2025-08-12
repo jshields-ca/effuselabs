@@ -121,7 +121,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden bg-off-black"
+      className="hero-critical relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden"
     >
       {/* Animated background - delayed for LCP optimization */}
       <div className="absolute inset-0 z-0">
@@ -140,7 +140,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
       {/* Content */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
-          <div className="text-center lg:text-left">
+          <div className="hero-text text-center lg:text-left">
             <AnimatedContainer animation="fadeIn" className="space-y-8">
               {/* Company name */}
               <AnimatedItem animation="slideUp" delay={0.1}>
@@ -153,7 +153,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
 
               {/* Main headline */}
               <AnimatedItem animation="slideUp" delay={0.1}>
-                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
+                <H1 className="hero-title text-white">
                   {heroContent.title}
                 </H1>
               </AnimatedItem>

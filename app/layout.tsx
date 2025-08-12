@@ -37,8 +37,25 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        {/* Preload critical CSS */}
+        {/* Preload critical resources */}
         <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Inline critical CSS for hero section */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .hero-critical { 
+              background: linear-gradient(135deg, rgb(29,29,33) 0%, rgb(128,130,133) 50%, rgb(34,67,82) 100%);
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              position: relative;
+              overflow: hidden;
+            }
+            .hero-text { color: white; text-align: center; z-index: 20; position: relative; }
+            .hero-title { font-size: 3rem; font-weight: bold; line-height: 1.1; margin-bottom: 1.5rem; }
+            @media (min-width: 640px) { .hero-title { font-size: 4rem; } }
+            @media (min-width: 1024px) { .hero-title { font-size: 5rem; } }
+          `
+        }} />
       </head>
       <body className={`antialiased font-sans`}>
         <PageWrapper>
