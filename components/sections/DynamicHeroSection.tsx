@@ -4,8 +4,15 @@ import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { H1, Text, Button } from '@/components/ui'
 import { AnimatedContainer, AnimatedItem } from '@/components/ui'
-const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), { ssr: false })
-import FluidParallaxBackground from '@/components/ui/FluidParallaxBackground'
+// Lazy load heavy graphics with loading priority
+const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), { 
+  ssr: false,
+  loading: () => null // No loading spinner to avoid layout shift
+})
+const FluidParallaxBackground = dynamic(() => import('@/components/ui/FluidParallaxBackground'), {
+  ssr: false,
+  loading: () => null
+})
 import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { getHeroContent } from '@/lib/sanity/api'
 import type { HeroSectionContent } from '@/lib/sanity/types'
@@ -20,6 +27,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
   const [isLoading, setIsLoading] = useState(!initialContent)
   const prefersReduced = usePrefersReducedMotion()
   const [isVisible, setIsVisible] = useState(true)
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false)
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -49,7 +57,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
     loadHeroContent()
   }, [fallbackContent, initialContent])
 
-  // Pause background when offscreen
+  // Pause background when offscreen + delay background loading for LCP
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -62,6 +70,14 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
     )
     io.observe(el)
     return () => io.disconnect()
+  }, [])
+
+  // Delay background loading to prioritize text rendering (LCP optimization)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setBackgroundLoaded(true)
+    }, 100) // 100ms delay allows text to render first
+    return () => clearTimeout(timer)
   }, [])
 
   // Show loading state or fallback content while loading
@@ -108,12 +124,18 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
       ref={sectionRef as any}
       className="relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden bg-off-black"
     >
-      {/* Animated background */}
+      {/* Animated background - delayed for LCP optimization */}
       <div className="absolute inset-0 z-0">
-        {prefersReduced || heroContent.backgroundSettings?.enableParticles === false ? (
-          <FluidParallaxBackground />
-        ) : (
-          <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
+        {backgroundLoaded && (
+          prefersReduced || heroContent.backgroundSettings?.enableParticles === false ? (
+            <FluidParallaxBackground />
+          ) : (
+            <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
+          )
+        )}
+        {/* Static gradient background while loading */}
+        {!backgroundLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark" />
         )}
       </div>
 
@@ -135,21 +157,21 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
               </AnimatedItem>
 
               {/* Main headline */}
-              <AnimatedItem animation="slideUp" delay={0.2}>
-                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 will-change-transform">
+              <AnimatedItem animation="slideUp" delay={0.1}>
+                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
                   {heroContent.title}
                 </H1>
               </AnimatedItem>
 
               {/* Description */}
-              <AnimatedItem animation="slideUp" delay={0.3}>
-                <Text className="text-light-grey text-lg sm:text-xl max-w-3xl lg:max-w-2xl lg:mx-0 mx-auto leading-relaxed mb-12 will-change-transform">
+              <AnimatedItem animation="slideUp" delay={0.15}>
+                <Text className="text-light-grey text-lg sm:text-xl max-w-3xl lg:max-w-2xl lg:mx-0 mx-auto leading-relaxed mb-12">
                   {heroContent.description}
                 </Text>
               </AnimatedItem>
 
               {/* Call-to-action buttons */}
-              <AnimatedItem animation="scale" delay={0.4}>
+              <AnimatedItem animation="fadeIn" delay={0.2}>
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
                   <Button
                     variant="primary"

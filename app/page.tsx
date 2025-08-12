@@ -1,7 +1,14 @@
-import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer } from '@/components/ui'
+import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent } from '@/components/ui'
 import { SectionContainer } from '@/components/layout'
 import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
 import { getHeroContent } from '@/lib/sanity/api'
+import dynamic from 'next/dynamic'
+
+// Lazy load AnimatedContainer to reduce initial bundle
+const AnimatedContainer = dynamic(() => import('@/components/ui/AnimatedContainer'), {
+  ssr: true,
+  loading: () => <div className="opacity-0" /> // Invisible placeholder
+})
 
 export default async function Home() {
   const initialHero = await getHeroContent()
@@ -12,7 +19,7 @@ export default async function Home() {
 
       {/* Sprint Progress Section */}
       <SectionContainer background="white" padding="lg">
-        <AnimatedContainer animation="slideUp" delay={0.6}>
+        <AnimatedContainer animation="slideUp" delay={0.1}>
           <div className="bg-brand-gold text-off-black px-8 py-6 rounded-lg text-center mb-16">
             <Text className="text-off-black font-semibold mb-2">🚀 Sprint 4 In Progress</Text>
             <Text className="text-off-black text-sm">CMS hero integration and performance/mobile optimization underway</Text>
@@ -22,7 +29,7 @@ export default async function Home() {
 
       {/* Features Section */}
       <SectionContainer background="light" padding="lg">
-        <AnimatedContainer animation="slideUp" delay={0.8}>
+        <AnimatedContainer animation="slideUp" delay={0.2}>
           <div className="text-center mb-12">
             <H2 className="mb-4">Sprint 3 Achievements</H2>
             <Text className="text-medium-grey max-w-2xl mx-auto">

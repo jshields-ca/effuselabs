@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, type Variants } from 'framer-motion'
 import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { cn } from '@/lib/utils'
@@ -56,12 +56,43 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
     ...props 
   }, ref) => {
     const reduced = usePrefersReducedMotion()
+    const [isVisible, setIsVisible] = useState(false)
+    const [hasAnimated, setHasAnimated] = useState(false)
+    const elementRef = useRef<HTMLDivElement>(null)
+
+    // Intersection Observer for performance - only animate when visible
+    useEffect(() => {
+      const element = elementRef.current
+      if (!element || reduced) {
+        setIsVisible(true) // Skip intersection if reduced motion
+        return
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0]
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsVisible(true)
+            setHasAnimated(true) // Animate only once
+          }
+        },
+        { threshold: 0.1, rootMargin: '50px' } // Start animation slightly before visible
+      )
+
+      observer.observe(element)
+      return () => observer.disconnect()
+    }, [reduced, hasAnimated])
+
     return (
       <motion.div
-        ref={ref}
+        ref={(node) => {
+          elementRef.current = node
+          if (typeof ref === 'function') ref(node)
+          else if (ref) ref.current = node
+        }}
         className={cn(className)}
         initial="hidden"
-        animate="visible"
+        animate={isVisible ? "visible" : "hidden"}
         variants={animations[animation]}
         transition={{
           duration: reduced ? 0 : duration,

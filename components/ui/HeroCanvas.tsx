@@ -64,9 +64,17 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion =
     <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`} aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 7], fov: 55 }}
-        gl={{ alpha: false, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: false }}
-        dpr={[1, Math.min(1.25, (typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1)]}
-        frameloop={reducedMotion || !isVisible ? 'never' : 'always'}
+        gl={{ 
+          alpha: false, 
+          antialias: false, // Disable for performance
+          powerPreference: 'high-performance', 
+          preserveDrawingBuffer: false,
+          stencil: false, // Disable stencil buffer
+          depth: false // Disable depth buffer for 2D-style effects
+        }}
+        dpr={[0.75, Math.min(1, (typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1)]} // Reduce pixel ratio
+        frameloop={reducedMotion || !isVisible ? 'never' : 'demand'} // Use 'demand' instead of 'always'
+        performance={{ min: 0.2, max: 1, debounce: 200 }} // Throttle low-end devices
       >
         <color attach="background" args={[ '#0e1013' ]} />
         <ambientLight intensity={0.4} />
@@ -107,11 +115,10 @@ const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion =
 
         {/* Threads removed: vapour background only */}
 
-        {/* Optional soft bloom via postprocessing */}
-        {!reducedMotion && (
+        {/* Simplified postprocessing for performance */}
+        {!reducedMotion && isVisible && (
           <EffectComposer multisampling={0}>
-            <SMAA />
-            <Bloom intensity={0.3} luminanceThreshold={0.5} luminanceSmoothing={0.25} radius={0.7} />
+            <Bloom intensity={0.2} luminanceThreshold={0.8} luminanceSmoothing={0.1} radius={0.5} />
           </EffectComposer>
         )}
         {/* Remove environment reflections now that wires are gone */}

@@ -10,6 +10,35 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', '@react-three/fiber', '@react-three/drei'],
   },
+  webpack: (config, { dev, isServer }) => {
+    // Optimize chunks for better TBT
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            priority: 10,
+            chunks: 'all',
+          },
+          motion: {
+            test: /[\\/]node_modules[\\/](framer-motion)[\\/]/,
+            name: 'motion',
+            priority: 20,
+            chunks: 'all',
+          },
+          three: {
+            test: /[\\/]node_modules[\\/](@react-three|three)[\\/]/,
+            name: 'three',
+            priority: 20,
+            chunks: 'all',
+          },
+        },
+      }
+    }
+    return config
+  },
   env: {
     NEXT_TELEMETRY_DISABLED: '1',
   },
