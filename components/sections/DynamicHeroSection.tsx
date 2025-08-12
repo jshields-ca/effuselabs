@@ -1,24 +1,34 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { H1, Text, Button } from '@/components/ui'
 import { AnimatedContainer, AnimatedItem } from '@/components/ui'
+const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), { ssr: false })
+import FluidParallaxBackground from '@/components/ui/FluidParallaxBackground'
+import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { getHeroContent } from '@/lib/sanity/api'
 import type { HeroSectionContent } from '@/lib/sanity/types'
 
 interface DynamicHeroSectionProps {
   fallbackContent?: Partial<Omit<HeroSectionContent, '_id' | '_type'>>
+  initialContent?: Omit<HeroSectionContent, '_id' | '_type'>
 }
 
-export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps) {
-  const [heroContent, setHeroContent] = useState<Omit<HeroSectionContent, '_id' | '_type'> | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicHeroSectionProps) {
+  const [heroContent, setHeroContent] = useState<Omit<HeroSectionContent, '_id' | '_type'> | null>(initialContent || null)
+  const [isLoading, setIsLoading] = useState(!initialContent)
+  const prefersReduced = usePrefersReducedMotion()
+  const [isVisible, setIsVisible] = useState(true)
+  const sectionRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     async function loadHeroContent() {
       try {
-        const content = await getHeroContent()
-        setHeroContent(content)
+        if (!initialContent) {
+          const content = await getHeroContent()
+          setHeroContent(content)
+        }
       } catch (error) {
         console.error('Error loading hero content:', error)
         // Use fallback content if CMS fails
@@ -37,7 +47,22 @@ export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps)
     }
 
     loadHeroContent()
-  }, [fallbackContent])
+  }, [fallbackContent, initialContent])
+
+  // Pause background when offscreen
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        setIsVisible(entry.isIntersecting)
+      },
+      { root: null, threshold: 0.1 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   // Show loading state or fallback content while loading
   if (isLoading || !heroContent) {
@@ -79,12 +104,21 @@ export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps)
   }
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark">
-      {/* Background overlay for better text contrast */}
-      <div className="absolute inset-0 bg-gradient-to-t from-off-black/50 to-transparent z-10" />
+    <section
+      ref={sectionRef as any}
+      className="relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden bg-off-black"
+    >
+      {/* Animated background */}
+      <div className="absolute inset-0 z-0">
+        {prefersReduced || heroContent.backgroundSettings?.enableParticles === false ? (
+          <FluidParallaxBackground />
+        ) : (
+          <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
+        )}
+      </div>
 
-      {/* 3D Graphics Container */}
-      <div className="absolute inset-0 z-0" />
+      {/* Overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-t from-off-black/35 to-transparent z-10" />
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,14 +136,14 @@ export function DynamicHeroSection({ fallbackContent }: DynamicHeroSectionProps)
 
               {/* Main headline */}
               <AnimatedItem animation="slideUp" delay={0.2}>
-                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
+                <H1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 will-change-transform">
                   {heroContent.title}
                 </H1>
               </AnimatedItem>
 
               {/* Description */}
               <AnimatedItem animation="slideUp" delay={0.3}>
-                <Text className="text-light-grey text-lg sm:text-xl max-w-3xl lg:max-w-2xl lg:mx-0 mx-auto leading-relaxed mb-12">
+                <Text className="text-light-grey text-lg sm:text-xl max-w-3xl lg:max-w-2xl lg:mx-0 mx-auto leading-relaxed mb-12 will-change-transform">
                   {heroContent.description}
                 </Text>
               </AnimatedItem>

@@ -1,12 +1,14 @@
 import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent, AnimatedContainer } from '@/components/ui'
 import { SectionContainer } from '@/components/layout'
 import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
+import { getHeroContent } from '@/lib/sanity/api'
 
-export default function Home() {
+export default async function Home() {
+  const initialHero = await getHeroContent()
   return (
     <>
       {/* Hero Section (CMS-driven) */}
-      <DynamicHeroSection />
+      <DynamicHeroSection initialContent={initialHero} />
 
       {/* Sprint Progress Section */}
       <SectionContainer background="white" padding="lg">

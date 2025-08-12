@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion, type Variants } from 'framer-motion'
+import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { cn } from '@/lib/utils'
 
 interface AnimatedContainerProps {
@@ -50,10 +51,11 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
     className, 
     animation = 'fadeIn', 
     delay = 0, 
-    duration = 0.8,
+    duration = 0.5,
     stagger = 0.15,
     ...props 
   }, ref) => {
+    const reduced = usePrefersReducedMotion()
     return (
       <motion.div
         ref={ref}
@@ -62,13 +64,11 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
         animate="visible"
         variants={animations[animation]}
         transition={{
-          duration,
-          delay,
-          staggerChildren: stagger,
-          ease: [0.22, 1, 0.36, 1], // More dramatic easing curve
-          type: "spring",
-          damping: 25,
-          stiffness: 120
+          duration: reduced ? 0 : duration,
+          delay: reduced ? 0 : delay,
+          staggerChildren: reduced ? 0 : stagger,
+          ease: 'easeOut',
+          type: 'tween'
         }}
         {...props}
       >
@@ -84,21 +84,20 @@ const AnimatedItem = React.forwardRef<HTMLDivElement, AnimatedContainerProps>(
     className, 
     animation = 'fadeIn', 
     delay = 0, 
-    duration = 0.8,
+    duration = 0.5,
     ...props 
   }, ref) => {
+    const reduced = usePrefersReducedMotion()
     return (
       <motion.div
         ref={ref}
         className={cn(className)}
         variants={animations[animation]}
         transition={{
-          duration,
-          delay,
-          ease: [0.22, 1, 0.36, 1], // More dramatic easing curve
-          type: "spring",
-          damping: 25,
-          stiffness: 120
+          duration: reduced ? 0 : duration,
+          delay: reduced ? 0 : delay,
+          ease: 'easeOut',
+          type: 'tween'
         }}
         {...props}
       >

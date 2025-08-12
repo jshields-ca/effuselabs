@@ -56,15 +56,17 @@ const FlowLayer: React.FC<FlowLayerProps> = ({
 interface HeroCanvasProps {
   className?: string
   reducedMotion?: boolean
+  isVisible?: boolean
 }
 
-const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion = false }) => {
+const HeroCanvas: React.FC<HeroCanvasProps> = ({ className = '', reducedMotion = false, isVisible = true }) => {
   return (
     <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`} aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 7], fov: 55 }}
-        gl={{ alpha: false, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: true }}
-        dpr={[1.5, window.devicePixelRatio || 2]}
+        gl={{ alpha: false, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: false }}
+        dpr={[1, Math.min(1.25, (typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1)]}
+        frameloop={reducedMotion || !isVisible ? 'never' : 'always'}
       >
         <color attach="background" args={[ '#0e1013' ]} />
         <ambientLight intensity={0.4} />
