@@ -1,1 +1,1 @@
-export { HatchingCoreHeroSection } from './HatchingCoreHeroSection'
+// HatchingCoreHeroSection removed - replaced by DynamicHeroSection

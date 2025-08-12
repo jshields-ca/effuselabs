@@ -1,7 +1,7 @@
 'use client'
 
 import { H1, Text, Button } from '@/components/ui'
-import { AnimatedContainer, AnimatedItem } from '@/components/ui'
+import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui'
 
 interface HeroSectionProps {
   title?: string
