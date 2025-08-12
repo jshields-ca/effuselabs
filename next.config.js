@@ -7,20 +7,27 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
+  // Optimize CSS loading for critical path
+  async headers() {
+    return [
+      {
+        source: '/_next/static/css/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
   experimental: {
-    optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
+    // Three.js packages removed for performance optimization
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  modularizeImports: {
-    '@react-three/fiber': {
-      transform: '@react-three/fiber/{{member}}',
-    },
-    '@react-three/drei': {
-      transform: '@react-three/drei/{{member}}',
-    },
-  },
+  // Three.js modular imports removed - no longer using Three.js
   webpack: (config, { dev, isServer }) => {
     // Optimize chunks for better TBT
     if (!dev && !isServer) {
@@ -34,12 +41,7 @@ const nextConfig = {
             chunks: 'all',
           },
 
-          three: {
-            test: /[\\/]node_modules[\\/](@react-three|three)[\\/]/,
-            name: 'three',
-            priority: 20,
-            chunks: 'all',
-          },
+          // Three.js chunk removed - no longer using Three.js
         },
       }
     }

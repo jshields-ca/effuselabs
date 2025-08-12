@@ -6,11 +6,7 @@ import { H1, Text, Button } from '@/components/ui'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui/LightweightAnimatedContainer'
 
-// Lazy load heavy graphics with increased priority delay
-const DynamicHeroCanvas = dynamic(() => import('@/components/ui/HeroCanvas'), { 
-  ssr: false,
-  loading: () => null
-})
+// Three.js HeroCanvas removed for final performance optimization - using pure CSS background
 // FluidParallaxBackground removed - using simple gradient background
 import usePrefersReducedMotion from '@/lib/hooks/usePrefersReducedMotion'
 import { getHeroContent } from '@/lib/sanity/api'
@@ -123,15 +119,17 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
       ref={sectionRef}
       className="hero-critical relative min-h-screen min-h-[100svh] pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] flex items-center overflow-hidden"
     >
-      {/* Animated background - delayed for LCP optimization */}
+      {/* Pure CSS animated background for optimal performance */}
       <div className="absolute inset-0 z-0">
-        {backgroundLoaded && !prefersReduced && heroContent.backgroundSettings?.enableParticles !== false && (
-          <DynamicHeroCanvas reducedMotion={false} isVisible={isVisible} />
-        )}
-        {/* Static gradient background while loading */}
-        {!backgroundLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark" />
-        )}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark opacity-90" />
+        {/* Animated gradient overlay for visual interest */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-teal-dark/20 via-transparent to-brand-gold/20 animate-pulse" />
+        {/* Subtle particle effect with CSS */}
+        <div className="absolute inset-0 opacity-10" style={{
+          background: `radial-gradient(circle at 20% 80%, rgba(34, 197, 195, 0.3) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.3) 0%, transparent 50%),
+                       radial-gradient(circle at 40% 40%, rgba(34, 197, 195, 0.2) 0%, transparent 50%)`
+        }} />
       </div>
 
       {/* Overlay for better text contrast */}
