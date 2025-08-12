@@ -58,7 +58,7 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
     const reduced = usePrefersReducedMotion()
     const [isVisible, setIsVisible] = useState(false)
     const [hasAnimated, setHasAnimated] = useState(false)
-    const elementRef = useRef<HTMLDivElement>(null)
+    const elementRef = useRef<HTMLDivElement | null>(null)
 
     // Intersection Observer for performance - only animate when visible
     useEffect(() => {
@@ -85,10 +85,13 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
 
     return (
       <motion.div
-        ref={(node) => {
+        ref={(node: HTMLDivElement | null) => {
           elementRef.current = node
-          if (typeof ref === 'function') ref(node)
-          else if (ref) ref.current = node
+          if (typeof ref === 'function') {
+            ref(node)
+          } else if (ref) {
+            ref.current = node
+          }
         }}
         className={cn(className)}
         initial="hidden"
