@@ -1,6 +1,7 @@
-import { H2, H3, Text, Button, Grid, GridItem, Card, CardHeader, CardContent } from '@/components/ui'
+import { H2, H3, Text, Button, Grid, GridItem, Card } from '@/components/ui'
 import { SectionContainer } from '@/components/layout'
 import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
+import { DarkFeatureSection, LightFeatureSection } from '@/components/sections'
 import { getHeroContent } from '@/lib/sanity/api'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
@@ -22,64 +23,9 @@ export default async function Home() {
         </AnimatedContainer>
       </SectionContainer>
 
-      {/* Features Section */}
-      <SectionContainer background="light" padding="lg">
-        <AnimatedContainer animation="slideUp" delay={0.2}>
-          <div className="text-center mb-12">
-            <H2 className="mb-4">Sprint 3 Achievements</H2>
-            <Text className="text-medium-grey max-w-2xl mx-auto">
-              Complete navigation system with responsive mobile menu, accessible layout components, and professional footer.
-            </Text>
-          </div>
-          
-          <Grid cols={2} gap="lg" className="lg:grid-cols-4">
-            <GridItem>
-              <Card variant="elevated" className="h-full text-center">
-                <CardHeader>
-                  <div className="text-4xl mb-4">🧭</div>
-                  <H3 className="text-lg mb-2">Navigation</H3>
-                </CardHeader>
-                <CardContent>
-                  <Text className="text-sm">Responsive navbar with animated mobile menu and sticky header behavior.</Text>
-                </CardContent>
-              </Card>
-            </GridItem>
-            <GridItem>
-              <Card variant="elevated" className="h-full text-center">
-                <CardHeader>
-                  <div className="text-4xl mb-4">🦶</div>
-                  <H3 className="text-lg mb-2">Footer</H3>
-                </CardHeader>
-                <CardContent>
-                  <Text className="text-sm">Professional footer with social links, company info, and responsive layout.</Text>
-                </CardContent>
-              </Card>
-            </GridItem>
-            <GridItem>
-              <Card variant="elevated" className="h-full text-center">
-                <CardHeader>
-                  <div className="text-4xl mb-4">🏗️</div>
-                  <H3 className="text-lg mb-2">Layout</H3>
-                </CardHeader>
-                <CardContent>
-                  <Text className="text-sm">Accessible page wrappers, section containers, and skip navigation.</Text>
-                </CardContent>
-              </Card>
-            </GridItem>
-            <GridItem>
-              <Card variant="elevated" className="h-full text-center">
-                <CardHeader>
-                  <div className="text-4xl mb-4">📱</div>
-                  <H3 className="text-lg mb-2">Responsive</H3>
-                </CardHeader>
-                <CardContent>
-                  <Text className="text-sm">Mobile-first design with optimized touch interactions and accessibility.</Text>
-                </CardContent>
-              </Card>
-            </GridItem>
-          </Grid>
-        </AnimatedContainer>
-      </SectionContainer>
+      {/* Feature Sections (EFF-42) */}
+      <LightFeatureSection id="features" />
+      <DarkFeatureSection />
 
       {/* Products Section */}
       <SectionContainer id="products" background="white" padding="lg">

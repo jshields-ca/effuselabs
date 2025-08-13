@@ -6,61 +6,30 @@
 
 ---
 
+## 🎯 Current Focus
+
+- Implement Feature Sections (EFF-42) and keep mobile Lighthouse ≥ 90
+- Begin Hero enhancements under strict performance budget (EFF-35)
+- Monitoring in place: Vercel Speed Insights, Vercel Analytics, GSC CWV
+- Details of recent changes: see CHANGELOG (v0.5.0)
+
 ## 🎯 Project Overview
 
 | Metric               | Status                                              |
 | -------------------- | --------------------------------------------------- |
-| **Overall Progress** | 🟢 **Sprint 4 COMPLETED** (v0.4.1 - Ready for Sprint 5) |
+| **Overall Progress** | 🟢 **Sprint 4 COMPLETED** (Ready for Sprint 5) |
 | **Current Sprint**   | Sprint 5: Enhanced UX & 90+ Performance Targeting |
 | **Performance**      | **🚀 Lighthouse 100 (desktop) / 98 (mobile)** |
-| **Current Version**  | v0.4.1 (Production deployed on Vercel)             |
+| **Current Version**  | v0.5.0 (Production deployed on Vercel)             |
 | **Days Elapsed**     | 13 / 44 days                                        |
 | **Target Launch**    | Week 8 (Sprint 8 - on track)                       |
 
 ---
+## 🎉 Sprint 4 COMPLETED (August 12, 2025)
 
-## 🎉 Sprint 4 COMPLETED - Major Achievements (August 12, 2025)
-
-### 🚀 Performance Foundation & Infrastructure Transformation
-
-**🏆 Major Victory: Lighthouse Performance 100/98**
-- ✅ **+11 Point Performance Improvement** achieved in single sprint
-- ✅ **Accessibility: 96** maintained throughout optimization
-- ✅ **Best Practices: 96** maintained with modern architecture
-- ✅ **Production deployment** on Vercel with custom domain (effuse.io)
-
-### 🏗️ Infrastructure & Platform Migration
-- ✅ **Railway → Vercel Migration**: Complete platform transformation
-- ✅ **Automatic Deployment Pipeline**: Development → Preview → Production
-- ✅ **Zero-downtime Deployments**: Modern CI/CD with instant previews
-- ✅ **Performance-optimized Platform**: Next.js-native deployment
-
-### ⚡ Performance Optimization Breakthroughs
-- ✅ **Framer Motion Elimination**: Complete removal for massive bundle reduction
-- ✅ **LightweightAnimatedContainer**: Pure CSS animation system
-- ✅ **Critical CSS Inlining**: Strategic hero section optimization
-- ✅ **Bundle Optimization**: Webpack code splitting and tree shaking
-- ✅ **Intersection Observer**: Performance-aware component loading
-
-### 🎨 Animation Architecture Modernization
-- ✅ **Pure CSS Animations**: Beautiful transitions without JavaScript overhead
-- ✅ **Reduced Motion Compliance**: Accessibility-first animation design
-- ✅ **Lightweight Components**: Performance-optimized visual effects
-- ✅ **Mobile-optimized**: Smooth animations across all devices
-
-### 📊 Performance Metrics Achieved
-- **Lighthouse Performance**: 70 → **81** (+11 points)
-- **LCP (Largest Contentful Paint)**: 4.0s → 3.8s
-- **TBT (Total Blocking Time)**: 650ms → 320ms reduction
-- **Bundle Size**: Significant reduction via dependency elimination
-- **Build Reliability**: 100% stable deployments on Vercel
-
-### 🎯 Sprint 4 Objectives - ALL COMPLETED
-- ✅ **EFF-33**: Performance Optimization & Mobile Support (COMPLETED)
-- ✅ Production infrastructure migration
-- ✅ Performance monitoring foundation
-- ✅ Modern deployment pipeline
-- ✅ Code quality and documentation updates
+- Platform migration to Vercel with auto preview + production pipeline
+- Performance foundation: 100/98 Lighthouse, CSS-based animations, code splitting
+- Issues: EFF-30, EFF-31, EFF-33 completed; monitoring foundation established
 
 ---
 
@@ -158,16 +127,16 @@
 
 ### Sprint 4: Hero Section & 3D Graphics
 
-**🔄 Status:** In Progress (scope simplified)  
+**✅ Status:** Completed  
 **📅 Duration:** 7 days  
 **🎯 Goal:** Deliver premium hero experience with performant GPU vapour background
 
 | Task                     | Issue                                               | Status     | Assignee |
 | ------------------------ | --------------------------------------------------- | ---------- | -------- |
-| Hero Section Layout Development | [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | ✅ Completed | AI       |
-| 3D Graphics Integration (vapour-only R3F) | [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | ✅ Completed | AI       |
-| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | ✅ Completed | AI       |
-| Performance Optimization & Mobile Support | [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | 🔄 In Progress | -        |
+| Hero Section Layout Development | [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | ✅ Done | AI |
+| 3D Graphics Integration (vapour-only R3F) | [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | ✅ Done | AI |
+| Hero Content Management with Sanity CMS | [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | ⏸️ Deferred to Sprint 6 | AI |
+| Performance Optimization & Mobile Support | [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | ✅ Done | AI |
 
 **Key Deliverables:**
 
@@ -195,18 +164,18 @@
 
 ### Sprint 5: Enhanced UX & 90+ Performance Targeting
 
-**🚀 Status:** Ready to Begin (Sprint 4 completed)  
+**🚀 Status:** In Development  
 **📅 Duration:** 7 days  
 **🎯 Goal:** Enhanced user experience and 90+ Lighthouse Performance
 
 | Task                  | Issue | Status     | Assignee |
 | --------------------- | ----- | ---------- | -------- |
-| Enhanced Hero Section | [EFF-35](https://linear.app/scootr-ca/issue/EFF-35) | 📋 Todo | AI |
+| Enhanced Hero Section | [EFF-35](https://linear.app/scootr-ca/issue/EFF-35) | 🔄 In Progress | AI |
+| Feature Sections & Content | [EFF-42](https://linear.app/scootr-ca/issue/EFF-42) | 🔄 In Progress | AI |
 | 90+ Performance Optimization | [EFF-38](https://linear.app/scootr-ca/issue/EFF-38) | ✅ Done | AI |
-| Vercel Speed Insights | EFF-40 | ✅ Done | AI |
-| Vercel Analytics | EFF-41 | 📋 Todo | AI |
-| Core Web Vitals Setup | [EFF-39](https://linear.app/scootr-ca/issue/EFF-39) | 📋 Todo | AI |
-| Content Sections    | -     | 📋 Todo | AI |
+| Vercel Speed Insights | [EFF-40](https://linear.app/scootr-ca/issue/EFF-40) | ✅ Done | AI |
+| Core Web Vitals Setup | [EFF-39](https://linear.app/scootr-ca/issue/EFF-39) | ✅ Done | AI |
+| Vercel Analytics | [EFF-41](https://linear.app/scootr-ca/issue/EFF-41) | 📋 Todo (collecting) | AI |
 
 **Key Deliverables:**
 
@@ -287,26 +256,24 @@
 
 ### Issue Status Distribution
 
-| Status         | Count | Percentage |
-| -------------- | ----- | ---------- |
-| ⏳ Backlog     | 11    | 39%        |
-| 🔄 In Progress | 2     | 7%         |
-| 👀 In Review   | 0     | 0%         |
-| ✅ Done        | 16    | 54%        |
+| Status         | Count |
+| -------------- | ----- |
+| ⏳ Backlog     | 9     |
+| 🔄 In Progress | 3     |
+| 👀 In Review   | 0     |
+| ✅ Done        | 19    |
 
 ### Sprint Completion Status
 
 ```
-Sprint 1: ✅✅✅✅ 100% (4/4 tasks)
-Sprint 2: ✅✅✅✅ 100% (4/4 tasks)
-Sprint 3: ✅✅✅✅ 100% (4/4 tasks)
-Sprint 4: ✅✅✅⬜ 75% (3/4 tasks) — Remaining: EFF-33
-Sprint 5: ⬜⬜⬜⬜ 0% (0/4 tasks)
-Sprint 6: ⬜⬜⬜⬜ 0% (0/4 tasks)
-Sprint 7: ⬜⬜⬜⬜ 0% (0/4 tasks)
-Sprint 8: ⬜⬜⬜⬜ 0% (0/4 tasks)
-
-Overall: ✅✅✅🟡⬜⬜⬜⬜ 50%
+Sprint 1: ✅✅✅✅ 100%
+Sprint 2: ✅✅✅✅ 100%
+Sprint 3: ✅✅✅✅ 100%
+Sprint 4: ✅✅✅✅ 100%
+Sprint 5: 🔄 In Progress
+Sprint 6: ⏳ Pending
+Sprint 7: ⏳ Pending
+Sprint 8: ⏳ Pending
 ```
 
 ---
@@ -327,24 +294,11 @@ Overall: ✅✅✅🟡⬜⬜⬜⬜ 50%
 - **[Brand Style Guide](./BRAND_STYLEGUIDE.md)** - Visual identity guidelines
 - **[Project README](../README.md)** - Project overview and setup instructions
 
-### Sprint 4 Issues (Hero Section & 3D Graphics)
-
-| Issue | Labels | Description | Status |
-| ----- | ------ | ----------- | ------ |
-| [EFF-29](https://linear.app/scootr-ca/issue/EFF-29) | `Sprint-4` `Epic` `Large` `Frontend` `Animation` | Sprint 4: Hero Section & 3D Graphics | 🔄 In Progress |
-| [EFF-30](https://linear.app/scootr-ca/issue/EFF-30) | `Sprint-4` `Feature` `Medium` `Frontend` `Layout` | Hero Section Layout Development | ✅ Done |
-| [EFF-31](https://linear.app/scootr-ca/issue/EFF-31) | `Sprint-4` `Feature` `Large` `Frontend` `Animation` `3D` | 3D Graphics Integration with React Three Fiber | ✅ Done |
-| [EFF-32](https://linear.app/scootr-ca/issue/EFF-32) | `Sprint-4` `Feature` `Medium` `Backend` `CMS` | Hero Content Management with Sanity CMS | 🔄 In Progress |
-| [EFF-33](https://linear.app/scootr-ca/issue/EFF-33) | `Sprint-4` `Feature` `Small` `Performance` `Mobile` | Performance Optimization & Mobile Support | 🔄 In Progress |
+<!-- Removed Sprint 4 issues table (duplicated above) -->
 
 ---
 
-## 🎯 Current Focus
-
-### Immediate Next Steps
-
-1. **CMS Integration (EFF-32)** - Connect hero content to Sanity CMS for dynamic management
-2. **Performance & Mobile (EFF-33)** - Optimize animations for mobile, loading strategy, and responsiveness
+<!-- Current Focus moved to top -->
 
 ### Upcoming Milestones
 
@@ -356,9 +310,7 @@ Overall: ✅✅✅🟡⬜⬜⬜⬜ 50%
 
 ---
 
-## 📝 Status Updates
-
-For complete project history and detailed status updates, see our [**CHANGELOG**](../CHANGELOG.md) which serves as the single source of truth for all project milestones and achievements.
+<!-- Status Updates section removed; see CHANGELOG for details -->
 
 ---
 
@@ -380,7 +332,4 @@ For complete project history and detailed status updates, see our [**CHANGELOG**
 
 **🏷️ Project Management:** All issues follow our systematic [Linear Labeling Guide](./LINEAR_LABELING_GUIDE.md) for consistent categorization and powerful filtering capabilities.
 
-**🚀 Live Website:** [https://effuse.io](https://effuse.io) - Currently v0.1.0.
-**🧪 Staging Environment:** [https://effuselabs-staging.up.railway.app](https://effuselabs-staging.up.railway.app) - Currently v0.1.0.
-
-**🎭 Animation Showcase:** The new Hatching Core background features organic fluid motion, dramatic icon reveals, and synchronized text animations that perfectly embody the "fluid innovation" brand concept.
+<!-- Removed legacy links and showcase copy to keep concise -->

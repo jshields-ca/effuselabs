@@ -14,22 +14,7 @@ Development (Local) → Preview (Auto-staging) → Production (Vercel)
 | **Preview (Staging)** | QA, client preview, integration testing | `https://effuselabs-git-[branch].vercel.app` | Any branch push/PR |
 | **Production** | Live site for end users | `https://effuse.io` | Push to `main` branch |
 
-## 🌟 Vercel Advantages Over Railway
-
-**Automatic Staging:**
-- ✅ **Every branch gets a preview URL** - no manual staging deploys
-- ✅ **Pull Request previews** - stakeholders can review before merge
-- ✅ **Branch isolation** - test features independently
-
-**Performance:**
-- ✅ **Global Edge Network** - faster loading worldwide
-- ✅ **Automatic optimizations** - images, fonts, code splitting
-- ✅ **Built for Next.js** - zero configuration needed
-
-**Developer Experience:**
-- ✅ **Instant deployments** - 30 seconds vs 5+ minutes
-- ✅ **Real-time collaboration** - share preview links instantly
-- ✅ **Better debugging** - detailed build logs and error reporting
+<!-- Removed platform comparison to streamline guide -->
 
 ## Environment Variables Setup
 
@@ -64,36 +49,11 @@ npm run build
 npm run start
 ```
 
-**Benefits of Direct Next.js:**
-- ⚡ **Faster Hot Reload**: 200-500ms vs 2-5s with Docker
-- 🐛 **Better Debugging**: Direct Node.js debugging, IDE integration
-- 💾 **Lower Resource Usage**: No Docker Desktop overhead
-- 🎯 **Simpler Workflow**: Just `npm run dev` and start coding
+<!-- Removed explanatory benefits list to keep concise -->
 
-**Docker Alternative (Optional):**
-```bash
-# Only use when testing exact production environment
-docker build -t effuse-website .
-docker run -p 3000:3000 effuse-website
-```
+<!-- Removed Docker alternative; not used in current workflow -->
 
-Docker is available but **not recommended for daily development** due to slower hot reload and added complexity.
-
-### 🪟 **Windows-Specific Setup**
-
-If you encounter `"npm is not recognized"` errors on Windows, update PATH for your current PowerShell session (helper scripts deprecated and removed):
-
-```powershell
-# Add Node.js and npm to current session PATH
-$env:PATH = "$env:USERPROFILE\AppData\Roaming\npm;C:\\Program Files\\nodejs;" + $env:PATH
-
-# Verify installation
-node --version
-npm --version
-
-# Start development server
-npm run dev
-```
+<!-- Windows-specific setup removed (covered in README if needed) -->
 
 **Troubleshooting Steps:**
 1. **Server not accessible at localhost:3000:**
@@ -127,32 +87,7 @@ NEXT_PUBLIC_SITE_URL=https://effuse.io
 NEXT_TELEMETRY_DISABLED=1
 ```
 
-## 🚀 Vercel Deployment Workflow
-
-### Modern Git Workflow with Automatic Staging
-
-```bash
-# 1. Feature Development (Local)
-git checkout -b feature/new-component
-# ... develop and test locally on localhost:3000
-npm run dev
-
-# 2. Automatic Preview Deployment
-git push origin feature/new-component
-# ✨ Vercel automatically creates preview URL:
-# https://effuselabs-git-feature-new-component.vercel.app
-
-# 3. Create Pull Request & Share Preview
-# GitHub PR will show Vercel preview link automatically
-# Share with stakeholders for review
-
-# 4. Automatic Production Deployment
-git checkout main
-git merge feature/new-component
-git push origin main
-# ✨ Vercel automatically deploys to production:
-# https://effuse.io
-```
+<!-- Removed verbose workflow; Vercel auto-deploys on push -->
 
 ### No Environment Switching Needed!
 
@@ -170,16 +105,9 @@ git push origin main
 | **Preview (Auto-staging)** | Integration testing, QA review, client feedback |
 | **Production** | Performance monitoring, user analytics, stability |
 
-## Vercel Deployment Steps
+<!-- Removed initial setup steps to reduce duplication with Vercel docs -->
 
-### 1. Initial Vercel Setup
-
-1. **Create Vercel account** at [vercel.com](https://vercel.com)
-2. **Connect GitHub account** for seamless integration
-3. **Import repository** - select your `effuselabs` repo
-4. **Deploy** - Vercel auto-detects Next.js settings
-
-### 2. Environment Variables in Vercel
+## Environment Variables in Vercel
 
 Set environment variables in **Vercel Dashboard > Project > Settings > Environment Variables**:
 
@@ -214,26 +142,7 @@ Set environment variables in **Vercel Dashboard > Project > Settings > Environme
 - 🌟 **Isolated testing**: Each feature branch has its own staging
 - 🌟 **Instant updates**: New commits trigger automatic redeployment
 
-## Custom Domain Setup (effuse.io)
-
-### 1. Configure Domain in Vercel
-
-1. **Go to Vercel Dashboard** → Your Project → Settings → Domains
-2. **Add custom domain**: `effuse.io`
-3. **Add www subdomain**: `www.effuse.io` (optional)
-4. **Vercel provides DNS instructions**
-
-### 2. Update DNS Settings
-
-**Option A: Use Vercel Nameservers (Recommended)**
-- Point your domain's nameservers to Vercel
-- Vercel manages all DNS automatically
-- Includes SSL, CDN, and performance optimizations
-
-**Option B: CNAME/A Records**
-- Keep your current DNS provider
-- Add CNAME record: `effuse.io` → `cname.vercel-dns.com`
-- Add A record: `effuse.io` → Vercel's IP addresses
+<!-- Removed custom domain setup; domain already configured -->
 
 ### 3. SSL & Security Headers
 

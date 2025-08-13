@@ -1,11 +1,10 @@
 <div align="center">
 
-# 🚀 Effuse Labs (Private Repository)
+# 🚀 Effuse Labs
 
 ### *Intelligent Software for Small Business Growth*
 
-[![Version](https://img.shields.io/badge/version-0.4.1-blue?style=for-the-badge)](./CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-0.5.0-blue?style=for-the-badge)](./CHANGELOG.md)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20desktop%20%7C%2098%20mobile-orange?style=for-the-badge)](https://web.dev/lighthouse/)
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.31-black?style=flat&logo=next.js)](https://nextjs.org/)
@@ -129,13 +128,7 @@ npm run start   # Test production server locally
 - 💾 Lower resource usage
 - 🎯 Simpler daily workflow
 
-### Docker Development (Production Testing Only)
-
-```bash
-# Only when testing exact production environment
-docker build -t effuse-website .
-docker run -p 3000:3000 effuse-website
-```
+<!-- Docker development removed: not used in current workflow -->
 
 ## 💻 Development Workflow
 
@@ -165,23 +158,10 @@ effuse-website/
 - **Pull Requests**: Required for all changes to `main`
 
 ### Key Commands
-
 ```bash
-# Development
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # TypeScript type checking
-
-# Testing
-npm run test         # Run tests
-npm run test:watch   # Run tests in watch mode
-npm run test:e2e     # Run end-to-end tests
-
-# Windows Helper Scripts (if npm not recognized)
-start-dev-simple.bat           # Double-click to start dev server
-.\setup-dev-environment.ps1    # Interactive environment setup
+npm run dev
+npm run build && npm run start
+npm run lint && npm run type-check
 ```
 
 ### Project Status & Management
@@ -201,25 +181,7 @@ Accessibility is a core value at Effuse Labs. Our founder, Jeremy Shields, is a 
 - **Manual Testing**: Regular testing with screen readers and assistive technologies
 - **Inclusive Design**: Design decisions prioritize usability for all users
 
-## 🤝 Contributing
-
-We welcome contributions from the community! Please see our [Contributing Guidelines](./docs/CONTRIBUTING.md) for details.
-
-### Quick Start for Contributors
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/your-feature-name`
-3. Make your changes following our coding standards
-4. Run tests and linting: `npm run test && npm run lint`
-5. Commit with clear messages
-6. Push to your fork and submit a pull request
-
-### Code Standards
-
-- **TypeScript**: Strict mode enabled
-- **ESLint**: Extended with accessibility rules
-- **Prettier**: Code formatting
-- **Accessibility**: All interactive elements must be keyboard accessible
+<!-- Contributing section removed: solo developer + AI workflow -->
 
 ## 📚 Documentation
 
@@ -297,43 +259,9 @@ We welcome contributions! See our [Contributing Guidelines](#-contributing) belo
 
 ---
 
-## 📄 License & Legal
-
 <div align="center">
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
-
-**Open Source** • **MIT Licensed** • **Commercial Use Allowed**
-
-</div>
-
----
-
-## 🌟 Show Your Support
-
-<div align="center">
-
-**Star this project if you find it helpful! ⭐**
-
-[![Star History](https://img.shields.io/badge/⭐_Star-this_repo-yellow?style=for-the-badge)](https://github.com/effuselabs/effuse-website)
-
-### 🚀 Follow Our Journey
-
-[![Website Updates](https://img.shields.io/badge/🔔_Website-effuse.io-FF6B6B?style=flat)](https://effuse.io)
-[![Development Progress](https://img.shields.io/badge/📈_Progress-Linear-5E6AD2?style=flat)](https://linear.app/scootr-ca/project/effuseio-7194bedc3fdf)
-[![Changelog](https://img.shields.io/badge/📝_Changelog-view-blue?style=flat)](./CHANGELOG.md)
-
-**Built with ❤️ in Winnipeg, Manitoba 🇨🇦**
-
-*Empowering small businesses across North America with intelligent, accessible software*
-
----
-
 <sup>© 2025 Effuse Labs • Intelligent Software for Small Business Growth</sup>
-
 </div>
-
----
 
 For detailed project updates and release history, see our [**CHANGELOG**](./CHANGELOG.md) and [**Development Status Dashboard**](./docs/DEVELOPMENT_STATUS.md).
 
@@ -347,97 +275,17 @@ For detailed project updates and release history, see our [**CHANGELOG**](./CHAN
 
 ---
 
-## 🎯 Demo & Screenshots
+<!-- Removed demo/screenshots and extra quick start to keep concise. -->
 
-<div align="center">
+<!-- Development workflow diagram removed. -->
 
-### 🌐 Live Website Preview
+<!-- Workflow diagram removed -->
 
-> **[Visit Live Site →](https://effuse.io)**
+<!-- Deployment command block removed (Vercel auto-deploys on push). -->
 
-*Currently featuring sophisticated Hatching Core animations with organic fluid motion and dramatic icon reveals*
+<!-- Deployment commands and platform bullets removed (auto on push) -->
 
-</div>
-
-<details>
-<summary><strong>🖼️ Development Screenshots (Click to expand)</strong></summary>
-
-```
-🎭 Sophisticated Hatching Core animations with organic fluid motion
-📸 Features: Multi-layered background flow, dramatic icon reveals, synchronized text animations
-🎨 Advanced animation system with 60fps GPU-accelerated performance
-✨ Breathing button animations and enhanced particle systems
-```
-
-</details>
-
----
-
-## 🚀 Quick Start
-
-### One-Line Development Setup
-
-```bash
-# Clone, install, and start developing
-git clone [repository] && cd effuse-website && npm install && npm run dev
-```
-
-### 🪟 Windows Users Quick Start
-
-```bash
-# Just double-click this file in your project folder!
-start-dev-simple.bat
-```
-
-### 🐳 Docker Alternative (Optional)
-
-```bash
-# For production environment testing
-docker build -t effuse-website . && docker run -p 3000:3000 effuse-website
-```
-
----
-
-## 🤖 Development Workflow
-
-### 🔄 Standard Development Cycle
-
-```mermaid
-graph LR
-    A[Local Dev] --> B[Staging Deploy]
-    B --> C[Review & Test]
-    C --> D[Production Deploy]
-    D --> E[Live Website]
-    
-    style A fill:#e1f5fe
-    style B fill:#fff3e0
-    style C fill:#f3e5f5
-    style D fill:#e8f5e8
-    style E fill:#ffebee
-```
-
-### 📋 Deployment Commands
-
-```bash
-# 🔨 Development
-npm run dev              # Start local development server
-
-# 🧪 Preview/Staging (automatic)
-git push origin feature/your-branch  # Auto-deploys preview on Vercel
-
-# 🚀 Production (automatic)
-git push origin main     # Auto-deploys to effuse.io
-```
-
-**Platform:** Vercel (optimized for Next.js)
-- ✅ Automatic deployments on git push
-- ✅ Preview URLs for feature branches  
-- ✅ Zero-downtime production deployments
-- ✅ Edge CDN and performance optimization
-
----
-
-## 🔧 Troubleshooting
+<!-- Troubleshooting removed; keep README concise. -->
 
 ### Windows Development Environment Issues
 
@@ -501,16 +349,5 @@ If you see "PostCSS plugin has moved" errors, ensure you're using Tailwind CSS v
 npm uninstall tailwindcss
 npm install tailwindcss@^3.4.17 --save
 ```
-
-### Helper Scripts Available
-
-| Script | Purpose | Usage |
-|--------|---------|-------|
-| `start-dev-simple.bat` | Quick start development server | Double-click to run |
-| `setup-dev-environment.ps1` | Interactive environment setup | Run in PowerShell |
-
----
-
-**© 2025 Effuse Labs. Intelligent Software for Small Business Growth.**
 
 ---
