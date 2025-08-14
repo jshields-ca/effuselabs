@@ -41,7 +41,6 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     }
     
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         'rounded-lg transition-all duration-200',
         variants[variant],
@@ -52,8 +51,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     }
 
     return (
-      <Component {...componentProps}
-      >
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
@@ -63,13 +61,12 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn('mb-4', className),
       ...props
     }
     
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
@@ -79,13 +76,12 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn('mb-4', className),
       ...props
     }
     
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
@@ -95,13 +91,12 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn('mt-4 pt-4 border-t border-light-grey', className),
       ...props
     }
     
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
