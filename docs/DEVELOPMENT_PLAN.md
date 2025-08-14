@@ -114,12 +114,11 @@ effuse-website/
 - npm or yarn package manager
 - Git with SSH keys configured
 - Docker Desktop (optional, for containerized development)
-- VS Code with recommended extensions:
-  - TypeScript and JavaScript Language Features
-  - Tailwind CSS IntelliSense
-  - ESLint
-  - Prettier - Code formatter
-  - Auto Rename Tag
+- **VS Code with optimized extension setup**:
+  - Project includes comprehensive `.vscode/extensions.json` with 15+ essential extensions
+  - Auto-prompted installation of: Tailwind CSS IntelliSense, ESLint, Prettier, Linear integration
+  - Enhanced settings for Next.js, TypeScript, accessibility, and performance optimization
+  - Configured for WCAG AA compliance and development efficiency
 
 **Environment Variables:**
 Create `.env.local` file with:

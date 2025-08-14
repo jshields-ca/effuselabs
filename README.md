@@ -1,8 +1,6 @@
-<div align="center">
-
 # 🚀 Effuse Labs
 
-### *Intelligent Software for Small Business Growth*
+## *Intelligent Software for Small Business Growth*
 
 [![Version](https://img.shields.io/badge/version-0.5.0-blue?style=for-the-badge)](./CHANGELOG.md)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20desktop%20%7C%2098%20mobile-orange?style=for-the-badge)](https://web.dev/lighthouse/)
@@ -53,7 +51,7 @@ npm run dev
 
 Create `.env.local`:
 
-```
+```bash
 NEXT_PUBLIC_SANITY_PROJECT_ID=...
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
@@ -67,10 +65,11 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 ### Prerequisites
 
 - Node.js 18.0.0 or higher
-- npm or yarn package manager
+- npm or yarn package manager  
+- VS Code (recommended IDE with extension support)
 - Docker (optional, for containerized development)
 
-**Windows Users:** If you encounter PATH issues with npm/Node.js, use the provided helper scripts (see Installation step 6).
+**VS Code Setup:** This project includes optimized VS Code configuration with recommended extensions for the best development experience.
 
 ### Installation
 
@@ -96,18 +95,23 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
    # Edit .env.local with your configuration
    ```
 
-```bash
-npm run dev      # start dev server
-npm run build    # production build
-npm run start    # run production server
-npm run lint     # lint code
-```
+4. **Run development server**
+
+   ```bash
+   npm run dev      # start dev server
+   npm run build    # production build
+   npm run start    # run production server
+   npm run lint     # lint code
+   ```
 
 5. **Open your browser**
+
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 6. **Windows PATH Fix (if needed)**
+
    If you get "npm is not recognized" errors, fix PATH for the current PowerShell session:
+
    ```powershell
    $env:PATH = "$env:USERPROFILE\AppData\Roaming\npm;C:\\Program Files\\nodejs;" + $env:PATH
    npm run dev
@@ -115,14 +119,16 @@ npm run lint     # lint code
 
 ### ⚡ **Optimized Development Workflow**
 
-**Recommended: Direct Next.js (Fastest)**
+#### Recommended: Direct Next.js (Fastest)
+
 ```bash
 npm run dev     # Start with hot reload → http://localhost:3000
 npm run build   # Test production build locally
 npm run start   # Test production server locally
 ```
 
-**Why Direct Next.js?**
+#### Why Direct Next.js?
+
 - ⚡ Faster hot reload (200-500ms vs 2-5s)
 - 🐛 Better debugging and IDE integration  
 - 💾 Lower resource usage
@@ -132,9 +138,40 @@ npm run start   # Test production server locally
 
 ## 💻 Development Workflow
 
+### 🚀 VS Code Setup (Recommended)
+
+This project is optimized for **Visual Studio Code** with a comprehensive extension setup:
+
+#### **Essential Extensions (Auto-Installed)**
+
+When you open this workspace, VS Code will prompt you to install our recommended extensions:
+
+- **Core Development**: Tailwind CSS IntelliSense, ES7+ React/Redux snippets, Prettier, ESLint
+- **Project Management**: Linear integration, GitLens for enhanced Git workflows  
+- **Quality Assurance**: axe Accessibility Linter (WCAG AA), WebHint performance analysis
+- **AI & Productivity**: GitHub Copilot, Copilot Chat
+- **Documentation**: Markdown All-in-One, Markdown Lint
+
+#### **Optimized Settings**
+
+Our `.vscode/settings.json` includes:
+
+- **Performance optimization** for large Next.js projects
+- **Auto-formatting** on save with Prettier
+- **ESLint integration** with accessibility rules
+- **Tailwind IntelliSense** for your brand colors and utilities
+- **Linear integration** for issue management
+
+#### **Getting Started**
+
+1. Open the project in VS Code
+2. Accept the prompt to install recommended extensions
+3. Extensions will auto-configure with project settings
+4. Start coding with enhanced IntelliSense and quality tools!
+
 ### Project Structure
 
-```
+```text
 effuse-website/
 ├── app/                    # Next.js App Router
 │   ├── layout.tsx         # Root layout
@@ -158,6 +195,7 @@ effuse-website/
 - **Pull Requests**: Required for all changes to `main`
 
 ### Key Commands
+
 ```bash
 npm run dev
 npm run build && npm run start
@@ -186,28 +224,32 @@ Accessibility is a core value at Effuse Labs. Our founder, Jeremy Shields, is a 
 ## 📚 Documentation
 
 ### Project Management
+
 - **[Development Status Dashboard](./docs/DEVELOPMENT_STATUS.md)**: Sprint progress and issue tracking
 - **[Linear Labeling Guide](./docs/LINEAR_LABELING_GUIDE.md)**: Project management methodology and label system
 - **[Development Plan](./docs/DEVELOPMENT_PLAN.md)**: Technical roadmap and sprint architecture
 
 ### Business & Brand
+
 - **[Business Overview](./docs/BUSINESS_OVERVIEW.md)**: Company mission and product details  
 - **[Brand Style Guide](./docs/BRAND_STYLEGUIDE.md)**: Visual identity and brand guidelines
 
 ### Development Setup
+
 - **Project README** *(this file)*: Setup, workflow, and troubleshooting
 - **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)**: Three-environment pipeline setup
 - **[CHANGELOG](./CHANGELOG.md)**: Complete project history and version tracking
 
 ## Deployment
 
-- **Development**: http://localhost:3000
+- **Development**: <http://localhost:3000>
 - **Preview**: Auto-deployed on feature branches (Vercel)
-- **Production**: https://effuse.io (v0.4.1 - Lighthouse 81)
+- **Production**: <https://effuse.io> (v0.4.1 - Lighthouse 81)
 
 ### Environment Variables
 
 Required environment variables are documented in `.env.example`. Production environment uses:
+
 - `NEXT_PUBLIC_SITE_URL=https://effuse.io`
 - `NODE_ENV=production`
 - `NEXT_TELEMETRY_DISABLED=1`
@@ -216,30 +258,24 @@ Contact the development team for access to production credentials.
 
 ## 👥 Contributors
 
-<div align="center">
-
 ### 🚀 Core Team
 
-| Role | Developer | GitHub | Contributions |
-|------|-----------|--------|---------------|
-| **🎯 Project Lead** | Jeremy Shields | [@jshields-ca](https://github.com/jshields-ca) | Architecture, Strategy, Business |
-| **🤖 AI Development** | AI Assistant | - | Implementation, Documentation, DevOps |
+| Role                 | Developer      | GitHub                                         | Contributions                         |
+| -------------------- | -------------- | ---------------------------------------------- | ------------------------------------- |
+| **🎯 Project Lead**   | Jeremy Shields | [@jshields-ca](https://github.com/jshields-ca) | Architecture, Strategy, Business      |
+| **🤖 AI Development** | AI Assistant   | -                                              | Implementation, Documentation, DevOps |
 
 ### 🌟 Want to Contribute?
 
-We welcome contributions! See our [Contributing Guidelines](#-contributing) below.
+We welcome contributions! See our [Contributing Guidelines](./CONTRIBUTING.md) for details.
 
 [![Contributors](https://img.shields.io/badge/contributors-2-blue?style=for-the-badge)](./CHANGELOG.md)
-[![Issues](https://img.shields.io/badge/issues-welcome-brightgreen?style=for-the-badge)](#-contributing)
-[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](#-contributing)
-
-</div>
+[![Issues](https://img.shields.io/badge/issues-welcome-brightgreen?style=for-the-badge)](https://github.com/jshields-ca/effuselabs/issues)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](https://github.com/jshields-ca/effuselabs/pulls)
 
 ---
 
 ## 📞 Contact & Support
-
-<div align="center">
 
 ### 🏢 Company Information
 
@@ -255,13 +291,9 @@ We welcome contributions! See our [Contributing Guidelines](#-contributing) belo
 [![GitHub Discussions](https://img.shields.io/badge/💬_Discussions-GitHub-black?style=flat&logo=github)](https://github.com/effuselabs/effuse-website/discussions)
 [![Linear](https://img.shields.io/badge/📋_Project-Linear-5E6AD2?style=flat&logo=linear)](https://linear.app/scootr-ca/project/effuseio-7194bedc3fdf)
 
-</div>
-
 ---
 
-<div align="center">
-<sup>© 2025 Effuse Labs • Intelligent Software for Small Business Growth</sup>
-</div>
+© 2025 Effuse Labs • Intelligent Software for Small Business Growth
 
 For detailed project updates and release history, see our [**CHANGELOG**](./CHANGELOG.md) and [**Development Status Dashboard**](./docs/DEVELOPMENT_STATUS.md).
 
@@ -290,22 +322,27 @@ For detailed project updates and release history, see our [**CHANGELOG**](./CHAN
 ### Windows Development Environment Issues
 
 #### npm/Node.js Not Recognized
+
 If you see `"npm is not recognized as a cmdlet"` errors:
 
 **Quick Fix:**
+
 1. Double-click `start-dev-simple.bat` in your project folder
 2. Or run `.\setup-dev-environment.ps1` in PowerShell
 
 **Manual Fix:**
+
 ```powershell
 $env:PATH = "C:\Users\[YourUsername]\AppData\Roaming\npm;C:\Program Files\nodejs;" + $env:PATH
 npm run dev
 ```
 
 #### Development Server Not Accessible
+
 If `http://localhost:3000` shows connection errors:
 
 1. **Check if server is running:**
+
    ```bash
    netstat -an | findstr :3000
    ```
@@ -315,6 +352,7 @@ If `http://localhost:3000` shows connection errors:
    - Check Windows Firewall permissions
 
 3. **Restart development server:**
+
    ```bash
    # Kill any existing processes
    taskkill /F /IM node.exe
@@ -323,6 +361,7 @@ If `http://localhost:3000` shows connection errors:
    ```
 
 #### Browser Issues
+
 - Try different browser (Chrome, Edge, Firefox)
 - Clear browser cache
 - Try incognito/private mode
@@ -331,6 +370,7 @@ If `http://localhost:3000` shows connection errors:
 
 **Tailwind CSS Build Errors:**
 If you encounter "Cannot find module 'tailwindcss'" errors:
+
 ```bash
 # Ensure Tailwind is in production dependencies
 npm install tailwindcss@^3.4.17 postcss autoprefixer --save
@@ -345,6 +385,7 @@ npm run build
 
 **PostCSS Plugin Errors:**
 If you see "PostCSS plugin has moved" errors, ensure you're using Tailwind CSS v3.4.x, not v4+:
+
 ```bash
 npm uninstall tailwindcss
 npm install tailwindcss@^3.4.17 --save

@@ -59,5 +59,73 @@
   // Disable resource-intensive features for large projects
   "editor.semantic.highlightingEnabled": true,
   "editor.minimap.enabled": true,
-  "breadcrumbs.enabled": true
+  "breadcrumbs.enabled": true,
+  
+  // Extension settings (now that extensions are installed)
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  
+  // Tailwind CSS Enhanced IntelliSense
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  
+  // ESLint Configuration
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact", 
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.format.enable": false,
+  
+  // GitLens Configuration
+  "gitlens.defaultDateStyle": "relative",
+  "gitlens.blame.compact": true,
+  "gitlens.currentLine.enabled": true,
+  
+  // Accessibility (axe-linter)
+  "axe.enabledTags": ["wcag2a", "wcag2aa", "wcag21aa"],
+  
+  // WebHint
+  "webhint.enableTelemetry": "disabled",
+  
+  // Linear integration
+  "linear.defaultProject": "effuse.io",
+  "linear.teamId": "EffuseLabs",
+  
+  // Accessibility
+  "accessibility.signals.sounds.volume": 0.5,
+  
+  "chat.mcp.serverSampling": {
+    
+  }
 }
