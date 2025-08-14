@@ -1,7 +1,7 @@
 import { H2, H3, Text, Button, Grid, GridItem, Card } from '@/components/ui'
 import { SectionContainer } from '@/components/layout'
 import { DynamicHeroSection } from '@/components/sections/DynamicHeroSection'
-import { DarkFeatureSection, LightFeatureSection, PhilosophySection, FounderStatementSection } from '@/components/sections'
+import { PhilosophySection, FounderStatementSection } from '@/components/sections'
 import { getHeroContent } from '@/lib/sanity/api'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
@@ -141,7 +141,7 @@ export default async function Home() {
                   </li>
                 </ul>
                 <Text className="mb-6">
-                  You’re more than a stylist; you're an artist, a confidant, and a community hub. You build relationships and transform your clients' confidence, one appointment at a time. Your craft deserves to be the focus, not the endless paperwork that comes with it.
+                  You’re more than a stylist; you&apos;re an artist, a confidant, and a community hub. You build relationships and transform your clients&apos; confidence, one appointment at a time. Your craft deserves to be the focus, not the endless paperwork that comes with it.
                 </Text>
                 <Button variant="primary" size="sm" href="#lumina" className="mt-auto">Explore Lumina</Button>
                 </div>
