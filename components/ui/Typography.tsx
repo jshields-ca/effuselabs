@@ -10,8 +10,8 @@ interface TypographyProps {
 // Heading components
 const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ children, className, as: Component = 'h1', ...props }, ref) => {
-    const componentProps: any = {
-      ref,
+    const componentProps: React.HTMLAttributes<HTMLHeadingElement> = {
+      ref: ref as React.Ref<HTMLHeadingElement>,
       className: cn(
         'text-4xl md:text-5xl lg:text-6xl font-bold text-off-black leading-tight tracking-tight',
         className

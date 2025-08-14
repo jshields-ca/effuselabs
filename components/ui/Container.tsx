@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-interface ContainerProps {
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   className?: string
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
@@ -18,8 +18,8 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
       full: 'max-w-full'
     }
     
-    const componentProps: any = {
-      ref,
+    const componentProps: React.HTMLAttributes<HTMLDivElement> = {
+      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         'mx-auto px-4 sm:px-6 lg:px-8',
         sizes[size],

@@ -1,7 +1,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-interface GridProps {
+interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   className?: string
   cols?: 1 | 2 | 3 | 4 | 5 | 6 | 12
@@ -9,7 +9,7 @@ interface GridProps {
   as?: React.ElementType
 }
 
-interface GridItemProps {
+interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   className?: string
   span?: 1 | 2 | 3 | 4 | 5 | 6 | 12 | 'full'
@@ -36,8 +36,8 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
       xl: 'gap-8'
     }
     
-    const componentProps: any = {
-      ref,
+    const componentProps: React.HTMLAttributes<HTMLDivElement> = {
+      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         'grid',
         colClasses[cols],
@@ -68,8 +68,8 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
       full: 'col-span-full'
     }
     
-    const componentProps: any = {
-      ref,
+    const componentProps: React.HTMLAttributes<HTMLDivElement> = {
+      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         spanClasses[span],
         className
