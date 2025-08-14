@@ -99,7 +99,7 @@ export default async function Home() {
                       <Text className="text-sm">Real-time financial insights</Text>
                     </li>
                   </ul>
-                  <Button variant="secondary" href="#silentledger" aria-label="Learn more about SilentLedger">Learn More About SilentLedger</Button>
+                  <Button variant="secondary" href="/products/silentledger" aria-label="Learn more about SilentLedger">Learn More About SilentLedger</Button>
                 </div>
               </div>
             </Card>
@@ -172,7 +172,7 @@ export default async function Home() {
                 <Text className="mb-6">
                   You are the architects of the new economy, turning ideas into code, pixels, and powerful content. You thrive on the freedom of creation, but that freedom often comes with the burden of running a business alone. We believe your energy is best spent creating, not crunching numbers.
                 </Text>
-                <Button variant="secondary" size="sm" href="#silentledger" className="mt-auto">Explore SilentLedger</Button>
+                <Button variant="secondary" size="sm" href="/products/silentledger" className="mt-auto">Explore SilentLedger</Button>
                 </div>
               </Card>
             </GridItem>

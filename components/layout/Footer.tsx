@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
             <H4 className="text-white mb-4">Products</H4>
             <ul className="space-y-3">
               <li><FooterLink href="/products/lumina">Lumina</FooterLink></li>
-              <li><FooterLink href="#silentledger">SilentLedger</FooterLink></li>
+              <li><FooterLink href="/products/silentledger">SilentLedger</FooterLink></li>
             </ul>
           </div>
 
