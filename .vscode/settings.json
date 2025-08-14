@@ -10,7 +10,6 @@
     "**/dist": true,
     "**/*.log": true
   },
-  
   // Search Exclusions
   "search.exclude": {
     "**/node_modules": true,
@@ -22,7 +21,6 @@
     "**/*.log": true,
     "**/package-lock.json": true
   },
-  
   // File Watcher Exclusions (Performance Critical)
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -33,34 +31,28 @@
     "**/dist/**": true,
     "**/*.log": true
   },
-  
   // TypeScript & Next.js Optimizations
   "typescript.preferences.includePackageJsonAutoImports": "off",
   "typescript.suggest.autoImports": true,
   "typescript.preferences.useLabelDetailsInCompletionEntries": true,
-  
   // Cursor/VS Code Performance Settings
   "extensions.experimental.affinity": {
     "ms-vscode.vscode-typescript-next": 1
   },
-  
   // Git Integration Optimizations
   "git.enabled": true,
   "git.autorefresh": false,
   "git.autofetch": false,
-  
   // Editor Performance
   "editor.quickSuggestions": {
     "other": true,
     "comments": false,
     "strings": false
   },
-  
   // Disable resource-intensive features for large projects
   "editor.semantic.highlightingEnabled": true,
   "editor.minimap.enabled": true,
   "breadcrumbs.enabled": true,
-  
   // Extension settings (now that extensions are installed)
   "editor.formatOnSave": true,
   "[typescript]": {
@@ -85,47 +77,47 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-  
   // Tailwind CSS Enhanced IntelliSense
   "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    [
+      "cva\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cx\\(([^)]*)\\)",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ],
+    [
+      "clsx\\(([^)]*)\\)",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
   ],
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
     "typescriptreact": "javascript"
   },
   "tailwindCSS.emmetCompletions": true,
-  
   // ESLint Configuration
   "eslint.validate": [
     "javascript",
-    "javascriptreact", 
+    "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
   "eslint.format.enable": false,
-  
   // GitLens Configuration
   "gitlens.defaultDateStyle": "relative",
   "gitlens.blame.compact": true,
   "gitlens.currentLine.enabled": true,
-  
   // Accessibility (axe-linter)
-  "axe.enabledTags": ["wcag2a", "wcag2aa", "wcag21aa"],
-  
+  "axe.enabledTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21aa"
+  ],
   // WebHint
   "webhint.enableTelemetry": "disabled",
-  
-  // Linear integration
-  "linear.defaultProject": "effuse.io",
-  "linear.teamId": "EffuseLabs",
-  
-  // Accessibility
-  "accessibility.signals.sounds.volume": 0.5,
-  
-  "chat.mcp.serverSampling": {
-    
-  }
+  // MCP Linear Server (AI-assisted project management)
+  "chat.mcp.serverSampling": {},
+  "accessibility.signalOptions.volume": 0.5
 }

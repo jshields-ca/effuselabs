@@ -16,7 +16,7 @@
     
     // Git & Project Management
     "eamodio.gitlens",
-    "Linear.linear",
+    "linear.linear-connect",
     
     // Accessibility & Quality
     "deque-systems.vscode-axe-linter",
