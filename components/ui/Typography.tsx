@@ -11,7 +11,6 @@ interface TypographyProps {
 const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ children, className, as: Component = 'h1', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLHeadingElement> = {
-      ref: ref as React.Ref<HTMLHeadingElement>,
       className: cn(
         'text-4xl md:text-5xl lg:text-6xl font-bold text-off-black leading-tight tracking-tight',
         className
@@ -20,7 +19,7 @@ const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
     }
 
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )

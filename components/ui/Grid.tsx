@@ -37,7 +37,6 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     }
     
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         'grid',
         colClasses[cols],
@@ -48,7 +47,7 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     }
 
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
@@ -69,7 +68,6 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
     }
     
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         spanClasses[span],
         className
@@ -78,7 +76,7 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
     }
 
     return (
-      <Component {...componentProps}>
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )

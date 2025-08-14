@@ -19,7 +19,6 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     }
     
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      ref: ref as React.Ref<HTMLDivElement>,
       className: cn(
         'mx-auto px-4 sm:px-6 lg:px-8',
         sizes[size],
@@ -29,7 +28,7 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     }
 
     return (
-      <Component {...componentProps}
+      <Component ref={ref} {...componentProps}
       >
         {children}
       </Component>
