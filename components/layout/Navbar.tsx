@@ -125,6 +125,14 @@ const MobileMenu: React.FC<{
 
 export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
   const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } = useNavigation()
+  const defaultLinks = [
+    { label: 'Features', href: '#features' },
+    { label: 'Products', href: '#products' },
+    { label: 'Solutions', href: '#solutions' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
+  ]
+  const navLinks = (header.navLinks && header.navLinks.length > 0) ? header.navLinks : defaultLinks
 
   return (
     <>
@@ -143,15 +151,19 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
+                className="flex items-center gap-2 text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
               >
-                {header.brandName || 'Effuse Labs'}
+                <picture>
+                  <source srcSet="/logo.png" type="image/png" />
+                  <img src="/logo.svg" alt="Effuse Labs logo" className="h-8 w-auto" />
+                </picture>
+                <span>{header.brandName || 'Effuse Labs'}</span>
               </a>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {header.navLinks?.map((link) => (
+              {navLinks.map((link) => (
                 <NavLink key={`${link.label}-${link.href}`} href={link.href}>{link.label}</NavLink>
               ))}
             </nav>
@@ -162,7 +174,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
                 {header.cta?.href ? (
                   <Button variant="primary" href={header.cta.href}>{header.cta.label}</Button>
                 ) : (
-                  <Button variant="primary">Get Started</Button>
+                  <Button variant="primary" href="#contact">Get Started</Button>
                 )}
               </div>
               

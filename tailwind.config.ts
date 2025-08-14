@@ -16,6 +16,13 @@ const config: Config = {
         'brand-gold': '#FFD25A',
         'brand-teal-dark': '#0B2B33',
         'brand-teal-light': '#22C5C3',
+        // SilentLedger preliminary palette
+        'sl-bg-light': '#fcfcfc',
+        'sl-red': '#ff2525',
+        'sl-blue': '#1600e8',
+        'sl-purple': '#630ca7',
+        'sl-magenta': '#b11866',
+        'sl-bg-dark': '#100B00',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

@@ -32,7 +32,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
         setHeroContent({
           title: fallbackContent?.title || "Intelligent Software for Small Business Growth",
           subtitle: fallbackContent?.subtitle || "Effuse Labs",
-          description: fallbackContent?.description || "We pour out innovative solutions that transform operational burdens into competitive strengths for small businesses.",
+          description: fallbackContent?.description || "We pour out innovative solutions that transform operational burdens into your greatest strengths.",
           primaryCtaText: fallbackContent?.primaryCtaText || "Get Started",
           secondaryCtaText: fallbackContent?.secondaryCtaText || "Learn More",
           primaryCtaHref: fallbackContent?.primaryCtaHref || "#contact",

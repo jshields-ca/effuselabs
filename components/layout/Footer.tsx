@@ -50,8 +50,7 @@ export const Footer: React.FC = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-white mb-4">Effuse Labs</h3>
               <Text className="text-light-grey mb-4">
-                Intelligent Software for Small Business Growth. We pour out innovative solutions 
-                that transform operational burdens into competitive strengths.
+                Effuse Labs: Pouring out potential for small business.
               </Text>
             </div>
             
@@ -64,7 +63,7 @@ export const Footer: React.FC = () => {
                 <strong>Email:</strong>{' '}
                 <a 
                   href="mailto:hello@effuse.io" 
-                  className="hover:text-brand-teal-light transition-colors duration-200"
+                  className="hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
                 >
                   hello@effuse.io
                 </a>
