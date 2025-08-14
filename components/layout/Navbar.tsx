@@ -153,7 +153,10 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
                 href="/"
                 className="flex items-center gap-2 text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
               >
-                <img src="/logo.svg" alt="Effuse Labs logo" className="h-8 w-auto" />
+                <picture>
+                  <source srcSet="/logo.png" type="image/png" />
+                  <img src="/logo.svg" alt="Effuse Labs logo" className="h-8 w-auto" />
+                </picture>
                 <span>{header.brandName || 'Effuse Labs'}</span>
               </a>
             </div>
