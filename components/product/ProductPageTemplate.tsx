@@ -14,7 +14,9 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ hero, childre
       {/* Slot for subsequent sections (pain/solution, features, pricing, final CTA) */}
       {children ?? null}
       {/* Simple placeholder bottom spacing so footer isn’t tight on short pages */}
-      <SectionContainer padding="md" background="white" />
+      <SectionContainer padding="md" background="white">
+        <div aria-hidden className="h-4" />
+      </SectionContainer>
     </PageWrapper>
   )
 }
