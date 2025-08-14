@@ -57,7 +57,7 @@ export default async function Home() {
                       <Text className="text-sm">Unified POS & CRM system</Text>
                     </li>
                   </ul>
-                  <Button variant="primary" href="#lumina" aria-label="Learn more about Lumina">Learn More About Lumina</Button>
+                  <Button variant="primary" href="/products/lumina" aria-label="Learn more about Lumina">Learn More About Lumina</Button>
                 </div>
                 <div className="bg-gradient-to-br from-[#FFD25A] to-[#FF7F50] rounded-lg p-8 text-center text-white">
                   <div className="text-6xl mb-4">💡</div>
@@ -143,7 +143,7 @@ export default async function Home() {
                 <Text className="mb-6">
                   You’re more than a stylist; you&apos;re an artist, a confidant, and a community hub. You build relationships and transform your clients&apos; confidence, one appointment at a time. Your craft deserves to be the focus, not the endless paperwork that comes with it.
                 </Text>
-                <Button variant="primary" size="sm" href="#lumina" className="mt-auto">Explore Lumina</Button>
+                <Button variant="primary" size="sm" href="/products/lumina" className="mt-auto">Explore Lumina</Button>
                 </div>
               </Card>
             </GridItem>
