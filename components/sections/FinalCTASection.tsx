@@ -1,0 +1,100 @@
+'use client'
+
+import { SectionContainer } from '@/components/layout/SectionContainer'
+import { Button, H2, Text } from '@/components/ui'
+import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import React from 'react'
+
+export interface FinalCTASectionProps {
+  id?: string
+  heading?: string
+  description?: string
+  primaryCta?: {
+    label: string
+    href: string
+  }
+  secondaryCta?: {
+    label: string
+    href: string
+  }
+  background?: 'light' | 'dark' | 'gradient'
+}
+
+const FinalCTASection: React.FC<FinalCTASectionProps> = ({
+  id = 'final-cta',
+  heading = 'Ready to get started?',
+  description = 'Join thousands of businesses already growing with our platform.',
+  primaryCta = { label: 'Get Started', href: '#signup' },
+  secondaryCta,
+  background = 'gradient',
+}) => {
+  const isGradient = background === 'gradient'
+  const isDark = background === 'dark'
+
+  const containerBackground = isGradient
+    ? 'gradient'
+    : isDark
+      ? 'dark'
+      : 'white'
+
+  return (
+    <SectionContainer
+      id={id}
+      background={containerBackground}
+      padding="xl"
+      className={
+        isGradient ? 'bg-gradient-to-r from-brand-teal-dark to-slate-grey' : ''
+      }
+    >
+      <Animated animation="slideUp">
+        <div className="max-w-4xl mx-auto text-center">
+          <H2
+            className={`mb-4 ${
+              isGradient || isDark ? 'text-white' : 'text-slate-grey'
+            }`}
+          >
+            {heading}
+          </H2>
+
+          <Text
+            className={`text-lg mb-8 max-w-2xl mx-auto ${
+              isGradient || isDark ? 'text-light-grey' : 'text-medium-grey'
+            }`}
+          >
+            {description}
+          </Text>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              variant="primary"
+              size="lg"
+              href={primaryCta.href}
+              className={
+                isGradient ? 'bg-brand-gold hover:bg-brand-gold/90' : ''
+              }
+            >
+              {primaryCta.label}
+            </Button>
+
+            {secondaryCta && (
+              <Button
+                variant="secondary"
+                size="lg"
+                href={secondaryCta.href}
+                className={
+                  isGradient
+                    ? 'border-white text-white hover:bg-white hover:text-slate-grey'
+                    : ''
+                }
+              >
+                {secondaryCta.label}
+              </Button>
+            )}
+          </div>
+        </div>
+      </Animated>
+    </SectionContainer>
+  )
+}
+
+export default FinalCTASection

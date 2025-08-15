@@ -1,5 +1,5 @@
-import React from 'react'
 import { PageWrapper, SectionContainer } from '@/components/layout'
+import React from 'react'
 import ProductHero, { ProductHeroProps } from './ProductHero'
 
 export interface ProductPageTemplateProps {
@@ -7,7 +7,10 @@ export interface ProductPageTemplateProps {
   children?: React.ReactNode // additional sections follow the hero
 }
 
-const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ hero, children }) => {
+const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
+  hero,
+  children,
+}) => {
   return (
     <PageWrapper>
       <ProductHero {...hero} />
@@ -22,5 +25,4 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({ hero, childre
 }
 
 export default ProductPageTemplate
-
-
+export type { ProductHeroProps }

@@ -45,8 +45,6 @@ npm run dev
 # open http://localhost:3000
 ```
 
-
-
 ## Environment
 
 Create `.env.local`:
@@ -57,8 +55,6 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 # Optional: SANITY_READ_TOKEN=... (private dataset)
 ```
-
-
 
 ## Commands
 
@@ -265,14 +261,6 @@ Contact the development team for access to production credentials.
 | **🎯 Project Lead**   | Jeremy Shields | [@jshields-ca](https://github.com/jshields-ca) | Architecture, Strategy, Business      |
 | **🤖 AI Development** | AI Assistant   | -                                              | Implementation, Documentation, DevOps |
 
-### 🌟 Want to Contribute?
-
-We welcome contributions! See our [Contributing Guidelines](./CONTRIBUTING.md) for details.
-
-[![Contributors](https://img.shields.io/badge/contributors-2-blue?style=for-the-badge)](./CHANGELOG.md)
-[![Issues](https://img.shields.io/badge/issues-welcome-brightgreen?style=for-the-badge)](https://github.com/jshields-ca/effuselabs/issues)
-[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](https://github.com/jshields-ca/effuselabs/pulls)
-
 ---
 
 ## 📞 Contact & Support
@@ -296,99 +284,3 @@ We welcome contributions! See our [Contributing Guidelines](./CONTRIBUTING.md) f
 © 2025 Effuse Labs • Intelligent Software for Small Business Growth
 
 For detailed project updates and release history, see our [**CHANGELOG**](./CHANGELOG.md) and [**Development Status Dashboard**](./docs/DEVELOPMENT_STATUS.md).
-
-<!-- Version roadmap moved to Development Status dashboard to avoid duplication -->
-
----
-
-<!-- Metrics moved to Development Status dashboard; keep links here: -->
-[![Production](https://img.shields.io/badge/🚀_Production-effuse.io-success?style=for-the-badge)](https://effuse.io)
-[![Preview](https://img.shields.io/badge/🧪_Preview-vercel-orange?style=for-the-badge)](https://effuselabs.vercel.app)
-
----
-
-<!-- Removed demo/screenshots and extra quick start to keep concise. -->
-
-<!-- Development workflow diagram removed. -->
-
-<!-- Workflow diagram removed -->
-
-<!-- Deployment command block removed (Vercel auto-deploys on push). -->
-
-<!-- Deployment commands and platform bullets removed (auto on push) -->
-
-<!-- Troubleshooting removed; keep README concise. -->
-
-### Windows Development Environment Issues
-
-#### npm/Node.js Not Recognized
-
-If you see `"npm is not recognized as a cmdlet"` errors:
-
-**Quick Fix:**
-
-1. Double-click `start-dev-simple.bat` in your project folder
-2. Or run `.\setup-dev-environment.ps1` in PowerShell
-
-**Manual Fix:**
-
-```powershell
-$env:PATH = "C:\Users\[YourUsername]\AppData\Roaming\npm;C:\Program Files\nodejs;" + $env:PATH
-npm run dev
-```
-
-#### Development Server Not Accessible
-
-If `http://localhost:3000` shows connection errors:
-
-1. **Check if server is running:**
-
-   ```bash
-   netstat -an | findstr :3000
-   ```
-
-2. **Try alternative URLs:**
-   - `http://127.0.0.1:3000`
-   - Check Windows Firewall permissions
-
-3. **Restart development server:**
-
-   ```bash
-   # Kill any existing processes
-   taskkill /F /IM node.exe
-   # Start fresh
-   npm run dev
-   ```
-
-#### Browser Issues
-
-- Try different browser (Chrome, Edge, Firefox)
-- Clear browser cache
-- Try incognito/private mode
-
-#### Build Issues
-
-**Tailwind CSS Build Errors:**
-If you encounter "Cannot find module 'tailwindcss'" errors:
-
-```bash
-# Ensure Tailwind is in production dependencies
-npm install tailwindcss@^3.4.17 postcss autoprefixer --save
-
-# Verify installation
-npm list tailwindcss
-# Should show: tailwindcss@3.4.17
-
-# Test build
-npm run build
-```
-
-**PostCSS Plugin Errors:**
-If you see "PostCSS plugin has moved" errors, ensure you're using Tailwind CSS v3.4.x, not v4+:
-
-```bash
-npm uninstall tailwindcss
-npm install tailwindcss@^3.4.17 --save
-```
-
----
