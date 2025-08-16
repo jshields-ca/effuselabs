@@ -25,7 +25,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
       tabIndex={0}
     >
       <span className="relative z-10">{children}</span>
-      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-effuse-teal to-effuse-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </a>
   )
 }

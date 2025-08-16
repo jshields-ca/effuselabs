@@ -1,4 +1,4 @@
-import { PageWrapper, SectionContainer } from '@/components/layout'
+import { PageWrapper } from '@/components/layout'
 import React from 'react'
 import ProductHero, { ProductHeroProps } from './ProductHero'
 
@@ -16,10 +16,6 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
       <ProductHero {...hero} />
       {/* Slot for subsequent sections (pain/solution, features, pricing, final CTA) */}
       {children ?? null}
-      {/* Simple placeholder bottom spacing so footer isn’t tight on short pages */}
-      <SectionContainer padding="md" background="white">
-        <div aria-hidden className="h-4" />
-      </SectionContainer>
     </PageWrapper>
   )
 }

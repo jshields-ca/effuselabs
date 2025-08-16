@@ -45,6 +45,7 @@ export default function LuminaProductPage() {
           'Get real-time insights across your business',
           'Scale without adding complexity',
         ]}
+        background="light"
       />
 
       <FeatureBreakdownSection
@@ -89,6 +90,7 @@ export default function LuminaProductPage() {
           },
         ]}
         variant="grid"
+        background="dark"
       />
 
       <PricingSection
@@ -99,6 +101,7 @@ export default function LuminaProductPage() {
           ctaLabel: 'Join the Waitlist',
           ctaHref: '#waitlist',
         }}
+        background="light"
       />
 
       <FinalCTASection
