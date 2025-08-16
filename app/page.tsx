@@ -162,7 +162,7 @@ export default async function Home() {
                     </li>
                   </ul>
                   <Button
-                    variant="secondary"
+                    variant="sl-secondary"
                     href="/products/silentledger"
                     aria-label="Learn more about SilentLedger"
                   >
@@ -358,7 +358,7 @@ export default async function Home() {
                     is best spent creating, not crunching numbers.
                   </Text>
                   <Button
-                    variant="secondary"
+                    variant="sl-primary"
                     size="sm"
                     href="/products/silentledger"
                     className="mt-auto"

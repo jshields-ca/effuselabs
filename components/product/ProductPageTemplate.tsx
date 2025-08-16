@@ -1,4 +1,3 @@
-import { PageWrapper } from '@/components/layout'
 import React from 'react'
 import ProductHero, { ProductHeroProps } from './ProductHero'
 
@@ -12,11 +11,11 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
   children,
 }) => {
   return (
-    <PageWrapper>
+    <>
       <ProductHero {...hero} />
       {/* Slot for subsequent sections (pain/solution, features, pricing, final CTA) */}
       {children ?? null}
-    </PageWrapper>
+    </>
   )
 }
 
