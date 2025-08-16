@@ -20,7 +20,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
     <a
       href={href}
       onClick={onClick}
-      className="group relative text-effuse-off-black hover:text-effuse-teal transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
+      className="group relative text-effuse-white hover:text-effuse-gold transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
       style={{ letterSpacing: '0.04em' }}
       tabIndex={0}
     >
@@ -37,7 +37,7 @@ const MobileMenuButton: React.FC<{
   return (
     <button
       onClick={onClick}
-      className="md:hidden p-2 rounded-md text-effuse-off-black hover:text-effuse-teal hover:bg-effuse-light-grey transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
+      className="md:hidden p-2 rounded-md text-effuse-white hover:text-effuse-gold hover:bg-effuse-slate/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
@@ -89,7 +89,9 @@ const MobileMenu: React.FC<{
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-effuse-light-grey">
-                <span className="font-bold text-xl text-effuse-off-black">Menu</span>
+                <span className="font-bold text-xl text-effuse-off-black">
+                  Menu
+                </span>
                 <button
                   onClick={onClose}
                   className="p-2 rounded-md text-effuse-off-black hover:text-effuse-teal hover:bg-effuse-light-grey transition-colors duration-200"
@@ -171,7 +173,9 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled ? 'bg-effuse-slate shadow-lg' : 'bg-effuse-slate'
+          isScrolled
+            ? 'bg-effuse-slate/95 backdrop-blur-sm shadow-lg'
+            : 'bg-effuse-slate/90 backdrop-blur-sm'
         )}
         aria-label="Primary Navigation"
       >
@@ -181,7 +185,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="flex items-center gap-2 text-2xl font-bold text-effuse-off-black hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins"
+                className="flex items-center gap-2 text-2xl font-bold text-effuse-white hover:text-effuse-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 <Image

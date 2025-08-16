@@ -14,7 +14,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, label, icon }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-light-grey hover:bg-brand-teal-light hover:text-white transition-colors duration-200 text-medium-grey focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+      className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-slate-700 hover:bg-effuse-teal hover:text-white transition-colors duration-200 text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
       aria-label={label}
     >
       {icon}
@@ -31,7 +31,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, children }) => {
   return (
     <a
       href={href}
-      className="text-medium-grey hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
+      className="text-slate-300 hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md"
     >
       {children}
     </a>
@@ -42,28 +42,28 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-slate-grey text-white">
+    <footer className="bg-effuse-slate text-white">
       <Container className="py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-white mb-4">Effuse Labs</h3>
-              <Text className="text-light-grey mb-4">
+              <Text className="text-slate-300 mb-4">
                 Effuse Labs: Pouring out potential for small business.
               </Text>
             </div>
             
             {/* Contact Info */}
             <div className="mb-6">
-              <Text className="text-light-grey">
+              <Text className="text-slate-300">
                 <strong>Location:</strong> Winnipeg, Manitoba, Canada
               </Text>
-              <Text className="text-light-grey">
+              <Text className="text-slate-300">
                 <strong>Email:</strong>{' '}
                 <a 
                   href="mailto:hello@effuse.io" 
-                  className="hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
+                  className="hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md"
                 >
                   hello@effuse.io
                 </a>

@@ -26,8 +26,8 @@ export default async function Home() {
       <SectionContainer id="products" background="white" padding="lg">
         <AnimatedContainer animation="slideUp">
           <div className="text-center mb-12">
-            <H2 className="mb-4">Our Products</H2>
-            <Text className="text-slate-grey max-w-2xl mx-auto">
+            <H2 className="mb-4 text-effuse-off-black">Our Products</H2>
+            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed">
               Intelligent software solutions designed to turn operational
               burdens into your greatest strengths.
             </Text>
@@ -35,15 +35,17 @@ export default async function Home() {
 
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Lumina */}
-            <Card id="lumina" variant="elevated" className="p-8">
+            <Card id="lumina" variant="elevated" className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-300 hover:shadow-xl">
               <div
-                className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#FFD25A] to-[#FF7F50]"
+                className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
                 aria-hidden
               />
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <H3 className="text-brand-teal-light mb-4">Lumina</H3>
-                  <Text className="mb-6">
+                  <H3 className="text-effuse-teal mb-4 text-2xl font-semibold">
+                    Lumina
+                  </H3>
+                  <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
                     An all-in-one, AI-powered platform for salons and
                     barbershops. Lumina replaces a patchwork of apps with a
                     single, elegant solution to manage bookings, financials, and
@@ -52,26 +54,28 @@ export default async function Home() {
                   </Text>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-center">
-                      <span className="text-brand-gold mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Intelligent dashboard with AI insights
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-brand-gold mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Flexible financials for commission & chair rental
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-brand-gold mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Seamless online booking integration
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-brand-gold mr-2">✓</span>
-                      <Text className="text-sm">Unified POS & CRM system</Text>
+                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
+                        Unified POS & CRM system
+                      </Text>
                     </li>
                   </ul>
                   <Button
@@ -82,7 +86,7 @@ export default async function Home() {
                     Learn More About Lumina
                   </Button>
                 </div>
-                <div className="bg-gradient-to-br from-[#FFD25A] to-[#FF7F50] rounded-lg p-8 text-center text-white">
+                <div className="bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end rounded-lg p-8 text-center text-white">
                   <div className="text-6xl mb-4">💡</div>
                   <H3 className="text-white mb-2">Lumina</H3>
                   <Text className="text-white/90">
@@ -93,13 +97,13 @@ export default async function Home() {
             </Card>
 
             {/* SilentLedger */}
-            <Card id="silentledger" variant="elevated" className="p-8">
+            <Card id="silentledger" variant="elevated" className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-300 hover:shadow-xl">
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#1600e8] to-[#b11866]"
                 aria-hidden
               />
               <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="bg-gradient-to-br from-[#1600e8] to-[#b11866] rounded-lg p-8 text-center text-white order-2 md:order-1">
+                <div className="bg-gradient-to-br from-sl-blue to-sl-magenta rounded-lg p-8 text-center text-white order-2 md:order-1">
                   <div className="text-6xl mb-4">📊</div>
                   <H3 className="text-white mb-2">SilentLedger</H3>
                   <Text className="text-white/90">
@@ -107,8 +111,10 @@ export default async function Home() {
                   </Text>
                 </div>
                 <div className="order-1 md:order-2">
-                  <H3 className="text-brand-gold mb-4">SilentLedger</H3>
-                  <Text className="mb-6">
+                  <H3 className="text-effuse-teal mb-4 text-2xl font-semibold">
+                    SilentLedger
+                  </H3>
+                  <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
                     A dedicated financial dashboard for Canadian creators and
                     solo developers. SilentLedger automates income tracking,
                     expense categorization, and tax optimization, bringing
@@ -116,26 +122,26 @@ export default async function Home() {
                   </Text>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-center">
-                      <span className="text-[#ff2525] mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-sl-red mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Canadian tax optimization for creators
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-[#ff2525] mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-sl-red mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Multi-platform income tracking
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-[#ff2525] mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-sl-red mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Automated expense categorization
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-[#ff2525] mr-2">✓</span>
-                      <Text className="text-sm">
+                      <span className="text-sl-red mr-2 text-lg">✓</span>
+                      <Text className="text-sm text-effuse-off-black">
                         Real-time financial insights
                       </Text>
                     </li>
@@ -155,11 +161,13 @@ export default async function Home() {
       </SectionContainer>
 
       {/* Solutions Section */}
-      <SectionContainer id="solutions" background="light" padding="lg">
+      <SectionContainer id="solutions" background="lighter" padding="lg">
         <AnimatedContainer animation="slideUp">
           <div className="text-center mb-12">
-            <H2 className="mb-4">Built for the Builders</H2>
-            <Text className="text-slate-grey max-w-2xl mx-auto">
+            <H2 className="mb-4 text-effuse-off-black">
+              Built for the Builders
+            </H2>
+            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed font-normal">
               From the cornerstones of our communities to the pioneers of the
               digital frontier, our tools are crafted for the passionate
               creators and service providers building the future.
@@ -173,7 +181,7 @@ export default async function Home() {
                 className="h-full p-8 text-center shadow-xl border-black/10"
               >
                 <div
-                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#FFD25A] to-[#FF7F50]"
+                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
                   aria-hidden
                 />
                 <div className="flex flex-col h-full">
@@ -181,7 +189,7 @@ export default async function Home() {
                     <div className="text-6xl mb-3" aria-hidden>
                       💇‍♀️
                     </div>
-                    <H3 className="text-off-black text-center">
+                    <H3 className="text-effuse-off-black text-center text-xl font-semibold">
                       Salons & Barbershops
                     </H3>
                   </div>
@@ -189,7 +197,7 @@ export default async function Home() {
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -199,7 +207,7 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Commission & chair rental management
                       </Text>
                     </li>
@@ -262,7 +270,7 @@ export default async function Home() {
                 className="h-full p-8 text-center shadow-xl border-black/10"
               >
                 <div
-                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#1600e8] to-[#b11866]"
+                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-sl-blue to-sl-magenta"
                   aria-hidden
                 />
                 <div className="flex flex-col h-full">
@@ -270,7 +278,7 @@ export default async function Home() {
                     <div className="text-6xl mb-3" aria-hidden>
                       💻
                     </div>
-                    <H3 className="text-off-black text-center">
+                    <H3 className="text-effuse-off-black text-center text-xl font-semibold">
                       Independent Creators & Developers
                     </H3>
                   </div>
@@ -278,7 +286,7 @@ export default async function Home() {
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -288,14 +296,14 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Canadian tax optimization & compliance
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -305,14 +313,14 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Multi-platform income aggregation
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -322,12 +330,12 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Expense tracking & financial insights
                       </Text>
                     </li>
                   </ul>
-                  <Text className="mb-6">
+                  <Text className="mb-6 text-effuse-off-black leading-relaxed">
                     You are the architects of the new economy, turning ideas
                     into code, pixels, and powerful content. You thrive on the
                     freedom of creation, but that freedom often comes with the
@@ -353,7 +361,7 @@ export default async function Home() {
       <SectionContainer id="contact" background="dark" padding="lg">
         <AnimatedContainer animation="fadeIn" className="text-center">
           <H2 className="text-white mb-6">Ready to Build with Clarity?</H2>
-          <Text className="text-light-grey max-w-2xl mx-auto mb-8">
+          <Text className="text-slate-300 max-w-2xl mx-auto mb-8">
             Join the growing number of small businesses that trust Effuse Labs
             to streamline their operations and unlock their potential.
           </Text>
@@ -366,13 +374,13 @@ export default async function Home() {
             </Button>
           </div>
           <div className="max-w-md mx-auto">
-            <Text className="text-light-grey text-sm mb-2">
+            <Text className="text-slate-300 text-sm mb-2">
               Get in touch with our team:
             </Text>
             <Text className="text-white">
               <a
                 href="mailto:hello@effuse.io"
-                className="hover:text-brand-teal-light transition-colors"
+                className="hover:text-effuse-teal transition-colors"
               >
                 hello@effuse.io
               </a>

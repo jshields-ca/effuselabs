@@ -44,7 +44,7 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
                   <svg
                     aria-hidden
                     viewBox="0 0 400 120"
-                    className="h-24 w-80 text-brand-gold"
+                    className="h-24 w-80 text-effuse-gold"
                   >
                     <path
                       d="M10 80 C 80 10, 120 110, 190 40 S 320 110, 390 30"
@@ -61,10 +61,10 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
 
           {/* Copy */}
           <div className="order-1 md:order-2">
-            <H2 className="text-white mb-4">{heading}</H2>
+            <H2 className="text-effuse-white mb-4">{heading}</H2>
             <blockquote className="space-y-4">
               {body.split('\n').map((para, idx) => (
-                <Text key={idx} className="text-light-grey">
+                <Text key={idx} className="text-effuse-white/80">
                   {para}
                 </Text>
               ))}

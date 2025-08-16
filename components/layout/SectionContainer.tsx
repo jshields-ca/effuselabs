@@ -8,7 +8,7 @@ interface SectionContainerProps {
   as?: React.ElementType
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
-  background?: 'white' | 'light' | 'dark' | 'gradient'
+  background?: 'white' | 'light' | 'lighter' | 'dark' | 'gradient'
   id?: string
 }
 
@@ -32,7 +32,8 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
   const backgroundClasses = {
     white: 'bg-white',
     light: 'bg-light-grey',
-    dark: 'bg-slate-grey text-white',
+    lighter: 'bg-slate-100',
+    dark: 'bg-effuse-slate text-white',
     gradient: 'bg-gradient-to-b from-light-grey to-white'
   }
 
