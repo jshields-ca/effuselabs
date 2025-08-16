@@ -59,12 +59,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({
       >
         <Animated animation="slideUp">
           <div className="max-w-4xl mx-auto text-center">
-            <H2 className={`mb-4 ${isDark ? 'text-white' : ''}`}>
+            <H2
+              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+            >
               {placeholder.heading}
             </H2>
             <Text
               className={`text-lg mb-8 max-w-2xl mx-auto ${
-                isDark ? 'text-light-grey' : 'text-medium-grey'
+                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
               }`}
             >
               {placeholder.description}
@@ -92,10 +94,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <H2 className={`mb-4 ${isDark ? 'text-white' : ''}`}>{heading}</H2>
+            <H2
+              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+            >
+              {heading}
+            </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-light-grey' : 'text-medium-grey'
+                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -127,7 +133,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                 >
                   {tier.highlighted && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-brand-gold text-off-black px-4 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-effuse-gold text-effuse-off-black px-4 py-1 rounded-full text-sm font-semibold">
                         Most Popular
                       </span>
                     </div>
@@ -135,20 +141,20 @@ const PricingSection: React.FC<PricingSectionProps> = ({
 
                   <CardHeader>
                     <H3
-                      className={`text-center ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                      className={`text-center ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
                     >
                       {tier.name}
                     </H3>
                     {tier.price && (
                       <div className="text-center mt-4">
                         <div
-                          className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                          className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
                         >
                           {tier.price}
                         </div>
                         {tier.period && (
                           <Text
-                            className={`text-sm ${isDark ? 'text-light-grey' : 'text-medium-grey'}`}
+                            className={`text-sm ${isDark ? 'text-slate-300' : 'text-effuse-off-black/75'}`}
                           >
                             {tier.period}
                           </Text>
@@ -157,7 +163,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                     )}
                     <Text
                       className={`text-center mt-4 ${
-                        isDark ? 'text-light-grey' : 'text-medium-grey'
+                        isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
                       }`}
                     >
                       {tier.description}
@@ -171,9 +177,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                           key={featureIndex}
                           className="flex items-start gap-3"
                         >
-                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-gold flex items-center justify-center mt-0.5">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-effuse-gold flex items-center justify-center mt-0.5">
                             <span
-                              className="text-xs font-semibold text-off-black"
+                              className="text-xs font-semibold text-effuse-off-black"
                               aria-hidden
                             >
                               ✓
@@ -181,7 +187,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                           </div>
                           <Text
                             className={`flex-1 ${
-                              isDark ? 'text-light-grey' : 'text-medium-grey'
+                              isDark
+                                ? 'text-slate-300'
+                                : 'text-effuse-off-black'
                             }`}
                           >
                             {feature}

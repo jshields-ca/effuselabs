@@ -51,11 +51,15 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                 </div>
               )}
               <H3
-                className={`mb-4 ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
               >
                 {problem.heading}
               </H3>
-              <Text className={isDark ? 'text-light-grey' : 'text-medium-grey'}>
+              <Text
+                className={
+                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                }
+              >
                 {problem.description}
               </Text>
             </div>
@@ -71,11 +75,15 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                 </div>
               )}
               <H3
-                className={`mb-4 ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
               >
                 {solution.heading}
               </H3>
-              <Text className={isDark ? 'text-light-grey' : 'text-medium-grey'}>
+              <Text
+                className={
+                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                }
+              >
                 {solution.description}
               </Text>
             </div>
@@ -98,17 +106,19 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                       <div
                         className={`p-4 rounded-lg ${
                           isDark
-                            ? 'bg-slate-grey/20 border border-white/10'
-                            : 'bg-light-grey border border-black/10'
+                            ? 'bg-slate-800/50 border border-slate-600/30'
+                            : 'bg-slate-50/80 border border-effuse-light-grey/30'
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <div className="text-xl text-brand-gold" aria-hidden>
+                          <div className="text-xl text-effuse-gold" aria-hidden>
                             ✓
                           </div>
                           <Text
                             className={`flex-1 text-sm ${
-                              isDark ? 'text-light-grey' : 'text-slate-grey'
+                              isDark
+                                ? 'text-slate-300'
+                                : 'text-effuse-off-black'
                             }`}
                           >
                             {bullet}

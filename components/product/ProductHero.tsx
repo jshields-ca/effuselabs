@@ -74,8 +74,8 @@ const ProductHero: React.FC<ProductHeroProps> = ({
             <Text
               className={
                 isDark
-                  ? 'text-light-grey mb-8 max-w-3xl mx-auto'
-                  : 'text-medium-grey mb-8 max-w-3xl mx-auto'
+                  ? 'text-slate-300 mb-8 max-w-3xl mx-auto'
+                  : 'text-effuse-medium-grey mb-8 max-w-3xl mx-auto'
               }
             >
               {subheadline}

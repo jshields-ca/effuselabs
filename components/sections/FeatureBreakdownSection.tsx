@@ -45,10 +45,14 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <H2 className={`mb-4 ${isDark ? 'text-white' : ''}`}>{heading}</H2>
+            <H2
+              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+            >
+              {heading}
+            </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-light-grey' : 'text-medium-grey'
+                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -76,9 +80,9 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                   {variant === 'checklist' ? (
                     /* Checklist Variant */
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-effuse-gold flex items-center justify-center">
                         <span
-                          className="text-sm font-semibold text-off-black"
+                          className="text-sm font-semibold text-effuse-off-black"
                           aria-hidden
                         >
                           ✓
@@ -86,13 +90,15 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                       </div>
                       <div className="flex-1">
                         <H3
-                          className={`text-lg mb-2 ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                          className={`text-lg mb-2 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
                         >
                           {item.title}
                         </H3>
                         <Text
                           className={
-                            isDark ? 'text-light-grey' : 'text-medium-grey'
+                            isDark
+                              ? 'text-slate-300'
+                              : 'text-effuse-off-black/75'
                           }
                         >
                           {item.description}
@@ -102,23 +108,23 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                   ) : (
                     /* Grid Variant */
                     <div
-                      className={`h-full rounded-xl p-6 ${
+                      className={`h-full rounded-xl p-6 transition-all duration-300 ${
                         isDark
-                          ? 'bg-slate-grey/20 border border-white/10'
-                          : 'bg-white border border-black/10 shadow-sm'
+                          ? 'bg-slate-800/50 border border-slate-600/30 hover:bg-slate-800/70 hover:shadow-lg'
+                          : 'bg-slate-50/80 border border-effuse-light-grey/30 shadow-sm hover:shadow-lg hover:border-effuse-teal/20 hover:bg-white'
                       }`}
                     >
                       <div className="text-4xl mb-4" aria-hidden>
                         {item.icon}
                       </div>
                       <H3
-                        className={`mb-3 ${isDark ? 'text-white' : 'text-slate-grey'}`}
+                        className={`mb-3 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
                       >
                         {item.title}
                       </H3>
                       <Text
                         className={
-                          isDark ? 'text-light-grey' : 'text-medium-grey'
+                          isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
                         }
                       >
                         {item.description}

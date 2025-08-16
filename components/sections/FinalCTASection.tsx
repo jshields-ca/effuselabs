@@ -43,14 +43,14 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
       background={containerBackground}
       padding="xl"
       className={
-        isGradient ? 'bg-gradient-to-r from-brand-teal-dark to-slate-grey' : ''
+        isGradient ? 'bg-gradient-to-r from-effuse-teal to-effuse-slate' : ''
       }
     >
       <Animated animation="slideUp">
         <div className="max-w-4xl mx-auto text-center">
           <H2
             className={`mb-4 ${
-              isGradient || isDark ? 'text-white' : 'text-slate-grey'
+              isGradient || isDark ? 'text-white' : 'text-effuse-off-black'
             }`}
           >
             {heading}
@@ -58,7 +58,9 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
 
           <Text
             className={`text-lg mb-8 max-w-2xl mx-auto ${
-              isGradient || isDark ? 'text-light-grey' : 'text-medium-grey'
+              isGradient || isDark
+                ? 'text-slate-300'
+                : 'text-effuse-off-black/75'
             }`}
           >
             {description}
@@ -70,7 +72,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
               size="lg"
               href={primaryCta.href}
               className={
-                isGradient ? 'bg-brand-gold hover:bg-brand-gold/90' : ''
+                isGradient ? 'bg-effuse-gold hover:bg-effuse-gold/90' : ''
               }
             >
               {primaryCta.label}

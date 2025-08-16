@@ -35,7 +35,11 @@ export default async function Home() {
 
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Lumina */}
-            <Card id="lumina" variant="elevated" className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-300 hover:shadow-xl">
+            <Card
+              id="lumina"
+              variant="elevated"
+              className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-300 hover:shadow-xl"
+            >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
                 aria-hidden
@@ -97,7 +101,11 @@ export default async function Home() {
             </Card>
 
             {/* SilentLedger */}
-            <Card id="silentledger" variant="elevated" className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-300 hover:shadow-xl">
+            <Card
+              id="silentledger"
+              variant="elevated"
+              className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-300 hover:shadow-xl"
+            >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#1600e8] to-[#b11866]"
                 aria-hidden

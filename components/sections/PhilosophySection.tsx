@@ -58,7 +58,9 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
                   {item.num}
                 </div>
                 <div>
-                  <H3 className="mb-3 text-effuse-off-black font-medium">{item.title}</H3>
+                  <H3 className="mb-3 text-effuse-off-black font-medium">
+                    {item.title}
+                  </H3>
                   <Text className="text-effuse-off-black/80 leading-relaxed font-normal">
                     {item.copy}
                   </Text>
