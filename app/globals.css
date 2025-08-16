@@ -47,12 +47,126 @@ h1, .font-inter {
     50% { transform: scale(1.02); }
   }
   
+  @keyframes divider-reveal {
+    from { 
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    to { 
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+  
   .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
   .animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
   .animate-slide-left { animation: slide-left 0.5s ease-out forwards; }
   .animate-slide-right { animation: slide-right 0.5s ease-out forwards; }
   .animate-scale { animation: scale 0.5s ease-out forwards; }
   .animate-breathing { animation: breathing 3s ease-in-out infinite; }
+  .animate-divider-reveal { animation: divider-reveal 0.8s ease-out forwards; }
+  
+  /* Brand Section Dividers */
+  .section-divider {
+    @apply h-0.5 w-full max-w-lg mx-auto my-16;
+    background: linear-gradient(
+      90deg, 
+      transparent 0%, 
+      theme('colors.effuse-teal') 50%, 
+      transparent 100%
+    );
+    transform-origin: center;
+  }
+  
+  .section-divider-lg {
+    @apply h-1 max-w-2xl my-20;
+    background: linear-gradient(
+      90deg, 
+      transparent 0%, 
+      theme('colors.effuse-teal') 30%, 
+      theme('colors.effuse-teal') 70%, 
+      transparent 100%
+    );
+  }
+  
+  /* Brand Accent Bars */
+  .accent-bar {
+    @apply h-1 w-16 rounded-sm;
+    background: linear-gradient(
+      135deg, 
+      theme('colors.lumina-gradient-start') 0%, 
+      theme('colors.lumina-gradient-end') 100%
+    );
+  }
+  
+  .accent-bar-lg {
+    @apply h-1.5 w-24 rounded;
+    background: linear-gradient(
+      135deg, 
+      theme('colors.lumina-gradient-start') 0%, 
+      theme('colors.lumina-gradient-end') 100%
+    );
+  }
+  
+  .accent-bar-teal {
+    @apply h-1 w-16 rounded-sm;
+    background: linear-gradient(
+      135deg, 
+      theme('colors.effuse-teal') 0%, 
+      theme('colors.effuse-teal') 100%
+    );
+  }
+  
+  /* Brand Shadow Utilities */
+  .shadow-brand-light {
+    box-shadow: var(--shadow-brand-light);
+  }
+  
+  .shadow-brand-medium {
+    box-shadow: var(--shadow-brand-medium);
+  }
+  
+  .shadow-brand-heavy {
+    box-shadow: var(--shadow-brand-heavy);
+  }
+  
+  .shadow-teal-glow {
+    box-shadow: var(--shadow-teal-glow);
+  }
+  
+  .shadow-gold-glow {
+    box-shadow: var(--shadow-gold-glow);
+  }
+  
+  /* Enhanced Brand Shadows for Interactive Elements */
+  .shadow-brand-hover {
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .shadow-brand-hover:hover {
+    box-shadow: 
+      var(--shadow-brand-medium),
+      var(--shadow-teal-glow);
+  }
+  
+  /* Responsive Accent Positioning */
+  .accent-top {
+    @apply relative;
+  }
+  
+  .accent-top::before {
+    content: '';
+    @apply absolute -top-2 left-0 accent-bar;
+  }
+  
+  .accent-center {
+    @apply relative;
+  }
+  
+  .accent-center::before {
+    content: '';
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 accent-bar;
+  }
 }
 
 :root {
@@ -64,6 +178,13 @@ h1, .font-inter {
   --brand-gold: 255, 210, 90;
   --brand-teal-dark: 11, 43, 51;
   --brand-teal-light: 34, 197, 195;
+  
+  /* Brand Shadow System */
+  --shadow-brand-light: 0 4px 20px rgba(34, 197, 195, 0.1);
+  --shadow-brand-medium: 0 8px 30px rgba(46, 52, 64, 0.15);
+  --shadow-brand-heavy: 0 20px 60px rgba(255, 210, 90, 0.2);
+  --shadow-teal-glow: 0 0 20px rgba(34, 197, 195, 0.3);
+  --shadow-gold-glow: 0 0 25px rgba(255, 210, 90, 0.4);
   
   /* Default theme */
   --foreground-rgb: var(--off-black);

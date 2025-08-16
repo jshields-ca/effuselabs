@@ -14,6 +14,12 @@ export type { GridProps, GridItemProps } from './Grid'
 export { Card, CardHeader, CardContent, CardFooter } from './Card'
 export type { CardProps, CardHeaderProps, CardContentProps, CardFooterProps } from './Card'
 
+export { SectionDivider } from './SectionDivider'
+export type { SectionDividerProps } from './SectionDivider'
+
+export { AccentBar } from './AccentBar'
+export type { AccentBarProps } from './AccentBar'
+
 // AnimatedContainer and FluidParallaxBackground removed - use LightweightAnimatedContainer instead
 export { LightweightAnimatedContainer, LightweightAnimatedItem } from './LightweightAnimatedContainer'
 

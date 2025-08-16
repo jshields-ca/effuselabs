@@ -4,7 +4,7 @@ import {
   PhilosophySection,
 } from '@/components/sections'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { Button, Card, Grid, GridItem, H2, H3, Text } from '@/components/ui'
+import { Button, Card, Grid, GridItem, H2, H3, Text, SectionDivider, AccentBar } from '@/components/ui'
 // ...existing code...
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
@@ -19,13 +19,20 @@ export default async function Home() {
       {/* Philosophy Section */}
       <PhilosophySection id="features" />
 
+      {/* Elegant section divider */}
+      <SectionDivider size="md" animated />
+
       {/* Founder Statement (dark) */}
       <FounderStatementSection />
+
+      {/* Section divider with subtle styling */}
+      <SectionDivider size="lg" variant="subtle" />
 
       {/* Products Section */}
       <SectionContainer id="products" background="white" padding="lg">
         <AnimatedContainer animation="slideUp">
           <div className="text-center mb-12">
+            <AccentBar size="md" variant="lumina" position="center" className="mb-6" />
             <H2 className="mb-4 text-effuse-off-black">Our Products</H2>
             <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed">
               Intelligent software solutions designed to turn operational
@@ -38,7 +45,7 @@ export default async function Home() {
             <Card
               id="lumina"
               variant="elevated"
-              className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-300 hover:shadow-xl"
+              className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-300 hover:shadow-xl shadow-brand-light shadow-brand-hover"
             >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
@@ -104,7 +111,7 @@ export default async function Home() {
             <Card
               id="silentledger"
               variant="elevated"
-              className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-300 hover:shadow-xl"
+              className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-300 hover:shadow-xl shadow-brand-medium shadow-brand-hover"
             >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#1600e8] to-[#b11866]"
