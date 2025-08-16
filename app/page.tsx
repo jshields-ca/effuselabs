@@ -4,7 +4,17 @@ import {
   PhilosophySection,
 } from '@/components/sections'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { Button, Card, Grid, GridItem, H2, H3, Text, SectionDivider, AccentBar } from '@/components/ui'
+import {
+  AccentBar,
+  Button,
+  Card,
+  Grid,
+  GridItem,
+  H2,
+  H3,
+  SectionDivider,
+  Text,
+} from '@/components/ui'
 // ...existing code...
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
@@ -32,7 +42,12 @@ export default async function Home() {
       <SectionContainer id="products" background="white" padding="lg">
         <AnimatedContainer animation="slideUp">
           <div className="text-center mb-12">
-            <AccentBar size="md" variant="lumina" position="center" className="mb-6" />
+            <AccentBar
+              size="md"
+              variant="lumina"
+              position="center"
+              className="mb-6"
+            />
             <H2 className="mb-4 text-effuse-off-black">Our Products</H2>
             <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed">
               Intelligent software solutions designed to turn operational

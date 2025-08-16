@@ -1,7 +1,7 @@
 # Effuse Labs Brand & Color System
 
-**Version:** 1.0
-**Last Updated:** August 15, 2025
+**Version:** 1.1  
+**Last Updated:** August 16, 2025
 
 ---
 
@@ -12,7 +12,6 @@ This document provides a comprehensive reference for the Effuse Labs, Lumina, an
 ---
 
 ## Color System
-
 
 ## Effuse Labs Corporate Brand Palette
 
@@ -27,6 +26,7 @@ This document provides a comprehensive reference for the Effuse Labs, Lumina, an
 | White       | #FFFFFF | effuse-white       | Backgrounds, text            |
 
 ### Gradient
+
 | Name            | Tailwind Class  | Example Usage                                     |
 | --------------- | --------------- | ------------------------------------------------- |
 | Effuse Gradient | effuse-gradient | bg-gradient-to-r from-effuse-slate to-effuse-teal |
@@ -48,6 +48,7 @@ This document provides a comprehensive reference for the Effuse Labs, Lumina, an
 | White            | #FFFFFF         | lumina-white                               | Backgrounds, text             |
 
 ### Functional UI Colors
+
 | Name          | Hex     | Tailwind Class | Usage                           |
 | ------------- | ------- | -------------- | ------------------------------- |
 | Success Green | #22C58B | lumina-success | Success messages, active states |
@@ -80,6 +81,47 @@ This document provides a comprehensive reference for the Effuse Labs, Lumina, an
 
 ---
 
+## Component Best Practices
+
+### Buttons
+
+- 5 brand color variants: Effuse Teal, Lumina Gold, Coral, Slate Grey, Gradient.
+- Use Tailwind for base styles, custom classes for gradients and breathing animation.
+- Clear focus states (outline, shadow) for accessibility.
+- Use `aria-label` and `role="button"` for screen reader support.
+
+### Cards
+
+- 4 brand color variants: Teal, Gold, Coral, Slate Grey.
+- Subtle background tints and optional glow (box-shadow with brand color).
+- Consistent padding, border-radius, and shadow.
+- Ensure text contrast and readable font sizes.
+
+### SectionDivider
+
+- 4 variants (teal, gold, coral, subtle) with 3 intensity levels (light, medium, strong).
+- CSS gradients for dividers, animated reveal on scroll.
+- Decorative only (`aria-hidden="true"`).
+
+### Typography
+
+- Inter for headings/body, IBM Plex Mono for code/data.
+- Poppins Medium for logotype (e.g., "Effuse Labs" in top nav).
+- Gradient text utilities for key headings using Tailwind's `bg-clip-text` and `text-transparent`.
+- Consistent scale and spacing.
+
+---
+
+## Integration Guidelines
+
+- Use Effuse Labs palette for site-wide backgrounds, navigation, and footers.
+- Use Lumina palette and gradients for Lumina product pages and CTAs.
+- Use SilentLedger palette for SilentLedger product pages, actions, and data visualizations.
+- Gradients for hero backgrounds, section dividers, and premium accents.
+- Maintain accessibility by testing color contrast and using visible focus states.
+
+---
+
 ## Accessibility & Responsiveness
 
 - All color combinations must meet WCAG AA contrast standards.
@@ -96,56 +138,3 @@ This document provides a comprehensive reference for the Effuse Labs, Lumina, an
 ---
 
 For further details, see [EFFUSELABS_BRAND_STYLEGUIDE.md](./EFFUSELABS_BRAND_STYLEGUIDE.md), [LUMINA_PRODUCT_STYLEGUIDE.md](./LUMINA_PRODUCT_STYLEGUIDE.md), and [SILENTLEDGER_PRODUCT_STYLEGUIDE.md](./SILENTLEDGER_PRODUCT_STYLEGUIDE.md).
-
----
-
-## Component Best Practices
-
-### Buttons
-- 5 brand color variants: Effuse Teal, Lumina Gold, Coral, Slate Grey, Gradient.
-- Use Tailwind for base styles, custom classes for gradients and breathing animation.
-- Clear focus states (outline, shadow) for accessibility.
-- Use `aria-label` and `role="button"` for screen reader support.
-
-### Cards
-- 4 brand color variants: Teal, Gold, Coral, Slate Grey.
-- Subtle background tints and optional glow (box-shadow with brand color).
-- Consistent padding, border-radius, and shadow.
-- Ensure text contrast and readable font sizes.
-
-### SectionDivider
-- 4 variants (teal, gold, coral, subtle) with 3 intensity levels (light, medium, strong).
-- CSS gradients for dividers, animated reveal on scroll.
-- Decorative only (`aria-hidden="true"`).
-
-### Typography
-- Inter for headings/body, IBM Plex Mono for code/data.
-- Poppins Medium for logotype (e.g., "Effuse Labs" in top nav).
-- Gradient text utilities for key headings using Tailwind’s `bg-clip-text` and `text-transparent`.
-- Consistent scale and spacing.
-
----
-
-## Integration Guidelines
-- Use Effuse Labs palette for site-wide backgrounds, navigation, and footers.
-- Use Lumina palette and gradients for Lumina product pages and CTAs.
-- Use SilentLedger palette for SilentLedger product pages, actions, and data visualizations.
-- Gradients for hero backgrounds, section dividers, and premium accents.
-- Maintain accessibility by testing color contrast and using visible focus states.
-
----
-
-## Accessibility & Responsiveness
-- All color combinations must meet WCAG AA contrast standards.
-- Focus states must be visible and distinct.
-- Components must be mobile responsive and touch-friendly.
-
----
-
-## Maintenance
-- Update this file as new colors, variants, or best practices are added.
-- Link to this file from README.md for easy access.
-
----
-
-For further details, see [BRAND_STYLEGUIDE.md](./BRAND_STYLEGUIDE.md).

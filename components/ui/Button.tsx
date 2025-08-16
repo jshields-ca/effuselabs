@@ -25,8 +25,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'bg-sl-blue text-white hover:bg-sl-purple hover:shadow-lg active:bg-sl-purple/90 shadow-md hover:shadow-xl transition-colors duration-200',
       'sl-secondary':
         'border-2 border-sl-blue text-sl-blue bg-white/90 hover:bg-sl-blue hover:text-white active:bg-sl-purple hover:shadow-lg backdrop-blur-sm',
-      'dark':
-        'bg-effuse-off-black text-white hover:bg-effuse-slate hover:shadow-lg active:bg-effuse-slate/90 shadow-md hover:shadow-xl',
+      dark: 'bg-effuse-off-black text-white hover:bg-effuse-slate hover:shadow-lg active:bg-effuse-slate/90 shadow-md hover:shadow-xl',
     }
 
     const sizes = {

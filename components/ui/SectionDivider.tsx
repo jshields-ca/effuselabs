@@ -1,22 +1,22 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
+import React from 'react'
 
 export interface SectionDividerProps {
   /** Size variant of the divider */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg'
   /** Custom className for additional styling */
-  className?: string;
+  className?: string
   /** Whether to animate the divider reveal on scroll */
-  animated?: boolean;
+  animated?: boolean
   /** Custom color variant */
-  variant?: 'teal' | 'gradient' | 'subtle';
+  variant?: 'teal' | 'gradient' | 'subtle'
   /** Accessibility label for screen readers */
-  'aria-label'?: string;
+  'aria-label'?: string
 }
 
 /**
  * SectionDivider - A branded section separator component
- * 
+ *
  * Features:
  * - Responsive design with multiple size variants
  * - Optional scroll-triggered animations
@@ -32,22 +32,22 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
   'aria-label': ariaLabel = 'Section divider',
   ...props
 }) => {
-  const baseClasses = 'section-divider';
-  
+  const baseClasses = 'section-divider'
+
   const sizeClasses = {
     sm: 'my-8 max-w-md h-0.5',
     md: 'my-16 max-w-lg h-0.5',
-    lg: 'my-20 max-w-2xl h-1'
-  };
-  
+    lg: 'my-20 max-w-2xl h-1',
+  }
+
   const variantClasses = {
     teal: 'section-divider',
     gradient: 'section-divider-lg',
-    subtle: 'opacity-50 section-divider'
-  };
-  
-  const animationClasses = animated ? 'animate-divider-reveal' : '';
-  
+    subtle: 'opacity-50 section-divider',
+  }
+
+  const animationClasses = animated ? 'animate-divider-reveal' : ''
+
   return (
     <div
       role="separator"
@@ -61,7 +61,7 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
       )}
       {...props}
     />
-  );
-};
+  )
+}
 
-SectionDivider.displayName = 'SectionDivider';
+SectionDivider.displayName = 'SectionDivider'

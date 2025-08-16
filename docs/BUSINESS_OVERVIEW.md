@@ -5,17 +5,17 @@
 
 ---
 
-### 1. Company Overview
+## 1. Company Overview
 
 The name 'Effuse Labs' is derived from the Latin _effundere_ ($effusus$), meaning "to pour out." This concept is at the heart of our mission. We are a modern technology company in Winnipeg, Manitoba, that exists to **pour out** a continuous stream of innovative ideas, elegant code, and intelligent solutions for underserved small businesses.
 
 We believe in radiating passion and excellence. This ethos is embodied in our flagship product, **Lumina**, which **sheds light** on complex data and illuminates the path to growth. Our purpose is to design and develop industry-specific software (Vertical SaaS) that transforms our clients' operational burdens into their greatest strengths.
 
-### 2. Our Vision
+## 2. Our Vision
 
 Our vision is to democratize the power of data. We believe that local businesses are the backbone of our communities, and they deserve access to the same level of actionable insight and operational efficiency typically reserved for large corporations. Effuse Labs exists to level that playing field with thoughtfully designed, AI-powered tools.
 
-### 3. Core Product: Lumina
+## 3. Core Product: Lumina
 
 Lumina is the flagship product of Effuse Labs, meticulously designed for the salon and barber industry.
 
@@ -31,27 +31,26 @@ Lumina is the flagship product of Effuse Labs, meticulously designed for the sal
   - **Seamless Online Booking:** Simple, modern booking that integrates directly with a salon's website and social media.
   - **Unified POS & CRM:** A single system for managing payments, client history, and communications.
 
-### 4. The Founder
+## 4. The Founder
 
 Effuse Labs was founded by Jeremy Shields, a project manager with deep experience in digital communications and full-stack development. As a federally-recognized person with a disability, Jeremy brings a unique perspective focused on creating accessible, intuitive, and empowering technology. His vision for Effuse Labs is born from a passion for helping small businesses succeed by giving them the tools they need to build resilient, profitable enterprises.
 
-### 5. Business Details
+## 5. Business Details
 
 - **Company Name:** Effuse Labs
 - **Legal Structure:** To be Incorporated as a Federal or Provincial Corporation.
 - **Location:** Winnipeg, Manitoba, Canada
 - **Founder:** Jeremy Shields
 - **Website:** effuse.io (Live - Lighthouse Performance 81)
-- **Public Contact Email:** hello@effuse.io (initially to forward to jeremy@effuse.io)
-- **Public Support Email:** support@effuse.io (initially to forward to jeremy@effuse.io)
-- **Media Contact Email:** press@effuse.io (initially to forward to jeremy@effuse.io)
-- **Billing Inquiries:** billing@effuse.io (initially to forward to jeremy@effuse.io)
-- **Employment/Careers Email:** careers@effuse.io (initially to forward to jeremy@effuse.io)
-
+- **Public Contact Email:** <hello@effuse.io> (initially to forward to <jeremy@effuse.io>)
+- **Public Support Email:** <support@effuse.io> (initially to forward to <jeremy@effuse.io>)
+- **Media Contact Email:** <press@effuse.io> (initially to forward to <jeremy@effuse.io>)
+- **Billing Inquiries:** <billing@effuse.io> (initially to forward to <jeremy@effuse.io>)
+- **Employment/Careers Email:** <careers@effuse.io> (initially to forward to <jeremy@effuse.io>)
 
 ---
 
-### 6. Brand Identity & Personality
+## 6. Brand Identity & Personality
 
 - **Brand Archetype:** The Sage & The Creator. We are a trusted source of wisdom and insight (The Sage), but we are also actively building and innovating (The Creator). Our brand should feel knowledgeable and inspiring, trustworthy and innovative.
 - **Core Values:**

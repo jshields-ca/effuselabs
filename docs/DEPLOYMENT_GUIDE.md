@@ -4,15 +4,15 @@
 
 We use Vercel's modern deployment pipeline with automatic staging via preview deployments:
 
-```
+```text
 Development (Local) → Preview (Auto-staging) → Production (Vercel)
 ```
 
-| Environment | Purpose | URL | Trigger |
-|-------------|---------|-----|---------|
-| **Development** | Local development & testing | `http://localhost:3000` | `npm run dev` |
-| **Preview (Staging)** | QA, client preview, integration testing | `https://effuselabs-git-[branch].vercel.app` | Any branch push/PR |
-| **Production** | Live site for end users | `https://effuse.io` | Push to `main` branch |
+| Environment           | Purpose                                 | URL                                          | Trigger               |
+| --------------------- | --------------------------------------- | -------------------------------------------- | --------------------- |
+| **Development**       | Local development & testing             | `http://localhost:3000`                      | `npm run dev`         |
+| **Preview (Staging)** | QA, client preview, integration testing | `https://effuselabs-git-[branch].vercel.app` | Any branch push/PR    |
+| **Production**        | Live site for end users                 | `https://effuse.io`                          | Push to `main` branch |
 
 <!-- Removed platform comparison to streamline guide -->
 
@@ -36,9 +36,10 @@ SANITY_API_TOKEN=your_sanity_api_token
 NEXT_PUBLIC_GA_ID=your_google_analytics_id
 ```
 
-### ⚡ **Optimized Local Development**
+### ⚡ Optimized Local Development
 
-**Recommended: Direct Next.js Development**
+#### Recommended: Direct Next.js Development
+
 ```bash
 # Start development server (fast hot reload)
 npm run dev
@@ -55,8 +56,10 @@ npm run start
 
 <!-- Windows-specific setup removed (covered in README if needed) -->
 
-**Troubleshooting Steps:**
+#### Troubleshooting Steps
+
 1. **Server not accessible at localhost:3000:**
+
    ```bash
    # Check if port is in use
    netstat -an | findstr :3000
@@ -74,6 +77,7 @@ npm run start
    - Check antivirus software isn't blocking localhost
 
 ### Preview Environment Variables (Vercel)
+
 ```bash
 NODE_ENV=preview
 NEXT_PUBLIC_SITE_URL=https://effuselabs-git-[branch].vercel.app
@@ -81,6 +85,7 @@ NEXT_TELEMETRY_DISABLED=1
 ```
 
 ### Production Environment Variables (Vercel)
+
 ```bash
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://effuse.io
@@ -89,9 +94,10 @@ NEXT_TELEMETRY_DISABLED=1
 
 <!-- Removed verbose workflow; Vercel auto-deploys on push -->
 
-### No Environment Switching Needed!
+### No Environment Switching Needed
 
 **With Vercel:**
+
 - 🔄 **Automatic preview deployments** for every branch
 - 🔄 **Automatic production deployments** on main branch push  
 - 🔄 **No manual commands** - just push your code
@@ -99,11 +105,11 @@ NEXT_TELEMETRY_DISABLED=1
 
 ### Testing Strategy
 
-| Environment | Testing Focus |
-|-------------|---------------|
-| **Development** | Unit tests, component development, rapid iteration |
-| **Preview (Auto-staging)** | Integration testing, QA review, client feedback |
-| **Production** | Performance monitoring, user analytics, stability |
+| Environment                | Testing Focus                                      |
+| -------------------------- | -------------------------------------------------- |
+| **Development**            | Unit tests, component development, rapid iteration |
+| **Preview (Auto-staging)** | Integration testing, QA review, client feedback    |
+| **Production**             | Performance monitoring, user analytics, stability  |
 
 <!-- Removed initial setup steps to reduce duplication with Vercel docs -->
 
@@ -112,16 +118,19 @@ NEXT_TELEMETRY_DISABLED=1
 Set environment variables in **Vercel Dashboard > Project > Settings > Environment Variables**:
 
 **Production Environment:**
+
 - `NODE_ENV=production`
 - `NEXT_PUBLIC_SITE_URL=https://effuse.io`
 - `NEXT_TELEMETRY_DISABLED=1`
 
 **Preview Environment:**
+
 - `NODE_ENV=preview`
 - `NEXT_PUBLIC_SITE_URL=https://effuselabs-git-branch.vercel.app`
 - `NEXT_TELEMETRY_DISABLED=1`
 
 **Future Variables (Sprint 6):**
+
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`
 - `NEXT_PUBLIC_SANITY_DATASET`
 - `SANITY_API_TOKEN`
@@ -129,6 +138,7 @@ Set environment variables in **Vercel Dashboard > Project > Settings > Environme
 ### 3. Automatic Deployments
 
 **Vercel automatically handles all deployments:**
+
 - ✅ **Push to any branch** → Preview deployment
 - ✅ **Push to main branch** → Production deployment
 - ✅ **Pull requests** → Preview comments with deployment links
@@ -137,6 +147,7 @@ Set environment variables in **Vercel Dashboard > Project > Settings > Environme
 ### 4. Preview (Staging) Environments
 
 **Every branch gets automatic staging:**
+
 - 🌟 **Unique URL per branch**: `https://effuselabs-git-[branch].vercel.app`
 - 🌟 **Pull request integration**: Preview links in PR comments
 - 🌟 **Isolated testing**: Each feature branch has its own staging
@@ -176,12 +187,14 @@ vercel logs [deployment-url]
 ## Environment Variable Management
 
 **Development (.env.local):**
+
 ```bash
 NODE_ENV=development
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 **Vercel Dashboard Settings:**
+
 - **Production**: Applied to `main` branch deployments
 - **Preview**: Applied to all other branch deployments  
 - **Development**: For local development (not used by Vercel)
