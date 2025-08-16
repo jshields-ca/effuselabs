@@ -20,7 +20,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
     <a
       href={href}
       onClick={onClick}
-      className="group relative text-off-black hover:text-brand-teal-light transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
+      className="group relative text-effuse-off-black hover:text-effuse-teal transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
       style={{ letterSpacing: '0.04em' }}
       tabIndex={0}
     >
@@ -37,7 +37,7 @@ const MobileMenuButton: React.FC<{
   return (
     <button
       onClick={onClick}
-      className="md:hidden p-2 rounded-md text-off-black hover:text-brand-teal-light hover:bg-light-grey transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+      className="md:hidden p-2 rounded-md text-effuse-off-black hover:text-effuse-teal hover:bg-effuse-light-grey transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
@@ -76,7 +76,7 @@ const MobileMenu: React.FC<{
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
+            className="fixed inset-0 bg-effuse-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
             onClick={onClose}
             onKeyDown={e => e.key === 'Escape' && onClose()}
             role="button"
@@ -85,14 +85,14 @@ const MobileMenu: React.FC<{
           />
 
           {/* Mobile Menu */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 translate-x-0">
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-effuse-white shadow-xl z-50 md:hidden transform transition-transform duration-300 translate-x-0">
             <div className="flex flex-col h-full">
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-light-grey">
-                <span className="font-bold text-xl text-off-black">Menu</span>
+              <div className="flex items-center justify-between p-6 border-b border-effuse-light-grey">
+                <span className="font-bold text-xl text-effuse-off-black">Menu</span>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-md text-off-black hover:text-brand-teal-light hover:bg-light-grey transition-colors duration-200"
+                  className="p-2 rounded-md text-effuse-off-black hover:text-effuse-teal hover:bg-effuse-light-grey transition-colors duration-200"
                   aria-label="Close menu"
                 >
                   <svg
@@ -181,7 +181,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="flex items-center gap-2 text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md font-poppins"
+                className="flex items-center gap-2 text-2xl font-bold text-effuse-off-black hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 <Image
@@ -211,14 +211,14 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
                 {header.cta?.href ? (
                   <Button
                     href={header.cta.href}
-                    className="bg-[#FFD25A] text-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 hover:bg-[#FFDD7A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                    className="bg-effuse-gold text-effuse-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-all duration-200 hover:bg-effuse-gold/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
                   >
                     {header.cta.label.replace(/\b(\w)/g, c => c.toUpperCase())}
                   </Button>
                 ) : (
                   <Button
                     href="#contact"
-                    className="bg-[#FFD25A] text-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 hover:bg-[#FFDD7A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                    className="bg-effuse-gold text-effuse-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-all duration-200 hover:bg-effuse-gold/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
                   >
                     Get Started
                   </Button>
