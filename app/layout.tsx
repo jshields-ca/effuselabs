@@ -1,8 +1,27 @@
-import type { Metadata, Viewport } from 'next'
-import './globals.css'
 import { PageWrapper } from '@/components/layout/PageWrapper'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import type { Metadata, Viewport } from 'next'
+import { IBM_Plex_Mono, Inter, Poppins } from 'next/font/google'
+import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-ibmplexmono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Effuse Labs - Intelligent Software for Small Business Growth',
@@ -18,10 +37,7 @@ export const metadata: Metadata = {
   creator: 'Effuse Labs',
   publisher: 'Effuse Labs',
   robots: 'index, follow',
-  // Canonical base for all absolute URLs
   metadataBase: new URL('https://www.effuse.io'),
-  alternates: { canonical: '/' },
-  // Favicons & PWA
   icons: {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -46,21 +62,27 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className={`scroll-smooth ${inter.variable} ${poppins.variable} ${ibmPlexMono.variable}`}
+    >
       <head>
         {/* Critical resource hints for LCP */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         {/* Preload critical resources */}
-        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        {/* ONLY Critical above-the-fold CSS inlined */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        {/* Removed preload for /fonts/inter-var.woff2; font is loaded via next/font/google */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             /* Critical Hero Section Only */
             .hero-critical { 
               background: linear-gradient(135deg, rgb(29,29,33) 0%, rgb(128,130,133) 50%, rgb(34,67,82) 100%);
-              min-height: 100vh;
               display: flex;
               align-items: center;
               position: relative;
@@ -100,13 +122,12 @@ export default function RootLayout({
             @media (max-width: 1023px) { 
               .hero-text { text-align: center; }
             }
-          `
-        }} />
+          `,
+          }}
+        />
       </head>
       <body className={`antialiased font-sans`}>
-        <PageWrapper>
-          {children}
-        </PageWrapper>
+        <PageWrapper>{children}</PageWrapper>
         <SpeedInsights />
         <Analytics />
       </body>

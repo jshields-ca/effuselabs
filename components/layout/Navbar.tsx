@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import React from 'react'
 // TEMPORARY: Disable complex animations to fix 269 KiB bundle issue
 // TODO: Implement CSS-only mobile menu animations
-import { useNavigation } from '@/lib/hooks/useNavigation'
 import { Button } from '@/components/ui'
+import { useNavigation } from '@/lib/hooks/useNavigation'
 import type { HeaderContent } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 
@@ -19,10 +20,12 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
     <a
       href={href}
       onClick={onClick}
-      className="text-off-black hover:text-brand-teal-light transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md px-2 py-1"
+      className="group relative text-off-black hover:text-brand-teal-light transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
+      style={{ letterSpacing: '0.04em' }}
       tabIndex={0}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
+      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-effuse-teal to-effuse-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </a>
   )
 }
@@ -39,18 +42,24 @@ const MobileMenuButton: React.FC<{
       aria-expanded={isOpen}
     >
       <div className="w-6 h-6 relative">
-        <span className={cn(
-          "absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300",
-          isOpen ? "rotate-45 translate-y-2" : ""
-        )} />
-        <span className={cn(
-          "absolute top-3 left-0 w-6 h-0.5 bg-current transition-all duration-300",
-          isOpen ? "opacity-0" : "opacity-100"
-        )} />
-        <span className={cn(
-          "absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300",
-          isOpen ? "-rotate-45 -translate-y-2" : ""
-        )} />
+        <span
+          className={cn(
+            'absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
+            isOpen ? 'rotate-45 translate-y-2' : ''
+          )}
+        />
+        <span
+          className={cn(
+            'absolute top-3 left-0 w-6 h-0.5 bg-current transition-all duration-300',
+            isOpen ? 'opacity-0' : 'opacity-100'
+          )}
+        />
+        <span
+          className={cn(
+            'absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
+            isOpen ? '-rotate-45 -translate-y-2' : ''
+          )}
+        />
       </div>
     </button>
   )
@@ -64,17 +73,17 @@ const MobileMenu: React.FC<{
   return (
     <div>
       {isOpen && (
-      <>
-        {/* Backdrop */}
-        <div
-          className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
-          onClick={onClose}
-          onKeyDown={(e) => e.key === 'Escape' && onClose()}
-          role="button"
-          tabIndex={0}
-          aria-label="Close menu"
-        />
-          
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
+            onClick={onClose}
+            onKeyDown={e => e.key === 'Escape' && onClose()}
+            role="button"
+            tabIndex={0}
+            aria-label="Close menu"
+          />
+
           {/* Mobile Menu */}
           <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 translate-x-0">
             <div className="flex flex-col h-full">
@@ -86,26 +95,45 @@ const MobileMenu: React.FC<{
                   className="p-2 rounded-md text-off-black hover:text-brand-teal-light hover:bg-light-grey transition-colors duration-200"
                   aria-label="Close menu"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
-              
+
               {/* Navigation Links */}
               <nav className="flex-1 px-6 py-8">
                 <div className="flex flex-col space-y-6">
-                  {header.navLinks?.map((link) => (
-                    <NavLink key={`${link.label}-${link.href}`} href={link.href} onClick={onClose}>
+                  {header.navLinks?.map(link => (
+                    <NavLink
+                      key={`${link.label}-${link.href}`}
+                      href={link.href}
+                      onClick={onClose}
+                    >
                       <span className="text-lg">{link.label}</span>
                     </NavLink>
                   ))}
                 </div>
-                
+
                 {/* CTA Button */}
                 <div className="mt-8">
                   {header.cta?.href ? (
-                    <Button variant="primary" size="lg" className="w-full" href={header.cta.href}>
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
+                      href={header.cta.href}
+                    >
                       {header.cta.label}
                     </Button>
                   ) : (
@@ -124,7 +152,8 @@ const MobileMenu: React.FC<{
 }
 
 export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
-  const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } = useNavigation()
+  const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } =
+    useNavigation()
   const defaultLinks = [
     { label: 'Features', href: '#features' },
     { label: 'Products', href: '#products' },
@@ -132,16 +161,17 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },
   ]
-  const navLinks = (header.navLinks && header.navLinks.length > 0) ? header.navLinks : defaultLinks
+  const navLinks =
+    header.navLinks && header.navLinks.length > 0
+      ? header.navLinks
+      : defaultLinks
 
   return (
     <>
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-white'
+          isScrolled ? 'bg-effuse-slate shadow-lg' : 'bg-effuse-slate'
         )}
         aria-label="Primary Navigation"
       >
@@ -151,20 +181,27 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="flex items-center gap-2 text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md"
+                className="flex items-center gap-2 text-2xl font-bold text-off-black hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md font-poppins"
+                style={{ fontFamily: 'Poppins, sans-serif' }}
               >
-                <picture>
-                  <source srcSet="/logo.png" type="image/png" />
-                  <img src="/logo.svg" alt="Effuse Labs logo" className="h-8 w-auto" />
-                </picture>
+                <Image
+                  src="/logo-450x450.png"
+                  alt="Effuse Labs logo"
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                  priority
+                />
                 <span>{header.brandName || 'Effuse Labs'}</span>
               </a>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <NavLink key={`${link.label}-${link.href}`} href={link.href}>{link.label}</NavLink>
+              {navLinks.map(link => (
+                <NavLink key={`${link.label}-${link.href}`} href={link.href}>
+                  {link.label.replace(/\b(\w)/g, c => c.toUpperCase())}
+                </NavLink>
               ))}
             </nav>
 
@@ -172,12 +209,21 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             <div className="flex items-center space-x-4">
               <div className="hidden md:block">
                 {header.cta?.href ? (
-                  <Button variant="primary" href={header.cta.href}>{header.cta.label}</Button>
+                  <Button
+                    href={header.cta.href}
+                    className="bg-[#FFD25A] text-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 hover:bg-[#FFDD7A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                  >
+                    {header.cta.label.replace(/\b(\w)/g, c => c.toUpperCase())}
+                  </Button>
                 ) : (
-                  <Button variant="primary" href="#contact">Get Started</Button>
+                  <Button
+                    href="#contact"
+                    className="bg-[#FFD25A] text-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-colors duration-200 hover:bg-[#FFDD7A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                  >
+                    Get Started
+                  </Button>
                 )}
               </div>
-              
               <MobileMenuButton
                 isOpen={isMobileMenuOpen}
                 onClick={toggleMobileMenu}
@@ -188,8 +234,11 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
       </header>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} header={header} />
-      
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+        header={header}
+      />
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
       <div className="h-14 lg:h-16" />
     </>

@@ -165,6 +165,61 @@ Our `.vscode/settings.json` includes:
 3. Extensions will auto-configure with project settings
 4. Start coding with enhanced IntelliSense and quality tools!
 
+
+### Brand Color System
+
+Effuse Labs uses a comprehensive brand color system for consistent, premium UI styling. All colors are available as Tailwind classes and documented here for reference.
+
+#### Effuse Labs Core Palette
+
+| Name         | Hex     | Tailwind Class             | Usage                        |
+| ------------ | ------- | -------------------------- | ---------------------------- |
+| Slate Grey   | #2E3440 | effuse-slate               | Backgrounds, text, surfaces  |
+| Effuse Teal  | #22C5C3 | effuse-teal                | Accents, buttons, highlights |
+| Lumina Gold  | #FFD25A | effuse-gold, lumina-gold   | Accents, CTAs, highlights    |
+| Effuse Coral | #FF7A5A | effuse-coral, lumina-coral | Secondary accent, gradients  |
+| Off-Black    | #1D1D21 | effuse-off-black           | Text, backgrounds            |
+| Medium Grey  | #808285 | effuse-medium-grey         | Text, surfaces               |
+| Light Grey   | #F1F3F5 | effuse-light-grey          | Backgrounds, surfaces        |
+| White        | #FFFFFF | effuse-white               | Backgrounds, text            |
+
+#### Gradients
+
+| Name                  | Tailwind Class  | Example Usage                                                      |
+| --------------------- | --------------- | ------------------------------------------------------------------ |
+| Effuse Gradient       | effuse-gradient | bg-gradient-to-r from-[var(--tw-gradient-stops)]                   |
+| Lumina Gradient       | lumina-gradient | bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end |
+| SilentLedger Gradient | sl-gradient     | bg-gradient-to-r from-sl-blue to-sl-red                            |
+
+#### Lumina Product Palette
+
+| Name      | Hex     | Tailwind Class | Usage                       |
+| --------- | ------- | -------------- | --------------------------- |
+| Gold      | #FFD25A | lumina-gold    | Primary actions, highlights |
+| Coral     | #FF7A5A | lumina-coral   | Secondary accent, gradients |
+| Deep Teal | #0B2B33 | lumina-teal    | Backgrounds, accents        |
+
+#### SilentLedger Palette
+
+| Name             | Hex     | Tailwind Class | Usage                  |
+| ---------------- | ------- | -------------- | ---------------------- |
+| Dark BG          | #100B00 | sl-bg-dark     | Dark mode backgrounds  |
+| Light BG         | #fcfcfc | sl-bg-light    | Light mode backgrounds |
+| Primary Red      | #ff2525 | sl-red         | Primary actions        |
+| Secondary Blue   | #1600e8 | sl-blue        | Secondary accents      |
+| Data Viz Purple  | #630ca7 | sl-purple      | Data visualization     |
+| Data Viz Magenta | #b11866 | sl-magenta     | Data visualization     |
+
+#### Usage Guidelines
+
+- Use Effuse Labs palette for all site-wide backgrounds, navigation, and footers.
+- Use Lumina palette and gradients for Lumina product pages and CTAs.
+- Use SilentLedger palette for SilentLedger product pages, actions, and data visualizations.
+- Gradients are recommended for hero backgrounds, section dividers, and premium accents.
+- Maintain accessibility by testing color contrast and using visible focus states.
+
+For full details and best practices, see [docs/BRAND_COLOR_SYSTEM.md](./docs/BRAND_COLOR_SYSTEM.md) and [docs/BRAND_STYLEGUIDE.md](./docs/BRAND_STYLEGUIDE.md).
+
 ### Project Structure
 
 ```text
