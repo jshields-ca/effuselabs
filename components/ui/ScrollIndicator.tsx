@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
+import React, { useEffect, useState } from 'react'
 
 interface ScrollIndicatorProps {
   className?: string
@@ -12,14 +12,15 @@ interface ScrollIndicatorProps {
 const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   className,
   variant = 'linear',
-  color = 'teal'
+  color = 'teal',
 }) => {
   const [scrollPercent, setScrollPercent] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight
       const scrolled = (scrollTop / docHeight) * 100
       setScrollPercent(Math.min(scrolled, 100))
     }
@@ -31,7 +32,7 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   const colorStyles = {
     teal: 'from-effuse-teal to-effuse-teal/60',
     gold: 'from-effuse-gold to-lumina-gradient-end',
-    brand: 'from-effuse-teal to-effuse-gold'
+    brand: 'from-effuse-teal to-effuse-gold',
   }
 
   if (variant === 'circular') {
@@ -52,10 +53,13 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
               strokeDasharray="100, 100"
             />
             <path
-              className={cn('stroke-2 transition-all duration-300', 
-                color === 'teal' ? 'stroke-effuse-teal' : 
-                color === 'gold' ? 'stroke-effuse-gold' : 
-                'stroke-effuse-teal'
+              className={cn(
+                'stroke-2 transition-all duration-300',
+                color === 'teal'
+                  ? 'stroke-effuse-teal'
+                  : color === 'gold'
+                    ? 'stroke-effuse-gold'
+                    : 'stroke-effuse-teal'
               )}
               d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
@@ -76,7 +80,12 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   }
 
   return (
-    <div className={cn('fixed top-0 left-0 w-full h-1 z-50 bg-effuse-slate/10', className)}>
+    <div
+      className={cn(
+        'fixed top-0 left-0 w-full h-1 z-50 bg-effuse-slate/10',
+        className
+      )}
+    >
       <div
         className={cn(
           'h-full bg-gradient-to-r transition-all duration-150 ease-out',

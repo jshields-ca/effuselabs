@@ -1,7 +1,8 @@
-import React from 'react'
 import { cn } from '@/lib/utils'
+import React from 'react'
 
-interface EnhancedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface EnhancedLinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode
   variant?: 'default' | 'brand' | 'subtle'
   underline?: 'none' | 'hover' | 'always'
@@ -17,13 +18,15 @@ const EnhancedLink: React.FC<EnhancedLinkProps> = ({
   const variants = {
     default: 'text-effuse-teal hover:text-effuse-gold',
     brand: 'text-effuse-gold hover:text-effuse-teal',
-    subtle: 'text-effuse-medium-grey hover:text-effuse-off-black'
+    subtle: 'text-effuse-medium-grey hover:text-effuse-off-black',
   }
-  
+
   const underlineStyles = {
     none: '',
-    hover: 'hover:underline decoration-2 underline-offset-4 decoration-effuse-teal hover:decoration-effuse-gold',
-    always: 'underline decoration-2 underline-offset-4 decoration-effuse-teal hover:decoration-effuse-gold'
+    hover:
+      'hover:underline decoration-2 underline-offset-4 decoration-effuse-teal hover:decoration-effuse-gold',
+    always:
+      'underline decoration-2 underline-offset-4 decoration-effuse-teal hover:decoration-effuse-gold',
   }
 
   return (

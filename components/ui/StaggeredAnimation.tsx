@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
 import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import React from 'react'
 
 interface StaggeredAnimationProps {
   children: React.ReactNode[]
@@ -14,7 +14,7 @@ const StaggeredAnimation: React.FC<StaggeredAnimationProps> = ({
   children,
   staggerDelay = 0.1,
   animation = 'slideUp',
-  className
+  className,
 }) => {
   return (
     <div className={className}>
