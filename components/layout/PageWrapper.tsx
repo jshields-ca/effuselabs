@@ -2,6 +2,7 @@ import React from 'react'
 import { SkipNav } from './SkipNav'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
+import { ScrollIndicator } from '@/components/ui'
 import { getHeaderContent } from '@/lib/sanity/api'
 
 interface PageWrapperProps {
@@ -21,6 +22,9 @@ export const PageWrapper = async ({
 
   return (
     <div className={`min-h-screen flex flex-col overflow-x-clip bg-white` + (className ? ` ${className}` : '')}>
+      {/* Scroll Progress Indicator */}
+      <ScrollIndicator variant="linear" color="brand" />
+      
       {/* Skip Navigation for Accessibility */}
       <SkipNav />
       

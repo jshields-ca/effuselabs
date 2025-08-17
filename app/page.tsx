@@ -244,7 +244,7 @@ export default async function Home() {
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -254,14 +254,14 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Client booking & relationship management
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
                       <svg
                         aria-hidden
-                        className="mt-0.5 h-5 w-5 text-brand-gold"
+                        className="mt-0.5 h-5 w-5 text-effuse-gold"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -271,12 +271,12 @@ export default async function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm">
+                      <Text as="span" className="text-sm text-effuse-off-black">
                         Service pricing & inventory tracking
                       </Text>
                     </li>
                   </ul>
-                  <Text className="mb-6">
+                  <Text className="mb-6 text-effuse-off-black leading-relaxed">
                     You’re more than a stylist; you&apos;re an artist, a
                     confidant, and a community hub. You build relationships and
                     transform your clients&apos; confidence, one appointment at

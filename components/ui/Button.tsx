@@ -22,7 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       secondary:
         'border-2 border-effuse-gold text-effuse-gold bg-transparent hover:bg-effuse-gold hover:text-effuse-off-black active:bg-effuse-gold/90 hover:shadow-gold-glow',
       'sl-primary':
-        'bg-sl-blue text-white hover:bg-sl-purple hover:shadow-teal-glow shadow-md hover:shadow-2xl transition-colors duration-300',
+        'bg-sl-blue text-white hover:bg-sl-purple hover:shadow-teal-glow shadow-md hover:shadow-2xl',
       'sl-secondary':
         'border-2 border-sl-blue text-sl-blue bg-white/90 hover:bg-sl-blue hover:text-white active:bg-sl-purple hover:shadow-teal-glow backdrop-blur-sm',
       dark: 'bg-effuse-off-black text-white hover:bg-effuse-slate hover:shadow-brand-medium shadow-md hover:shadow-2xl',

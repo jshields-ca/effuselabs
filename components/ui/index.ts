@@ -23,3 +23,14 @@ export type { AccentBarProps } from './AccentBar'
 // AnimatedContainer and FluidParallaxBackground removed - use LightweightAnimatedContainer instead
 export { LightweightAnimatedContainer, LightweightAnimatedItem } from './LightweightAnimatedContainer'
 
+// Staggered animation component for micro-interactions
+export { default as StaggeredAnimation } from './StaggeredAnimation'
+
+// Enhanced Link component with brand animations
+export { default as EnhancedLink } from './EnhancedLink'
+export type { EnhancedLinkProps } from './EnhancedLink'
+
+// Scroll indicator with gradient progress
+export { default as ScrollIndicator } from './ScrollIndicator'
+export type { ScrollIndicatorProps } from './ScrollIndicator'
+

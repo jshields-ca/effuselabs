@@ -20,13 +20,12 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
     <a
       href={href}
       onClick={onClick}
-      className="group relative text-effuse-white hover:text-effuse-gold transition-all duration-300 font-medium focus-brand rounded-md px-3 py-2 font-inter tracking-wide uppercase interactive-lift"
+      className="group relative text-effuse-white hover:text-effuse-gold hover:bg-effuse-teal/10 transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-3 py-2 font-inter tracking-wide uppercase"
       style={{ letterSpacing: '0.04em' }}
       tabIndex={0}
     >
-      <span className="relative z-10 transition-all duration-300 group-hover:transform group-hover:scale-110">{children}</span>
-      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-effuse-teal to-effuse-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left animate-pulse-glow" />
-      <span className="pointer-events-none absolute inset-0 rounded-md bg-effuse-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <span className="relative z-10">{children}</span>
+      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </a>
   )
 }
