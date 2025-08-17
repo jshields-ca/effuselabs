@@ -174,29 +174,33 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-effuse-slate/95 backdrop-blur-sm shadow-lg'
-            : 'bg-effuse-slate/90 backdrop-blur-sm'
+            ? 'bg-effuse-slate/96 backdrop-blur-md shadow-xl border-b border-effuse-slate/20'
+            : 'bg-effuse-slate/92 backdrop-blur-lg border-b border-effuse-slate/10'
         )}
         aria-label="Primary Navigation"
+        style={{
+          backdropFilter: 'blur(12px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+        }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 lg:h-16">
+          <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="flex items-center gap-2 text-2xl font-bold text-effuse-white hover:text-effuse-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins"
+                className="flex items-center gap-3 text-2xl lg:text-3xl font-bold text-effuse-white hover:text-effuse-gold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins hover:scale-105 transform"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 <Image
                   src="/logo-450x450.png"
                   alt="Effuse Labs logo"
-                  width={48}
-                  height={48}
-                  className="rounded-full"
+                  width={52}
+                  height={52}
+                  className="rounded-full drop-shadow-lg"
                   priority
                 />
-                <span>{header.brandName || 'Effuse Labs'}</span>
+                <span className="text-shadow-soft">{header.brandName || 'Effuse Labs'}</span>
               </a>
             </div>
 
@@ -214,15 +218,19 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
               <div className="hidden md:block">
                 {header.cta?.href ? (
                   <Button
+                    variant="primary"
+                    size="md"
                     href={header.cta.href}
-                    className="bg-effuse-gold text-effuse-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-all duration-200 hover:bg-effuse-gold/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
+                    className="text-shadow-soft"
                   >
                     {header.cta.label.replace(/\b(\w)/g, c => c.toUpperCase())}
                   </Button>
                 ) : (
                   <Button
+                    variant="primary"
+                    size="md"
                     href="#contact"
-                    className="bg-effuse-gold text-effuse-off-black font-inter font-semibold px-6 py-2 rounded-lg shadow-sm transition-all duration-200 hover:bg-effuse-gold/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
+                    className="text-shadow-soft"
                   >
                     Get Started
                   </Button>
