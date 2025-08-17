@@ -2,7 +2,7 @@
 
 ## *Intelligent Software for Small Business Growth*
 
-[![Version](https://img.shields.io/badge/version-0.5.1+-blue?style=for-the-badge)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.3+-blue?style=for-the-badge)](./CHANGELOG.md)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20desktop%20%7C%2098%20mobile-orange?style=for-the-badge)](https://web.dev/lighthouse/)
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.31-black?style=flat&logo=next.js)](https://nextjs.org/)
@@ -21,7 +21,7 @@
 
 ---
 
-**Sprint 6:** 🔄 IN PROGRESS • Brand Accents ✅ • Component Polish next • 100/98 Lighthouse maintained
+**Sprint 6:** 🔄 IN PROGRESS • Component Polish ✅ • Typography Enhancement next • 100/98 Lighthouse maintained
 
 </div>
 
