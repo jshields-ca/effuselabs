@@ -1,4 +1,32 @@
-# Changelog
+# Changel## [v0.5.4] - 2025-08-16
+
+### ✨ Added
+- **Typography Enhancement System** - Complete responsive typography utilities with gradient text support
+- **Glass Morphism Navigation** - Professional backdrop effects with advanced blur and saturation
+- **Gradient Text Utilities** - Brand-specific gradient text classes (gold, teal, multi-color, SilentLedger)
+- **Responsive Hero Typography** - Fluid scaling with clamp() functions for optimal readability
+- **Enhanced Visual Hierarchy** - Complete heading system (xl, lg, md, sm) with responsive scaling
+- **Modern Text Effects** - Shadow utilities, shimmer animations, and modern text wrapping
+
+### 🔧 Enhanced
+- **Navigation Brand Presence** - Larger logo (48px → 52px) with enhanced drop-shadow and prominence
+- **Header Proportions** - Improved spacing (h-14 → h-16/h-18) for better visual balance
+- **Glass Effect Background** - Advanced backdrop-blur with saturate(180%) for premium appearance
+- **Logo Interactions** - Smooth hover effects with scale transforms and micro-interactions
+- **Typography Accessibility** - Reduced motion support, high contrast fallbacks, print optimization
+
+### 🛠️ Technical
+- **Performance Maintained** - 189kB bundle size preserved (under 269kB budget)
+- **Zero Breaking Changes** - All existing functionality preserved through conservative CSS-only approach
+- **Cross-browser Support** - Webkit prefixes and standard properties for maximum compatibility
+- **Development Process** - Incremental testing, phase-based implementation, clean git workflow
+
+### 📊 Impact
+- **Enhanced Brand Presence** - More prominent logo and professional glass morphism design
+- **Improved User Experience** - Better visual hierarchy and enhanced readability
+- **Development Efficiency** - Reusable typography utility classes and consistent design system
+
+## [v0.5.3] - 2025-08-16g
 
 All notable changes to the Effuse Labs website project will be documented in this file.
 
