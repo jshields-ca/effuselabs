@@ -69,7 +69,8 @@ const MobileMenu: React.FC<{
   isOpen: boolean
   onClose: () => void
   header: HeaderContent
-}> = ({ isOpen, onClose, header }) => {
+  navLinks: Array<{ label: string; href: string }>
+}> = ({ isOpen, onClose, header, navLinks }) => {
   return (
     <div>
       {isOpen && (
@@ -116,14 +117,17 @@ const MobileMenu: React.FC<{
               {/* Navigation Links */}
               <nav className="flex-1 px-6 py-8">
                 <div className="flex flex-col space-y-6">
-                  {header.navLinks?.map(link => (
-                    <NavLink
+                  {navLinks.map(link => (
+                    <a
                       key={`${link.label}-${link.href}`}
                       href={link.href}
                       onClick={onClose}
+                      className="group relative text-effuse-off-black hover:text-effuse-teal transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 rounded-md px-3 py-2 font-inter tracking-wide uppercase"
+                      style={{ letterSpacing: '0.04em' }}
                     >
-                      <span className="text-lg">{link.label}</span>
-                    </NavLink>
+                      <span className="text-lg relative z-10">{link.label}</span>
+                      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                    </a>
                   ))}
                 </div>
 
@@ -174,13 +178,19 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-effuse-slate/96 backdrop-blur-md shadow-xl border-b border-effuse-slate/20'
-            : 'bg-effuse-slate/92 backdrop-blur-lg border-b border-effuse-slate/10'
+            ? 'shadow-xl border-b border-effuse-slate/30'
+            : 'border-b border-effuse-slate/20'
         )}
         aria-label="Primary Navigation"
         style={{
-          backdropFilter: 'blur(12px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+          background: isScrolled 
+            ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%)'
+            : 'linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.75) 100%)',
+          backdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
+          boxShadow: isScrolled 
+            ? '0 8px 32px rgba(15, 23, 42, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            : '0 4px 24px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -250,6 +260,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
         isOpen={isMobileMenuOpen}
         onClose={closeMobileMenu}
         header={header}
+        navLinks={navLinks}
       />
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
       <div className="h-14 lg:h-16" />

@@ -25,15 +25,13 @@ export function HeroSection({
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-effuse-teal/10 to-effuse-gold/5 z-10" />
 
       {/* Content: Left-aligned column layout for headline, description, CTA */}
-      <div
-        className="relative z-20 flex flex-col items-start justify-center gap-8 pb-24 text-left"
-        style={{ maxWidth: '700px', paddingLeft: 0, marginLeft: 0 }}
-      >
-        <AnimatedContainer
-          animation="emerge"
-          duration={1.5}
-          className="w-full space-y-8 text-left"
-        >
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-start justify-center gap-8 pb-24 text-left max-w-4xl">
+          <AnimatedContainer
+            animation="emerge"
+            duration={1.5}
+            className="w-full space-y-8 text-left"
+          >
           <AnimatedItem animation="reveal" delay={0.7} duration={1.5}>
             <H1 className="text-effuse-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6 tracking-tight font-inter drop-shadow-sm">
               {title}
@@ -57,6 +55,7 @@ export function HeroSection({
             </div>
           </AnimatedItem>
         </AnimatedContainer>
+        </div>
       </div>
     </section>
   )
