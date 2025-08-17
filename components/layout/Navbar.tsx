@@ -20,12 +20,13 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
     <a
       href={href}
       onClick={onClick}
-      className="group relative text-effuse-white hover:text-effuse-gold transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-2 py-1 font-inter tracking-wide uppercase"
+      className="group relative text-effuse-white hover:text-effuse-gold transition-all duration-300 font-medium focus-brand rounded-md px-3 py-2 font-inter tracking-wide uppercase interactive-lift"
       style={{ letterSpacing: '0.04em' }}
       tabIndex={0}
     >
-      <span className="relative z-10">{children}</span>
-      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+      <span className="relative z-10 transition-all duration-300 group-hover:transform group-hover:scale-110">{children}</span>
+      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-effuse-teal to-effuse-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left animate-pulse-glow" />
+      <span className="pointer-events-none absolute inset-0 rounded-md bg-effuse-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </a>
   )
 }
@@ -37,7 +38,7 @@ const MobileMenuButton: React.FC<{
   return (
     <button
       onClick={onClick}
-      className="md:hidden p-2 rounded-md text-effuse-white hover:text-effuse-gold hover:bg-effuse-slate/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2"
+      className="md:hidden p-3 rounded-lg text-effuse-white hover:text-effuse-gold hover:bg-effuse-slate/20 transition-all duration-300 focus-brand interactive-glow hover:scale-110 active:scale-95"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
@@ -45,19 +46,19 @@ const MobileMenuButton: React.FC<{
         <span
           className={cn(
             'absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
-            isOpen ? 'rotate-45 translate-y-2' : ''
+            isOpen ? 'rotate-45 translate-y-2 bg-effuse-gold' : ''
           )}
         />
         <span
           className={cn(
             'absolute top-3 left-0 w-6 h-0.5 bg-current transition-all duration-300',
-            isOpen ? 'opacity-0' : 'opacity-100'
+            isOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
           )}
         />
         <span
           className={cn(
             'absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
-            isOpen ? '-rotate-45 -translate-y-2' : ''
+            isOpen ? '-rotate-45 -translate-y-2 bg-effuse-gold' : ''
           )}
         />
       </div>

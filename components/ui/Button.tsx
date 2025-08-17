@@ -14,18 +14,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:scale-105 active:scale-95'
+      'inline-flex items-center justify-center font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none transform hover:scale-105 active:scale-95 hover:-translate-y-1 group'
 
     const variants = {
       primary:
-        'bg-effuse-gold text-effuse-off-black hover:bg-effuse-gold/90 hover:shadow-lg active:bg-effuse-gold/80 shadow-md hover:shadow-xl',
+        'bg-effuse-gold text-effuse-off-black hover:bg-effuse-gold/90 hover:shadow-gold-glow shadow-md hover:shadow-2xl animate-breathing group-hover:animate-none',
       secondary:
-        'border-2 border-effuse-gold text-effuse-gold bg-transparent hover:bg-effuse-gold hover:text-effuse-off-black active:bg-effuse-gold/90 hover:shadow-lg',
+        'border-2 border-effuse-gold text-effuse-gold bg-transparent hover:bg-effuse-gold hover:text-effuse-off-black active:bg-effuse-gold/90 hover:shadow-gold-glow',
       'sl-primary':
-        'bg-sl-blue text-white hover:bg-sl-purple hover:shadow-lg active:bg-sl-purple/90 shadow-md hover:shadow-xl transition-colors duration-200',
+        'bg-sl-blue text-white hover:bg-sl-purple hover:shadow-teal-glow shadow-md hover:shadow-2xl transition-colors duration-300',
       'sl-secondary':
-        'border-2 border-sl-blue text-sl-blue bg-white/90 hover:bg-sl-blue hover:text-white active:bg-sl-purple hover:shadow-lg backdrop-blur-sm',
-      dark: 'bg-effuse-off-black text-white hover:bg-effuse-slate hover:shadow-lg active:bg-effuse-slate/90 shadow-md hover:shadow-xl',
+        'border-2 border-sl-blue text-sl-blue bg-white/90 hover:bg-sl-blue hover:text-white active:bg-sl-purple hover:shadow-teal-glow backdrop-blur-sm',
+      dark: 'bg-effuse-off-black text-white hover:bg-effuse-slate hover:shadow-brand-medium shadow-md hover:shadow-2xl',
     }
 
     const sizes = {

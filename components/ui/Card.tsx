@@ -27,9 +27,9 @@ interface CardFooterProps extends BaseElementProps {
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ children, className, variant = 'default', padding = 'md', as: Component = 'div', ...props }, ref) => {
     const variants = {
-      default: 'bg-white border border-light-grey',
-      elevated: 'bg-white shadow-lg border border-light-grey',
-      outline: 'bg-transparent border-2 border-brand-teal-light'
+      default: 'bg-white border border-light-grey hover:shadow-brand-light hover:border-effuse-teal/20 hover:scale-[1.02] transition-all duration-300',
+      elevated: 'bg-white shadow-lg border border-light-grey hover:shadow-brand-medium hover:shadow-teal-glow hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300',
+      outline: 'bg-transparent border-2 border-brand-teal-light hover:border-effuse-teal hover:shadow-teal-glow hover:bg-effuse-teal/5 transition-all duration-300'
     }
     
     const paddings = {
@@ -42,7 +42,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
       className: cn(
-        'rounded-lg transition-all duration-200',
+        'rounded-lg transition-all duration-300 cursor-pointer group',
         variants[variant],
         paddings[padding],
         className
