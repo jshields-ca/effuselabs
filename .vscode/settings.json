@@ -79,18 +79,9 @@
   },
   // Tailwind CSS Enhanced IntelliSense
   "tailwindCSS.experimental.classRegex": [
-    [
-      "cva\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "cx\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ],
-    [
-      "clsx\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ]
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
@@ -110,11 +101,7 @@
   "gitlens.blame.compact": true,
   "gitlens.currentLine.enabled": true,
   // Accessibility (axe-linter)
-  "axe.enabledTags": [
-    "wcag2a",
-    "wcag2aa",
-    "wcag21aa"
-  ],
+  "axe.enabledTags": ["wcag2a", "wcag2aa", "wcag21aa"],
   // WebHint
   "webhint.enableTelemetry": "disabled",
   // MCP Linear Server (AI-assisted project management)

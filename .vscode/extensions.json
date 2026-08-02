@@ -4,36 +4,36 @@
     "bradlc.vscode-tailwindcss",
     "ms-vscode.vscode-typescript-next",
     "ms-vscode.vscode-json",
-    
+
     // React/Next.js Development
     "dsznajder.es7-react-js-snippets",
     "formulahendry.auto-rename-tag",
     "christian-kohler.path-intellisense",
-    
+
     // Code Quality & Formatting
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    
+
     // Git & Project Management
     "eamodio.gitlens",
     "linear.linear-connect",
-    
+
     // Accessibility & Quality
     "deque-systems.vscode-axe-linter",
     "webhint.vscode-webhint",
-    
+
     // Markdown & Documentation
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
-    
+
     // Performance & Debugging
     "firefox-devtools.vscode-firefox-debug",
     "ms-vscode.js-debug",
-    
+
     // AI & Developer Productivity
     "github.copilot",
     "github.copilot-chat",
-    
+
     // Sanity CMS (for Sprint 6)
     "sanity-io.vscode-sanity"
   ],

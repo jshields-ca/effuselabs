@@ -1,6 +1,6 @@
 # 🚀 Effuse Labs
 
-## *Intelligent Software for Small Business Growth*
+## _Intelligent Software for Small Business Growth_
 
 [![Version](https://img.shields.io/badge/version-0.5.3+-blue?style=for-the-badge)](./CHANGELOG.md)
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20desktop%20%7C%2098%20mobile-orange?style=for-the-badge)](https://web.dev/lighthouse/)
@@ -61,7 +61,7 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 ### Prerequisites
 
 - Node.js 18.0.0 or higher
-- npm or yarn package manager  
+- npm or yarn package manager
 - VS Code (recommended IDE with extension support)
 - Docker (optional, for containerized development)
 
@@ -126,7 +126,7 @@ npm run start   # Test production server locally
 #### Why Direct Next.js?
 
 - ⚡ Faster hot reload (200-500ms vs 2-5s)
-- 🐛 Better debugging and IDE integration  
+- 🐛 Better debugging and IDE integration
 - 💾 Lower resource usage
 - 🎯 Simpler daily workflow
 
@@ -143,7 +143,7 @@ This project is optimized for **Visual Studio Code** with a comprehensive extens
 When you open this workspace, VS Code will prompt you to install our recommended extensions:
 
 - **Core Development**: Tailwind CSS IntelliSense, ES7+ React/Redux snippets, Prettier, ESLint
-- **Project Management**: Linear integration, GitLens for enhanced Git workflows  
+- **Project Management**: Linear integration, GitLens for enhanced Git workflows
 - **Quality Assurance**: axe Accessibility Linter (WCAG AA), WebHint performance analysis
 - **AI & Productivity**: GitHub Copilot, Copilot Chat
 - **Documentation**: Markdown All-in-One, Markdown Lint
@@ -281,12 +281,12 @@ Accessibility is a core value at Effuse Labs. Our founder, Jeremy Shields, is a 
 
 ### Business & Brand
 
-- **[Business Overview](./docs/BUSINESS_OVERVIEW.md)**: Company mission and product details  
+- **[Business Overview](./docs/BUSINESS_OVERVIEW.md)**: Company mission and product details
 - **[Brand Style Guide](./docs/BRAND_STYLEGUIDE.md)**: Visual identity and brand guidelines
 
 ### Development Setup
 
-- **Project README** *(this file)*: Setup, workflow, and troubleshooting
+- **Project README** _(this file)_: Setup, workflow, and troubleshooting
 - **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)**: Three-environment pipeline setup
 - **[CHANGELOG](./CHANGELOG.md)**: Complete project history and version tracking
 
@@ -310,8 +310,8 @@ Contact the development team for access to production credentials.
 
 ### 🚀 Core Team
 
-| Role                 | Developer      | GitHub                                         | Contributions                         |
-| -------------------- | -------------- | ---------------------------------------------- | ------------------------------------- |
+| Role                  | Developer      | GitHub                                         | Contributions                         |
+| --------------------- | -------------- | ---------------------------------------------- | ------------------------------------- |
 | **🎯 Project Lead**   | Jeremy Shields | [@jshields-ca](https://github.com/jshields-ca) | Architecture, Strategy, Business      |
 | **🤖 AI Development** | AI Assistant   | -                                              | Implementation, Documentation, DevOps |
 

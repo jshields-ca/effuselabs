@@ -9,14 +9,14 @@ const siteSettings = defineType({
       name: 'brandName',
       title: 'Brand Name',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'navLinks',
       title: 'Navigation Links',
       type: 'array',
       of: [{ type: 'navLink' }],
-      validation: (Rule) => Rule.min(1),
+      validation: Rule => Rule.min(1),
     }),
     defineField({
       name: 'cta',
@@ -31,5 +31,3 @@ const siteSettings = defineType({
 })
 
 export default siteSettings
-
-

@@ -25,21 +25,34 @@ interface CardFooterProps extends BaseElementProps {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ children, className, variant = 'default', padding = 'md', as: Component = 'div', ...props }, ref) => {
+  (
+    {
+      children,
+      className,
+      variant = 'default',
+      padding = 'md',
+      as: Component = 'div',
+      ...props
+    },
+    ref
+  ) => {
     const variants = {
-      default: 'bg-white border border-light-grey hover:shadow-brand-light hover:border-effuse-teal/20 hover:scale-[1.02] transition-all duration-300',
-      elevated: 'bg-white shadow-lg border border-light-grey hover:shadow-brand-medium hover:shadow-teal-glow hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300',
-      outline: 'bg-transparent border-2 border-brand-teal-light hover:border-effuse-teal hover:shadow-teal-glow hover:bg-effuse-teal/5 transition-all duration-300'
+      default:
+        'bg-white border border-light-grey hover:shadow-brand-light hover:border-effuse-teal/20 hover:scale-[1.02] transition-all duration-300',
+      elevated:
+        'bg-white shadow-lg border border-light-grey hover:shadow-brand-medium hover:shadow-teal-glow hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300',
+      outline:
+        'bg-transparent border-2 border-brand-teal-light hover:border-effuse-teal hover:shadow-teal-glow hover:bg-effuse-teal/5 transition-all duration-300',
     }
-    
+
     const paddings = {
       none: 'p-0',
       sm: 'p-4',
       md: 'p-6',
       lg: 'p-8',
-      xl: 'p-10'
+      xl: 'p-10',
     }
-    
+
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
       className: cn(
         'rounded-lg transition-all duration-300 cursor-pointer group',
@@ -47,7 +60,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         paddings[padding],
         className
       ),
-      ...props
+      ...props,
     }
 
     return (
@@ -62,9 +75,9 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
       className: cn('mb-4', className),
-      ...props
+      ...props,
     }
-    
+
     return (
       <Component ref={ref} {...componentProps}>
         {children}
@@ -77,9 +90,9 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
       className: cn('mb-4', className),
-      ...props
+      ...props,
     }
-    
+
     return (
       <Component ref={ref} {...componentProps}>
         {children}
@@ -92,9 +105,9 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
       className: cn('mt-4 pt-4 border-t border-light-grey', className),
-      ...props
+      ...props,
     }
-    
+
     return (
       <Component ref={ref} {...componentProps}>
         {children}

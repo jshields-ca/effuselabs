@@ -9,3 +9,16 @@ build
 .env*
 package-lock.json
 yarn.lock
+
+# Sanity Studio is a separate npm project with its own Prettier config
+# (printWidth 100, bracketSpacing false). Formatting it from the root config
+# would fight that config on every save.
+studio-effuse.io
+
+# Generated Sanity runtime output
+.sanity
+
+# Playwright artifacts
+test-results
+playwright-report
+blob-report

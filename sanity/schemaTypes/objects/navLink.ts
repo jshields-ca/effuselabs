@@ -9,18 +9,16 @@ const navLink = defineType({
       name: 'label',
       title: 'Label',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'href',
       title: 'Href',
       type: 'string',
       description: 'Relative path or anchor (e.g., /about or #contact)',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     }),
   ],
 })
 
 export default navLink
-
-

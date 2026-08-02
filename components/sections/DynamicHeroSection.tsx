@@ -3,7 +3,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { H1, Text, Button } from '@/components/ui'
 // Use lightweight CSS animations instead of Framer Motion
-import { LightweightAnimatedContainer as AnimatedContainer, LightweightAnimatedItem as AnimatedItem } from '@/components/ui/LightweightAnimatedContainer'
+import {
+  LightweightAnimatedContainer as AnimatedContainer,
+  LightweightAnimatedItem as AnimatedItem,
+} from '@/components/ui/LightweightAnimatedContainer'
 
 // Three.js HeroCanvas removed for final performance optimization - using pure CSS background
 import { getHeroContent } from '@/lib/sanity/api'
@@ -14,8 +17,14 @@ interface DynamicHeroSectionProps {
   initialContent?: Omit<HeroSectionContent, '_id' | '_type'>
 }
 
-export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicHeroSectionProps) {
-  const [heroContent, setHeroContent] = useState<Omit<HeroSectionContent, '_id' | '_type'> | null>(initialContent || null)
+export function DynamicHeroSection({
+  fallbackContent,
+  initialContent,
+}: DynamicHeroSectionProps) {
+  const [heroContent, setHeroContent] = useState<Omit<
+    HeroSectionContent,
+    '_id' | '_type'
+  > | null>(initialContent || null)
   const [isLoading, setIsLoading] = useState(!initialContent)
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -30,13 +39,17 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
         console.error('Error loading hero content:', error)
         // Use fallback content if CMS fails
         setHeroContent({
-          title: fallbackContent?.title || "Intelligent Software for Small Business Growth",
-          subtitle: fallbackContent?.subtitle || "Effuse Labs",
-          description: fallbackContent?.description || "We pour out innovative solutions that transform operational burdens into your greatest strengths.",
-          primaryCtaText: fallbackContent?.primaryCtaText || "Get Started",
-          secondaryCtaText: fallbackContent?.secondaryCtaText || "Learn More",
-          primaryCtaHref: fallbackContent?.primaryCtaHref || "#contact",
-          secondaryCtaHref: fallbackContent?.secondaryCtaHref || "#about"
+          title:
+            fallbackContent?.title ||
+            'Intelligent Software for Small Business Growth',
+          subtitle: fallbackContent?.subtitle || 'Effuse Labs',
+          description:
+            fallbackContent?.description ||
+            'We pour out innovative solutions that transform operational burdens into your greatest strengths.',
+          primaryCtaText: fallbackContent?.primaryCtaText || 'Get Started',
+          secondaryCtaText: fallbackContent?.secondaryCtaText || 'Learn More',
+          primaryCtaHref: fallbackContent?.primaryCtaHref || '#contact',
+          secondaryCtaHref: fallbackContent?.secondaryCtaHref || '#about',
         })
       } finally {
         setIsLoading(false)
@@ -53,7 +66,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
     return (
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark">
         <div className="absolute inset-0 bg-gradient-to-t from-off-black/50 to-transparent z-10" />
-        
+
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-to-l from-brand-teal-light/20 to-transparent rounded-full blur-3xl transform rotate-12" />
@@ -96,46 +109,49 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
       <div className="absolute inset-0 z-0">
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-grey via-off-black to-brand-teal-dark" />
-        
+
         {/* Animated flowing gradients */}
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
             background: `
               linear-gradient(45deg, rgba(34, 197, 195, 0.1) 0%, transparent 50%),
               linear-gradient(-45deg, rgba(255, 193, 7, 0.1) 0%, transparent 50%)
             `,
-            animation: 'flow-horizontal 8s ease-in-out infinite alternate'
+            animation: 'flow-horizontal 8s ease-in-out infinite alternate',
           }}
         />
-        
+
         {/* Floating orbs animation */}
         <div className="absolute inset-0 opacity-20">
-          <div 
+          <div
             className="absolute w-96 h-96 rounded-full"
             style={{
-              background: 'radial-gradient(circle, rgba(34, 197, 195, 0.3) 0%, transparent 70%)',
+              background:
+                'radial-gradient(circle, rgba(34, 197, 195, 0.3) 0%, transparent 70%)',
               top: '20%',
               right: '-10%',
-              animation: 'float-slow 12s ease-in-out infinite'
+              animation: 'float-slow 12s ease-in-out infinite',
             }}
           />
-          <div 
+          <div
             className="absolute w-80 h-80 rounded-full"
             style={{
-              background: 'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
+              background:
+                'radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, transparent 70%)',
               bottom: '10%',
               left: '-5%',
-              animation: 'float-reverse 10s ease-in-out infinite'
+              animation: 'float-reverse 10s ease-in-out infinite',
             }}
           />
-          <div 
+          <div
             className="absolute w-64 h-64 rounded-full"
             style={{
-              background: 'radial-gradient(circle, rgba(34, 197, 195, 0.2) 0%, transparent 70%)',
+              background:
+                'radial-gradient(circle, rgba(34, 197, 195, 0.2) 0%, transparent 70%)',
               top: '60%',
               left: '70%',
-              animation: 'float-slow 15s ease-in-out infinite reverse'
+              animation: 'float-slow 15s ease-in-out infinite reverse',
             }}
           />
         </div>
@@ -160,9 +176,7 @@ export function DynamicHeroSection({ fallbackContent, initialContent }: DynamicH
 
               {/* Main headline */}
               <AnimatedItem animation="slideUp" delay={0.1}>
-                <H1 className="hero-title text-white">
-                  {heroContent.title}
-                </H1>
+                <H1 className="hero-title text-white">{heroContent.title}</H1>
               </AnimatedItem>
 
               {/* Description */}
