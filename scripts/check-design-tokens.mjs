@@ -104,11 +104,31 @@ const phantomPattern = new RegExp(
 )
 const hexPattern = /#[0-9a-fA-F]{3,8}\b/g
 
+/**
+ * Blanks out comments while preserving line numbers, so a hex or a token-shaped
+ * word discussed in prose is not reported as code. Without this, a comment
+ * explaining "React error #418" is flagged as a raw colour.
+ *
+ * `//` is only treated as a line comment when it is not part of a URL.
+ */
+function stripComments(source) {
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, block => block.replace(/[^\n]/g, ' '))
+    .split('\n')
+    .map(line => {
+      const match = line.match(/(^|[^:])\/\//)
+      if (!match) return line
+      const index = match.index + match[1].length
+      return line.slice(0, index)
+    })
+    .join('\n')
+}
+
 for (const file of files) {
   // The token file is the one place allowed to name colours literally.
   if (file.includes('/lib/design/')) continue
 
-  const lines = readFileSync(file, 'utf8').split('\n')
+  const lines = stripComments(readFileSync(file, 'utf8')).split('\n')
   lines.forEach((text, i) => {
     for (const match of text.matchAll(phantomPattern)) {
       addError(

@@ -1,60 +1,82 @@
-'use client'
-
-import {
-  LightweightAnimatedContainer as AnimatedContainer,
-  LightweightAnimatedItem as AnimatedItem,
-  Button,
-  H1,
-  Text,
-} from '@/components/ui'
-// ...existing code...
+import { AccentBar, Button, LuminousField } from '@/components/ui'
+import { brand } from '@/content/site'
+import { ArrowRight } from 'lucide-react'
+import React from 'react'
 
 interface HeroSectionProps {
+  eyebrow?: string
   title?: string
   description?: string
+  primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
 }
 
+/**
+ * The hero.
+ *
+ * A server component. It holds no state and no event handlers, so none of it
+ * needs to ship to the client — the luminous background is CSS and the reveal
+ * is a CSS animation.
+ *
+ * The composition is deliberately asymmetric: copy pinned left, light entering
+ * from the upper left and pooling to the right. A centred stack over a gradient
+ * is what every site template produces, and it is what this hero did before.
+ */
 export function HeroSection({
-  title = 'Intelligent Software for Small Business Growth',
-  description = 'We pour out innovative solutions that transform operational burdens into competitive strengths for small businesses.',
+  eyebrow = 'Vertical SaaS · Self-hosted & open source',
+  title = 'Intelligent software for small business growth.',
+  description = 'We pour out innovative solutions that turn operational burdens into competitive strengths — for the businesses larger vendors overlook.',
+  primaryCta = { label: 'Start a conversation', href: '#contact' },
+  secondaryCta = { label: 'See our work', href: '#products' },
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-effuse-slate via-effuse-medium-grey to-effuse-teal">
-      {/* Enhanced background overlay with sophisticated gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-effuse-off-black/60 via-effuse-off-black/20 to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-effuse-teal/10 to-effuse-gold/5 z-10" />
+    <section
+      className="relative isolate flex min-h-[92svh] items-center overflow-hidden bg-surface-deep"
+      aria-labelledby="hero-heading"
+    >
+      <LuminousField intensity="hero" />
 
-      {/* Content: Left-aligned column layout for headline, description, CTA */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start justify-center gap-8 pb-24 text-left max-w-4xl">
-          <AnimatedContainer
-            animation="emerge"
-            duration={1.5}
-            className="w-full space-y-8 text-left"
+      {/*
+        Grounding wash so copy never sits directly on a bright part of the
+        field. This is what keeps contrast predictable instead of dependent on
+        where a gradient happens to land.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-surface-deep via-surface-deep/70 to-transparent"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="motion-safe:animate-fade-in mb-6 flex items-center gap-3 text-eyebrow font-medium uppercase text-effuse-teal">
+            <AccentBar size="sm" variant="effuse" />
+            {eyebrow}
+          </p>
+
+          <h1
+            id="hero-heading"
+            className="motion-safe:animate-slide-up text-display font-bold text-effuse-white"
           >
-            <AnimatedItem animation="reveal" delay={0.7} duration={1.5}>
-              <H1 className="text-effuse-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6 tracking-tight font-inter drop-shadow-sm">
-                {title}
-              </H1>
-            </AnimatedItem>
-            <AnimatedItem animation="slideUp" delay={1.0} duration={1.2}>
-              <Text className="font-inter font-normal text-xl sm:text-2xl lg:text-2xl text-effuse-white/90 max-w-2xl leading-relaxed mb-10 drop-shadow-sm">
-                {description}
-              </Text>
-            </AnimatedItem>
-            <AnimatedItem animation="scale" delay={1.3} duration={1.2}>
-              <div className="flex justify-start items-center mb-8">
-                <Button
-                  variant="primary"
-                  href="#waitlist"
-                  aria-label="Join the Waitlist"
-                  className="bg-effuse-gold text-effuse-off-black font-inter font-semibold px-8 py-3 text-lg rounded-lg shadow-lg transition-all duration-200 hover:bg-effuse-gold/90 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-                >
-                  Join the Waitlist
-                </Button>
-              </div>
-            </AnimatedItem>
-          </AnimatedContainer>
+            {title}
+          </h1>
+
+          <p className="motion-safe:animate-slide-up mt-8 max-w-2xl text-body-lg text-effuse-light-grey [animation-delay:120ms] [animation-fill-mode:backwards]">
+            {description}
+          </p>
+
+          <div className="motion-safe:animate-slide-up mt-10 flex flex-col gap-4 [animation-delay:240ms] [animation-fill-mode:backwards] sm:flex-row sm:items-center">
+            <Button variant="primary" size="lg" href={primaryCta.href}>
+              {primaryCta.label}
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+            </Button>
+            <Button variant="secondary" size="lg" href={secondaryCta.href}>
+              {secondaryCta.label}
+            </Button>
+          </div>
+
+          <p className="motion-safe:animate-fade-in mt-12 text-body-sm text-effuse-light-grey/70 [animation-delay:400ms] [animation-fill-mode:backwards]">
+            {brand.name} · Winnipeg, Manitoba
+          </p>
         </div>
       </div>
     </section>

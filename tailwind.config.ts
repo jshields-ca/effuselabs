@@ -9,6 +9,9 @@ import {
   radii,
   shadows,
   status,
+  surface,
+  typeScale,
+  typeSetting,
   typography,
 } from './lib/design/tokens'
 
@@ -39,10 +42,31 @@ const config: Config = {
         'lumina-gradient-start': product.lumina.gold,
         'lumina-gradient-end': product.lumina.coral,
 
+        // Dark canvas. The site is dark-first; these are the surfaces the
+        // luminous work is poured onto.
+        'surface-deep': surface.deep,
+        'surface-base': surface.base,
+        'surface-raised': surface.raised,
+        'surface-border': surface.border,
+
         // Semantic status
         success: status.success,
         warning: status.warning,
         error: status.error,
+      },
+
+      // Type scale. There was none — the homepage alone made eighteen separate
+      // size decisions at their call sites.
+      fontSize: {
+        display: [typeScale.display, typeSetting.display],
+        h1: [typeScale.h1, typeSetting.heading],
+        h2: [typeScale.h2, typeSetting.heading],
+        h3: [typeScale.h3, typeSetting.heading],
+        h4: [typeScale.h4, typeSetting.heading],
+        'body-lg': [typeScale.bodyLg, typeSetting.body],
+        body: [typeScale.body, typeSetting.body],
+        'body-sm': [typeScale.bodySm, typeSetting.body],
+        eyebrow: [typeScale.eyebrow, typeSetting.eyebrow],
       },
 
       // Gradients belong here, not in `colors`. As colour values Tailwind

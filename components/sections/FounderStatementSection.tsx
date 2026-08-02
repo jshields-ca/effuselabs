@@ -1,8 +1,5 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { H2, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { H2, Reveal, Text } from '@/components/ui'
 import Image from 'next/image'
 import React from 'react'
 
@@ -24,8 +21,8 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
   imageAlt = 'Portrait of Jeremy Shields',
 }) => {
   return (
-    <SectionContainer id={id} background="dark" padding="lg">
-      <Animated animation="slideUp">
+    <SectionContainer id={id} background="deep" padding="lg">
+      <Reveal>
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           {/* Visual area: photo or signature mark */}
           <div className="order-2 md:order-1">
@@ -71,7 +68,7 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
             </blockquote>
           </div>
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

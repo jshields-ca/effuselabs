@@ -1,21 +1,19 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { H2, H3, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { H2, H3, Reveal, Text } from '@/components/ui'
 import React from 'react'
+import { Check, type LucideIcon } from 'lucide-react'
 
 export interface PainSolutionSectionProps {
   id?: string
   problem: {
     heading: string
     description: string
-    icon?: string
+    icon?: LucideIcon
   }
   solution: {
     heading: string
     description: string
-    icon?: string
+    icon?: LucideIcon
   }
   bullets?: string[]
   background?: 'light' | 'dark'
@@ -33,21 +31,24 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
   return (
     <SectionContainer
       id={id}
-      background={isDark ? 'dark' : 'white'}
+      background={isDark ? 'base' : 'white'}
       padding="lg"
     >
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Problem & Solution Grid */}
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 mb-12">
             {/* Problem Side */}
             <div className="text-center lg:text-left">
               {problem.icon && (
-                <div
-                  className="text-6xl mb-4 flex justify-center lg:justify-start"
-                  aria-hidden
-                >
-                  {problem.icon}
+                <div className="mb-4 flex justify-center lg:justify-start">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-medium-grey/10 text-effuse-medium-grey ring-1 ring-effuse-medium-grey/20">
+                    <problem.icon
+                      className="h-7 w-7"
+                      aria-hidden="true"
+                      strokeWidth={1.75}
+                    />
+                  </span>
                 </div>
               )}
               <H3
@@ -57,7 +58,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
                 }
               >
                 {problem.description}
@@ -67,11 +68,14 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
             {/* Solution Side */}
             <div className="text-center lg:text-left">
               {solution.icon && (
-                <div
-                  className="text-6xl mb-4 flex justify-center lg:justify-start"
-                  aria-hidden
-                >
-                  {solution.icon}
+                <div className="mb-4 flex justify-center lg:justify-start">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
+                    <solution.icon
+                      className="h-7 w-7"
+                      aria-hidden="true"
+                      strokeWidth={1.75}
+                    />
+                  </span>
                 </div>
               )}
               <H3
@@ -81,7 +85,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
                 }
               >
                 {solution.description}
@@ -91,33 +95,33 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
 
           {/* Benefits Bullets */}
           {bullets.length > 0 && (
-            <Animated animation="fadeIn" delay={0.2}>
+            <Reveal order={2}>
               <div className="text-center">
                 <H2 className={`mb-8 ${isDark ? 'text-white' : ''}`}>
                   Key Benefits
                 </H2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
                   {bullets.map((bullet, index) => (
-                    <Animated
-                      key={index}
-                      animation="fadeIn"
-                      delay={0.1 * (index + 3)}
-                    >
+                    <Reveal key={index} order={2}>
                       <div
                         className={`p-4 rounded-lg ${
                           isDark
-                            ? 'bg-slate-800/50 border border-slate-600/30'
-                            : 'bg-slate-50/80 border border-effuse-light-grey/30'
+                            ? 'bg-surface-raised border border-surface-border'
+                            : 'bg-effuse-light-grey/60 border border-effuse-light-neutral'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className="text-xl text-effuse-gold" aria-hidden>
-                            ✓
+                            <Check
+                              className="h-4 w-4"
+                              aria-hidden="true"
+                              strokeWidth={2.5}
+                            />
                           </div>
                           <Text
                             className={`flex-1 text-sm ${
                               isDark
-                                ? 'text-slate-300'
+                                ? 'text-effuse-light-grey'
                                 : 'text-effuse-off-black'
                             }`}
                           >
@@ -125,14 +129,14 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                           </Text>
                         </div>
                       </div>
-                    </Animated>
+                    </Reveal>
                   ))}
                 </div>
               </div>
-            </Animated>
+            </Reveal>
           )}
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

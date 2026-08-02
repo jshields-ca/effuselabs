@@ -37,8 +37,10 @@ npm run test:e2e       # Playwright
   details and social links live in `content/site.ts`.
 - `lib/design/tokens.ts` — every colour, gradient, radius, shadow and font.
 - `scripts/check-design-tokens.mjs` — enforces the token rules.
-- `e2e/` — Playwright. `ROUTES` in `smoke.spec.ts` is the route inventory; add
-  a route there and every smoke check applies to it automatically.
+- `e2e/` — Playwright. `ROUTES` in `e2e/routes.ts` is the route inventory; add
+  a route there and both the smoke checks and the visual baselines apply to it
+  automatically. It sits outside `*.spec.ts` because Playwright refuses to let
+  one test file import another.
 
 ## Non-negotiables
 
@@ -94,17 +96,26 @@ Each of these is here because it already went wrong in this repo.
 
 8. **Brand hierarchy.** Effuse Labs owns slate → teal, with gold as the spark
    of insight. Lumina owns gold → coral. A product's palette never becomes the
-   firm's. The corporate `AccentBar` currently defaults to Lumina's gradient —
-   the parent wearing its product's colours — which is exactly the mistake this
-   rule exists to prevent.
+   firm's.
+
+   `AccentBar` used to default to `variant='lumina'`, so the parent brand
+   rendered in its product's colours. That is fine with one product and
+   incoherent with two — nothing would distinguish Effuse Labs from Lumina, or
+   from whatever ships next. It now defaults to `effuse`; use `lumina` only in
+   Lumina's own context.
 
 ## Testing
 
 - `e2e/smoke.spec.ts` runs against a **production build**, not `next dev`. The
   defects this project needs caught — dead links, unstyled elements, missing
   routes — only reproduce in the output that ships.
-- Add new routes to the exported `ROUTES` list rather than writing new
+- Add new routes to `ROUTES` in `e2e/routes.ts` rather than writing new
   per-route tests.
+- `e2e/visual.spec.ts` holds screenshot baselines, taken with reduced motion
+  forced so they are deterministic. An intentional visual change fails it by
+  design: look at the diff image, confirm it is what you meant, then
+  `npm run test:e2e -- --update-snapshots`. Updating baselines without reading
+  the diff turns the check into a formality.
 - Chromium is preinstalled in some sandboxes. If `@playwright/test` expects a
   different build, set `PLAYWRIGHT_CHROMIUM_PATH` rather than running
   `playwright install`.
@@ -148,6 +159,13 @@ CTAs and sixty broken utility classes.
   need to be `@apply`-able.
 - **Turbopack writes CSS to `.next/static/chunks/`**, not `.next/static/css/`.
   Tooling that assumes the old path silently finds nothing.
+- **Unlayered CSS beats Tailwind utilities in v4.** Tailwind v4 puts utilities
+  in cascade layers, and an unlayered rule wins over a layered one regardless
+  of specificity. A bare `* { padding: 0 }` in `globals.css` therefore killed
+  every spacing utility on the site, and a `.font-inter { font-weight: 700 }`
+  beat the `font-normal` beside it in the same class string. Both were harmless
+  under v3. Anything added to `globals.css` goes in `@layer base` or
+  `@utility`.
 - **Clear `.next` after deleting a route.** `tsconfig.json` includes
   `.next/types/**`, so stale generated types fail `type-check` on a route that
   no longer exists.

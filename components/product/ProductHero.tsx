@@ -1,6 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { Button, H1, H2, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { Button, H1, H2, Reveal, Text } from '@/components/ui'
 import Image from 'next/image'
 import React from 'react'
 
@@ -34,7 +33,7 @@ const ProductHero: React.FC<ProductHeroProps> = ({
   return (
     <SectionContainer
       id={id}
-      background={isDark ? 'dark' : 'white'}
+      background={isDark ? 'base' : 'white'}
       padding="lg"
     >
       {accentGradient ? (
@@ -47,7 +46,7 @@ const ProductHero: React.FC<ProductHeroProps> = ({
         />
       ) : null}
 
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-5xl mx-auto text-center">
           {logoSrc ? (
             <div className="mb-6 flex justify-center">
@@ -92,7 +91,7 @@ const ProductHero: React.FC<ProductHeroProps> = ({
             </Button>
           </div>
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

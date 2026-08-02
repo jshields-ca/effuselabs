@@ -52,6 +52,58 @@ export const brand = {
 } as const
 
 /**
+ * Slate ramp — the dark canvas.
+ *
+ * The site is dark-first: light reads as light only against dark, and the whole
+ * visual direction is light poured onto a surface. Brand slate sits at 700, in
+ * the middle, so there is room for genuinely deep surfaces beneath it and
+ * raised surfaces above it. `deep` is the page canvas; `raised` is a card
+ * sitting on it; `overlay` is a control sitting on that.
+ */
+export const surface = {
+  /** Page canvas. The darkest surface — everything else sits on this. */
+  deep: '#12151B',
+  /** Default section background on the dark canvas. */
+  base: '#191D25',
+  /** Cards and panels raised off the canvas. */
+  raised: '#232833',
+  /** Brand slate. Controls and borders that need to read as brand. */
+  brand: '#2E3440',
+  /** Hairline borders on dark surfaces. */
+  border: '#3C4453',
+} as const
+
+/**
+ * Emission — colour used as *light* rather than as fill.
+ *
+ * The brand name is effundere, "to pour out", and the logo is a shell peeling
+ * back to reveal a core. So gradients and glows are treated as emitted light:
+ * low-alpha colour over the dark canvas, never a flat block. These values are
+ * deliberately transparent; they are meant to be layered.
+ */
+export const emission = {
+  teal: 'rgb(34 197 195 / 0.28)',
+  tealSoft: 'rgb(34 197 195 / 0.12)',
+  gold: 'rgb(255 210 90 / 0.22)',
+  goldSoft: 'rgb(255 210 90 / 0.10)',
+  /** The faint wash that keeps a dark section from reading as flat black. */
+  ambient: 'rgb(34 197 195 / 0.05)',
+} as const
+
+/**
+ * Grain opacity.
+ *
+ * A fine noise overlay over gradients so they read as atmosphere rather than as
+ * a CSS gradient. Kept very low — above about 0.05 it stops looking like film
+ * and starts looking like a dirty screen.
+ */
+export const grain = {
+  subtle: 0.015,
+  default: 0.03,
+  strong: 0.045,
+} as const
+
+/**
  * Product palettes. Each product owns its accent; all of them sit inside the
  * Effuse Labs slate/teal frame.
  */
@@ -125,6 +177,44 @@ export const typography = {
   },
 } as const
 
+/**
+ * Type scale.
+ *
+ * There was no scale: `app/page.tsx` alone made eighteen separate size
+ * decisions, each one chosen at its call site. Sizes now come from here.
+ *
+ * Every step is a `clamp()` so type is fluid between the minimum and the
+ * maximum rather than jumping at breakpoints. The pairs are
+ * [min, preferred, max]; the preferred term is viewport-relative, which is what
+ * makes a display heading feel deliberate on a phone and commanding on a
+ * desktop.
+ *
+ * `display` is for the hero only — one per page, at most.
+ */
+export const typeScale = {
+  display: 'clamp(2.75rem, 1.5rem + 6vw, 6rem)',
+  h1: 'clamp(2.25rem, 1.5rem + 3.5vw, 4rem)',
+  h2: 'clamp(1.75rem, 1.25rem + 2.2vw, 2.75rem)',
+  h3: 'clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem)',
+  h4: 'clamp(1.125rem, 1rem + 0.5vw, 1.375rem)',
+  bodyLg: 'clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)',
+  body: '1rem',
+  bodySm: '0.875rem',
+  eyebrow: '0.8125rem',
+} as const
+
+/**
+ * Line heights and tracking, paired to the scale above. Display type needs
+ * tighter leading and negative tracking to hold together at large sizes; body
+ * type needs the opposite.
+ */
+export const typeSetting = {
+  display: { lineHeight: '0.95', letterSpacing: '-0.03em' },
+  heading: { lineHeight: '1.1', letterSpacing: '-0.02em' },
+  body: { lineHeight: '1.65', letterSpacing: '0' },
+  eyebrow: { lineHeight: '1.2', letterSpacing: '0.12em' },
+} as const
+
 export const radii = {
   none: '0',
   sm: '0.25rem',
@@ -164,6 +254,54 @@ export const contrastPairs: ReadonlyArray<{
     name: 'body on white',
     foreground: neutral.offBlack,
     background: neutral.white,
+  },
+
+  // Dark canvas. Every one of these is a surface real copy sits on, so all are
+  // held to the body threshold unless explicitly marked large.
+  {
+    name: 'white on deep canvas',
+    foreground: neutral.white,
+    background: surface.deep,
+  },
+  {
+    name: 'white on base canvas',
+    foreground: neutral.white,
+    background: surface.base,
+  },
+  {
+    name: 'white on raised card',
+    foreground: neutral.white,
+    background: surface.raised,
+  },
+  {
+    name: 'light grey on deep canvas',
+    foreground: neutral.lightGrey,
+    background: surface.deep,
+  },
+  {
+    name: 'light grey on raised card',
+    foreground: neutral.lightGrey,
+    background: surface.raised,
+  },
+  {
+    name: 'teal on deep canvas',
+    foreground: brand.teal,
+    background: surface.deep,
+  },
+  {
+    name: 'teal on raised card',
+    foreground: brand.teal,
+    background: surface.raised,
+  },
+  {
+    name: 'gold on deep canvas',
+    foreground: brand.gold,
+    background: surface.deep,
+  },
+  {
+    name: 'gold on raised card',
+    foreground: brand.gold,
+    background: surface.raised,
   },
   {
     name: 'body on light grey',

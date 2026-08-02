@@ -1,98 +1,81 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
 
+export type AccentBarVariant = 'effuse' | 'teal' | 'lumina'
+
 export interface AccentBarProps {
-  /** Size variant of the accent bar */
   size?: 'sm' | 'md' | 'lg'
-  /** Color variant */
-  variant?: 'lumina' | 'teal' | 'coral'
-  /** Custom className for additional styling */
+  variant?: AccentBarVariant
   className?: string
-  /** Position relative to parent element */
   position?: 'top' | 'bottom' | 'left' | 'center' | 'inline'
-  /** Whether to animate the bar */
   animated?: boolean
 }
 
 /**
- * AccentBar - A branded accent element for emphasis and visual hierarchy
+ * A branded accent rule.
  *
- * Features:
- * - Multiple size and color variants
- * - Flexible positioning options
- * - Optional animations
- * - Accessibility compliant (decorative element)
- * - Responsive design
+ * The default is `effuse`, a teal-to-gold gradient — the shell opening onto the
+ * core, which is what the Hatching Core logo depicts. It previously defaulted
+ * to `lumina`, so the firm's own accent was rendered in its product's colours.
+ * That is fine with one product and incoherent with two: nothing would
+ * distinguish Effuse Labs from Lumina, or from whatever ships next.
+ *
+ * Use `lumina` only in Lumina's own context — its product page, or its card on
+ * the homepage.
+ *
+ * Decorative: hidden from assistive technology.
  */
 export const AccentBar: React.FC<AccentBarProps> = ({
   size = 'md',
-  variant = 'lumina',
+  variant = 'effuse',
   className,
   position = 'inline',
   animated = false,
-  ...props
 }) => {
-  const baseClasses = 'accent-bar'
-
   const sizeClasses = {
     sm: 'h-0.5 w-12',
     md: 'h-1 w-16',
     lg: 'h-1.5 w-24',
   }
 
-  const variantClasses = {
-    lumina: 'accent-bar',
-    teal: 'accent-bar-teal',
-    coral: 'bg-gradient-to-r from-effuse-coral to-lumina-coral',
+  const variantClasses: Record<AccentBarVariant, string> = {
+    effuse: 'bg-gradient-to-r from-effuse-teal to-effuse-gold',
+    teal: 'bg-effuse-teal',
+    lumina: 'bg-gradient-to-r from-lumina-gold to-lumina-coral',
   }
 
   const positionClasses = {
     top: 'absolute -top-2 left-0',
     bottom: 'absolute -bottom-2 left-0',
-    left: 'absolute top-1/2 -left-2 transform -translate-y-1/2 rotate-90',
+    left: 'absolute top-1/2 -left-2 -translate-y-1/2 rotate-90',
     center: 'mx-auto',
     inline: '',
   }
 
-  const animationClasses = animated
-    ? 'animate-scale transition-all duration-300 ease-out'
-    : ''
-
-  // For positioned accents, wrap in a container
-  if (position !== 'inline') {
-    return (
-      <div className="relative">
-        <div
-          role="presentation"
-          aria-hidden="true"
-          className={cn(
-            baseClasses,
-            sizeClasses[size],
-            variantClasses[variant],
-            positionClasses[position],
-            animationClasses,
-            className
-          )}
-          {...props}
-        />
-      </div>
-    )
-  }
-
-  return (
-    <div
-      role="presentation"
+  /*
+   * A <span>, not a <div>. This is decorative phrasing-level content and is
+   * used inside <p> — a <div> there is invalid HTML, which browsers silently
+   * restructure, producing a hydration mismatch (React error #418) rather than
+   * anything that looks like a markup problem.
+   */
+  const bar = (
+    <span
       aria-hidden="true"
       className={cn(
-        baseClasses,
+        'block rounded-full',
         sizeClasses[size],
         variantClasses[variant],
         positionClasses[position],
-        animationClasses,
+        animated && 'motion-safe:animate-scale',
         className
       )}
-      {...props}
     />
+  )
+
+  return position === 'inline' || position === 'center' ? (
+    bar
+  ) : (
+    <span className="relative block">{bar}</span>
   )
 }
 

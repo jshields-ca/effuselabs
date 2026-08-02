@@ -1,13 +1,5 @@
 import { expect, test, type ConsoleMessage } from '@playwright/test'
-
-/**
- * Every route the site serves. Add to this list when a route is added — the
- * checks below then apply to it automatically.
- */
-export const ROUTES = [
-  { path: '/', name: 'home' },
-  { path: '/products/lumina', name: 'Lumina product page' },
-] as const
+import { ROUTES } from './routes'
 
 /**
  * Browser console noise that is not the site's fault. Keep this list short and
@@ -86,4 +78,54 @@ for (const route of ROUTES) {
 test('unknown routes return 404', async ({ page }) => {
   const response = await page.goto('/this-route-does-not-exist')
   expect(response!.status()).toBe(404)
+})
+
+/**
+ * A direct assertion on the two regressions above, independent of any
+ * baseline image.
+ *
+ * The screenshots would catch a recurrence, but only as "something moved" — a
+ * reviewer would still have to work out what. These name the failure, so a
+ * future breakage reports itself as "horizontal padding is 0px" rather than as
+ * a diff to squint at. They also keep working before any baseline exists.
+ */
+test.describe('cascade-layer regressions', () => {
+  test('Tailwind spacing utilities are not overridden', async ({ page }) => {
+    await page.goto('/')
+
+    const paddingLeft = await page.evaluate(() => {
+      const probe = document.createElement('div')
+      probe.className = 'px-4'
+      document.body.appendChild(probe)
+      const value = getComputedStyle(probe).paddingLeft
+      probe.remove()
+      return value
+    })
+
+    expect(
+      paddingLeft,
+      'px-4 must emit real padding. A zero here means an unlayered rule is ' +
+        'beating Tailwind utilities again — check app/globals.css.'
+    ).not.toBe('0px')
+  })
+
+  test('body text is not forced bold', async ({ page }) => {
+    await page.goto('/')
+
+    const weights = await page.evaluate(() =>
+      Array.from(document.querySelectorAll('p'))
+        .filter(p => (p.textContent ?? '').trim().length > 40)
+        .map(p => Number(getComputedStyle(p).fontWeight))
+    )
+
+    expect(
+      weights.length,
+      'expected some body copy on the page'
+    ).toBeGreaterThan(0)
+    expect(
+      Math.max(...weights),
+      'body paragraphs must not render at 700. An unlayered font-weight rule ' +
+        'overriding font-normal is how this broke before.'
+    ).toBeLessThan(600)
+  })
 })

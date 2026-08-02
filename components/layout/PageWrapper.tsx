@@ -26,7 +26,15 @@ export const PageWrapper = ({
   return (
     <div
       className={
-        `min-h-screen flex flex-col overflow-x-clip bg-white` +
+        /*
+         * No background here. This wrapper spans the whole app, and setting
+         * `bg-white` on it put an opaque white sheet between the body's dark
+         * canvas and everything above it — so the translucent header
+         * composited against white and read as flat dull grey rather than
+         * smoked glass over a dark page. The canvas colour belongs on `body`
+         * (see globals.css), and sections paint their own surfaces on top.
+         */
+        `min-h-screen flex flex-col overflow-x-clip` +
         (className ? ` ${className}` : '')
       }
     >
