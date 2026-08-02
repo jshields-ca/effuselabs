@@ -63,10 +63,10 @@ npm run start
    ```bash
    # Check if port is in use
    netstat -an | findstr :3000
-   
+
    # Kill existing processes if needed
    taskkill /F /IM node.exe
-   
+
    # Try alternative URL
    # http://127.0.0.1:3000
    ```
@@ -99,7 +99,7 @@ NEXT_TELEMETRY_DISABLED=1
 **With Vercel:**
 
 - 🔄 **Automatic preview deployments** for every branch
-- 🔄 **Automatic production deployments** on main branch push  
+- 🔄 **Automatic production deployments** on main branch push
 - 🔄 **No manual commands** - just push your code
 - 🔄 **Environment variables** managed in Vercel dashboard
 
@@ -196,5 +196,5 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 **Vercel Dashboard Settings:**
 
 - **Production**: Applied to `main` branch deployments
-- **Preview**: Applied to all other branch deployments  
+- **Preview**: Applied to all other branch deployments
 - **Development**: For local development (not used by Vercel)

@@ -5,6 +5,7 @@ The Product Page Template System provides a comprehensive set of reusable compon
 ## Overview
 
 The system consists of:
+
 - **ProductPageTemplate**: Main layout component
 - **ProductHero**: Hero section with branding and CTA
 - **PainSolutionSection**: Problem/solution comparison
@@ -20,8 +21,7 @@ Main layout wrapper that provides consistent structure for product pages.
 
 ```tsx
 import ProductPageTemplate from '@/components/product/ProductPageTemplate'
-
-<ProductPageTemplate
+;<ProductPageTemplate
   hero={{
     productName: 'Product Name',
     headline: 'Main value proposition',
@@ -29,7 +29,7 @@ import ProductPageTemplate from '@/components/product/ProductPageTemplate'
     primaryCtaLabel: 'Get Started',
     primaryCtaHref: '/signup',
     background: 'light',
-    accentGradient: { from: '#FFD25A', to: '#FF7F50' }
+    accentGradient: { from: '#FFD25A', to: '#FF7F50' },
   }}
 >
   {/* Additional sections as children */}
@@ -41,6 +41,7 @@ import ProductPageTemplate from '@/components/product/ProductPageTemplate'
 Hero section with optional logo, headlines, and CTA.
 
 **Props:**
+
 - `logoSrc?: string` - Product logo URL
 - `productName?: string` - Product name (H2)
 - `headline: string` - Main headline (H1)
@@ -55,6 +56,7 @@ Hero section with optional logo, headlines, and CTA.
 Presents a problem/solution comparison with optional benefits.
 
 **Props:**
+
 - `problem: { heading: string; description: string; icon?: string }`
 - `solution: { heading: string; description: string; icon?: string }`
 - `bullets?: string[]` - Benefits list
@@ -65,6 +67,7 @@ Presents a problem/solution comparison with optional benefits.
 Showcases product features in grid or checklist format.
 
 **Props:**
+
 - `items: FeatureItem[]` - Array of features with icon, title, description
 - `variant?: 'grid' | 'checklist'` - Layout style
 - `screenshotSrc?: string` - Optional product screenshot
@@ -75,6 +78,7 @@ Showcases product features in grid or checklist format.
 Displays pricing tiers or placeholder content.
 
 **Props:**
+
 - `tiers?: PricingTier[]` - Pricing tier data
 - `placeholder?: { heading: string; description: string; ctaLabel?: string; ctaHref?: string }`
 - `background?: 'light' | 'dark'`
@@ -84,6 +88,7 @@ Displays pricing tiers or placeholder content.
 Final call-to-action with primary and optional secondary buttons.
 
 **Props:**
+
 - `heading?: string` - CTA headline
 - `description?: string` - Supporting text
 - `primaryCta: { label: string; href: string }`
@@ -108,6 +113,7 @@ Final call-to-action with primary and optional secondary buttons.
 ## Usage Examples
 
 See live examples:
+
 - [Lumina Product Page](/products/lumina) - Salon management platform
 - [SilentLedger Product Page](/products/silentledger) - Privacy-focused financial management
 

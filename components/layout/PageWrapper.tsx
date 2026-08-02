@@ -16,26 +16,31 @@ export const PageWrapper = async ({
   children,
   showNavbar = true,
   showFooter = true,
-  className = ''
+  className = '',
 }: PageWrapperProps) => {
   const header = await getHeaderContent()
 
   return (
-    <div className={`min-h-screen flex flex-col overflow-x-clip bg-white` + (className ? ` ${className}` : '')}>
+    <div
+      className={
+        `min-h-screen flex flex-col overflow-x-clip bg-white` +
+        (className ? ` ${className}` : '')
+      }
+    >
       {/* Scroll Progress Indicator */}
       <ScrollIndicator variant="linear" color="brand" />
-      
+
       {/* Skip Navigation for Accessibility */}
       <SkipNav />
-      
+
       {/* Header/Navigation */}
       {showNavbar && <Navbar header={header} />}
-      
+
       {/* Main Content */}
       <main id="main-content" className="flex-1 overflow-x-clip">
         {children}
       </main>
-      
+
       {/* Footer */}
       {showFooter && <Footer />}
     </div>

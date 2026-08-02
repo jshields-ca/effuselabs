@@ -125,7 +125,9 @@ const MobileMenu: React.FC<{
                       className="group relative text-effuse-off-black hover:text-effuse-teal transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 rounded-md px-3 py-2 font-inter tracking-wide uppercase"
                       style={{ letterSpacing: '0.04em' }}
                     >
-                      <span className="text-lg relative z-10">{link.label}</span>
+                      <span className="text-lg relative z-10">
+                        {link.label}
+                      </span>
                       <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                     </a>
                   ))}
@@ -183,12 +185,12 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
         )}
         aria-label="Primary Navigation"
         style={{
-          background: isScrolled 
+          background: isScrolled
             ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%)'
             : 'linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.75) 100%)',
           backdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
           WebkitBackdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
-          boxShadow: isScrolled 
+          boxShadow: isScrolled
             ? '0 8px 32px rgba(15, 23, 42, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             : '0 4px 24px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
         }}
@@ -210,7 +212,9 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
                   className="rounded-full drop-shadow-lg"
                   priority
                 />
-                <span className="text-shadow-soft">{header.brandName || 'Effuse Labs'}</span>
+                <span className="text-shadow-soft">
+                  {header.brandName || 'Effuse Labs'}
+                </span>
               </a>
             </div>
 

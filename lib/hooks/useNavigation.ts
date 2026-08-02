@@ -10,7 +10,7 @@ export interface NavigationState {
 export const useNavigation = () => {
   const [state, setState] = useState<NavigationState>({
     isMobileMenuOpen: false,
-    isScrolled: false
+    isScrolled: false,
   })
 
   // Handle scroll behavior for sticky header
@@ -58,6 +58,6 @@ export const useNavigation = () => {
   return {
     ...state,
     toggleMobileMenu,
-    closeMobileMenu
+    closeMobileMenu,
   }
 }

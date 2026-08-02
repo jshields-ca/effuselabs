@@ -25,7 +25,7 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 ### Hero Section (`heroSection`)
 
 - `title`: Main headline text
-- `subtitle`: Company/brand name  
+- `subtitle`: Company/brand name
 - `description`: Supporting description text
 - `primaryCtaText`: Primary call-to-action button text
 - `secondaryCtaText`: Secondary call-to-action button text

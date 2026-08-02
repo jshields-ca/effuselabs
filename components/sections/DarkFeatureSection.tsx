@@ -27,10 +27,26 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
   primaryCtaLabel = 'Get Started',
   onPrimaryCtaClick,
   features = [
-    { icon: '⚡', title: 'Performance-first', description: '100/98 Lighthouse baseline with strict budgets.' },
-    { icon: '♿', title: 'Accessible', description: 'WCAG AA foundations and reduced-motion support.' },
-    { icon: '🧩', title: 'Composable', description: 'Reusable UI with Tailwind and typed props.' },
-    { icon: '🔒', title: 'Secure by default', description: 'HSTS, modern headers, and best practices.' },
+    {
+      icon: '⚡',
+      title: 'Performance-first',
+      description: '100/98 Lighthouse baseline with strict budgets.',
+    },
+    {
+      icon: '♿',
+      title: 'Accessible',
+      description: 'WCAG AA foundations and reduced-motion support.',
+    },
+    {
+      icon: '🧩',
+      title: 'Composable',
+      description: 'Reusable UI with Tailwind and typed props.',
+    },
+    {
+      icon: '🔒',
+      title: 'Secure by default',
+      description: 'HSTS, modern headers, and best practices.',
+    },
   ],
 }) => {
   const handlePrimaryCtaClick = () => {
@@ -42,7 +58,9 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
       <Animated animation="slideUp">
         <div className="text-center mb-12">
           <H2 className="text-white mb-4">{heading}</H2>
-          <Text className="text-light-grey max-w-2xl mx-auto">{subheading}</Text>
+          <Text className="text-light-grey max-w-2xl mx-auto">
+            {subheading}
+          </Text>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -53,14 +71,20 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
                   {item.icon}
                 </div>
                 <H3 className="text-white mb-2">{item.title}</H3>
-                <Text className="text-light-grey text-sm">{item.description}</Text>
+                <Text className="text-light-grey text-sm">
+                  {item.description}
+                </Text>
               </div>
             </Animated>
           ))}
         </div>
 
         <div className="mt-10 text-center">
-          <Button variant="primary" onClick={handlePrimaryCtaClick} aria-label={primaryCtaLabel}>
+          <Button
+            variant="primary"
+            onClick={handlePrimaryCtaClick}
+            aria-label={primaryCtaLabel}
+          >
             {primaryCtaLabel}
           </Button>
         </div>
@@ -70,5 +94,3 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
 }
 
 export default DarkFeatureSection
-
-

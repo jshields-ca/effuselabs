@@ -35,7 +35,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
                 />
               </svg>
             )}
-            
+
             {item.href && !item.isCurrentPage ? (
               <a
                 href={item.href}

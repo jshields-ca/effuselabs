@@ -17,10 +17,26 @@ const LightFeatureSection: React.FC<LightFeatureSectionProps> = ({
   subheading = 'Thoughtful UX and pragmatic engineering converge to unlock growth.',
 }) => {
   const items = [
-    { title: 'Human-centered', icon: '🤝', copy: 'Clear information hierarchy and delightful micro-interactions.' },
-    { title: 'Maintainable', icon: '🧱', copy: 'Typed components, clean structure, and DRY principles.' },
-    { title: 'Observable', icon: '📈', copy: 'Speed Insights, Analytics, and CWV for real user monitoring.' },
-    { title: 'Future-ready', icon: '🚀', copy: 'CMS integration and hero enhancements planned under strict budgets.' },
+    {
+      title: 'Human-centered',
+      icon: '🤝',
+      copy: 'Clear information hierarchy and delightful micro-interactions.',
+    },
+    {
+      title: 'Maintainable',
+      icon: '🧱',
+      copy: 'Typed components, clean structure, and DRY principles.',
+    },
+    {
+      title: 'Observable',
+      icon: '📈',
+      copy: 'Speed Insights, Analytics, and CWV for real user monitoring.',
+    },
+    {
+      title: 'Future-ready',
+      icon: '🚀',
+      copy: 'CMS integration and hero enhancements planned under strict budgets.',
+    },
   ]
 
   return (
@@ -28,7 +44,9 @@ const LightFeatureSection: React.FC<LightFeatureSectionProps> = ({
       <Animated animation="slideUp">
         <div className="text-center mb-12">
           <H2 className="mb-4">{heading}</H2>
-          <Text className="text-medium-grey max-w-2xl mx-auto">{subheading}</Text>
+          <Text className="text-medium-grey max-w-2xl mx-auto">
+            {subheading}
+          </Text>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -50,5 +68,3 @@ const LightFeatureSection: React.FC<LightFeatureSectionProps> = ({
 }
 
 export default LightFeatureSection
-
-

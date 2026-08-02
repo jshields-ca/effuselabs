@@ -19,9 +19,9 @@ SilentLedger is an intelligent financial dashboard designed for Canada's solo de
 
 Through our collaborative design process, we have defined a brand personality that is **Bold, Confident, and Expressive**. The SilentLedger brand is designed to be unapologetically modern and vibrant, reflecting the ambitious and creative spirit of its users.
 
-* **Confident:** We are direct, clear, and assured. Our design and language empower users.
-* **Energetic:** We use a vibrant color palette and bold typography to create a dynamic and engaging experience.
-* **Stylized:** We have a unique and memorable aesthetic that sets us apart from traditional, conservative financial tools.
+- **Confident:** We are direct, clear, and assured. Our design and language empower users.
+- **Energetic:** We use a vibrant color palette and bold typography to create a dynamic and engaging experience.
+- **Stylized:** We have a unique and memorable aesthetic that sets us apart from traditional, conservative financial tools.
 
 ### 1.3. Ideal Customer Profile
 
@@ -41,9 +41,9 @@ _[Primary Wordmark Visual Here]_
 
 To ensure the wordmark's integrity and legibility, we will define a clear set of usage guidelines.
 
-* **Clearspace (TBD):** We will establish a minimum amount of protected space to maintain around the wordmark.
-* **Minimum Size (TBD):** We will determine the smallest size the wordmark can be reproduced to ensure it is always legible.
-* **Incorrect Usage (TBD):** We will provide examples of improper modifications, such as stretching, altering colors, or changing the orientation.
+- **Clearspace (TBD):** We will establish a minimum amount of protected space to maintain around the wordmark.
+- **Minimum Size (TBD):** We will determine the smallest size the wordmark can be reproduced to ensure it is always legible.
+- **Incorrect Usage (TBD):** We will provide examples of improper modifications, such as stretching, altering colors, or changing the orientation.
 
 ---
 
@@ -53,17 +53,17 @@ To ensure the wordmark's integrity and legibility, we will define a clear set of
 
 This is the core palette for the user interface. The backgrounds provide a canvas, while the Red and Blue serve as the primary interactive colors.
 
-* **Dark Mode Background:** `#100B00` (Near Black)
-* **Light Mode Background:** `#fcfcfc` (Off-White)
-* **Primary Action:** `#ff2525` (Red)
-* **Secondary Accent:** `#1600e8` (Blue)
+- **Dark Mode Background:** `#100B00` (Near Black)
+- **Light Mode Background:** `#fcfcfc` (Off-White)
+- **Primary Action:** `#ff2525` (Red)
+- **Secondary Accent:** `#1600e8` (Blue)
 
 ### 3.2. Secondary Palette
 
 This palette is reserved for data visualization, illustrations, and tertiary accents. These colors add vibrancy and meaning to charts and graphs.
 
-* **Data Viz 1:** `#630ca7` (Purple)
-* **Data Viz 2:** `#b11866` (Magenta)
+- **Data Viz 1:** `#630ca7` (Purple)
+- **Data Viz 2:** `#b11866` (Magenta)
 
 ### 3.3. Accessibility Note (To Be Defined)
 

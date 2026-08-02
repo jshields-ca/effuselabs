@@ -9,27 +9,25 @@ interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  ({ children, className, size = 'lg', as: Component = 'div', ...props }, ref) => {
+  (
+    { children, className, size = 'lg', as: Component = 'div', ...props },
+    ref
+  ) => {
     const sizes = {
       sm: 'max-w-2xl',
       md: 'max-w-4xl',
       lg: 'max-w-6xl',
       xl: 'max-w-7xl',
-      full: 'max-w-full'
+      full: 'max-w-full',
     }
-    
+
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      className: cn(
-        'mx-auto px-4 sm:px-6 lg:px-8',
-        sizes[size],
-        className
-      ),
-      ...props
+      className: cn('mx-auto px-4 sm:px-6 lg:px-8', sizes[size], className),
+      ...props,
     }
 
     return (
-      <Component ref={ref} {...componentProps}
-      >
+      <Component ref={ref} {...componentProps}>
         {children}
       </Component>
     )
