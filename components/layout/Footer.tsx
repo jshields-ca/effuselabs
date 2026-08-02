@@ -133,10 +133,17 @@ export const Footer: React.FC = () => {
             */}
           </div>
 
-          {/* Made with note */}
+          {/*
+            This read "Built with ❤️ in Winnipeg, Manitoba 🇨🇦". The sentiment
+            stays; the emoji do not. Emoji are the most environment-variable
+            glyphs on a page — the font differs by platform and version, and
+            here they were shifting line height enough to make the visual
+            regression baselines disagree between this machine and CI. Set in
+            words, it renders identically everywhere and reads the same aloud.
+          */}
           <div className="mt-6 text-center">
             <Small className="text-effuse-medium-grey">
-              Built with ❤️ in Winnipeg, Manitoba 🇨🇦
+              Built with care in Winnipeg, Manitoba
             </Small>
           </div>
         </div>
