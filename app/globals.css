@@ -19,9 +19,72 @@ h1,
   font-weight: 700;
   letter-spacing: -0.01em;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/*
+ * Tailwind v4 is CSS-first, but this project keeps a single TypeScript source
+ * of truth for design tokens (lib/design/tokens.ts, imported by
+ * tailwind.config.ts). @config loads that config so tokens are declared in one
+ * place rather than split between TS and CSS.
+ */
+@config '../tailwind.config.ts';
+
+/*
+ * Brand dividers and accent bars.
+ *
+ * Declared with `@utility` rather than as plain classes inside
+ * `@layer utilities`. In Tailwind v4 `@apply` resolves only registered
+ * utilities, and `.accent-top::before` applies `accent-bar` — which fails
+ * unless the class is registered this way.
+ */
+@utility section-divider {
+  @apply h-0.5 w-full max-w-lg mx-auto my-16;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    theme('colors.effuse-teal') 50%,
+    transparent 100%
+  );
+  transform-origin: center;
+}
+
+@utility section-divider-lg {
+  @apply h-1 max-w-2xl my-20;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    theme('colors.effuse-teal') 30%,
+    theme('colors.effuse-teal') 70%,
+    transparent 100%
+  );
+}
+
+@utility accent-bar {
+  @apply h-1 w-16 rounded-sm;
+  background: linear-gradient(
+    135deg,
+    theme('colors.lumina-gradient-start') 0%,
+    theme('colors.lumina-gradient-end') 100%
+  );
+}
+
+@utility accent-bar-lg {
+  @apply h-1.5 w-24 rounded;
+  background: linear-gradient(
+    135deg,
+    theme('colors.lumina-gradient-start') 0%,
+    theme('colors.lumina-gradient-end') 100%
+  );
+}
+
+@utility accent-bar-teal {
+  @apply h-1 w-16 rounded-sm;
+  background: linear-gradient(
+    135deg,
+    theme('colors.effuse-teal') 0%,
+    theme('colors.effuse-teal') 100%
+  );
+}
 
 @layer base {
   :root {
@@ -159,57 +222,6 @@ h1,
   }
   .animate-button-hover {
     animation: button-hover 0.3s ease-out forwards;
-  }
-
-  /* Brand Section Dividers */
-  .section-divider {
-    @apply h-0.5 w-full max-w-lg mx-auto my-16;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      theme('colors.effuse-teal') 50%,
-      transparent 100%
-    );
-    transform-origin: center;
-  }
-
-  .section-divider-lg {
-    @apply h-1 max-w-2xl my-20;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      theme('colors.effuse-teal') 30%,
-      theme('colors.effuse-teal') 70%,
-      transparent 100%
-    );
-  }
-
-  /* Brand Accent Bars */
-  .accent-bar {
-    @apply h-1 w-16 rounded-sm;
-    background: linear-gradient(
-      135deg,
-      theme('colors.lumina-gradient-start') 0%,
-      theme('colors.lumina-gradient-end') 100%
-    );
-  }
-
-  .accent-bar-lg {
-    @apply h-1.5 w-24 rounded;
-    background: linear-gradient(
-      135deg,
-      theme('colors.lumina-gradient-start') 0%,
-      theme('colors.lumina-gradient-end') 100%
-    );
-  }
-
-  .accent-bar-teal {
-    @apply h-1 w-16 rounded-sm;
-    background: linear-gradient(
-      135deg,
-      theme('colors.effuse-teal') 0%,
-      theme('colors.effuse-teal') 100%
-    );
   }
 
   /* Brand Shadow Utilities */
@@ -441,7 +453,11 @@ body {
 
 /* Enhanced Gradient Text Utilities */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #ffd25a 0%, #ff7a5a 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.lumina-gold') 0%,
+    theme('colors.lumina-coral') 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -449,7 +465,11 @@ body {
 }
 
 .text-gradient-teal {
-  background: linear-gradient(135deg, #22c5c3 0%, #1d8a87 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.effuse-teal') 0%,
+    color-mix(in srgb, theme('colors.effuse-teal') 65%, black) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -457,15 +477,12 @@ body {
 }
 
 .text-gradient-brand {
-  background: linear-gradient(135deg, #22c5c3 0%, #ffd25a 50%, #ff7a5a 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-.text-gradient-silentledger {
-  background: linear-gradient(135deg, #1600e8 0%, #b11866 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.effuse-teal') 0%,
+    theme('colors.lumina-gold') 50%,
+    theme('colors.lumina-coral') 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -569,8 +586,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .text-gradient-gold,
   .text-gradient-teal,
-  .text-gradient-brand,
-  .text-gradient-silentledger {
+  .text-gradient-brand {
     background: none;
     background-clip: unset;
     -webkit-background-clip: unset;

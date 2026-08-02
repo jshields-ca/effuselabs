@@ -123,11 +123,11 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                 <Card
                   className={`h-full relative ${
                     tier.highlighted
-                      ? 'ring-2 ring-brand-gold shadow-lg transform scale-105'
+                      ? 'ring-2 ring-effuse-gold shadow-lg transform scale-105'
                       : ''
                   } ${
                     isDark
-                      ? 'bg-slate-grey/20 border-white/10'
+                      ? 'bg-effuse-slate/20 border-white/10'
                       : 'bg-white border-black/10'
                   }`}
                 >

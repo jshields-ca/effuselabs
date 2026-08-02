@@ -1,49 +1,77 @@
 import type { Config } from 'tailwindcss'
+// Single source of truth for design values. Tokens are added there and
+// consumed here — never restated. See lib/design/tokens.ts for why.
+import {
+  brand,
+  gradients,
+  neutral,
+  product,
+  radii,
+  shadows,
+  status,
+  typography,
+} from './lib/design/tokens'
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './content/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        // Effuse Labs Core Palette
-        'effuse-slate': '#2E3440',
-        'effuse-teal': '#22C5C3',
-        'effuse-gold': '#FFD25A',
-        'effuse-coral': '#FF7A5A',
-        'effuse-off-black': '#1D1D21',
-        'effuse-medium-grey': '#808285',
-        'effuse-light-grey': '#F1F3F5',
-        'effuse-white': '#FFFFFF',
-        // Lumina Product Palette
-        'lumina-gold': '#FFD25A',
-        'lumina-coral': '#FF7A5A',
-        'lumina-gradient-start': '#FFD25A',
-        'lumina-gradient-end': '#FF7A5A',
-        'lumina-teal': '#0B2B33',
-        // SilentLedger Palette
-        'sl-bg-dark': '#100B00',
-        'sl-bg-light': '#fcfcfc',
-        'sl-red': '#ff2525',
-        'sl-blue': '#1600e8',
-        'sl-purple': '#630ca7',
-        'sl-magenta': '#b11866',
-        // Gradients (for use with bg-gradient-to-*)
-        'effuse-gradient': 'linear-gradient(90deg, #2E3440 0%, #22C5C3 100%)',
-        'lumina-gradient': 'linear-gradient(90deg, #FFD25A 0%, #FF7A5A 100%)',
-        'sl-gradient': 'linear-gradient(90deg, #1600e8 0%, #ff2525 100%)',
+        // Effuse Labs — the firm
+        'effuse-slate': brand.slate,
+        'effuse-teal': brand.teal,
+        'effuse-gold': brand.gold,
+        'effuse-off-black': neutral.offBlack,
+        'effuse-medium-grey': neutral.mediumGrey,
+        'effuse-light-neutral': neutral.lightNeutral,
+        'effuse-light-grey': neutral.lightGrey,
+        'effuse-white': neutral.white,
+
+        // Lumina — the product
+        'lumina-gold': product.lumina.gold,
+        'lumina-coral': product.lumina.coral,
+        'lumina-teal': product.lumina.deepTeal,
+        'lumina-gradient-start': product.lumina.gold,
+        'lumina-gradient-end': product.lumina.coral,
+
+        // Semantic status
+        success: status.success,
+        warning: status.warning,
+        error: status.error,
       },
+
+      // Gradients belong here, not in `colors`. As colour values Tailwind
+      // emitted them as `background-color: linear-gradient(...)`, which is not
+      // valid CSS and never rendered.
+      backgroundImage: {
+        'effuse-gradient': gradients.effuse,
+        'lumina-gradient': gradients.lumina,
+      },
+
       fontFamily: {
-        inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
-        poppins: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
-        mono: ['var(--font-ibmplexmono)', 'IBM Plex Mono', 'monospace'],
-        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', ...typography.fontFamily.sans],
+        inter: ['var(--font-inter)', ...typography.fontFamily.sans],
+        poppins: ['var(--font-poppins)', ...typography.fontFamily.display],
+      },
+
+      borderRadius: radii,
+
+      boxShadow: {
+        'brand-sm': shadows.sm,
+        'brand-md': shadows.md,
+        'brand-lg': shadows.lg,
+        'brand-xl': shadows.xl,
+        'teal-glow': shadows.tealGlow,
+        'gold-glow': shadows.goldGlow,
       },
     },
   },
   plugins: [],
 }
+
 export default config

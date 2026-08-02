@@ -58,7 +58,7 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
       <Animated animation="slideUp">
         <div className="text-center mb-12">
           <H2 className="text-white mb-4">{heading}</H2>
-          <Text className="text-light-grey max-w-2xl mx-auto">
+          <Text className="text-effuse-light-grey max-w-2xl mx-auto">
             {subheading}
           </Text>
         </div>
@@ -71,7 +71,7 @@ const DarkFeatureSection: React.FC<DarkFeatureSectionProps> = ({
                   {item.icon}
                 </div>
                 <H3 className="text-white mb-2">{item.title}</H3>
-                <Text className="text-light-grey text-sm">
+                <Text className="text-effuse-light-grey text-sm">
                   {item.description}
                 </Text>
               </div>

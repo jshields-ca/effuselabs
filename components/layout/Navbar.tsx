@@ -1,12 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 // TEMPORARY: Disable complex animations to fix 269 KiB bundle issue
 // TODO: Implement CSS-only mobile menu animations
 import { Button } from '@/components/ui'
+// Aliased: `NavLink` is already the name of the presentational link component
+// defined below.
+import {
+  brand,
+  headerCta,
+  navLinks,
+  type NavLink as NavLinkData,
+} from '@/content/site'
 import { useNavigation } from '@/lib/hooks/useNavigation'
-import type { HeaderContent } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 
 interface NavLinkProps {
@@ -68,9 +76,8 @@ const MobileMenuButton: React.FC<{
 const MobileMenu: React.FC<{
   isOpen: boolean
   onClose: () => void
-  header: HeaderContent
-  navLinks: Array<{ label: string; href: string }>
-}> = ({ isOpen, onClose, header, navLinks }) => {
+  links: NavLinkData[]
+}> = ({ isOpen, onClose, links }) => {
   return (
     <div>
       {isOpen && (
@@ -117,7 +124,7 @@ const MobileMenu: React.FC<{
               {/* Navigation Links */}
               <nav className="flex-1 px-6 py-8">
                 <div className="flex flex-col space-y-6">
-                  {navLinks.map(link => (
+                  {links.map(link => (
                     <a
                       key={`${link.label}-${link.href}`}
                       href={link.href}
@@ -135,20 +142,14 @@ const MobileMenu: React.FC<{
 
                 {/* CTA Button */}
                 <div className="mt-8">
-                  {header.cta?.href ? (
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      href={header.cta.href}
-                    >
-                      {header.cta.label}
-                    </Button>
-                  ) : (
-                    <Button variant="primary" size="lg" className="w-full">
-                      Get Started
-                    </Button>
-                  )}
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
+                    href={headerCta.href}
+                  >
+                    {headerCta.label}
+                  </Button>
                 </div>
               </nav>
             </div>
@@ -159,20 +160,9 @@ const MobileMenu: React.FC<{
   )
 }
 
-export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
+export const Navbar: React.FC = () => {
   const { isMobileMenuOpen, isScrolled, toggleMobileMenu, closeMobileMenu } =
     useNavigation()
-  const defaultLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'Products', href: '#products' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
-  ]
-  const navLinks =
-    header.navLinks && header.navLinks.length > 0
-      ? header.navLinks
-      : defaultLinks
 
   return (
     <>
@@ -199,7 +189,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a
+              <Link
                 href="/"
                 className="flex items-center gap-3 text-2xl lg:text-3xl font-bold text-effuse-white hover:text-effuse-gold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins hover:scale-105 transform"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -212,17 +202,15 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
                   className="rounded-full drop-shadow-lg"
                   priority
                 />
-                <span className="text-shadow-soft">
-                  {header.brandName || 'Effuse Labs'}
-                </span>
-              </a>
+                <span className="text-shadow-soft">{brand.name}</span>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks.map(link => (
                 <NavLink key={`${link.label}-${link.href}`} href={link.href}>
-                  {link.label.replace(/\b(\w)/g, c => c.toUpperCase())}
+                  {link.label}
                 </NavLink>
               ))}
             </nav>
@@ -230,25 +218,14 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
             {/* Desktop CTA & Mobile Menu Button */}
             <div className="flex items-center space-x-4">
               <div className="hidden md:block">
-                {header.cta?.href ? (
-                  <Button
-                    variant="primary"
-                    size="md"
-                    href={header.cta.href}
-                    className="text-shadow-soft"
-                  >
-                    {header.cta.label.replace(/\b(\w)/g, c => c.toUpperCase())}
-                  </Button>
-                ) : (
-                  <Button
-                    variant="primary"
-                    size="md"
-                    href="#contact"
-                    className="text-shadow-soft"
-                  >
-                    Get Started
-                  </Button>
-                )}
+                <Button
+                  variant="primary"
+                  size="md"
+                  href={headerCta.href}
+                  className="text-shadow-soft"
+                >
+                  {headerCta.label}
+                </Button>
               </div>
               <MobileMenuButton
                 isOpen={isMobileMenuOpen}
@@ -263,8 +240,7 @@ export const Navbar: React.FC<{ header: HeaderContent }> = ({ header }) => {
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={closeMobileMenu}
-        header={header}
-        navLinks={navLinks}
+        links={navLinks}
       />
       {/* Spacer to prevent content from being hidden behind fixed navbar */}
       <div className="h-14 lg:h-16" />

@@ -1,18 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Restore standard Next.js configuration for Vercel
   eslint: { ignoreDuringBuilds: false },
   typescript: { ignoreBuildErrors: false },
+
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
-  async rewrites() {
-    // Example: if you later want to ensure non-www always redirects to www at the edge
-    // we already have this configured in Vercel Domains UI; leaving code path ready if needed.
-    return []
+
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Optimize CSS loading for critical path
+
   async headers() {
     return [
       {
@@ -32,43 +31,25 @@ const nextConfig = {
             value: 'max-age=31536000; includeSubDomains; preload',
           },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
       },
     ]
   },
-  experimental: {
-    // Three.js packages removed for performance optimization
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  // Three.js modular imports removed - no longer using Three.js
-  webpack: (config, { dev, isServer }) => {
-    // Optimize chunks for better TBT
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            priority: 10,
-            chunks: 'all',
-          },
-
-          // Three.js chunk removed - no longer using Three.js
-        },
-      }
-    }
-    return config
-  },
-  env: {
-    NEXT_TELEMETRY_DISABLED: '1',
-  },
 }
 
 module.exports = nextConfig
+
+/*
+ * Removed in the Next 16 upgrade:
+ *
+ * - A hand-rolled `webpack.optimization.splitChunks` override that forced every
+ *   node_modules module into a single `vendors` chunk. It defeated Next's own
+ *   framework chunking and meant any dependency change invalidated the whole
+ *   chunk's cache. Next 16 uses Turbopack by default, where the hook does not
+ *   run at all.
+ * - An empty `experimental` block and an empty `rewrites()`.
+ * - Three "Three.js removed" comments about code deleted long ago.
+ * - `env: { NEXT_TELEMETRY_DISABLED: '1' }`. That is a build-time flag, not
+ *   application config; it belongs in the environment, and CI sets it there.
+ */

@@ -32,10 +32,7 @@
 
     // AI & Developer Productivity
     "github.copilot",
-    "github.copilot-chat",
-
-    // Sanity CMS (for Sprint 6)
-    "sanity-io.vscode-sanity"
+    "github.copilot-chat"
   ],
   "unwantedRecommendations": [
     // Avoid these to prevent conflicts or deprecated extensions

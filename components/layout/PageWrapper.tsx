@@ -1,9 +1,8 @@
-import React from 'react'
-import { SkipNav } from './SkipNav'
-import { Navbar } from './Navbar'
-import { Footer } from './Footer'
 import { ScrollIndicator } from '@/components/ui'
-import { getHeaderContent } from '@/lib/sanity/api'
+import React from 'react'
+import { Footer } from './Footer'
+import { Navbar } from './Navbar'
+import { SkipNav } from './SkipNav'
 
 interface PageWrapperProps {
   children: React.ReactNode
@@ -12,14 +11,18 @@ interface PageWrapperProps {
   className?: string
 }
 
-export const PageWrapper = async ({
+/**
+ * Synchronous by design. This was previously an async server component that
+ * awaited a Sanity fetch before any page could render — a network round trip
+ * on every request, to a project id that defaulted to `demo`. Header content
+ * now comes from `content/site.ts` at build time.
+ */
+export const PageWrapper = ({
   children,
   showNavbar = true,
   showFooter = true,
   className = '',
 }: PageWrapperProps) => {
-  const header = await getHeaderContent()
-
   return (
     <div
       className={
@@ -34,7 +37,7 @@ export const PageWrapper = async ({
       <SkipNav />
 
       {/* Header/Navigation */}
-      {showNavbar && <Navbar header={header} />}
+      {showNavbar && <Navbar />}
 
       {/* Main Content */}
       <main id="main-content" className="flex-1 overflow-x-clip">

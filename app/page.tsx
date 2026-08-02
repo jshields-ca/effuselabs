@@ -15,15 +15,13 @@ import {
   SectionDivider,
   Text,
 } from '@/components/ui'
-// ...existing code...
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
 
-export default async function Home() {
-  // ...existing code...
+export default function Home() {
   return (
     <>
-      {/* Hero Section (CMS-driven) */}
+      {/* Hero Section */}
       <HeroSection />
 
       {/* Philosophy Section */}
@@ -121,71 +119,6 @@ export default async function Home() {
                 </div>
               </div>
             </Card>
-
-            {/* SilentLedger */}
-            <Card
-              id="silentledger"
-              variant="elevated"
-              className="p-8 bg-gradient-to-br from-sl-blue/5 to-sl-magenta/5 border border-sl-blue/20 hover:border-sl-blue/40 transition-all duration-500 ease-out hover:shadow-teal-glow"
-            >
-              <div
-                className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-[#1600e8] to-[#b11866]"
-                aria-hidden
-              />
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="bg-gradient-to-br from-sl-blue to-sl-magenta rounded-lg p-8 text-center text-white order-2 md:order-1">
-                  <div className="text-6xl mb-4">📊</div>
-                  <H3 className="text-white mb-2">SilentLedger</H3>
-                  <Text className="text-white/90">
-                    Financial Clarity for Creators
-                  </Text>
-                </div>
-                <div className="order-1 md:order-2">
-                  <H3 className="text-effuse-teal mb-4 text-2xl font-semibold">
-                    SilentLedger
-                  </H3>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
-                    A dedicated financial dashboard for Canadian creators and
-                    solo developers. SilentLedger automates income tracking,
-                    expense categorization, and tax optimization, bringing
-                    financial clarity to the creator economy.
-                  </Text>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-center">
-                      <span className="text-sl-red mr-2 text-lg">✓</span>
-                      <Text className="text-sm text-effuse-off-black">
-                        Canadian tax optimization for creators
-                      </Text>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-sl-red mr-2 text-lg">✓</span>
-                      <Text className="text-sm text-effuse-off-black">
-                        Multi-platform income tracking
-                      </Text>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-sl-red mr-2 text-lg">✓</span>
-                      <Text className="text-sm text-effuse-off-black">
-                        Automated expense categorization
-                      </Text>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-sl-red mr-2 text-lg">✓</span>
-                      <Text className="text-sm text-effuse-off-black">
-                        Real-time financial insights
-                      </Text>
-                    </li>
-                  </ul>
-                  <Button
-                    variant="sl-secondary"
-                    href="/products/silentledger"
-                    aria-label="Learn more about SilentLedger"
-                  >
-                    Learn More About SilentLedger
-                  </Button>
-                </div>
-              </div>
-            </Card>
           </div>
         </AnimatedContainer>
       </SectionContainer>
@@ -198,13 +131,13 @@ export default async function Home() {
               Built for the Builders
             </H2>
             <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed font-normal">
-              From the cornerstones of our communities to the pioneers of the
-              digital frontier, our tools are crafted for the passionate
-              creators and service providers building the future.
+              Our tools are crafted for the passionate creators and service
+              providers who are the cornerstones of our communities.
             </Text>
           </div>
 
-          <Grid cols={1} gap="lg" className="lg:grid-cols-2">
+          {/* Single column while Lumina is the only product. */}
+          <Grid cols={1} gap="lg" className="max-w-2xl mx-auto">
             <GridItem>
               <Card
                 variant="elevated"
@@ -290,95 +223,6 @@ export default async function Home() {
                     className="mt-auto"
                   >
                     Explore Lumina
-                  </Button>
-                </div>
-              </Card>
-            </GridItem>
-            <GridItem>
-              <Card
-                variant="elevated"
-                className="h-full p-8 text-center shadow-xl border-black/10"
-              >
-                <div
-                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-sl-blue to-sl-magenta"
-                  aria-hidden
-                />
-                <div className="flex flex-col h-full">
-                  <div className="mb-4 flex flex-col items-center justify-center md:min-h-[140px]">
-                    <div className="text-6xl mb-3" aria-hidden>
-                      💻
-                    </div>
-                    <H3 className="text-effuse-off-black text-center text-xl font-semibold">
-                      Independent Creators & Developers
-                    </H3>
-                  </div>
-                  <ul className="space-y-2 mb-4 text-left min-h-[120px]">
-                    <li className="flex items-start gap-2">
-                      <svg
-                        aria-hidden
-                        className="mt-0.5 h-5 w-5 text-effuse-gold"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Canadian tax optimization & compliance
-                      </Text>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <svg
-                        aria-hidden
-                        className="mt-0.5 h-5 w-5 text-effuse-gold"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Multi-platform income aggregation
-                      </Text>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <svg
-                        aria-hidden
-                        className="mt-0.5 h-5 w-5 text-effuse-gold"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Expense tracking & financial insights
-                      </Text>
-                    </li>
-                  </ul>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed">
-                    You are the architects of the new economy, turning ideas
-                    into code, pixels, and powerful content. You thrive on the
-                    freedom of creation, but that freedom often comes with the
-                    burden of running a business alone. We believe your energy
-                    is best spent creating, not crunching numbers.
-                  </Text>
-                  <Button
-                    variant="sl-primary"
-                    size="sm"
-                    href="/products/silentledger"
-                    className="mt-auto"
-                  >
-                    Explore SilentLedger
                   </Button>
                 </div>
               </Card>
