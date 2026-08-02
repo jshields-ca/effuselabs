@@ -17,3 +17,8 @@ studio-effuse.io
 
 # Generated Sanity runtime output
 .sanity
+
+# Playwright artifacts
+test-results
+playwright-report
+blob-report
