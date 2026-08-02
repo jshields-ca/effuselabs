@@ -44,7 +44,7 @@ const LightFeatureSection: React.FC<LightFeatureSectionProps> = ({
       <Animated animation="slideUp">
         <div className="text-center mb-12">
           <H2 className="mb-4">{heading}</H2>
-          <Text className="text-medium-grey max-w-2xl mx-auto">
+          <Text className="text-effuse-medium-grey max-w-2xl mx-auto">
             {subheading}
           </Text>
         </div>
@@ -57,7 +57,9 @@ const LightFeatureSection: React.FC<LightFeatureSectionProps> = ({
                   {item.icon}
                 </div>
                 <H3 className="mb-2">{item.title}</H3>
-                <Text className="text-medium-grey text-sm">{item.copy}</Text>
+                <Text className="text-effuse-medium-grey text-sm">
+                  {item.copy}
+                </Text>
               </div>
             </Animated>
           ))}

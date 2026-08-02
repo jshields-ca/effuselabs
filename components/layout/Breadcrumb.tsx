@@ -23,7 +23,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
           <li key={index} className="flex items-center">
             {index > 0 && (
               <svg
-                className="w-4 h-4 mx-2 text-medium-grey"
+                className="w-4 h-4 mx-2 text-effuse-medium-grey"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 aria-hidden="true"
@@ -39,7 +39,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
             {item.href && !item.isCurrentPage ? (
               <a
                 href={item.href}
-                className="text-medium-grey hover:text-brand-teal-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 rounded-md px-1 py-0.5"
+                className="text-effuse-medium-grey hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-1 py-0.5"
               >
                 {item.label}
               </a>
@@ -48,8 +48,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
                 className={cn(
                   'px-1 py-0.5',
                   item.isCurrentPage
-                    ? 'text-off-black font-medium'
-                    : 'text-medium-grey'
+                    ? 'text-effuse-off-black font-medium'
+                    : 'text-effuse-medium-grey'
                 )}
                 aria-current={item.isCurrentPage ? 'page' : undefined}
               >

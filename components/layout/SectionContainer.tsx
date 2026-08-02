@@ -31,10 +31,10 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
 
   const backgroundClasses = {
     white: 'bg-white',
-    light: 'bg-light-grey',
+    light: 'bg-effuse-light-grey',
     lighter: 'bg-slate-100',
     dark: 'bg-effuse-slate text-white',
-    gradient: 'bg-gradient-to-b from-light-grey to-white',
+    gradient: 'bg-gradient-to-b from-effuse-light-grey to-white',
   }
 
   const props: React.HTMLAttributes<HTMLElement> = {

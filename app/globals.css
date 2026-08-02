@@ -453,7 +453,11 @@ body {
 
 /* Enhanced Gradient Text Utilities */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #ffd25a 0%, #ff7a5a 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.lumina-gold') 0%,
+    theme('colors.lumina-coral') 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -461,7 +465,11 @@ body {
 }
 
 .text-gradient-teal {
-  background: linear-gradient(135deg, #22c5c3 0%, #1d8a87 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.effuse-teal') 0%,
+    color-mix(in srgb, theme('colors.effuse-teal') 65%, black) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -469,7 +477,12 @@ body {
 }
 
 .text-gradient-brand {
-  background: linear-gradient(135deg, #22c5c3 0%, #ffd25a 50%, #ff7a5a 100%);
+  background: linear-gradient(
+    135deg,
+    theme('colors.effuse-teal') 0%,
+    theme('colors.lumina-gold') 50%,
+    theme('colors.lumina-coral') 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

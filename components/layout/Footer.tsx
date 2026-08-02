@@ -119,9 +119,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-medium-grey">
+        <div className="mt-12 pt-8 border-t border-effuse-medium-grey">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <Small className="text-light-grey">
+            <Small className="text-effuse-light-grey">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
 
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
 
           {/* Made with note */}
           <div className="mt-6 text-center">
-            <Small className="text-medium-grey">
+            <Small className="text-effuse-medium-grey">
               Built with ❤️ in Winnipeg, Manitoba 🇨🇦
             </Small>
           </div>

@@ -38,11 +38,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const variants = {
       default:
-        'bg-white border border-light-grey hover:shadow-brand-light hover:border-effuse-teal/20 hover:scale-[1.02] transition-all duration-300',
+        'bg-white border border-effuse-light-grey hover:shadow-brand-light hover:border-effuse-teal/20 hover:scale-[1.02] transition-all duration-300',
       elevated:
-        'bg-white shadow-lg border border-light-grey hover:shadow-brand-medium hover:shadow-teal-glow hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300',
+        'bg-white shadow-lg border border-effuse-light-grey hover:shadow-brand-medium hover:shadow-teal-glow hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300',
       outline:
-        'bg-transparent border-2 border-brand-teal-light hover:border-effuse-teal hover:shadow-teal-glow hover:bg-effuse-teal/5 transition-all duration-300',
+        'bg-transparent border-2 border-effuse-teal hover:border-effuse-teal hover:shadow-teal-glow hover:bg-effuse-teal/5 transition-all duration-300',
     }
 
     const paddings = {
@@ -104,7 +104,7 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
 const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, as: Component = 'div', ...props }, ref) => {
     const componentProps: React.HTMLAttributes<HTMLDivElement> = {
-      className: cn('mt-4 pt-4 border-t border-light-grey', className),
+      className: cn('mt-4 pt-4 border-t border-effuse-light-grey', className),
       ...props,
     }
 

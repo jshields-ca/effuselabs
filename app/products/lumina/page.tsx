@@ -1,4 +1,5 @@
 import ProductPageTemplate from '@/components/product/ProductPageTemplate'
+import { product } from '@/lib/design/tokens'
 import {
   FeatureBreakdownSection,
   FinalCTASection,
@@ -23,7 +24,10 @@ export default function LuminaProductPage() {
         primaryCtaLabel: 'Join the Waitlist',
         primaryCtaHref: '#waitlist',
         background: 'light',
-        accentGradient: { from: '#FFD25A', to: '#FF7F50' },
+        accentGradient: {
+          from: product.lumina.gold,
+          to: product.lumina.coral,
+        },
       }}
     >
       <PainSolutionSection

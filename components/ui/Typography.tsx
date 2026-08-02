@@ -100,7 +100,7 @@ const H6 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
       <Component
         ref={ref}
         className={cn(
-          'text-base md:text-lg font-semibold text-off-black leading-tight',
+          'text-base md:text-lg font-semibold text-effuse-off-black leading-tight',
           className
         )}
         {...props}
@@ -151,7 +151,10 @@ const Small = React.forwardRef<HTMLElement, TypographyProps>(
     return (
       <Component
         ref={ref}
-        className={cn('text-sm text-medium-grey leading-relaxed', className)}
+        className={cn(
+          'text-sm text-effuse-medium-grey leading-relaxed',
+          className
+        )}
         {...props}
       >
         {children}
@@ -166,7 +169,7 @@ const Code = React.forwardRef<HTMLElement, TypographyProps>(
       <Component
         ref={ref}
         className={cn(
-          'font-mono text-sm bg-light-grey px-2 py-1 rounded text-off-black',
+          'font-mono text-sm bg-effuse-light-grey px-2 py-1 rounded text-effuse-off-black',
           className
         )}
         {...props}

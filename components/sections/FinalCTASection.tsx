@@ -85,7 +85,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
                 href={secondaryCta.href}
                 className={
                   isGradient
-                    ? 'border-white text-white hover:bg-white hover:text-slate-grey'
+                    ? 'border-white text-white hover:bg-white hover:text-effuse-slate'
                     : ''
                 }
               >

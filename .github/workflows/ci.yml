@@ -48,6 +48,12 @@ jobs:
         if: '!cancelled()'
         run: npm run format:check
 
+      # Guards the three ways colour has broken here before: phantom Tailwind
+      # classes, raw hex outside the token file, and WCAG AA contrast.
+      - name: Design token check
+        if: '!cancelled()'
+        run: npm run check:tokens
+
   build:
     name: Build and end-to-end
     runs-on: ubuntu-latest
