@@ -1,10 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-// TEMPORARY: Disable complex animations to fix 269 KiB bundle issue
-// TODO: Implement CSS-only mobile menu animations
 import { Button } from '@/components/ui'
 // Aliased: `NavLink` is already the name of the presentational link component
 // defined below.
@@ -14,149 +9,168 @@ import {
   navLinks,
   type NavLink as NavLinkData,
 } from '@/content/site'
+import { useFocusTrap } from '@/lib/hooks/useFocusTrap'
 import { useNavigation } from '@/lib/hooks/useNavigation'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 interface NavLinkProps {
   href: string
   children: React.ReactNode
   onClick?: () => void
+  className?: string
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => {
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      className="group relative text-effuse-white hover:text-effuse-gold hover:bg-effuse-teal/10 transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md px-3 py-2 font-inter tracking-wide uppercase"
-      style={{ letterSpacing: '0.04em' }}
-      tabIndex={0}
-    >
-      <span className="relative z-10">{children}</span>
-      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-    </a>
-  )
-}
+const NavLink: React.FC<NavLinkProps> = ({
+  href,
+  children,
+  onClick,
+  className,
+}) => (
+  <Link
+    href={href}
+    onClick={onClick}
+    className={cn(
+      'group relative rounded-md px-3 py-2 text-eyebrow font-medium uppercase',
+      'text-effuse-light-grey transition-colors duration-200 hover:text-effuse-white',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep',
+      className
+    )}
+  >
+    <span className="relative z-10">{children}</span>
+    {/* Underline wipes in from the left on hover — the "poured" motif at its
+        smallest scale. */}
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute bottom-0 left-3 right-3 h-px origin-left scale-x-0 bg-gradient-to-r from-effuse-teal to-effuse-gold transition-transform duration-300 group-hover:scale-x-100"
+    />
+  </Link>
+)
 
 const MobileMenuButton: React.FC<{
   isOpen: boolean
   onClick: () => void
-}> = ({ isOpen, onClick }) => {
-  return (
-    <button
-      onClick={onClick}
-      className="md:hidden p-3 rounded-lg text-effuse-white hover:text-effuse-gold hover:bg-effuse-slate/20 transition-all duration-300 focus-brand interactive-glow hover:scale-110 active:scale-95"
-      aria-label={isOpen ? 'Close menu' : 'Open menu'}
-      aria-expanded={isOpen}
-    >
-      <div className="w-6 h-6 relative">
-        <span
-          className={cn(
-            'absolute top-1 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
-            isOpen ? 'rotate-45 translate-y-2 bg-effuse-gold' : ''
-          )}
-        />
-        <span
-          className={cn(
-            'absolute top-3 left-0 w-6 h-0.5 bg-current transition-all duration-300',
-            isOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-          )}
-        />
-        <span
-          className={cn(
-            'absolute top-5 left-0 w-6 h-0.5 bg-current transform origin-center transition-all duration-300',
-            isOpen ? '-rotate-45 -translate-y-2 bg-effuse-gold' : ''
-          )}
-        />
-      </div>
-    </button>
-  )
-}
+}> = ({ isOpen, onClick }) => (
+  <button
+    onClick={onClick}
+    className="rounded-lg p-3 text-effuse-white transition-colors duration-200 hover:bg-effuse-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep md:hidden"
+    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+    aria-expanded={isOpen}
+  >
+    <span className="relative block h-6 w-6">
+      <span
+        className={cn(
+          'absolute left-0 top-1 h-0.5 w-6 origin-center bg-current transition-transform duration-300',
+          isOpen && 'translate-y-2 rotate-45 bg-effuse-gold'
+        )}
+      />
+      <span
+        className={cn(
+          'absolute left-0 top-3 h-0.5 w-6 bg-current transition-opacity duration-300',
+          isOpen ? 'opacity-0' : 'opacity-100'
+        )}
+      />
+      <span
+        className={cn(
+          'absolute left-0 top-5 h-0.5 w-6 origin-center bg-current transition-transform duration-300',
+          isOpen && '-translate-y-2 -rotate-45 bg-effuse-gold'
+        )}
+      />
+    </span>
+  </button>
+)
 
 const MobileMenu: React.FC<{
   isOpen: boolean
   onClose: () => void
   links: NavLinkData[]
 }> = ({ isOpen, onClose, links }) => {
+  const panelRef = useFocusTrap<HTMLDivElement>(isOpen)
+
+  if (!isOpen) return null
+
   return (
-    <div>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-effuse-off-black bg-opacity-50 z-40 md:hidden transition-opacity duration-200"
-            onClick={onClose}
-            onKeyDown={e => e.key === 'Escape' && onClose()}
-            role="button"
-            tabIndex={0}
-            aria-label="Close menu"
-          />
+    <>
+      {/*
+        Decorative backdrop. Clicking it closes the menu, but it is not a
+        control: no role, not focusable. It was previously a
+        <div role="button" tabIndex={0}>, which added a phantom stop to the tab
+        order announced as an unlabelled button — and its onKeyDown for Escape
+        could never fire, because Escape is handled at the document level in
+        useNavigation. Every dismissal path it offers is also on the close
+        button.
+      */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 z-40 bg-surface-deep/80 backdrop-blur-sm md:hidden"
+        onClick={onClose}
+      />
 
-          {/* Mobile Menu */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-effuse-white shadow-xl z-50 md:hidden transform transition-transform duration-300 translate-x-0">
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-effuse-light-grey">
-                <span className="font-bold text-xl text-effuse-off-black">
-                  Menu
-                </span>
-                <button
-                  onClick={onClose}
-                  className="p-2 rounded-md text-effuse-off-black hover:text-effuse-teal hover:bg-effuse-light-grey transition-colors duration-200"
-                  aria-label="Close menu"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Navigation Links */}
-              <nav className="flex-1 px-6 py-8">
-                <div className="flex flex-col space-y-6">
-                  {links.map(link => (
-                    <a
-                      key={`${link.label}-${link.href}`}
-                      href={link.href}
-                      onClick={onClose}
-                      className="group relative text-effuse-off-black hover:text-effuse-teal transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 rounded-md px-3 py-2 font-inter tracking-wide uppercase"
-                      style={{ letterSpacing: '0.04em' }}
-                    >
-                      <span className="text-lg relative z-10">
-                        {link.label}
-                      </span>
-                      <span className="pointer-events-none absolute left-0 bottom-0 w-full h-0.5 bg-effuse-teal transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                    </a>
-                  ))}
-                </div>
-
-                {/* CTA Button */}
-                <div className="mt-8">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="w-full"
-                    href={headerCta.href}
-                  >
-                    {headerCta.label}
-                  </Button>
-                </div>
-              </nav>
-            </div>
+      <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        className="fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] border-l border-surface-border bg-surface-base shadow-2xl md:hidden"
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex items-center justify-between border-b border-surface-border p-6">
+            <span className="text-h4 font-semibold text-effuse-white">
+              Menu
+            </span>
+            <button
+              onClick={onClose}
+              className="rounded-md p-2 text-effuse-light-grey transition-colors duration-200 hover:bg-effuse-white/10 hover:text-effuse-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base"
+              aria-label="Close menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
-        </>
-      )}
-    </div>
+
+          <nav className="flex-1 px-6 py-8">
+            <div className="flex flex-col gap-2">
+              {links.map(link => (
+                <NavLink
+                  key={`${link.label}-${link.href}`}
+                  href={link.href}
+                  onClick={onClose}
+                  className="text-body-lg"
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full"
+                href={headerCta.href}
+                onClick={onClose}
+              >
+                {headerCta.label}
+              </Button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -167,47 +181,35 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled
-            ? 'shadow-xl border-b border-effuse-slate/30'
-            : 'border-b border-effuse-slate/20'
-        )}
         aria-label="Primary Navigation"
-        style={{
-          background: isScrolled
-            ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%)'
-            : 'linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 50%, rgba(15, 23, 42, 0.75) 100%)',
-          backdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
-          WebkitBackdropFilter: 'blur(16px) saturate(200%) contrast(120%)',
-          boxShadow: isScrolled
-            ? '0 8px 32px rgba(15, 23, 42, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 4px 24px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-        }}
+        className={cn(
+          'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+          // Translucent over the dark canvas rather than a hardcoded slate-900
+          // gradient. The previous implementation set three inline rgba values
+          // that belonged to no palette in this project.
+          isScrolled
+            ? 'border-surface-border bg-surface-deep/85 backdrop-blur-md'
+            : 'border-transparent bg-surface-deep/50 backdrop-blur-sm'
+        )}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-18">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link
-                href="/"
-                className="flex items-center gap-3 text-2xl lg:text-3xl font-bold text-effuse-white hover:text-effuse-gold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins hover:scale-105 transform"
-                style={{ fontFamily: 'Poppins, sans-serif' }}
-              >
-                <Image
-                  src="/logo-450x450.png"
-                  alt="Effuse Labs logo"
-                  width={52}
-                  height={52}
-                  className="rounded-full drop-shadow-lg"
-                  priority
-                />
-                <span className="text-shadow-soft">{brand.name}</span>
-              </Link>
-            </div>
+          <div className="flex h-16 items-center justify-between lg:h-20">
+            <Link
+              href="/"
+              className="flex flex-shrink-0 items-center gap-3 rounded-md font-poppins text-h4 font-bold text-effuse-white transition-colors duration-200 hover:text-effuse-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep"
+            >
+              <Image
+                src="/logo-450x450.png"
+                alt=""
+                width={44}
+                height={44}
+                className="rounded-full"
+                priority
+              />
+              <span>{brand.name}</span>
+            </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden items-center gap-2 md:flex">
               {navLinks.map(link => (
                 <NavLink key={`${link.label}-${link.href}`} href={link.href}>
                   {link.label}
@@ -215,15 +217,9 @@ export const Navbar: React.FC = () => {
               ))}
             </nav>
 
-            {/* Desktop CTA & Mobile Menu Button */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-4">
               <div className="hidden md:block">
-                <Button
-                  variant="primary"
-                  size="md"
-                  href={headerCta.href}
-                  className="text-shadow-soft"
-                >
+                <Button variant="primary" size="sm" href={headerCta.href}>
                   {headerCta.label}
                 </Button>
               </div>
@@ -236,14 +232,22 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={closeMobileMenu}
         links={navLinks}
       />
-      {/* Spacer to prevent content from being hidden behind fixed navbar */}
-      <div className="h-14 lg:h-16" />
+
+      {/*
+        Spacer matching the header height exactly.
+
+        It was h-14 lg:h-16 against a header declared h-16 lg:h-18 — and `h-18`
+        is not a Tailwind class in v3 or v4, so it emitted nothing and the
+        header was 4rem at every width. The mismatch therefore bit on mobile
+        only: the top 8px of every page sat underneath the header. Both are now
+        real classes and both change at the same breakpoint.
+      */}
+      <div className="h-16 lg:h-20" aria-hidden="true" />
     </>
   )
 }
