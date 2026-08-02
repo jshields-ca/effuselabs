@@ -68,9 +68,7 @@ export default function Home() {
               />
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <H3 className="text-effuse-teal mb-4 text-2xl font-semibold">
-                    Lumina
-                  </H3>
+                  <H3 className="mb-4 text-effuse-off-black">Lumina</H3>
                   <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
                     An all-in-one, AI-powered platform for salons and
                     barbershops. Lumina replaces a patchwork of apps with a
@@ -128,14 +126,14 @@ export default function Home() {
                     Learn More About Lumina
                   </Button>
                 </div>
-                <div className="bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end rounded-lg p-8 text-center text-white">
+                <div className="rounded-lg bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end p-8 text-center text-effuse-off-black">
                   <Lightbulb
                     className="mx-auto mb-4 h-14 w-14"
                     aria-hidden="true"
                     strokeWidth={1.5}
                   />
-                  <H3 className="text-white mb-2">Lumina</H3>
-                  <Text className="text-white/90">
+                  <H3 className="mb-2 text-effuse-off-black">Lumina</H3>
+                  <Text className="text-effuse-off-black/80">
                     Illuminating Business Growth
                   </Text>
                 </div>

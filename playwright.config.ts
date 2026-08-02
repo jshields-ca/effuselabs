@@ -39,12 +39,12 @@ export default defineConfig({
      */
     {
       name: 'chromium',
-      testMatch: /smoke\.spec\.ts/,
+      testMatch: /(smoke|rendered-contrast)\.spec\.ts/,
       use: { ...devices['Desktop Chrome'], launchOptions },
     },
     {
       name: 'mobile',
-      testMatch: /smoke\.spec\.ts/,
+      testMatch: /(smoke|rendered-contrast)\.spec\.ts/,
       use: { ...devices['Pixel 7'], launchOptions },
     },
 
