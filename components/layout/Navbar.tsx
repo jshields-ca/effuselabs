@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 // TEMPORARY: Disable complex animations to fix 269 KiB bundle issue
 // TODO: Implement CSS-only mobile menu animations
@@ -188,7 +189,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <a
+              <Link
                 href="/"
                 className="flex items-center gap-3 text-2xl lg:text-3xl font-bold text-effuse-white hover:text-effuse-gold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md font-poppins hover:scale-105 transform"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -202,7 +203,7 @@ export const Navbar: React.FC = () => {
                   priority
                 />
                 <span className="text-shadow-soft">{brand.name}</span>
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Navigation */}

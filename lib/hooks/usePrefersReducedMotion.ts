@@ -1,26 +1,40 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
-// SSR-safe media query hook for prefers-reduced-motion
-const usePrefersReducedMotion = (): boolean => {
-  const [reduced, setReduced] = useState(false)
+const QUERY = '(prefers-reduced-motion: reduce)'
 
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('matchMedia' in window)) {
-      setReduced(false)
-      return
-    }
-
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const handleChange = () => setReduced(mediaQuery.matches)
-    handleChange()
-
-    mediaQuery.addEventListener?.('change', handleChange)
-    return () => mediaQuery.removeEventListener?.('change', handleChange)
-  }, [])
-
-  return reduced
+function subscribe(onChange: () => void): () => void {
+  if (typeof window === 'undefined' || !('matchMedia' in window)) {
+    return () => {}
+  }
+  const mediaQuery = window.matchMedia(QUERY)
+  mediaQuery.addEventListener('change', onChange)
+  return () => mediaQuery.removeEventListener('change', onChange)
 }
+
+function getSnapshot(): boolean {
+  if (typeof window === 'undefined' || !('matchMedia' in window)) return false
+  return window.matchMedia(QUERY).matches
+}
+
+// The server has no media queries; assume motion is allowed and let the client
+// correct it on hydration.
+function getServerSnapshot(): boolean {
+  return false
+}
+
+/**
+ * SSR-safe `prefers-reduced-motion` hook.
+ *
+ * Built on `useSyncExternalStore` rather than useState + useEffect. The old
+ * implementation called `setReduced` synchronously inside the effect body,
+ * which triggers a second render pass on every mount — React 19's
+ * `react-hooks/set-state-in-effect` rule flags it, and it is the documented
+ * wrong way to read an external store. This subscribes to the media query
+ * directly instead, so the correct value is available on first client render.
+ */
+const usePrefersReducedMotion = (): boolean =>
+  useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
 export default usePrefersReducedMotion

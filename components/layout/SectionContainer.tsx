@@ -37,16 +37,13 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
     gradient: 'bg-gradient-to-b from-light-grey to-white',
   }
 
-  const props: any = {
+  const props: React.HTMLAttributes<HTMLElement> = {
     className: cn(
       backgroundClasses[background],
       paddingClasses[padding],
       className
     ),
-  }
-
-  if (id) {
-    props.id = id
+    ...(id ? { id } : {}),
   }
 
   return (
