@@ -24,17 +24,6 @@ const config: Config = {
         'lumina-gradient-start': '#FFD25A',
         'lumina-gradient-end': '#FF7A5A',
         'lumina-teal': '#0B2B33',
-        // SilentLedger Palette
-        'sl-bg-dark': '#100B00',
-        'sl-bg-light': '#fcfcfc',
-        'sl-red': '#ff2525',
-        'sl-blue': '#1600e8',
-        'sl-purple': '#630ca7',
-        'sl-magenta': '#b11866',
-        // Gradients (for use with bg-gradient-to-*)
-        'effuse-gradient': 'linear-gradient(90deg, #2E3440 0%, #22C5C3 100%)',
-        'lumina-gradient': 'linear-gradient(90deg, #FFD25A 0%, #FF7A5A 100%)',
-        'sl-gradient': 'linear-gradient(90deg, #1600e8 0%, #ff2525 100%)',
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'Inter', 'sans-serif'],

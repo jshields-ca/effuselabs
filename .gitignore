@@ -46,7 +46,6 @@ next-env.d.ts
 # Local reports and tooling
 /reports/
 /.cursor/
-/.sanity/
 
 # Nested node_modules (e.g., studio or workspaces)
 **/node_modules/

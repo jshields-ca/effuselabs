@@ -464,14 +464,6 @@ body {
   color: transparent;
 }
 
-.text-gradient-silentledger {
-  background: linear-gradient(135deg, #1600e8 0%, #b11866 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
 /* Enhanced Hero Typography Scale */
 .hero-title {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -569,8 +561,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .text-gradient-gold,
   .text-gradient-teal,
-  .text-gradient-brand,
-  .text-gradient-silentledger {
+  .text-gradient-brand {
     background: none;
     background-clip: unset;
     -webkit-background-clip: unset;

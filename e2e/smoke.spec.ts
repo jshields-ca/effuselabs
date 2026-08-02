@@ -7,7 +7,6 @@ import { expect, test, type ConsoleMessage } from '@playwright/test'
 export const ROUTES = [
   { path: '/', name: 'home' },
   { path: '/products/lumina', name: 'Lumina product page' },
-  { path: '/products/silentledger', name: 'SilentLedger product page' },
 ] as const
 
 /**
