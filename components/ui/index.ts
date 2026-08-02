@@ -1,8 +1,20 @@
-// UI Component Library
-export { Button } from './Button'
-export type { ButtonProps } from './Button'
+// UI component library
 
-export { Code, H1, H2, H3, H4, H5, H6, Lead, Small, Text } from './Typography'
+export { Button } from './Button'
+export type { ButtonProps, ButtonSize, ButtonVariant } from './Button'
+
+export {
+  Eyebrow,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Lead,
+  Small,
+  Text,
+} from './Typography'
 export type { TypographyProps } from './Typography'
 
 export { Container } from './Container'
@@ -23,18 +35,12 @@ export { SectionDivider } from './SectionDivider'
 export type { SectionDividerProps } from './SectionDivider'
 
 export { AccentBar } from './AccentBar'
-export type { AccentBarProps } from './AccentBar'
+export type { AccentBarProps, AccentBarVariant } from './AccentBar'
 
-// AnimatedContainer and FluidParallaxBackground removed - use LightweightAnimatedContainer instead
-export {
-  LightweightAnimatedContainer,
-  LightweightAnimatedItem,
-} from './LightweightAnimatedContainer'
+// The luminous field and the scroll reveal are both CSS-only server
+// components — see their files for why neither ships JavaScript.
+export { LuminousField } from './LuminousField'
+export { Reveal } from './Reveal'
 
-// Staggered animation component for micro-interactions
-
-// Enhanced Link component with brand animations
-
-// Scroll indicator with gradient progress
 export { default as ScrollIndicator } from './ScrollIndicator'
 export type { ScrollIndicatorProps } from './ScrollIndicator'

@@ -7,180 +7,141 @@ interface TypographyProps {
   as?: React.ElementType
 }
 
-// Heading components
-const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h1', ...props }, ref) => {
-    const componentProps: React.HTMLAttributes<HTMLHeadingElement> = {
-      className: cn(
-        'text-4xl md:text-5xl lg:text-6xl font-semibold text-effuse-off-black leading-tight tracking-tight font-inter',
-        className
-      ),
-      ...props,
-    }
+/**
+ * Typography primitives.
+ *
+ * Sizes come from the type scale in `lib/design/tokens.ts` via the `text-h1` …
+ * `text-body-sm` utilities, rather than a per-component stack of
+ * `text-3xl md:text-4xl lg:text-5xl`. The scale is fluid (clamp), so these need
+ * no responsive variants at all.
+ *
+ * Two things these deliberately no longer do:
+ *
+ * - They no longer carry `font-inter`. Inter is the default sans in
+ *   `tailwind.config.ts`, so the class was redundant — and `globals.css`
+ *   defined an unlayered rule setting font-weight 700 on it, which beat the
+ *   `font-normal` and `font-medium` sitting beside it in the same class
+ *   string. Every one of these components was rendering bold.
+ * - They no longer hardcode a colour. The site is dark-first with light
+ *   sections, so colour is inherited from the surface, which `SectionContainer`
+ *   sets. Baking in a dark foreground meant every heading on a dark section had
+ *   to fight it.
+ *
+ * `Code` is gone: it was the only consumer of IBM Plex Mono, a font downloaded
+ * on every page for a component no route rendered.
+ */
 
-    return (
-      <Component ref={ref} {...componentProps}>
-        {children}
-      </Component>
-    )
-  }
+const HEADING = 'font-semibold tracking-tight'
+
+const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
+  ({ children, className, as: Component = 'h1', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-h1', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
 const H2 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h2', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-3xl md:text-4xl lg:text-5xl font-medium text-effuse-off-black leading-tight tracking-tight font-inter',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'h2', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-h2', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
 const H3 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h3', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-2xl md:text-3xl font-medium text-effuse-off-black leading-tight font-inter',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'h3', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-h3', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
 const H4 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h4', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-xl md:text-2xl font-semibold text-effuse-off-black leading-tight font-inter',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'h4', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-h4', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
 const H5 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h5', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-lg md:text-xl font-semibold text-effuse-off-black leading-tight font-inter',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'h5', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-body-lg', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
 const H6 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, className, as: Component = 'h6', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-base md:text-lg font-semibold text-effuse-off-black leading-tight',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'h6', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-body', HEADING, className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
-// Text components
 const Text = React.forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ children, className, as: Component = 'p', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-base md:text-lg text-effuse-medium-grey leading-relaxed font-inter font-normal',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'p', ...props }, ref) => (
+    <Component ref={ref} className={cn('text-body', className)} {...props}>
+      {children}
+    </Component>
+  )
 )
 
 const Lead = React.forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ children, className, as: Component = 'p', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-lg md:text-xl text-effuse-medium-grey leading-relaxed font-light font-inter',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'p', ...props }, ref) => (
+    <Component ref={ref} className={cn('text-body-lg', className)} {...props}>
+      {children}
+    </Component>
+  )
 )
 
 const Small = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ children, className, as: Component = 'small', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'text-sm text-effuse-medium-grey leading-relaxed',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+  ({ children, className, as: Component = 'small', ...props }, ref) => (
+    <Component ref={ref} className={cn('text-body-sm', className)} {...props}>
+      {children}
+    </Component>
+  )
 )
 
-const Code = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ children, className, as: Component = 'code', ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          'font-mono text-sm bg-effuse-light-grey px-2 py-1 rounded text-effuse-off-black',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </Component>
-    )
-  }
+/** An uppercase, wide-tracked label naming the section above a heading. */
+const Eyebrow = React.forwardRef<HTMLElement, TypographyProps>(
+  ({ children, className, as: Component = 'p', ...props }, ref) => (
+    <Component
+      ref={ref}
+      className={cn('text-eyebrow font-medium uppercase', className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  )
 )
 
-// Set display names
 H1.displayName = 'H1'
 H2.displayName = 'H2'
 H3.displayName = 'H3'
@@ -190,7 +151,7 @@ H6.displayName = 'H6'
 Text.displayName = 'Text'
 Lead.displayName = 'Lead'
 Small.displayName = 'Small'
-Code.displayName = 'Code'
+Eyebrow.displayName = 'Eyebrow'
 
-export { Code, H1, H2, H3, H4, H5, H6, Lead, Small, Text }
+export { Eyebrow, H1, H2, H3, H4, H5, H6, Lead, Small, Text }
 export type { TypographyProps }

@@ -1,6 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { Button, H2, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { Button, H2, Reveal, Text } from '@/components/ui'
 import React from 'react'
 
 export interface FinalCTASectionProps {
@@ -32,7 +31,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   const containerBackground = isGradient
     ? 'gradient'
     : isDark
-      ? 'dark'
+      ? 'deep'
       : 'white'
 
   return (
@@ -44,7 +43,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
         isGradient ? 'bg-gradient-to-r from-effuse-teal to-effuse-slate' : ''
       }
     >
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-4xl mx-auto text-center">
           <H2
             className={`mb-4 ${
@@ -57,7 +56,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
           <Text
             className={`text-lg mb-8 max-w-2xl mx-auto ${
               isGradient || isDark
-                ? 'text-slate-300'
+                ? 'text-effuse-light-grey'
                 : 'text-effuse-off-black/75'
             }`}
           >
@@ -92,7 +91,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
             )}
           </div>
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

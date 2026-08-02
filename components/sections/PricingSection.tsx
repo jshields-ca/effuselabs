@@ -7,9 +7,9 @@ import {
   CardHeader,
   H2,
   H3,
+  Reveal,
   Text,
 } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
 import React from 'react'
 import { Check } from 'lucide-react'
 
@@ -53,10 +53,10 @@ const PricingSection: React.FC<PricingSectionProps> = ({
     return (
       <SectionContainer
         id={id}
-        background={isDark ? 'dark' : 'white'}
+        background={isDark ? 'base' : 'white'}
         padding="lg"
       >
-        <Animated animation="slideUp">
+        <Reveal>
           <div className="max-w-4xl mx-auto text-center">
             <H2
               className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
@@ -65,7 +65,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             </H2>
             <Text
               className={`text-lg mb-8 max-w-2xl mx-auto ${
-                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
               }`}
             >
               {placeholder.description}
@@ -77,7 +77,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
               </Button>
             )}
           </div>
-        </Animated>
+        </Reveal>
       </SectionContainer>
     )
   }
@@ -86,10 +86,10 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   return (
     <SectionContainer
       id={id}
-      background={isDark ? 'dark' : 'white'}
+      background={isDark ? 'base' : 'white'}
       padding="lg"
     >
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -100,7 +100,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -118,7 +118,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             }`}
           >
             {tiers?.map((tier, index) => (
-              <Animated key={tier.name} animation="fadeIn" delay={0.1 * index}>
+              <Reveal key={tier.name} order={index}>
                 <Card
                   className={`h-full relative ${
                     tier.highlighted
@@ -153,7 +153,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                         </div>
                         {tier.period && (
                           <Text
-                            className={`text-sm ${isDark ? 'text-slate-300' : 'text-effuse-off-black/75'}`}
+                            className={`text-sm ${isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'}`}
                           >
                             {tier.period}
                           </Text>
@@ -162,7 +162,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                     )}
                     <Text
                       className={`text-center mt-4 ${
-                        isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                        isDark
+                          ? 'text-effuse-light-grey'
+                          : 'text-effuse-off-black/75'
                       }`}
                     >
                       {tier.description}
@@ -191,7 +193,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                           <Text
                             className={`flex-1 ${
                               isDark
-                                ? 'text-slate-300'
+                                ? 'text-effuse-light-grey'
                                 : 'text-effuse-off-black'
                             }`}
                           >
@@ -213,11 +215,11 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                     </Button>
                   </CardFooter>
                 </Card>
-              </Animated>
+              </Reveal>
             ))}
           </div>
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

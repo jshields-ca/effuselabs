@@ -1,6 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { H2, H3, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { H2, H3, Reveal, Text } from '@/components/ui'
 import Image from 'next/image'
 import React from 'react'
 import { Check, type LucideIcon } from 'lucide-react'
@@ -37,10 +36,10 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
   return (
     <SectionContainer
       id={id}
-      background={isDark ? 'dark' : 'white'}
+      background={isDark ? 'base' : 'white'}
       padding="lg"
     >
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -51,7 +50,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
             </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -71,11 +70,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
               }
             >
               {items.map((item, index) => (
-                <Animated
-                  key={item.title}
-                  animation="fadeIn"
-                  delay={0.1 * index}
-                >
+                <Reveal key={item.title} order={index}>
                   {variant === 'checklist' ? (
                     /* Checklist Variant */
                     <div className="flex items-start gap-4">
@@ -100,7 +95,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                         <Text
                           className={
                             isDark
-                              ? 'text-slate-300'
+                              ? 'text-effuse-light-grey'
                               : 'text-effuse-off-black/75'
                           }
                         >
@@ -113,8 +108,8 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                     <div
                       className={`h-full rounded-xl p-6 transition-all duration-300 ${
                         isDark
-                          ? 'bg-slate-800/50 border border-slate-600/30 hover:bg-slate-800/70 hover:shadow-lg'
-                          : 'bg-slate-50/80 border border-effuse-light-grey/30 shadow-sm hover:shadow-lg hover:border-effuse-teal/20 hover:bg-white'
+                          ? 'bg-surface-raised border border-surface-border hover:bg-slate-800/70 hover:shadow-lg'
+                          : 'bg-effuse-light-grey/60 border border-effuse-light-neutral shadow-sm hover:shadow-lg hover:border-effuse-teal/20 hover:bg-white'
                       }`}
                     >
                       <div className="mb-4">
@@ -133,20 +128,22 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                       </H3>
                       <Text
                         className={
-                          isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                          isDark
+                            ? 'text-effuse-light-grey'
+                            : 'text-effuse-off-black/75'
                         }
                       >
                         {item.description}
                       </Text>
                     </div>
                   )}
-                </Animated>
+                </Reveal>
               ))}
             </div>
 
             {/* Optional Screenshot */}
             {screenshotSrc && (
-              <Animated animation="fadeIn" delay={0.3}>
+              <Reveal order={3}>
                 <div className="relative">
                   <Image
                     src={screenshotSrc}
@@ -158,11 +155,11 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                   {/* Optional decorative overlay */}
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
                 </div>
-              </Animated>
+              </Reveal>
             )}
           </div>
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

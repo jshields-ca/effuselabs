@@ -8,7 +8,7 @@ interface SectionContainerProps {
   as?: React.ElementType
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
-  background?: 'white' | 'light' | 'lighter' | 'dark' | 'gradient'
+  background?: 'deep' | 'base' | 'raised' | 'white' | 'light' | 'gradient'
   id?: string
 }
 
@@ -29,12 +29,21 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
     xl: 'py-20 lg:py-24',
   }
 
+  /*
+   * The site is dark-first: `deep` and `base` are the default canvas, and the
+   * light surfaces are for sections carrying real reading copy. Each dark
+   * option sets its own foreground so a section can never end up with dark text
+   * on a dark surface — which is exactly what happened when `dark` was a single
+   * override applied on top of light defaults.
+   */
   const backgroundClasses = {
-    white: 'bg-white',
-    light: 'bg-effuse-light-grey',
-    lighter: 'bg-slate-100',
-    dark: 'bg-effuse-slate text-white',
-    gradient: 'bg-gradient-to-b from-effuse-light-grey to-white',
+    deep: 'bg-surface-deep text-effuse-light-grey',
+    base: 'bg-surface-base text-effuse-light-grey',
+    raised: 'bg-surface-raised text-effuse-light-grey',
+    white: 'bg-white text-effuse-off-black',
+    light: 'bg-effuse-light-grey text-effuse-off-black',
+    gradient:
+      'bg-gradient-to-b from-surface-deep to-surface-base text-effuse-light-grey',
   }
 
   const props: React.HTMLAttributes<HTMLElement> = {

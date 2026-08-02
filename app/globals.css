@@ -1,24 +1,3 @@
-/* Ensure h1 uses Inter font, bold, and tight tracking for hero and headings */
-h1,
-.font-inter {
-  font-family:
-    'Inter',
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    Noto Sans,
-    Ubuntu,
-    Cantarell,
-    Helvetica Neue,
-    Arial,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol';
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
 @import 'tailwindcss';
 
 /*
@@ -30,15 +9,69 @@ h1,
 @config '../tailwind.config.ts';
 
 /*
- * Brand dividers and accent bars.
+ * ============================================================================
+ * WHAT BELONGS IN THIS FILE
+ * ============================================================================
  *
- * Declared with `@utility` rather than as plain classes inside
- * `@layer utilities`. In Tailwind v4 `@apply` resolves only registered
- * utilities, and `.accent-top::before` applies `accent-bar` — which fails
- * unless the class is registered this way.
+ * Almost nothing. This file was 677 lines declaring 24 custom classes, 18 of
+ * which no component referenced. Worse, most sat at the top level outside any
+ * cascade layer — and in Tailwind v4 unlayered CSS beats layered CSS
+ * regardless of specificity, so they silently overrode Tailwind utilities.
+ * Two were doing real damage:
+ *
+ *   * { padding: 0; margin: 0 }      killed EVERY padding and margin utility
+ *                                    on the site. `px-4` computed to 0px.
+ *
+ *   .font-inter { font-weight: 700 } beat `font-normal` and `font-medium` in
+ *                                    the same class string, so all body text
+ *                                    rendered bold.
+ *
+ * Both were harmless under Tailwind v3, where utilities were unlayered and
+ * ordinary specificity applied. The v4 upgrade turned them into bugs.
+ *
+ * So: put values in lib/design/tokens.ts, put variants in the component, and
+ * reach for this file only for genuinely global concerns — using `@layer base`
+ * or `@utility` so the cascade still works.
+ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Clears the fixed header when jumping to an anchor. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: theme('colors.surface-deep');
+    color: theme('colors.effuse-light-grey');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-wrap: pretty;
+  }
+
+  /* Headings hold together better when they are not wrapped raggedly. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: theme('colors.effuse-teal');
+    color: theme('colors.surface-deep');
+  }
+}
+
+/*
+ * ----------------------------------------------------------------------------
+ * Brand section dividers
+ * ----------------------------------------------------------------------------
+ * Declared with `@utility` rather than as plain classes: in Tailwind v4
+ * `@apply` resolves only registered utilities, and a class declared inside
+ * `@layer utilities` is not one.
  */
 @utility section-divider {
-  @apply h-0.5 w-full max-w-lg mx-auto my-16;
+  @apply mx-auto h-px w-full max-w-lg;
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -49,371 +82,198 @@ h1,
 }
 
 @utility section-divider-lg {
-  @apply h-1 max-w-2xl my-20;
+  @apply mx-auto h-px w-full max-w-2xl;
   background: linear-gradient(
     90deg,
     transparent 0%,
     theme('colors.effuse-teal') 30%,
-    theme('colors.effuse-teal') 70%,
+    theme('colors.effuse-gold') 70%,
     transparent 100%
   );
 }
 
-@utility accent-bar {
-  @apply h-1 w-16 rounded-sm;
-  background: linear-gradient(
-    135deg,
-    theme('colors.lumina-gradient-start') 0%,
-    theme('colors.lumina-gradient-end') 100%
-  );
-}
-
-@utility accent-bar-lg {
-  @apply h-1.5 w-24 rounded;
-  background: linear-gradient(
-    135deg,
-    theme('colors.lumina-gradient-start') 0%,
-    theme('colors.lumina-gradient-end') 100%
-  );
-}
-
-@utility accent-bar-teal {
-  @apply h-1 w-16 rounded-sm;
-  background: linear-gradient(
-    135deg,
-    theme('colors.effuse-teal') 0%,
-    theme('colors.effuse-teal') 100%
-  );
-}
-
-@layer base {
-  :root {
-    --font-sans:
-      'Inter', 'Poppins', 'IBM Plex Mono', ui-sans-serif, system-ui,
-      -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell,
-      Helvetica Neue, Arial, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol';
+/*
+ * ----------------------------------------------------------------------------
+ * Luminous field drift
+ * ----------------------------------------------------------------------------
+ * Transform-only, so the browser composites these on the GPU without
+ * repainting — they animate large, heavily blurred elements, and anything that
+ * triggers layout or paint here is expensive.
+ *
+ * Long durations and small distances on purpose: light that seems to breathe,
+ * not motion that pulls the eye off the copy.
+ */
+@keyframes drift-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
-  html {
-    font-family: var(--font-sans);
+  50% {
+    transform: translate3d(4%, 3%, 0);
   }
 }
 
-@layer utilities {
-  /* Lightweight CSS animations to replace Framer Motion */
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+@keyframes drift-reverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
-
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slide-left {
-    from {
-      opacity: 0;
-      transform: translateX(2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slide-right {
-    from {
-      opacity: 0;
-      transform: translateX(-2rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes scale {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes breathing {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.02);
-    }
-  }
-
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      box-shadow: 0 0 10px rgba(34, 197, 195, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(34, 197, 195, 0.5);
-    }
-  }
-
-  @keyframes button-hover {
-    0% {
-      transform: translateY(0) scale(1);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    100% {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(34, 197, 195, 0.3);
-    }
-  }
-
-  @keyframes divider-reveal {
-    from {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    to {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
-  }
-  .animate-slide-up {
-    animation: slide-up 0.5s ease-out forwards;
-  }
-  .animate-slide-left {
-    animation: slide-left 0.5s ease-out forwards;
-  }
-  .animate-slide-right {
-    animation: slide-right 0.5s ease-out forwards;
-  }
-  .animate-scale {
-    animation: scale 0.5s ease-out forwards;
-  }
-  .animate-breathing {
-    animation: breathing 3s ease-in-out infinite;
-  }
-  .animate-divider-reveal {
-    animation: divider-reveal 0.8s ease-out forwards;
-  }
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-  .animate-button-hover {
-    animation: button-hover 0.3s ease-out forwards;
-  }
-
-  /* Brand Shadow Utilities */
-  .shadow-brand-light {
-    box-shadow: var(--shadow-brand-light);
-  }
-
-  .shadow-brand-medium {
-    box-shadow: var(--shadow-brand-medium);
-  }
-
-  .shadow-brand-heavy {
-    box-shadow: var(--shadow-brand-heavy);
-  }
-
-  .shadow-teal-glow {
-    box-shadow: var(--shadow-teal-glow);
-  }
-
-  .shadow-gold-glow {
-    box-shadow: var(--shadow-gold-glow);
-  }
-
-  /* Enhanced Brand Shadows for Interactive Elements */
-  .shadow-brand-hover {
-    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .shadow-brand-hover:hover {
-    box-shadow: var(--shadow-brand-medium), var(--shadow-teal-glow);
-  }
-
-  /* Enhanced Focus States */
-  .focus-brand:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(34, 197, 195, 0.5);
-    border-radius: 4px;
-  }
-
-  .focus-gold:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 210, 90, 0.5);
-    border-radius: 4px;
-  }
-
-  /* Loading States */
-  .loading-pulse {
-    animation: breathing 2s ease-in-out infinite;
-  }
-
-  .loading-glow {
-    animation: pulse-glow 1.5s ease-in-out infinite;
-  }
-
-  /* Interactive Element Enhancements */
-  .interactive-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .interactive-lift:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: var(--shadow-brand-medium);
-  }
-
-  .interactive-glow {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .interactive-glow:hover {
-    box-shadow: var(--shadow-teal-glow);
-  }
-
-  /* Reduced Motion Support */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-breathing,
-    .animate-pulse-glow,
-    .animate-button-hover,
-    .loading-pulse,
-    .loading-glow {
-      animation: none;
-    }
-
-    .interactive-lift:hover {
-      transform: none;
-    }
-
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Responsive Accent Positioning */
-  .accent-top {
-    @apply relative;
-  }
-
-  .accent-top::before {
-    content: '';
-    @apply absolute -top-2 left-0 accent-bar;
-  }
-
-  .accent-center {
-    @apply relative;
-  }
-
-  .accent-center::before {
-    content: '';
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 accent-bar;
+  50% {
+    transform: translate3d(-5%, 4%, 0);
   }
 }
 
-:root {
-  /* Brand Colors */
-  --off-black: 29, 29, 33;
-  --medium-grey: 128, 130, 133;
-  --light-grey: 241, 243, 245;
-  --slate-grey: 46, 52, 64;
-  --brand-gold: 255, 210, 90;
-  --brand-teal-dark: 11, 43, 51;
-  --brand-teal-light: 34, 197, 195;
-
-  /* Brand Shadow System */
-  --shadow-brand-light: 0 4px 20px rgba(34, 197, 195, 0.1);
-  --shadow-brand-medium: 0 8px 30px rgba(46, 52, 64, 0.15);
-  --shadow-brand-heavy: 0 20px 60px rgba(255, 210, 90, 0.2);
-  --shadow-teal-glow: 0 0 20px rgba(34, 197, 195, 0.3);
-  --shadow-gold-glow: 0 0 25px rgba(255, 210, 90, 0.4);
-
-  /* Default theme */
-  --foreground-rgb: var(--off-black);
-  --background-start-rgb: var(--light-grey);
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: var(--light-grey);
-    --background-start-rgb: var(--off-black);
-    --background-end-rgb: var(--off-black);
+@keyframes drift-slower {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0);
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@utility animate-drift-slow {
+  animation: drift-slow 26s ease-in-out infinite;
+  will-change: transform;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+@utility animate-drift-reverse {
+  animation: drift-reverse 32s ease-in-out infinite;
+  will-change: transform;
 }
 
-html,
-body {
-  max-width: 100vw;
-  font-family: var(--font-sans);
+@utility animate-drift-slower {
+  animation: drift-slower 38s ease-in-out infinite;
+  will-change: transform;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Focus styles for accessibility */
-@layer base {
-  *:focus-visible {
-    outline: 2px solid rgb(var(--brand-gold));
-    outline-offset: 2px;
+/*
+ * ----------------------------------------------------------------------------
+ * Entrance animations
+ * ----------------------------------------------------------------------------
+ * Always applied through `motion-safe:` so they never run for a reader who has
+ * asked for reduced motion.
+ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-/* Reduced motion */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+@utility animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+@utility animate-scale {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/*
+ * ----------------------------------------------------------------------------
+ * Scroll reveal
+ * ----------------------------------------------------------------------------
+ * Backs `components/ui/Reveal.tsx`.
+ *
+ * The default state is **visible**. The animation is layered on top only where
+ * the browser supports scroll-driven timelines *and* the reader has not asked
+ * for reduced motion. Both fallbacks land on plain, fully visible content.
+ *
+ * That ordering is the point. The component this replaces
+ * (`LightweightAnimatedContainer`) rendered its children at `opacity: 0` and
+ * relied on an IntersectionObserver to reveal them — so a script failure, a
+ * blocked bundle, or simply a browser that had not run the JS yet left the page
+ * blank below the hero. Hidden-by-default is the wrong bet for a site whose
+ * pitch is accessible technology.
+ *
+ * `--reveal-order` staggers the range rather than the delay: with a `view()`
+ * timeline, progress is driven by scroll position, so `animation-delay` in
+ * milliseconds has no meaningful effect. Shifting the entry offset does.
+ */
+@layer components {
+  .reveal {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @layer components {
+      .reveal {
+        animation: reveal-in linear both;
+        animation-timeline: view();
+        animation-range: entry calc(8% + var(--reveal-order, 0) * 4%) cover 32%;
+      }
+    }
+  }
+}
+
+/*
+ * Printing has no scrollport, so a `view()` timeline never advances and every
+ * revealed element would print stuck at its `from` state — a blank page below
+ * the hero. Force the end state.
+ */
+@media print {
+  .reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/*
+ * ----------------------------------------------------------------------------
+ * Reduced motion
+ * ----------------------------------------------------------------------------
+ * `motion-safe:` already gates every animation above. This is the backstop for
+ * anything that slips past it — a third-party style, or a future addition that
+ * forgets the variant. Accessibility is a claim this business makes about
+ * itself, so it gets belt and braces.
+ */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -421,200 +281,5 @@ body {
 
   html {
     scroll-behavior: auto;
-  }
-}
-
-/* Touch optimization */
-@media (hover: none) and (pointer: coarse) {
-  /* Increase touch targets on mobile */
-  button,
-  a,
-  [role='button'] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Optimize text selection */
-  .touch-callout-none {
-    -webkit-touch-callout: none;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .bg-gradient-to-b {
-    background: white;
-  }
-}
-
-/* ===============================================
-   TYPOGRAPHY ENHANCEMENTS
-   =============================================== */
-
-/* Enhanced Gradient Text Utilities */
-.text-gradient-gold {
-  background: linear-gradient(
-    135deg,
-    theme('colors.lumina-gold') 0%,
-    theme('colors.lumina-coral') 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent; /* Fallback for non-supporting browsers */
-}
-
-.text-gradient-teal {
-  background: linear-gradient(
-    135deg,
-    theme('colors.effuse-teal') 0%,
-    color-mix(in srgb, theme('colors.effuse-teal') 65%, black) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-.text-gradient-brand {
-  background: linear-gradient(
-    135deg,
-    theme('colors.effuse-teal') 0%,
-    theme('colors.lumina-gold') 50%,
-    theme('colors.lumina-coral') 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* Enhanced Hero Typography Scale */
-.hero-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  font-family:
-    'Inter',
-    system-ui,
-    -apple-system,
-    sans-serif;
-}
-
-.hero-subtitle {
-  font-size: clamp(1.125rem, 3vw, 1.5rem);
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  opacity: 0.9;
-}
-
-/* Enhanced Heading Hierarchy */
-.heading-xl {
-  font-size: clamp(3rem, 6vw, 4rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-}
-
-.heading-lg {
-  font-size: clamp(2.25rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.heading-md {
-  font-size: clamp(1.875rem, 4vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-}
-
-.heading-sm {
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-}
-
-/* Enhanced Text Effects */
-.text-shadow-soft {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.text-shadow-medium {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.text-shadow-strong {
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-/* Improved Reading Experience */
-.text-balance {
-  text-wrap: balance;
-}
-
-.text-pretty {
-  text-wrap: pretty;
-}
-
-/* Typography Animation Effects */
-.text-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Accessibility: Disable gradients and effects when motion is reduced */
-@media (prefers-reduced-motion: reduce) {
-  .text-gradient-gold,
-  .text-gradient-teal,
-  .text-gradient-brand {
-    background: none;
-    background-clip: unset;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    color: theme('colors.effuse-off-black');
-  }
-
-  .text-shimmer {
-    animation: none;
-    background: none;
-  }
-}
-
-/* Print styles */
-@media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  .no-print {
-    display: none !important;
   }
 }

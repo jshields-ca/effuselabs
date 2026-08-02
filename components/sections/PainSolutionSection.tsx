@@ -1,6 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { H2, H3, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { H2, H3, Reveal, Text } from '@/components/ui'
 import React from 'react'
 import { Check, type LucideIcon } from 'lucide-react'
 
@@ -32,10 +31,10 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
   return (
     <SectionContainer
       id={id}
-      background={isDark ? 'dark' : 'white'}
+      background={isDark ? 'base' : 'white'}
       padding="lg"
     >
-      <Animated animation="slideUp">
+      <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Problem & Solution Grid */}
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 mb-12">
@@ -59,7 +58,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
                 }
               >
                 {problem.description}
@@ -86,7 +85,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-slate-300' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
                 }
               >
                 {solution.description}
@@ -96,23 +95,19 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
 
           {/* Benefits Bullets */}
           {bullets.length > 0 && (
-            <Animated animation="fadeIn" delay={0.2}>
+            <Reveal order={2}>
               <div className="text-center">
                 <H2 className={`mb-8 ${isDark ? 'text-white' : ''}`}>
                   Key Benefits
                 </H2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
                   {bullets.map((bullet, index) => (
-                    <Animated
-                      key={index}
-                      animation="fadeIn"
-                      delay={0.1 * (index + 3)}
-                    >
+                    <Reveal key={index} order={2}>
                       <div
                         className={`p-4 rounded-lg ${
                           isDark
-                            ? 'bg-slate-800/50 border border-slate-600/30'
-                            : 'bg-slate-50/80 border border-effuse-light-grey/30'
+                            ? 'bg-surface-raised border border-surface-border'
+                            : 'bg-effuse-light-grey/60 border border-effuse-light-neutral'
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -126,7 +121,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                           <Text
                             className={`flex-1 text-sm ${
                               isDark
-                                ? 'text-slate-300'
+                                ? 'text-effuse-light-grey'
                                 : 'text-effuse-off-black'
                             }`}
                           >
@@ -134,14 +129,14 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                           </Text>
                         </div>
                       </div>
-                    </Animated>
+                    </Reveal>
                   ))}
                 </div>
               </div>
-            </Animated>
+            </Reveal>
           )}
         </div>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

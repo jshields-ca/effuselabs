@@ -4,6 +4,7 @@ import {
   PhilosophySection,
 } from '@/components/sections'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { contact } from '@/content/site'
 import {
   AccentBar,
   Button,
@@ -12,12 +13,12 @@ import {
   GridItem,
   H2,
   H3,
+  LuminousField,
+  Reveal,
   SectionDivider,
   Text,
 } from '@/components/ui'
-// Use lightweight CSS animations instead of Framer Motion
-import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
-import { Check, Lightbulb, Scissors } from 'lucide-react'
+import { ArrowRight, Check, Lightbulb, Scissors } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
 
       {/* Products Section */}
       <SectionContainer id="products" background="white" padding="lg">
-        <AnimatedContainer animation="slideUp">
+        <Reveal>
           <div className="text-center mb-12">
             <AccentBar
               size="md"
@@ -141,12 +142,12 @@ export default function Home() {
               </div>
             </Card>
           </div>
-        </AnimatedContainer>
+        </Reveal>
       </SectionContainer>
 
       {/* Solutions Section */}
-      <SectionContainer id="solutions" background="lighter" padding="lg">
-        <AnimatedContainer animation="slideUp">
+      <SectionContainer id="solutions" background="light" padding="lg">
+        <Reveal>
           <div className="text-center mb-12">
             <H2 className="mb-4 text-effuse-off-black">
               Built for the Builders
@@ -253,39 +254,58 @@ export default function Home() {
               </Card>
             </GridItem>
           </Grid>
-        </AnimatedContainer>
+        </Reveal>
       </SectionContainer>
 
-      {/* Contact/CTA Section */}
-      <SectionContainer id="contact" background="dark" padding="lg">
-        <AnimatedContainer animation="fadeIn" className="text-center">
-          <H2 className="text-white mb-6">Ready to Build with Clarity?</H2>
-          <Text className="text-slate-300 max-w-2xl mx-auto mb-8">
-            Join the growing number of small businesses that trust Effuse Labs
-            to streamline their operations and unlock their potential.
+      {/* Contact / CTA */}
+      <SectionContainer
+        id="contact"
+        background="deep"
+        padding="xl"
+        className="relative isolate overflow-hidden"
+      >
+        <LuminousField intensity="section" />
+        <Reveal className="relative z-10 mx-auto max-w-3xl text-center">
+          <AccentBar
+            size="md"
+            variant="effuse"
+            position="center"
+            className="mb-6"
+          />
+          <H2 className="mb-6 text-effuse-white">
+            Ready to build with clarity?
+          </H2>
+          <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-light-grey">
+            Tell us what your business is wrestling with. Whether that is
+            software we build for you, or open-source tools we set up and keep
+            running, the first conversation is free and there is no script.
           </Text>
-          <div className="inline-flex gap-4 mb-8">
-            <Button variant="primary" size="lg">
-              Get Started
+
+          {/*
+            These were a "Get Started" and a "Schedule Demo" button with no href
+            and no onClick — inert elements styled to look like the primary
+            action on the page. A mailto: is not the eventual answer, but it
+            works today, which an inert button never did. The contact form
+            replaces it.
+          */}
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              variant="primary"
+              size="lg"
+              href={`mailto:${contact.email}`}
+            >
+              Email {contact.email}
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
-            <Button variant="secondary" size="lg">
-              Schedule Demo
+            <Button variant="secondary" size="lg" href="/products/lumina">
+              See what we have built
             </Button>
           </div>
-          <div className="max-w-md mx-auto">
-            <Text className="text-slate-300 text-sm mb-2">
-              Get in touch with our team:
-            </Text>
-            <Text className="text-white">
-              <a
-                href="mailto:hello@effuse.io"
-                className="hover:text-effuse-teal transition-colors"
-              >
-                hello@effuse.io
-              </a>
-            </Text>
-          </div>
-        </AnimatedContainer>
+
+          <Text className="mt-10 text-body-sm text-effuse-light-grey/70">
+            {contact.location}
+          </Text>
+        </Reveal>
       </SectionContainer>
     </>
   )

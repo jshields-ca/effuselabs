@@ -52,11 +52,17 @@ export const AccentBar: React.FC<AccentBarProps> = ({
     inline: '',
   }
 
+  /*
+   * A <span>, not a <div>. This is decorative phrasing-level content and is
+   * used inside <p> — a <div> there is invalid HTML, which browsers silently
+   * restructure, producing a hydration mismatch (React error #418) rather than
+   * anything that looks like a markup problem.
+   */
   const bar = (
-    <div
+    <span
       aria-hidden="true"
       className={cn(
-        'rounded-full',
+        'block rounded-full',
         sizeClasses[size],
         variantClasses[variant],
         positionClasses[position],
@@ -69,7 +75,7 @@ export const AccentBar: React.FC<AccentBarProps> = ({
   return position === 'inline' || position === 'center' ? (
     bar
   ) : (
-    <div className="relative">{bar}</div>
+    <span className="relative block">{bar}</span>
   )
 }
 

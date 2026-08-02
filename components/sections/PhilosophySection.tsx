@@ -1,6 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { H2, H3, Text } from '@/components/ui'
-import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
+import { AccentBar, H2, H3, LuminousField, Reveal, Text } from '@/components/ui'
 import React from 'react'
 
 interface PhilosophySectionProps {
@@ -23,7 +22,7 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
     {
       num: 2,
       title: 'Built for Performance & Peace of Mind',
-      copy: 'Your software should be your most reliable employee. We build on a performance-first architecture, chasing 100/98 Lighthouse scores and monitoring Core Web Vitals to ensure your tools are lightning-fast. Our commitment to security is just as rigorous, implementing modern headers, HSTS, and industry best practices to protect your data and give you a foundation of trust you can build on.',
+      copy: 'Your software should be your most reliable employee. We build on a performance-first architecture, with performance budgets and accessibility checks enforced automatically on every change, so your tools stay fast as they grow. Our commitment to security is just as rigorous, implementing modern headers, HSTS, and industry best practices to protect your data and give you a foundation of trust you can build on.',
     },
     {
       num: 3,
@@ -33,41 +32,44 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
   ]
 
   return (
-    <SectionContainer id={id} background="white" padding="lg">
-      <Animated animation="slideUp">
-        <div className="mx-auto max-w-3xl text-center mb-12">
-          <H2 className="mb-4 text-effuse-off-black">{heading}</H2>
-          <Text className="text-effuse-off-black/75 text-lg leading-relaxed font-normal">
-            {intro}
-          </Text>
+    <SectionContainer
+      id={id}
+      background="base"
+      padding="xl"
+      className="relative isolate overflow-hidden"
+    >
+      <LuminousField intensity="section" />
+      <Reveal>
+        <div className="relative z-10 mx-auto mb-16 max-w-3xl">
+          <AccentBar size="md" variant="effuse" className="mb-6" />
+          <H2 className="mb-6 text-effuse-white">{heading}</H2>
+          <Text className="text-body-lg text-effuse-light-grey">{intro}</Text>
         </div>
 
         <ol
-          className="mx-auto max-w-4xl space-y-8"
+          className="relative z-10 mx-auto max-w-4xl space-y-6"
           aria-label="Effuse Labs philosophy principles"
         >
           {items.map((item, index) => (
-            <Animated key={item.title} animation="fadeIn" delay={0.05 * index}>
-              <li className="relative flex gap-6 rounded-xl border border-effuse-light-grey/40 bg-slate-50/80 backdrop-blur-sm p-8 shadow-md hover:shadow-lg hover:border-effuse-teal/30 hover:bg-white transition-all duration-300">
+            <Reveal key={item.title} order={index}>
+              <li className="group relative flex gap-6 rounded-2xl border border-surface-border bg-surface-raised/70 p-8 backdrop-blur-sm transition-colors duration-300 hover:border-effuse-teal/40">
                 <div
-                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-effuse-gold text-effuse-off-black font-semibold"
-                  aria-hidden
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-effuse-gold font-semibold text-effuse-off-black"
+                  aria-hidden="true"
                 >
                   {item.num}
                 </div>
                 <div>
-                  <H3 className="mb-3 text-effuse-off-black font-medium">
+                  <H3 className="mb-3 font-medium text-effuse-white">
                     {item.title}
                   </H3>
-                  <Text className="text-effuse-off-black/80 leading-relaxed font-normal">
-                    {item.copy}
-                  </Text>
+                  <Text className="text-effuse-light-grey">{item.copy}</Text>
                 </div>
               </li>
-            </Animated>
+            </Reveal>
           ))}
         </ol>
-      </Animated>
+      </Reveal>
     </SectionContainer>
   )
 }

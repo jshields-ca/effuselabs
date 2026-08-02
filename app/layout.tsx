@@ -2,7 +2,7 @@ import { PageWrapper } from '@/components/layout/PageWrapper'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Mono, Inter, Poppins } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -14,12 +14,6 @@ const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-poppins',
-  display: 'swap',
-})
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-ibmplexmono',
   display: 'swap',
 })
 
@@ -64,69 +58,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${inter.variable} ${poppins.variable} ${ibmPlexMono.variable}`}
+      className={`scroll-smooth ${inter.variable} ${poppins.variable}`}
     >
-      <head>
-        {/* Critical resource hints for LCP */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        {/* Preload critical resources */}
-        {/* Removed preload for /fonts/inter-var.woff2; font is loaded via next/font/google */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            /* Critical Hero Section Only */
-            .hero-critical { 
-              background: linear-gradient(135deg, rgb(29,29,33) 0%, rgb(128,130,133) 50%, rgb(34,67,82) 100%);
-              display: flex;
-              align-items: center;
-              position: relative;
-              overflow: hidden;
-            }
-            .hero-text { color: white; z-index: 20; position: relative; width: 100%; }
-            .hero-title { 
-              font-size: 3rem; 
-              font-weight: bold; 
-              line-height: 1.1; 
-              margin-bottom: 1.5rem; 
-              color: white; 
-            }
-            
-            /* Critical Background Animations */
-            @keyframes flow-horizontal {
-              0% { transform: translateX(-50px) rotate(0deg); }
-              100% { transform: translateX(50px) rotate(5deg); }
-            }
-            @keyframes float-slow {
-              0%, 100% { transform: translateY(0px) scale(1); }
-              50% { transform: translateY(-20px) scale(1.05); }
-            }
-            @keyframes float-reverse {
-              0%, 100% { transform: translateY(0px) translateX(0px); }
-              50% { transform: translateY(20px) translateX(30px); }
-            }
-            
-            /* Critical Responsive */
-            @media (min-width: 640px) { 
-              .hero-title { font-size: 4rem; }
-            }
-            @media (min-width: 1024px) { 
-              .hero-title { font-size: 5rem; }
-              .hero-text { text-align: left; }
-            }
-            @media (max-width: 1023px) { 
-              .hero-text { text-align: center; }
-            }
-          `,
-          }}
-        />
-      </head>
-      <body className={`antialiased font-sans`}>
+      <body>
         <PageWrapper>{children}</PageWrapper>
         <SpeedInsights />
         <Analytics />

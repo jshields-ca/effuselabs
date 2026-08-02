@@ -1,13 +1,5 @@
 import { expect, test, type ConsoleMessage } from '@playwright/test'
-
-/**
- * Every route the site serves. Add to this list when a route is added — the
- * checks below then apply to it automatically.
- */
-export const ROUTES = [
-  { path: '/', name: 'home' },
-  { path: '/products/lumina', name: 'Lumina product page' },
-] as const
+import { ROUTES } from './routes'
 
 /**
  * Browser console noise that is not the site's fault. Keep this list short and
