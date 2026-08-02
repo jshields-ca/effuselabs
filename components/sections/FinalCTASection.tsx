@@ -1,5 +1,3 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
 import { Button, H2, Text } from '@/components/ui'
 import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'

@@ -1,21 +1,20 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
 import { H2, H3, Text } from '@/components/ui'
 import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
 import React from 'react'
+import { Check, type LucideIcon } from 'lucide-react'
 
 export interface PainSolutionSectionProps {
   id?: string
   problem: {
     heading: string
     description: string
-    icon?: string
+    icon?: LucideIcon
   }
   solution: {
     heading: string
     description: string
-    icon?: string
+    icon?: LucideIcon
   }
   bullets?: string[]
   background?: 'light' | 'dark'
@@ -43,11 +42,14 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
             {/* Problem Side */}
             <div className="text-center lg:text-left">
               {problem.icon && (
-                <div
-                  className="text-6xl mb-4 flex justify-center lg:justify-start"
-                  aria-hidden
-                >
-                  {problem.icon}
+                <div className="mb-4 flex justify-center lg:justify-start">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-medium-grey/10 text-effuse-medium-grey ring-1 ring-effuse-medium-grey/20">
+                    <problem.icon
+                      className="h-7 w-7"
+                      aria-hidden="true"
+                      strokeWidth={1.75}
+                    />
+                  </span>
                 </div>
               )}
               <H3
@@ -67,11 +69,14 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
             {/* Solution Side */}
             <div className="text-center lg:text-left">
               {solution.icon && (
-                <div
-                  className="text-6xl mb-4 flex justify-center lg:justify-start"
-                  aria-hidden
-                >
-                  {solution.icon}
+                <div className="mb-4 flex justify-center lg:justify-start">
+                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
+                    <solution.icon
+                      className="h-7 w-7"
+                      aria-hidden="true"
+                      strokeWidth={1.75}
+                    />
+                  </span>
                 </div>
               )}
               <H3
@@ -112,7 +117,11 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                       >
                         <div className="flex items-center gap-3">
                           <div className="text-xl text-effuse-gold" aria-hidden>
-                            ✓
+                            <Check
+                              className="h-4 w-4"
+                              aria-hidden="true"
+                              strokeWidth={2.5}
+                            />
                           </div>
                           <Text
                             className={`flex-1 text-sm ${

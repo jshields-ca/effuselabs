@@ -1,13 +1,12 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
 import { H2, H3, Text } from '@/components/ui'
 import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
 import Image from 'next/image'
 import React from 'react'
+import { Check, type LucideIcon } from 'lucide-react'
 
 export interface FeatureItem {
-  icon: string
+  icon: LucideIcon
   title: string
   description: string
 }
@@ -85,7 +84,11 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                           className="text-sm font-semibold text-effuse-off-black"
                           aria-hidden
                         >
-                          ✓
+                          <Check
+                            className="h-4 w-4"
+                            aria-hidden="true"
+                            strokeWidth={2.5}
+                          />
                         </span>
                       </div>
                       <div className="flex-1">
@@ -114,8 +117,14 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                           : 'bg-slate-50/80 border border-effuse-light-grey/30 shadow-sm hover:shadow-lg hover:border-effuse-teal/20 hover:bg-white'
                       }`}
                     >
-                      <div className="text-4xl mb-4" aria-hidden>
-                        {item.icon}
+                      <div className="mb-4">
+                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-effuse-teal/10 text-effuse-slate ring-1 ring-effuse-teal/25">
+                          <item.icon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                            strokeWidth={1.75}
+                          />
+                        </span>
                       </div>
                       <H3
                         className={`mb-3 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}

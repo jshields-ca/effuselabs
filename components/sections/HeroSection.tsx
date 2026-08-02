@@ -1,5 +1,3 @@
-'use client'
-
 import {
   LightweightAnimatedContainer as AnimatedContainer,
   LightweightAnimatedItem as AnimatedItem,

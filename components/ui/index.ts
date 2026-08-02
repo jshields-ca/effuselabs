@@ -32,11 +32,8 @@ export {
 } from './LightweightAnimatedContainer'
 
 // Staggered animation component for micro-interactions
-export { default as StaggeredAnimation } from './StaggeredAnimation'
 
 // Enhanced Link component with brand animations
-export { default as EnhancedLink } from './EnhancedLink'
-export type { EnhancedLinkProps } from './EnhancedLink'
 
 // Scroll indicator with gradient progress
 export { default as ScrollIndicator } from './ScrollIndicator'

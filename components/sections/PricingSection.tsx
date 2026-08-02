@@ -1,5 +1,3 @@
-'use client'
-
 import { SectionContainer } from '@/components/layout/SectionContainer'
 import {
   Button,
@@ -13,6 +11,7 @@ import {
 } from '@/components/ui'
 import { LightweightAnimatedContainer as Animated } from '@/components/ui/LightweightAnimatedContainer'
 import React from 'react'
+import { Check } from 'lucide-react'
 
 export interface PricingTier {
   name: string
@@ -182,7 +181,11 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                               className="text-xs font-semibold text-effuse-off-black"
                               aria-hidden
                             >
-                              ✓
+                              <Check
+                                className="h-4 w-4"
+                                aria-hidden="true"
+                                strokeWidth={2.5}
+                              />
                             </span>
                           </div>
                           <Text

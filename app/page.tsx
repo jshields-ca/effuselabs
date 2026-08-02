@@ -17,6 +17,7 @@ import {
 } from '@/components/ui'
 // Use lightweight CSS animations instead of Framer Motion
 import { LightweightAnimatedContainer as AnimatedContainer } from '@/components/ui/LightweightAnimatedContainer'
+import { Check, Lightbulb, Scissors } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -78,25 +79,41 @@ export default function Home() {
                   </Text>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-center">
-                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Check
+                        className="mr-2 h-4 w-4 flex-shrink-0 text-effuse-gold"
+                        aria-hidden="true"
+                        strokeWidth={2.5}
+                      />
                       <Text className="text-sm text-effuse-off-black">
                         Intelligent dashboard with AI insights
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Check
+                        className="mr-2 h-4 w-4 flex-shrink-0 text-effuse-gold"
+                        aria-hidden="true"
+                        strokeWidth={2.5}
+                      />
                       <Text className="text-sm text-effuse-off-black">
                         Flexible financials for commission & chair rental
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Check
+                        className="mr-2 h-4 w-4 flex-shrink-0 text-effuse-gold"
+                        aria-hidden="true"
+                        strokeWidth={2.5}
+                      />
                       <Text className="text-sm text-effuse-off-black">
                         Seamless online booking integration
                       </Text>
                     </li>
                     <li className="flex items-center">
-                      <span className="text-effuse-gold mr-2 text-lg">✓</span>
+                      <Check
+                        className="mr-2 h-4 w-4 flex-shrink-0 text-effuse-gold"
+                        aria-hidden="true"
+                        strokeWidth={2.5}
+                      />
                       <Text className="text-sm text-effuse-off-black">
                         Unified POS & CRM system
                       </Text>
@@ -111,7 +128,11 @@ export default function Home() {
                   </Button>
                 </div>
                 <div className="bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end rounded-lg p-8 text-center text-white">
-                  <div className="text-6xl mb-4">💡</div>
+                  <Lightbulb
+                    className="mx-auto mb-4 h-14 w-14"
+                    aria-hidden="true"
+                    strokeWidth={1.5}
+                  />
                   <H3 className="text-white mb-2">Lumina</H3>
                   <Text className="text-white/90">
                     Illuminating Business Growth
@@ -149,9 +170,13 @@ export default function Home() {
                 />
                 <div className="flex flex-col h-full">
                   <div className="mb-4 flex flex-col items-center justify-center md:min-h-[140px]">
-                    <div className="text-6xl mb-3" aria-hidden>
-                      💇‍♀️
-                    </div>
+                    <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-slate ring-1 ring-effuse-teal/25">
+                      <Scissors
+                        className="h-7 w-7"
+                        aria-hidden="true"
+                        strokeWidth={1.75}
+                      />
+                    </span>
                     <H3 className="text-effuse-off-black text-center text-xl font-semibold">
                       Salons & Barbershops
                     </H3>
