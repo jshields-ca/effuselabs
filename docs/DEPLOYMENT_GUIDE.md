@@ -27,14 +27,17 @@ Create `.env.local` file in the project root:
 NODE_ENV=development
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
-# Sanity CMS Configuration (to be added in Sprint 6)
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
-NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=your_sanity_api_token
-
-# Analytics Configuration (Optional)
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
 ```
+
+No environment variables are required to run the site locally. Content is typed
+TypeScript in `content/`, resolved at build time — there is no CMS to
+configure. Vercel Analytics and Speed Insights need no keys; they are injected
+by the platform, and their scripts 404 harmlessly anywhere else.
+
+The contact form arrives with the content work and will add `RESEND_API_KEY`,
+`CONTACT_TO_EMAIL` and `NEXT_PUBLIC_BOOKING_URL`. Those are secrets: resolve the
+client lazily inside the handler, never at module scope, or `next build` breaks
+wherever the key is absent.
 
 ### ⚡ Optimized Local Development
 
@@ -129,11 +132,11 @@ Set environment variables in **Vercel Dashboard > Project > Settings > Environme
 - `NEXT_PUBLIC_SITE_URL=https://effuselabs-git-branch.vercel.app`
 - `NEXT_TELEMETRY_DISABLED=1`
 
-**Future Variables (Sprint 6):**
+**Arriving with the contact form:**
 
-- `NEXT_PUBLIC_SANITY_PROJECT_ID`
-- `NEXT_PUBLIC_SANITY_DATASET`
-- `SANITY_API_TOKEN`
+- `RESEND_API_KEY` (secret)
+- `CONTACT_TO_EMAIL`
+- `NEXT_PUBLIC_BOOKING_URL`
 
 ### 3. Automatic Deployments
 

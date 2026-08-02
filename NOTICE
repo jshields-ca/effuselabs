@@ -1,0 +1,36 @@
+Effuse Labs — trademark and content notice
+==========================================
+
+The source code in this repository is offered under the MIT licence (see
+LICENSE). Take it, learn from it, build on it. That is deliberate: Effuse Labs
+sets up and supports open-source software for a living, and it would be odd to
+do that from behind a closed repository.
+
+Two things are NOT covered by that licence and remain the property of Effuse
+Labs and Jeremy Shields:
+
+1. BRAND
+   The Effuse Labs name, the "Hatching Core" logo, the "Spark" icon, the
+   wordmark, and the brand assets in `public/` — including every favicon,
+   touch icon and logo file.
+
+   Also the Lumina name and its associated marks.
+
+2. WRITTEN CONTENT
+   The marketing and editorial copy in `content/`, in `app/**/page.tsx`, and in
+   `docs/` — the words describing the business, its services, its products and
+   its founder.
+
+WHAT THIS MEANS IN PRACTICE
+
+Fork the repository, reuse the components, copy the design token setup, lift
+the CI configuration — all fine, no attribution required beyond what the MIT
+licence asks.
+
+What you may not do is republish this site as your own business: keep the
+Effuse Labs name on it, keep the logo, or keep the copy describing a company
+that is not yours. If you are using this as a starting point for your own site,
+replace `content/`, replace `public/`, and use your own name.
+
+If you are unsure whether something you want to do is covered, ask:
+hello@effuse.io. The answer is usually yes.

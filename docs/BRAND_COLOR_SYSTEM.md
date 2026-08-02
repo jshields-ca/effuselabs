@@ -1,140 +1,65 @@
-# Effuse Labs Brand & Color System
+# Brand colour system
 
-**Version:** 1.1  
-**Last Updated:** August 16, 2025
+**The authoritative values live in [`lib/design/tokens.ts`](../lib/design/tokens.ts).**
+This document explains the system; it does not restate the values.
 
----
+That distinction matters. This file used to carry full hex tables, and they
+drifted from the code: it documented `lumina-success`, `lumina-warning`,
+`lumina-error` and `lumina-light-neutral` as Tailwind classes that had never
+been added, alongside a complete palette for a product that no longer exists. A
+second copy of a value is a value that will eventually disagree with the first.
 
-## Overview
+## Hierarchy
 
-This document provides a comprehensive reference for the Effuse Labs, Lumina, and SilentLedger brand color system, typography, and design best practices. It is intended for developers and designers to ensure visual consistency, accessibility, and maintainability across the project.
+The logo encodes it — a slate-to-teal shell peeling back to reveal a golden
+core:
 
----
+|                 | Owns         | Role                                            |
+| --------------- | ------------ | ----------------------------------------------- |
+| **Effuse Labs** | slate → teal | the shell; the firm itself                      |
+|                 | gold         | the core — the spark of insight, used sparingly |
+| **Lumina**      | gold → coral | the product's own identity                      |
 
-## Color System
+A product's palette never becomes the firm's. Future products get their own
+accent inside the same slate/teal parent frame.
 
-## Effuse Labs Corporate Brand Palette
+This rule exists because it was broken: the corporate `AccentBar` defaults to
+Lumina's gradient, so the parent brand currently renders in its product's
+colours. That is corrected in the visual identity work.
 
-| Name        | Hex     | Tailwind Class     | Usage                        |
-| ----------- | ------- | ------------------ | ---------------------------- |
-| Slate Grey  | #2E3440 | effuse-slate       | Backgrounds, text, surfaces  |
-| Effuse Teal | #22C5C3 | effuse-teal        | Accents, buttons, highlights |
-| Lumina Gold | #FFD25A | effuse-gold        | Accents, CTAs, highlights    |
-| Off-Black   | #1D2D35 | effuse-off-black   | Text, backgrounds            |
-| Medium Grey | #808285 | effuse-medium-grey | Text, surfaces               |
-| Light Grey  | #F1F3F5 | effuse-light-grey  | Backgrounds, surfaces        |
-| White       | #FFFFFF | effuse-white       | Backgrounds, text            |
+## Using colour
 
-### Gradient
+- **In `.tsx`** — use a Tailwind class (`text-effuse-teal`, `bg-effuse-slate`),
+  or import from `lib/design/tokens.ts` where a value is genuinely needed in
+  JavaScript.
+- **In CSS** — use `theme('colors.effuse-teal')`.
+- **Never a raw hex outside `lib/design/`.** `npm run check:tokens` fails the
+  build on one.
 
-| Name            | Tailwind Class  | Example Usage                                     |
-| --------------- | --------------- | ------------------------------------------------- |
-| Effuse Gradient | effuse-gradient | bg-gradient-to-r from-effuse-slate to-effuse-teal |
+Tailwind class names are generated from the token file by
+`tailwind.config.ts`. Adding a colour means adding it to the token file first —
+anything else produces a class that emits no CSS at all, silently, which is how
+sixty broken utilities survived in this repository for months.
 
----
+## Contrast
 
-## Lumina Product Brand Palette
+`contrastPairs` in the token file lists every foreground/background combination
+the site relies on, and `npm run check:tokens` asserts each against WCAG AA —
+4.5:1 for body text, 3:1 for large text. A regression fails CI rather than
+becoming a future accessibility audit.
 
-| Name             | Hex             | Tailwind Class                             | Usage                         |
-| ---------------- | --------------- | ------------------------------------------ | ----------------------------- |
-| Radiant Gradient | #FFD25A→#FF7A5A | lumina-gradient-start, lumina-gradient-end | CTAs, onboarding, key moments |
-| Lumina Gold      | #FFD25A         | lumina-gold                                | Primary actions, highlights   |
-| Coral            | #FF7A5A         | lumina-coral                               | Secondary accent, gradients   |
-| Deep Teal        | #0B2B33         | lumina-teal                                | Containers, sidebars          |
-| Off-Black        | #1D2D35         | lumina-off-black                           | Text                          |
-| Medium Grey      | #808285         | lumina-medium-grey                         | Secondary text                |
-| Light Neutral    | #E4E6E7         | lumina-light-neutral                       | Borders, dividers             |
-| Light Grey       | #F1F3F5         | lumina-light-grey                          | Backgrounds                   |
-| White            | #FFFFFF         | lumina-white                               | Backgrounds, text             |
+`prohibitedPairs` records combinations that look tempting and fail. Three worth
+knowing:
 
-### Functional UI Colors
+- **White on teal** is about 1.9:1. Teal is a surface for _dark_ text — slate
+  on teal reaches roughly 6:1.
+- **White on gold** is worse. Gold is the spark: a small accent, or a
+  background for slate text.
+- **Medium grey on white** is about 3.5:1 — large text only, never body copy.
+  It was previously the default colour of the `Text` component.
 
-| Name          | Hex     | Tailwind Class | Usage                           |
-| ------------- | ------- | -------------- | ------------------------------- |
-| Success Green | #22C58B | lumina-success | Success messages, active states |
-| Warning Amber | #FFB800 | lumina-warning | Alerts, notifications           |
-| Error Red     | #E5484D | lumina-error   | Error messages                  |
+## Related
 
----
-
-## SilentLedger Product Brand Palette
-
-| Name             | Hex     | Tailwind Class | Usage                  |
-| ---------------- | ------- | -------------- | ---------------------- |
-| Dark BG          | #100B00 | sl-bg-dark     | Dark mode backgrounds  |
-| Light BG         | #fcfcfc | sl-bg-light    | Light mode backgrounds |
-| Primary Red      | #ff2525 | sl-red         | Primary actions        |
-| Secondary Blue   | #1600e8 | sl-blue        | Secondary accents      |
-| Data Viz Purple  | #630ca7 | sl-purple      | Data visualization     |
-| Data Viz Magenta | #b11866 | sl-magenta     | Data visualization     |
-
----
-
-## Usage Guidelines
-
-- Use Effuse Labs palette for all corporate site backgrounds, navigation, and footers.
-- Use Lumina palette and gradients for Lumina product pages, CTAs, and onboarding.
-- Use SilentLedger palette for SilentLedger product pages, actions, and data visualizations.
-- Use functional UI colors (Lumina) only for their intended feedback states.
-- Gradients should use the correct start/end colors per brand context.
-- Test all color combinations for WCAG AA contrast compliance.
-
----
-
-## Component Best Practices
-
-### Buttons
-
-- 5 brand color variants: Effuse Teal, Lumina Gold, Coral, Slate Grey, Gradient.
-- Use Tailwind for base styles, custom classes for gradients and breathing animation.
-- Clear focus states (outline, shadow) for accessibility.
-- Use `aria-label` and `role="button"` for screen reader support.
-
-### Cards
-
-- 4 brand color variants: Teal, Gold, Coral, Slate Grey.
-- Subtle background tints and optional glow (box-shadow with brand color).
-- Consistent padding, border-radius, and shadow.
-- Ensure text contrast and readable font sizes.
-
-### SectionDivider
-
-- 4 variants (teal, gold, coral, subtle) with 3 intensity levels (light, medium, strong).
-- CSS gradients for dividers, animated reveal on scroll.
-- Decorative only (`aria-hidden="true"`).
-
-### Typography
-
-- Inter for headings/body, IBM Plex Mono for code/data.
-- Poppins Medium for logotype (e.g., "Effuse Labs" in top nav).
-- Gradient text utilities for key headings using Tailwind's `bg-clip-text` and `text-transparent`.
-- Consistent scale and spacing.
-
----
-
-## Integration Guidelines
-
-- Use Effuse Labs palette for site-wide backgrounds, navigation, and footers.
-- Use Lumina palette and gradients for Lumina product pages and CTAs.
-- Use SilentLedger palette for SilentLedger product pages, actions, and data visualizations.
-- Gradients for hero backgrounds, section dividers, and premium accents.
-- Maintain accessibility by testing color contrast and using visible focus states.
-
----
-
-## Accessibility & Responsiveness
-
-- All color combinations must meet WCAG AA contrast standards.
-- Focus states must be visible and distinct.
-- Components must be mobile responsive and touch-friendly.
-
----
-
-## Maintenance
-
-- Update this file as new colors, variants, or best practices are added.
-- Link to this file from README.md for easy access.
-
----
-
-For further details, see [EFFUSELABS_BRAND_STYLEGUIDE.md](./EFFUSELABS_BRAND_STYLEGUIDE.md), [LUMINA_PRODUCT_STYLEGUIDE.md](./LUMINA_PRODUCT_STYLEGUIDE.md), and [SILENTLEDGER_PRODUCT_STYLEGUIDE.md](./SILENTLEDGER_PRODUCT_STYLEGUIDE.md).
+- [Effuse Labs brand style guide](./EFFUSELABS_BRAND_STYLEGUIDE.md) — logo,
+  typography, voice, imagery
+- [Lumina product style guide](./LUMINA_PRODUCT_STYLEGUIDE.md)
