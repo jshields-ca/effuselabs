@@ -40,6 +40,13 @@ import { ROUTES } from './routes'
  *
  * DETERMINISM
  *
+ * These run on their own Playwright projects (`visual-desktop`,
+ * `visual-mobile`) rather than the functional ones, for a single reason:
+ * `deviceScaleFactor: 1`. The `mobile` project emulates a Pixel 7 at DPR
+ * 2.625, and at a fractional scale every glyph lands on sub-pixel boundaries,
+ * so each machine's rasteriser rounds differently. That alone made the mobile
+ * comparison about twice as noisy as desktop. See playwright.config.ts.
+ *
  * `prefers-reduced-motion: reduce` is forced for every test here. That freezes
  * the luminous field's drift and skips all entrance and scroll-reveal
  * animation, so a screenshot captures one fixed state rather than whatever
@@ -89,11 +96,11 @@ for (const route of ROUTES) {
       await page.evaluate(() => window.scrollTo(0, 0))
 
       await expect(page).toHaveScreenshot(`${route.name}.png`, {
-        // Sub-pixel glyph rasterisation differs between machines. This is
-        // loose enough to absorb that and tight enough that a colour change, a
-        // font-weight change, or a missing background still fails — those move
-        // far more than 3% of a viewport.
-        maxDiffPixelRatio: 0.03,
+        // Residual glyph antialiasing differs a little between machines even
+        // at DPR 1. Loose enough to absorb that; tight enough that a colour
+        // change, a font-weight change or a missing background still fails,
+        // because those move far more than 2% of a viewport.
+        maxDiffPixelRatio: 0.02,
         animations: 'disabled',
       })
     })
