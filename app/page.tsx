@@ -15,7 +15,7 @@ import {
   H3,
   LuminousField,
   Reveal,
-  SectionDivider,
+  Pour,
   Text,
 } from '@/components/ui'
 import { ArrowRight, Check, Lightbulb, Scissors } from 'lucide-react'
@@ -29,14 +29,15 @@ export default function Home() {
       {/* Philosophy Section */}
       <PhilosophySection id="features" />
 
-      {/* Elegant section divider */}
-      <SectionDivider size="md" animated />
+      {/*
+        The shell parts a little more at each boundary — see components/ui/Pour.
+      */}
+      <Pour openness={0.3} />
 
       {/* Founder Statement (dark) */}
       <FounderStatementSection />
 
-      {/* Section divider with subtle styling */}
-      <SectionDivider size="lg" variant="subtle" />
+      <Pour openness={0.55} flip />
 
       {/* Products Section */}
       <SectionContainer id="products" background="white" padding="lg">

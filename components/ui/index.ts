@@ -42,5 +42,8 @@ export type { AccentBarProps, AccentBarVariant } from './AccentBar'
 export { LuminousField } from './LuminousField'
 export { Reveal } from './Reveal'
 
+/** The signature element. See the file for what it is and why. */
+export { Pour } from './Pour'
+
 export { default as ScrollIndicator } from './ScrollIndicator'
 export type { ScrollIndicatorProps } from './ScrollIndicator'
