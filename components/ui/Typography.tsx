@@ -17,11 +17,12 @@ interface TypographyProps {
  *
  * Two things these deliberately no longer do:
  *
- * - They no longer carry `font-inter`. Inter is the default sans in
- *   `tailwind.config.ts`, so the class was redundant — and `globals.css`
- *   defined an unlayered rule setting font-weight 700 on it, which beat the
- *   `font-normal` and `font-medium` sitting beside it in the same class
- *   string. Every one of these components was rendering bold.
+ * - They no longer carry a font-family class at all. Body copy inherits Public
+ *   Sans from `body`; headings opt into the display face explicitly via
+ *   `font-display`. The old `font-inter` was redundant *and* actively harmful:
+ *   `globals.css` defined an unlayered rule setting font-weight 700 on it,
+ *   which beat the `font-normal` and `font-medium` sitting beside it in the
+ *   same class string, so every one of these rendered bold.
  * - They no longer hardcode a colour. The site is dark-first with light
  *   sections, so colour is inherited from the surface, which `SectionContainer`
  *   sets. Baking in a dark foreground meant every heading on a dark section had
@@ -31,7 +32,12 @@ interface TypographyProps {
  * on every page for a component no route rendered.
  */
 
-const HEADING = 'font-semibold tracking-tight'
+/*
+ * Headings set in Fraunces. `font-semibold` rather than bold: the face has
+ * enough presence at display sizes that bold closes up the counters, and the
+ * WONK axis is doing the character work instead.
+ */
+const HEADING = 'font-display font-semibold tracking-tight'
 
 const H1 = React.forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ children, className, as: Component = 'h1', ...props }, ref) => (

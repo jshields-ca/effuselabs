@@ -270,10 +270,10 @@ export default function Home() {
             position="center"
             className="mb-6"
           />
-          <H2 className="mb-6 text-effuse-white">
+          <H2 className="mb-6 text-effuse-parchment">
             Ready to build with clarity?
           </H2>
-          <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-light-grey">
+          <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-parchment">
             Tell us what your business is wrestling with. Whether that is
             software we build for you, or open-source tools we set up and keep
             running, the first conversation is free and there is no script.
@@ -300,7 +300,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <Text className="mt-10 text-body-sm text-effuse-light-grey/70">
+          <Text className="mt-10 text-body-sm text-effuse-parchment/70">
             {contact.location}
           </Text>
         </Reveal>

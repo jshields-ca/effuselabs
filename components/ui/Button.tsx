@@ -20,7 +20,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
   secondary:
     'border border-effuse-teal/60 text-effuse-teal bg-transparent hover:bg-effuse-teal hover:text-surface-deep hover:border-effuse-teal',
   ghost:
-    'text-effuse-light-grey hover:text-effuse-white hover:bg-effuse-white/10',
+    'text-effuse-parchment hover:text-effuse-parchment hover:bg-effuse-white/10',
   dark: 'bg-effuse-off-black text-white hover:bg-effuse-slate shadow-brand-md',
 }
 

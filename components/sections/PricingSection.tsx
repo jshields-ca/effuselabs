@@ -65,7 +65,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             </H2>
             <Text
               className={`text-lg mb-8 max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
               }`}
             >
               {placeholder.description}
@@ -100,7 +100,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -153,7 +153,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                         </div>
                         {tier.period && (
                           <Text
-                            className={`text-sm ${isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'}`}
+                            className={`text-sm ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'}`}
                           >
                             {tier.period}
                           </Text>
@@ -163,7 +163,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                     <Text
                       className={`text-center mt-4 ${
                         isDark
-                          ? 'text-effuse-light-grey'
+                          ? 'text-effuse-parchment'
                           : 'text-effuse-off-black/75'
                       }`}
                     >
@@ -193,7 +193,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                           <Text
                             className={`flex-1 ${
                               isDark
-                                ? 'text-effuse-light-grey'
+                                ? 'text-effuse-parchment'
                                 : 'text-effuse-off-black'
                             }`}
                           >

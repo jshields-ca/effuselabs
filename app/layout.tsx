@@ -2,18 +2,32 @@ import { PageWrapper } from '@/components/layout/PageWrapper'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins } from 'next/font/google'
+import { Fraunces, Public_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+/**
+ * Display. A warm serif with SOFT, WONK and opsz axes, so headings can be
+ * tuned rather than merely set — see docs/DESIGN_PLAN.md for why warmth is the
+ * argument here. Display sizes only; it never carries body copy.
+ */
+const fraunces = Fraunces({
   subsets: ['latin'],
-  variable: '--font-inter',
+  axes: ['SOFT', 'WONK', 'opsz'],
+  variable: '--font-display',
   display: 'swap',
 })
-const poppins = Poppins({
+
+/**
+ * Body and utility. Drawn for the US design system with legibility as the
+ * brief, which is the right basis for a firm that sells accessibility.
+ *
+ * This replaces Inter, which was carrying both roles. Inter is the default
+ * typeface of nearly every generated site, and using it for display and body
+ * alike was the single largest reason the previous pass read as templated.
+ */
+const publicSans = Public_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-poppins',
+  variable: '--font-sans',
   display: 'swap',
 })
 
@@ -58,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${inter.variable} ${poppins.variable}`}
+      className={`scroll-smooth ${fraunces.variable} ${publicSans.variable}`}
     >
       <body>
         <PageWrapper>{children}</PageWrapper>

@@ -43,7 +43,7 @@
 
   body {
     background-color: theme('colors.surface-deep');
-    color: theme('colors.effuse-light-grey');
+    color: theme('colors.effuse-parchment');
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-wrap: pretty;

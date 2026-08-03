@@ -34,7 +34,7 @@ const NavLink: React.FC<NavLinkProps> = ({
     onClick={onClick}
     className={cn(
       'group relative rounded-md px-3 py-2 text-eyebrow font-medium uppercase',
-      'text-effuse-light-grey transition-colors duration-200 hover:text-effuse-white',
+      'text-effuse-parchment/70 transition-colors duration-200 hover:text-effuse-parchment',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep',
       className
     )}
@@ -55,7 +55,7 @@ const MobileMenuButton: React.FC<{
 }> = ({ isOpen, onClick }) => (
   <button
     onClick={onClick}
-    className="rounded-lg p-3 text-effuse-white transition-colors duration-200 hover:bg-effuse-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep md:hidden"
+    className="rounded-lg p-3 text-effuse-parchment transition-colors duration-200 hover:bg-effuse-parchment/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep md:hidden"
     aria-label={isOpen ? 'Close menu' : 'Open menu'}
     aria-expanded={isOpen}
   >
@@ -117,12 +117,12 @@ const MobileMenu: React.FC<{
       >
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between border-b border-surface-border p-6">
-            <span className="text-h4 font-semibold text-effuse-white">
+            <span className="text-h4 font-semibold text-effuse-parchment">
               Menu
             </span>
             <button
               onClick={onClose}
-              className="rounded-md p-2 text-effuse-light-grey transition-colors duration-200 hover:bg-effuse-white/10 hover:text-effuse-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base"
+              className="rounded-md p-2 text-effuse-parchment/70 transition-colors duration-200 hover:bg-effuse-parchment/10 hover:text-effuse-parchment focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base"
               aria-label="Close menu"
             >
               <svg
@@ -196,7 +196,7 @@ export const Navbar: React.FC = () => {
           <div className="flex h-16 items-center justify-between lg:h-20">
             <Link
               href="/"
-              className="flex flex-shrink-0 items-center gap-3 rounded-md font-poppins text-h4 font-bold text-effuse-white transition-colors duration-200 hover:text-effuse-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep"
+              className="flex flex-shrink-0 items-center gap-3 rounded-md font-display text-h4 font-semibold text-effuse-parchment transition-colors duration-200 hover:text-effuse-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-deep"
             >
               <Image
                 src="/logo-450x450.png"

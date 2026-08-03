@@ -10,6 +10,7 @@ import {
   shadows,
   status,
   surface,
+  warm,
   typeScale,
   typeSetting,
   typography,
@@ -49,6 +50,11 @@ const config: Config = {
         'surface-raised': surface.raised,
         'surface-border': surface.border,
 
+        // Warm tones. `effuse-parchment` is the body colour on dark;
+        // `effuse-ember` is for shadow and edge light only — see tokens.ts.
+        'effuse-parchment': warm.parchment,
+        'effuse-ember': warm.ember,
+
         // Semantic status
         success: status.success,
         warning: status.warning,
@@ -77,10 +83,13 @@ const config: Config = {
         'lumina-gradient': gradients.lumina,
       },
 
+      // The variables come from next/font in app/layout.tsx; the fallbacks come
+      // from tokens.ts. `font-inter` and `font-poppins` are gone along with the
+      // faces themselves — anything that wants display type asks for
+      // `font-display`.
       fontFamily: {
-        sans: ['var(--font-inter)', ...typography.fontFamily.sans],
-        inter: ['var(--font-inter)', ...typography.fontFamily.sans],
-        poppins: ['var(--font-poppins)', ...typography.fontFamily.display],
+        sans: typography.fontFamily.sans,
+        display: typography.fontFamily.display,
       },
 
       borderRadius: radii,

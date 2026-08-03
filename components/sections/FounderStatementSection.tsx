@@ -58,10 +58,10 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
 
           {/* Copy */}
           <div className="order-1 md:order-2">
-            <H2 className="text-effuse-white mb-4">{heading}</H2>
+            <H2 className="text-effuse-parchment mb-4">{heading}</H2>
             <blockquote className="space-y-4">
               {body.split('\n').map((para, idx) => (
-                <Text key={idx} className="text-effuse-white/80">
+                <Text key={idx} className="text-effuse-parchment/80">
                   {para}
                 </Text>
               ))}

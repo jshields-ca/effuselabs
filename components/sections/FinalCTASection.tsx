@@ -56,7 +56,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
           <Text
             className={`text-lg mb-8 max-w-2xl mx-auto ${
               isGradient || isDark
-                ? 'text-effuse-light-grey'
+                ? 'text-effuse-parchment'
                 : 'text-effuse-off-black/75'
             }`}
           >

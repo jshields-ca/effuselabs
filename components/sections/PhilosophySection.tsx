@@ -42,8 +42,8 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
       <Reveal>
         <div className="relative z-10 mx-auto mb-16 max-w-3xl">
           <AccentBar size="md" variant="effuse" className="mb-6" />
-          <H2 className="mb-6 text-effuse-white">{heading}</H2>
-          <Text className="text-body-lg text-effuse-light-grey">{intro}</Text>
+          <H2 className="mb-6 text-effuse-parchment">{heading}</H2>
+          <Text className="text-body-lg text-effuse-parchment">{intro}</Text>
         </div>
 
         <ol
@@ -60,10 +60,10 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
                   {item.num}
                 </div>
                 <div>
-                  <H3 className="mb-3 font-medium text-effuse-white">
+                  <H3 className="mb-3 font-medium text-effuse-parchment">
                     {item.title}
                   </H3>
-                  <Text className="text-effuse-light-grey">{item.copy}</Text>
+                  <Text className="text-effuse-parchment">{item.copy}</Text>
                 </div>
               </li>
             </Reveal>

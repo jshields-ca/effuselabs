@@ -58,7 +58,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
                 }
               >
                 {problem.description}
@@ -85,7 +85,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
               </H3>
               <Text
                 className={
-                  isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
+                  isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
                 }
               >
                 {solution.description}
@@ -121,7 +121,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                           <Text
                             className={`flex-1 text-sm ${
                               isDark
-                                ? 'text-effuse-light-grey'
+                                ? 'text-effuse-parchment'
                                 : 'text-effuse-off-black'
                             }`}
                           >

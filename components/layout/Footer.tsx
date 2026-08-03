@@ -121,7 +121,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-effuse-medium-grey">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <Small className="text-effuse-light-grey">
+            <Small className="text-effuse-parchment">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
 

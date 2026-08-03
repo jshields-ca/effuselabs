@@ -50,7 +50,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
             </H2>
             <Text
               className={`max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
+                isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
               }`}
             >
               {subheading}
@@ -95,7 +95,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                         <Text
                           className={
                             isDark
-                              ? 'text-effuse-light-grey'
+                              ? 'text-effuse-parchment'
                               : 'text-effuse-off-black/75'
                           }
                         >
@@ -129,7 +129,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                       <Text
                         className={
                           isDark
-                            ? 'text-effuse-light-grey'
+                            ? 'text-effuse-parchment'
                             : 'text-effuse-off-black/75'
                         }
                       >
