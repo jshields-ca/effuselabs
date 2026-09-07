@@ -1,6 +1,6 @@
 # Roadmap
 
-**Status:** rebuilding. Last updated 2 August 2026.
+**Status:** building toward a full MVP. Last updated 7 September 2026.
 
 This site was built through 2025 across a mix of AI coding tools and left
 untouched for about a year. In August 2026 it went through a full audit. This
@@ -52,6 +52,27 @@ Nothing checked whether it was true.
 
 ---
 
+## Building to a full MVP with placeholder content
+
+The build does not stall waiting for final copy or real photography. Every
+route and section gets built, styled, made accessible and (per stage 5)
+animated to the standard set below, using **draft copy and FPO ("for
+placement only") imagery** wherever the real thing isn't ready yet — the same
+principle already applied to the founder's signature: no fake mark standing
+in for something real, but a clearly-labelled placeholder is not the same
+thing as a fake.
+
+Two rules keep that from quietly becoming permanent, which is exactly how
+this site ended up with a `#waitlist` link nobody could find:
+
+- **Every placeholder is marked at the point of use** — `{/* FPO: ... */}` for
+  imagery, and draft copy is written to sound like copy rather than lorem
+  ipsum, but is not treated as final. `git grep -n "FPO:"` is always the true
+  list.
+- **Every marked placeholder is also listed in "Known outstanding" below.**
+  Landing on the working branch is fine; calling the site launch-ready with
+  the FPO list non-empty is not — that gate is stage 7.
+
 ## Approach
 
 Six pull requests, each small enough to review, landing in dependency order.
@@ -64,8 +85,8 @@ pass. A gate that lands red teaches everyone to ignore it.
 | 1   | CI, Playwright smoke suite, Node pinned           | ✅ merged      |
 | 2   | Stack upgrade, dead code removed, design tokens   | ✅ merged      |
 | 3   | Documentation reset                               | ✅ merged      |
-| 4   | Design **system** — surfaces, type scale, a11y    | ← you are here |
-| 5   | Design **identity** — the distinctive visual pass |                |
+| 4   | Design **system** — surfaces, type scale, a11y    | ✅ merged      |
+| 5   | Design **identity** — the distinctive visual pass | ← you are here |
 | 6   | Information architecture, content, contact        |                |
 | 7   | SEO, deployment hardening                         |                |
 
@@ -92,13 +113,13 @@ had been invisible: a hook calling `setState` synchronously inside an effect
 (forcing a re-render on every mount), a component typing its props as `any`,
 and the navbar logo triggering a full page reload instead of client navigation.
 
-### 3 — Documentation reset ← current
+### 3 — Documentation reset ✅
 
 This document, `CLAUDE.md`, a rewritten README, and a licence that separates
 freely reusable source code from the brand and copy that are not. Four stale
 planning documents removed.
 
-### 4 — Design system ← current
+### 4 — Design system ✅
 
 The current styling is not merely dated, it is structurally incoherent. The
 corporate accent bar is built from Lumina's gradient — the parent firm renders
@@ -141,27 +162,64 @@ specific rather than vague:
   eyebrows are a plain gradient rule that means nothing.
 - **No signature element, and no aesthetic risk taken anywhere.**
 
-### 5 — Design identity
+### 5 — Design identity ← current
 
 The distinctive pass, and the one that decides whether the site is memorable.
-Worked in two passes, plan then critique, before any code:
+Worked in two passes, plan then critique, before any code, written down in
+`docs/DESIGN_PLAN.md` rather than decided ad hoc in a pull request:
 
 **Pass one — a written design plan.** A display and body pairing chosen for
 this firm specifically; four to six named colours; layout sketches per section;
-and one named signature element that the site is remembered for. Candidates for
-that element come from the firm's own world: the Hatching Core mark used
-structurally rather than as a logo, the "pour" made literal in how one section
-gives way to the next, or the founder's real signature as a recurring motif.
+and one named signature element that the site is remembered for.
 
 **Pass two — critique the plan before building.** Anything that reads as a
-generic default rather than a specific choice gets revised or cut. Boldness is
-spent on the signature element; everything around it stays quiet.
+generic default rather than a specific choice gets revised or cut.
 
-Also in this stage: the white sections go. A premium dark theme builds depth
-from elevation within the dark — surface lightness, hairline borders, light
-spill — rather than cutting to pure white, which is jarring and cheapens the
-canvas. The illustration system and an SVG logo land here too; `public/`
-currently holds only PNGs.
+**Pass three, added after the first live review — critique the built result
+against a real device, not just the plan.** A plan can survive its own
+critique and still be wrong once rendered: the first type pairing (Fraunces,
+a warm serif) read as sound on paper and as an editorial-studio site once
+built and screenshotted, working against the credibility a vertical-SaaS firm
+needs. Replaced with Bricolage Grotesque; the reasoning for both the original
+choice and the reversal is kept in `docs/DESIGN_PLAN.md` rather than erased,
+because the wrong-first-time record is exactly what stops the same mistake
+recurring.
+
+Done in this stage so far:
+
+- Type: Bricolage Grotesque (display) + Public Sans (body), replacing Inter
+  everywhere and then replacing Fraunces once it proved wrong live.
+- Colour: `parchment` and `ember` added, carrying the warmth the type pairing
+  no longer has to.
+- The white sections are gone — Products and Solutions on the homepage, and
+  the entire `/products/lumina` page, now sit on the dark elevation ramp
+  instead of cutting to a white plate.
+- The Pour: a signature divider between sections, deriving from the
+  company's own name (_effundere_, "to pour out") rather than a decorative
+  default.
+- Two live non-negotiable violations found while doing the above and fixed
+  alongside it: the `#waitlist` dead anchors, and cross-page nav links
+  (`#contact` etc.) that only resolved from the homepage.
+
+Still open in this stage:
+
+- **Layout**: the offset, unnumbered philosophy blocks and the full-bleed
+  founder statement from `docs/DESIGN_PLAN.md` are designed but not built.
+- **Motion and interaction.** The original plan was deliberately restrained —
+  "extra animation is what makes a design feel generated" — on the theory
+  that a firm selling accessibility should not lean on motion. Direct
+  feedback after seeing the built site live is that it now reads as _too_
+  restrained: not modern or animated enough for what this firm is trying to
+  be. That's a real reconsideration, not a rejection of the accessibility
+  constraint — `prefers-reduced-motion` stays absolute regardless of how much
+  motion ships for everyone else. Being run the same way the type reversal
+  was: a design-committee pass (two independent takes — one arguing for
+  bolder, more contemporary motion; one critiquing that proposal for
+  gimmickry, performance and credibility cost) rather than one person's
+  unchallenged judgment, with the result folded back into
+  `docs/DESIGN_PLAN.md`'s Motion section before anything is built.
+- The illustration system and an SVG logo; `public/` currently holds only
+  PNGs.
 
 The accessibility constraints above are not relaxed for any of it.
 
@@ -172,6 +230,14 @@ working contact form — replacing every dead call to action. Gated by a test
 asserting that every internal link resolves to a route that exists, plus `axe`
 accessibility scanning per route and a Lighthouse budget.
 
+This is also where the site needs to be a real destination rather than a
+placeholder for the other end of a planned redirect: `jeremyshields.ca`'s
+"available for work" self-hosting/DevOps block is meant to point here instead
+of standing on its own. That repository isn't in reach from this session, so
+the redirect itself is separate work — but `/services` (or wherever that
+offer lands) needs to exist and be worth linking to before that redirect
+makes sense.
+
 ### 7 — SEO and deployment
 
 `robots.ts`, a complete sitemap, per-route Open Graph images, structured data,
@@ -181,22 +247,55 @@ and a tightened Content Security Policy.
 
 ## Known outstanding
 
-Things currently wrong on the live site, listed rather than hidden:
+Things currently wrong or unfinished on the working branch, listed rather
+than hidden. FPO markers (see the MVP policy above) belong here too, once
+stage 6 starts placing them.
 
-- The site reads as a competent dark theme rather than a distinctive one. That
-  is the whole of stage 5, and the reasons are listed there rather than left as
-  a matter of taste.
-- Sections still cut from dark to pure white. Fixed in 5.
-- Several calls to action on the Lumina page still point at `#waitlist`, which
-  does not exist. Fixed in 6.
-- There is no contact form; the homepage CTA is a `mailto:`. Fixed in 6.
-- `/privacy`, `/terms` and `/accessibility` do not exist. The footer links to
-  them were removed rather than left as 404s; the pages arrive in 6.
+**Still open, stage 5:**
+
+- The philosophy section still carries numbered 1/2/3 markers and the founder
+  statement is still a two-column grid rather than the offset/full-bleed
+  layout `docs/DESIGN_PLAN.md` describes. Not yet built.
+- Motion is under review after live feedback that the original restrained
+  approach reads as under-designed rather than disciplined. A design-committee
+  pass (proposal + independent critique) is running before anything ships, so
+  the result is argued rather than asserted.
 - The founder statement has no signature or portrait. The decorative squiggle
-  that stood in for one was not a signature at all, and has been removed rather
-  than left to imply something untrue.
+  that stood in for one was not a signature at all, and was removed rather
+  than left to imply something untrue. It stays empty until a real signature
+  arrives — that is a deliberate absence, not an oversight.
+- No illustration system yet, and no SVG logo; `public/` currently holds only
+  PNGs.
+
+**Fixed since the last update** (kept here briefly so the record shows the
+finding, not just the current clean state):
+
+- ~~Sections cut from dark to pure white~~ — Products and Solutions on the
+  homepage and the entire `/products/lumina` page now sit on the dark
+  elevation ramp.
+- ~~`#waitlist` dead anchors~~ — three of them, on the Lumina product page,
+  the same defect this document already named as having shipped once before.
+  Replaced with real `/#contact` links and copy that doesn't promise a list
+  that doesn't exist.
+- ~~Cross-page nav links broken from any page but home~~ — `#contact` etc.
+  only resolved from the homepage; now `/products/lumina` is a second real
+  route, this broke silently. Found while fixing the above, not separately
+  reported.
+- ~~Fraunces read as editorial rather than technical~~ — replaced with
+  Bricolage Grotesque; see stage 5.
+
+**Still open, stage 6:**
+
+- There is no contact form; the homepage CTA is a `mailto:`.
+- `/privacy`, `/terms` and `/accessibility` do not exist. The footer links to
+  them were removed rather than left as 404s; the pages arrive here.
+- `/services` (or equivalent) doesn't exist yet, and is the landing point for
+  the planned `jeremyshields.ca` redirect — see stage 6 above.
 - The social profile links in the footer have never been verified to exist.
+
+**Stage 7:**
+
 - Visual baselines are compared on desktop only. Mobile is covered by layout
   assertions instead, because cross-machine glyph rendering made pixel
   comparison unreliable at that width. Pinning CI to the official Playwright
-  container would fix it properly, and is stage 7 work.
+  container would fix it properly.
