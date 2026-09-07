@@ -36,18 +36,29 @@ currently fashionable.
 
 ## Type
 
-| Role    | Face                               | Why this one                                                                                                                                                                                                                                                    |
-| ------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Display | **Fraunces**                       | A warm serif with `SOFT`, `WONK` and `opsz` axes, so it can be tuned rather than merely set. Warmth is the point: the pitch is technology that does not intimidate, and a warm serif over a cold dark canvas is the whole tension of the brand in one decision. |
-| Body    | **Public Sans**                    | Drawn for the US design system with legibility as the brief. A firm that sells accessibility should set its body copy in something designed for reading, not in whatever the display face's sibling happens to be.                                              |
-| Utility | **Public Sans**, wide-tracked caps | Eyebrows, labels, metadata. One family, used differently, rather than a third download.                                                                                                                                                                         |
+| Role    | Face                               | Why this one                                                                                                                                                                                                       |
+| ------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Display | **Bricolage Grotesque**            | A variable grotesk with real character in its letterforms — not a neutral default — but built for interfaces, not editorial. Reads as a technically credible software company, which a warm serif alone did not.   |
+| Body    | **Public Sans**                    | Drawn for the US design system with legibility as the brief. A firm that sells accessibility should set its body copy in something designed for reading, not in whatever the display face's sibling happens to be. |
+| Utility | **Public Sans**, wide-tracked caps | Eyebrows, labels, metadata. One family, used differently, rather than a third download.                                                                                                                            |
 
 Inter is gone. It is the default typeface of nearly every generated site, and
 using it for both display and body is most of why the last pass read as
 templated.
 
-Fraunces is display-only, at large sizes. Public Sans carries everything a
-person actually reads at length.
+**Revision, after seeing it live:** the first version of this plan chose
+Fraunces, a warm serif, arguing that warmth mattered given the founder's story
+and the accessibility mission. Built and rendered across two real pages, it
+read as editorial and boutique rather than as a software company — closer to
+a design studio's site than a vertical-SaaS vendor's. The audience section
+above still holds: the sceptical small-business owner and the technical
+evaluator both need to believe competence, and Fraunces was spending its
+whole effect on warmth at competence's expense.
+
+The fix is not to drop warmth — it's to stop asking the display face to
+carry it alone. `parchment` and `ember` already do that work in color.
+Bricolage Grotesque is display-only, at large sizes. Public Sans carries
+everything a person actually reads at length.
 
 ---
 
@@ -227,7 +238,7 @@ specific choice or a default that would suit any brief.
 
 | Element                             | Verdict                                                                                                                                                                                                                              |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fraunces + Public Sans              | **Specific.** Warmth is argued from the audience and the founder's story, not chosen from a trend list.                                                                                                                              |
+| Bricolage Grotesque + Public Sans   | **Specific, revised.** Fraunces was the first answer and it was wrong in practice — editorial, not technical. Bricolage keeps a real display face rather than falling back to Inter, while reading as software.                      |
 | `parchment` and `ember`             | **Specific.** Both fix a named problem — cool text beside a warm face, and gold with nowhere to fall off to.                                                                                                                         |
 | The pour divider                    | **Specific.** Derived from the company's name and mark, and it encodes real information. This is the risk, and it is the one worth taking.                                                                                           |
 | Asymmetric hero                     | **Borderline.** Asymmetry is itself a fashion. Justified here only because the light enters from one side, so the composition follows the device rather than the trend. Keep, but do not add a second asymmetric flourish elsewhere. |

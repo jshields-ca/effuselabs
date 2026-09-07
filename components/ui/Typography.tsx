@@ -33,9 +33,9 @@ interface TypographyProps {
  */
 
 /*
- * Headings set in Fraunces. `font-semibold` rather than bold: the face has
- * enough presence at display sizes that bold closes up the counters, and the
- * WONK axis is doing the character work instead.
+ * Headings set in the display face (Bricolage Grotesque). `font-semibold`
+ * rather than bold: the letterforms carry enough character at display sizes
+ * on their own, and bold starts to close up the counters.
  */
 const HEADING = 'font-display font-semibold tracking-tight'
 

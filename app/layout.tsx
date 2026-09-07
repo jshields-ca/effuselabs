@@ -2,17 +2,19 @@ import { PageWrapper } from '@/components/layout/PageWrapper'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Public_Sans } from 'next/font/google'
+import { Bricolage_Grotesque, Public_Sans } from 'next/font/google'
 import './globals.css'
 
 /**
- * Display. A warm serif with SOFT, WONK and opsz axes, so headings can be
- * tuned rather than merely set — see docs/DESIGN_PLAN.md for why warmth is the
- * argument here. Display sizes only; it never carries body copy.
+ * Display. A grotesk with enough character in its letterforms (the
+ * lowercase g and a especially) to read as considered rather than a
+ * generated-site default, and enough technical confidence for a software
+ * firm — see docs/DESIGN_PLAN.md. Warmth now comes from the parchment/ember
+ * color tokens rather than the display face itself. Display sizes only; it
+ * never carries body copy.
  */
-const fraunces = Fraunces({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  axes: ['SOFT', 'WONK', 'opsz'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -72,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${fraunces.variable} ${publicSans.variable}`}
+      className={`scroll-smooth ${bricolage.variable} ${publicSans.variable}`}
     >
       <body>
         <PageWrapper>{children}</PageWrapper>

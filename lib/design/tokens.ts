@@ -180,23 +180,30 @@ export const gradients = {
 /**
  * Typography.
  *
- * Fraunces for display, Public Sans for everything read at length. Both are
- * loaded through `next/font` in app/layout.tsx and referenced here by their CSS
- * variables, so there is one place a face can change.
+ * Bricolage Grotesque for display, Public Sans for everything read at length.
+ * Both are loaded through `next/font` in app/layout.tsx and referenced here by
+ * their CSS variables, so there is one place a face can change.
  *
  * Inter and Poppins are both gone. Inter was carrying display *and* body, and
  * it is the default typeface of nearly every generated site — using it for
  * both roles is most of why the previous pass read as templated. Poppins was
- * the logotype only, and the wordmark now sets in Fraunces with the rest of the
- * display type. IBM Plex Mono went earlier, with the `Code` component that was
- * its only consumer.
+ * the logotype only, and the wordmark now sets in the display face with the
+ * rest of the display type. IBM Plex Mono went earlier, with the `Code`
+ * component that was its only consumer.
+ *
+ * The display face was Fraunces for one stage — a warm serif, on the
+ * argument that warmth mattered given the founder's story and the
+ * accessibility mission. In practice it read as editorial rather than a
+ * software company. Warmth now comes from the parchment/ember color tokens
+ * instead of the display face, freeing the face itself to read as technical.
+ * See docs/DESIGN_PLAN.md.
  */
 export const typography = {
   fontFamily: {
     /** Body and utility. Everything a person reads at length. */
     sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
     /** Display only, at large sizes. Never body copy. */
-    display: ['var(--font-display)', 'Georgia', 'serif'],
+    display: ['var(--font-display)', 'system-ui', 'sans-serif'],
   },
   fontWeight: {
     normal: '400',
