@@ -44,7 +44,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
           {/* Header */}
           <div className="text-center mb-12">
             <H2
-              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+              className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
             >
               {heading}
             </H2>
@@ -88,7 +88,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                       </div>
                       <div className="flex-1">
                         <H3
-                          className={`text-lg mb-2 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                          className={`text-lg mb-2 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
                         >
                           {item.title}
                         </H3>
@@ -122,7 +122,7 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                         </span>
                       </div>
                       <H3
-                        className={`mb-3 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                        className={`mb-3 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
                       >
                         {item.title}
                       </H3>

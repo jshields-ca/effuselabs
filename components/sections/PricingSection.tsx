@@ -59,7 +59,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
             <H2
-              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+              className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
             >
               {placeholder.heading}
             </H2>
@@ -94,7 +94,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
           {/* Header */}
           <div className="text-center mb-12">
             <H2
-              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+              className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
             >
               {heading}
             </H2>
@@ -140,14 +140,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({
 
                   <CardHeader>
                     <H3
-                      className={`text-center ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                      className={`text-center ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
                     >
                       {tier.name}
                     </H3>
                     {tier.price && (
                       <div className="text-center mt-4">
                         <div
-                          className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                          className={`text-4xl font-bold ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
                         >
                           {tier.price}
                         </div>

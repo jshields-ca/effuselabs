@@ -31,9 +31,9 @@ export default function LuminaProductPage() {
         headline: 'Illuminate your growth with an all‑in‑one platform',
         subheadline:
           'Replace the patchwork of apps with a single, elegant system for bookings, financials, and client relationships.',
-        primaryCtaLabel: 'Join the Waitlist',
-        primaryCtaHref: '#waitlist',
-        background: 'light',
+        primaryCtaLabel: 'Start a Conversation',
+        primaryCtaHref: '/#contact',
+        background: 'dark',
         accentGradient: {
           from: product.lumina.gold,
           to: product.lumina.coral,
@@ -59,7 +59,7 @@ export default function LuminaProductPage() {
           'Get real-time insights across your business',
           'Scale without adding complexity',
         ]}
-        background="light"
+        background="dark"
       />
 
       <FeatureBreakdownSection
@@ -111,19 +111,19 @@ export default function LuminaProductPage() {
         placeholder={{
           heading: 'Coming Soon',
           description:
-            'Lumina is currently in development. Join our waitlist to be the first to know when we launch and get exclusive early-bird pricing.',
-          ctaLabel: 'Join the Waitlist',
-          ctaHref: '#waitlist',
+            'Lumina is currently in development. Get in touch to be the first to know when we launch and get exclusive early-bird pricing.',
+          ctaLabel: 'Get in Touch',
+          ctaHref: '/#contact',
         }}
-        background="light"
+        background="dark"
       />
 
       <FinalCTASection
         heading="Ready to transform your salon?"
-        description="Join the waitlist and be among the first to experience the future of salon management."
+        description="Get in touch and be among the first to experience the future of salon management."
         primaryCta={{
-          label: 'Join the Waitlist',
-          href: '#waitlist',
+          label: 'Get in Touch',
+          href: '/#contact',
         }}
         secondaryCta={{
           label: 'Learn More',

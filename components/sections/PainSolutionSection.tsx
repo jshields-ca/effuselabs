@@ -52,7 +52,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                 </div>
               )}
               <H3
-                className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
               >
                 {problem.heading}
               </H3>
@@ -79,7 +79,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                 </div>
               )}
               <H3
-                className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
+                className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
               >
                 {solution.heading}
               </H3>
@@ -97,7 +97,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
           {bullets.length > 0 && (
             <Reveal order={2}>
               <div className="text-center">
-                <H2 className={`mb-8 ${isDark ? 'text-white' : ''}`}>
+                <H2 className={`mb-8 ${isDark ? 'text-effuse-parchment' : ''}`}>
                   Key Benefits
                 </H2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">

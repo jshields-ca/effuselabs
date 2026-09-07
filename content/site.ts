@@ -33,17 +33,24 @@ export interface SocialLink {
   href: string
 }
 
+/*
+ * These anchors resolve on the homepage. Now that /products/lumina exists as
+ * a second real route, a bare `#contact` would try to scroll the current
+ * page — a dead link from anywhere but home. `/#contact` always routes to
+ * the homepage section first.
+ */
+
 /** Primary navigation, left to right. */
 export const navLinks: NavLink[] = [
-  { label: 'Products', href: '#products' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Solutions', href: '/#solutions' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 /** The single call to action in the header. */
 export const headerCta: NavLink = {
   label: 'Get in Touch',
-  href: '#contact',
+  href: '/#contact',
 }
 
 export const brand = {
@@ -74,7 +81,7 @@ export const footerGroups: FooterLinkGroup[] = [
   },
   {
     heading: 'Company',
-    links: [{ label: 'Contact', href: '#contact' }],
+    links: [{ label: 'Contact', href: '/#contact' }],
   },
 ]
 

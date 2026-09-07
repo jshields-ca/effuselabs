@@ -62,18 +62,20 @@ const ProductHero: React.FC<ProductHeroProps> = ({
           ) : null}
 
           {productName ? (
-            <H2 className={isDark ? 'text-white mb-2' : 'mb-2'}>
+            <H2 className={isDark ? 'text-effuse-parchment mb-2' : 'mb-2'}>
               {productName}
             </H2>
           ) : null}
 
-          <H1 className={isDark ? 'text-white mb-4' : 'mb-4'}>{headline}</H1>
+          <H1 className={isDark ? 'text-effuse-parchment mb-4' : 'mb-4'}>
+            {headline}
+          </H1>
 
           {subheadline ? (
             <Text
               className={
                 isDark
-                  ? 'text-slate-300 mb-8 max-w-3xl mx-auto'
+                  ? 'text-effuse-parchment/80 mb-8 max-w-3xl mx-auto'
                   : 'text-effuse-medium-grey mb-8 max-w-3xl mx-auto'
               }
             >

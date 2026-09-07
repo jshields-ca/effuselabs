@@ -40,7 +40,7 @@ export default function Home() {
       <Pour openness={0.55} flip />
 
       {/* Products Section */}
-      <SectionContainer id="products" background="white" padding="lg">
+      <SectionContainer id="products" background="raised" padding="lg">
         <Reveal>
           <div className="text-center mb-12">
             <AccentBar
@@ -49,8 +49,8 @@ export default function Home() {
               position="center"
               className="mb-6"
             />
-            <H2 className="mb-4 text-effuse-off-black">Our Products</H2>
-            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed">
+            <H2 className="mb-4 text-effuse-parchment">Our Products</H2>
+            <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed">
               Intelligent software solutions designed to turn operational
               burdens into your greatest strengths.
             </Text>
@@ -61,7 +61,7 @@ export default function Home() {
             <Card
               id="lumina"
               variant="elevated"
-              className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-500 ease-out hover:shadow-gold-glow"
+              className="p-8 bg-surface-base bg-gradient-to-br from-lumina-gradient-start/10 to-lumina-gradient-end/10 border border-surface-border hover:border-lumina-gradient-start/40 transition-all duration-500 ease-out hover:shadow-gold-glow"
             >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
@@ -69,8 +69,8 @@ export default function Home() {
               />
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <H3 className="mb-4 text-effuse-off-black">Lumina</H3>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
+                  <H3 className="mb-4 text-effuse-parchment">Lumina</H3>
+                  <Text className="mb-6 text-effuse-parchment leading-relaxed font-normal">
                     An all-in-one, AI-powered platform for salons and
                     barbershops. Lumina replaces a patchwork of apps with a
                     single, elegant solution to manage bookings, financials, and
@@ -84,7 +84,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Intelligent dashboard with AI insights
                       </Text>
                     </li>
@@ -94,7 +94,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Flexible financials for commission & chair rental
                       </Text>
                     </li>
@@ -104,7 +104,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Seamless online booking integration
                       </Text>
                     </li>
@@ -114,7 +114,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Unified POS & CRM system
                       </Text>
                     </li>
@@ -145,13 +145,13 @@ export default function Home() {
       </SectionContainer>
 
       {/* Solutions Section */}
-      <SectionContainer id="solutions" background="light" padding="lg">
+      <SectionContainer id="solutions" background="base" padding="lg">
         <Reveal>
           <div className="text-center mb-12">
-            <H2 className="mb-4 text-effuse-off-black">
+            <H2 className="mb-4 text-effuse-parchment">
               Built for the Builders
             </H2>
-            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed font-normal">
+            <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed font-normal">
               Our tools are crafted for the passionate creators and service
               providers who are the cornerstones of our communities.
             </Text>
@@ -162,7 +162,7 @@ export default function Home() {
             <GridItem>
               <Card
                 variant="elevated"
-                className="h-full p-8 text-center shadow-xl border-black/10"
+                className="h-full p-8 text-center bg-surface-raised border-surface-border"
               >
                 <div
                   className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
@@ -170,14 +170,14 @@ export default function Home() {
                 />
                 <div className="flex flex-col h-full">
                   <div className="mb-4 flex flex-col items-center justify-center md:min-h-[140px]">
-                    <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-slate ring-1 ring-effuse-teal/25">
+                    <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
                       <Scissors
                         className="h-7 w-7"
                         aria-hidden="true"
                         strokeWidth={1.75}
                       />
                     </span>
-                    <H3 className="text-effuse-off-black text-center text-xl font-semibold">
+                    <H3 className="text-effuse-parchment text-center text-xl font-semibold">
                       Salons & Barbershops
                     </H3>
                   </div>
@@ -195,7 +195,7 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
+                      <Text as="span" className="text-sm text-effuse-parchment">
                         Commission & chair rental management
                       </Text>
                     </li>
@@ -212,7 +212,7 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
+                      <Text as="span" className="text-sm text-effuse-parchment">
                         Client booking & relationship management
                       </Text>
                     </li>
@@ -229,12 +229,12 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
+                      <Text as="span" className="text-sm text-effuse-parchment">
                         Service pricing & inventory tracking
                       </Text>
                     </li>
                   </ul>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed">
+                  <Text className="mb-6 text-effuse-parchment leading-relaxed">
                     You’re more than a stylist; you&apos;re an artist, a
                     confidant, and a community hub. You build relationships and
                     transform your clients&apos; confidence, one appointment at
