@@ -118,8 +118,19 @@ export const Pour: React.FC<PourProps> = ({
   // Both are sized off `gapHalf` and extend well past it so they overlap the
   // ribbons' thick mouth ends rather than meeting them edge-to-edge, which is
   // what keeps this from reintroducing a visible seam of its own.
-  const washRx = gapHalf + 220
-  const bloomRx = gapHalf + 90
+  //
+  // Sized much larger than the geometry alone calls for. The first version of
+  // this (rx = gapHalf + 220 / + 90) covered the gap completely in every
+  // render taken in this environment, but on Jeremy's actual Windows 11
+  // Firefox it showed up as a small, dim blob nowhere near wide enough to
+  // reach the ribbons — the same feGaussianBlur construct, on his machine,
+  // produces a visibly smaller and fainter result than it does here. Rather
+  // than chase the exact reason blind (no Firefox available in this sandbox
+  // to compare against), this over-provisions size and opacity generously
+  // enough that even a noticeably tighter, dimmer render should still bridge
+  // the gap.
+  const washRx = gapHalf + 480
+  const bloomRx = gapHalf + 260
 
   return (
     <div
@@ -193,22 +204,22 @@ export const Pour: React.FC<PourProps> = ({
             <stop
               offset="0%"
               stopColor={brand.teal}
-              stopOpacity={0.16 + open * 0.2}
+              stopOpacity={0.22 + open * 0.25}
             />
-            <stop offset="70%" stopColor={brand.teal} stopOpacity="0" />
+            <stop offset="85%" stopColor={brand.teal} stopOpacity="0" />
           </radialGradient>
           <radialGradient id="pour-wash-gold">
             <stop
               offset="0%"
               stopColor={brand.gold}
-              stopOpacity={0.22 + open * 0.3}
+              stopOpacity={0.3 + open * 0.35}
             />
             <stop
               offset="45%"
               stopColor={warm.ember}
-              stopOpacity={0.1 + open * 0.12}
+              stopOpacity={0.16 + open * 0.16}
             />
-            <stop offset="72%" stopColor={warm.ember} stopOpacity="0" />
+            <stop offset="85%" stopColor={warm.ember} stopOpacity="0" />
           </radialGradient>
           {/*
             Generous filter regions, well past what a blur this size needs, so
@@ -222,7 +233,7 @@ export const Pour: React.FC<PourProps> = ({
             width="220%"
             height="900%"
           >
-            <feGaussianBlur stdDeviation="18" />
+            <feGaussianBlur stdDeviation="12" />
           </filter>
           <filter
             id="pour-wash-blur-gold"
@@ -231,7 +242,7 @@ export const Pour: React.FC<PourProps> = ({
             width="220%"
             height="900%"
           >
-            <feGaussianBlur stdDeviation="10" />
+            <feGaussianBlur stdDeviation="7" />
           </filter>
         </defs>
 

@@ -713,9 +713,29 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   `gapHalf` so they overlap the ribbons' own mouths instead of meeting them
   edge to edge. One rendering technology for the whole component now, not
   two — and the one kept is the one with actual cross-browser evidence
-  behind it. Confirming this actually fixes it on his Firefox is still
-  pending; if it doesn't, the next data point needed is whether it's
-  Firefox-general or Windows-Firefox-specific.
+  behind it.
+
+  Fourth attempt: the SVG rewrite above was progress, not a fix — Jeremy's
+  next screenshot (same Windows 11 Firefox, resized window, still no ad
+  blocker) showed the wash actually rendering for the first time, but as a
+  small, dim blob sitting alone in the centre, well short of the ribbons on
+  either side. The same `gapHalf`-derived sizing that produces full,
+  seamless coverage in every render taken in this environment produces a
+  visibly smaller and fainter result on his machine — a real, reproducible
+  gap between this sandbox's Chromium and his Firefox in how much of a
+  blurred, low-opacity SVG gradient actually stays visible, not just whether
+  it renders at all. Rather than chase the exact cause blind (still no
+  Firefox available here to compare against directly), the shapes are now
+  sized and coloured to be robust to that gap instead of tuned to look
+  exactly right in Chromium: `washRx`/`bloomRx` roughly doubled (`gapHalf +
+480` / `+ 260`, up from `+ 220` / `+ 90`), peak opacity raised on both
+  gradients, the falloff point pushed from 70-72% out to 85% so more of each
+  ellipse stays visible before fading, and both blur radii trimmed (18→12,
+  10→7) so the blur softens the edge without diffusing the whole shape
+  toward invisibility. Still reads as a soft wash rather than a hard shape in
+  every render taken here. Confirming this actually closes the gap on his
+  Firefox is still pending.
+
 - ~~The services page's "What we set up" checklist linked one named example
   per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
   Those links became redundant once `ToolShowcaseSection` shipped below the
