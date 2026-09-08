@@ -1,0 +1,55 @@
+name: Update visual baselines
+
+# Manual only — this never runs on push or pull_request. Playwright's visual
+# baselines have to be captured on the exact Chromium build @playwright/test
+# expects (see playwright.config.ts's PLAYWRIGHT_CHROMIUM_PATH comment); a
+# sandbox with a different pre-installed Chromium build can pass every test
+# locally against baselines that then fail in this repo's own CI, because the
+# two are comparing against different browsers. Run this workflow instead of
+# regenerating baselines anywhere else: it uses the same
+# `playwright install --with-deps chromium` as the "Build and end-to-end" job,
+# so what it produces is guaranteed to match what CI actually checks against.
+#
+# Usage: run this workflow on the branch that needs updated baselines, then
+# download the "visual-baselines" artifact from the run and copy its
+# `e2e/visual.spec.ts-snapshots/*.png` files into place before committing.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update-snapshots:
+    name: Regenerate visual-desktop snapshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # Only the visual-desktop project has pixel-comparison snapshots — see
+      # playwright.config.ts for why visual-mobile uses layout assertions
+      # instead. --update-snapshots writes new PNGs rather than failing.
+      - name: Regenerate snapshots
+        run: npx playwright test --project=visual-desktop --update-snapshots
+
+      - name: Upload updated snapshots
+        if: '!cancelled()'
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: e2e/visual.spec.ts-snapshots/
+          retention-days: 7
