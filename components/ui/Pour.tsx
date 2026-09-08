@@ -1,4 +1,4 @@
-import { brand, surface } from '@/lib/design/tokens'
+import { brand, surface, warm } from '@/lib/design/tokens'
 import { cn } from '@/lib/utils'
 import React from 'react'
 
@@ -58,6 +58,30 @@ interface PourProps {
  * gated. Under reduced motion the ribbons are static and fully formed — a
  * composition, not an animation that stopped.
  *
+ * THE SPILL, TAKE THREE
+ *
+ * The gap between the two ribbons used to be filled by two plain HTML `<div>`s
+ * — oversized, absolutely positioned, blurred with the CSS `filter: blur()`
+ * utility — sitting behind the SVG. That was the second fix for a hard-edge
+ * seam here (the first was a `mask-image` wrapper); dropping all clipping and
+ * masking fixed the hard edge in every browser tested, including Jeremy's,
+ * but a later report — reproduced on Windows 11 Firefox after a hard refresh
+ * of the live preview, so neither a caching nor a stale-deploy artifact —
+ * showed the ribbons rendering fine while the div-based wash between them was
+ * simply absent: a flat, empty gap where continuous light should be. That
+ * div-based blur was the one piece of this component never confirmed to
+ * render the same way outside this environment's own Chromium; every other
+ * part — the ribbons, the core's `feGaussianBlur` glow — was visibly present
+ * and correct in that same screenshot.
+ *
+ * So the wash is now drawn the same way the core's glow already is: as SVG,
+ * with `feGaussianBlur`, not a CSS-blurred HTML div. Same technology
+ * throughout the component, rather than two different blur implementations
+ * that only one of them was ever shown to survive contact with a real
+ * browser. The two ellipses below are centred on the gap and sized to
+ * overlap the ribbons' own thick "mouth" ends, so the seam between
+ * SVG-drawn-ribbon and SVG-drawn-wash has no room to reappear as its own gap.
+ *
  * Decorative: hidden from assistive technology.
  */
 export const Pour: React.FC<PourProps> = ({
@@ -89,6 +113,14 @@ export const Pour: React.FC<PourProps> = ({
   const coreLeft = `M0 101 C ${leftEnd * 0.6} 100, ${leftEnd * 0.9} 78, ${leftEnd} 26 L ${leftEnd} 42 C ${leftEnd * 0.9} 90, ${leftEnd * 0.6} 102, 0 102 Z`
   const coreRight = `M1200 101 C ${1200 - (1200 - rightStart) * 0.6} 100, ${1200 - (1200 - rightStart) * 0.9} 78, ${rightStart} 26 L ${rightStart} 42 C ${1200 - (1200 - rightStart) * 0.9} 90, ${1200 - (1200 - rightStart) * 0.6} 102, 1200 102 Z`
 
+  // The wash, in two parts — a wide, soft teal ellipse beneath a tighter gold
+  // one, same idea as the old div pair (hot centre small, falloff large).
+  // Both are sized off `gapHalf` and extend well past it so they overlap the
+  // ribbons' thick mouth ends rather than meeting them edge-to-edge, which is
+  // what keeps this from reintroducing a visible seam of its own.
+  const washRx = gapHalf + 220
+  const bloomRx = gapHalf + 90
+
   return (
     <div
       aria-hidden="true"
@@ -98,50 +130,6 @@ export const Pour: React.FC<PourProps> = ({
         className
       )}
     >
-      {/*
-        The spill, in two parts. A tight gold bloom sitting on the opening, and
-        a wider teal wash beneath it. Separating them is what makes it read as
-        a light *source* rather than a coloured smudge: the hot centre is small
-        and the falloff is large.
-
-        This container used to clip both glow divs with `overflow-hidden`,
-        because they were deliberately oversized (h-[260%]/h-[90%]) relative
-        to it. That combination is exactly what drew a hard-edged rectangle at
-        the clip line on a wide desktop screen: each radial-gradient's own
-        fade-to-transparent is sized relative to its *own* oversized box, so
-        at the point the parent actually clipped it, the gradient was often
-        still well short of fully transparent. A `mask-image` fix on a
-        wrapper closed the gap in this environment's Chromium, but Jeremy
-        still saw a seam on his own machine after that shipped — masking a
-        blurred, absolutely-positioned layer is exactly the kind of
-        cross-browser edge case this component already got burned by once
-        (the vector-effect/preserveAspectRatio bug a few commits back), so
-        rather than keep tuning a mask blind, this drops clipping and masking
-        entirely: no `overflow-hidden` on this container, no mask on the glow
-        divs. A CSS blur has no hard edge of its own — it fades to
-        imperceptible well within a few multiples of its blur radius with
-        nothing needing to cut it off. The oversized boxes now simply bleed a
-        little into the sections immediately above and below, which are the
-        same dark canvas the wash already sits on, so there is nothing for a
-        visible boundary to form against, in any engine.
-      */}
-      <div
-        className="motion-safe:animate-drift-slower absolute left-1/2 top-1/2 h-[260%] w-[85%] -translate-x-1/2 -translate-y-1/2 blur-3xl"
-        style={{
-          background: `radial-gradient(ellipse 60% 50% at center, rgb(34 197 195 / ${
-            0.16 + open * 0.2
-          }) 0%, transparent 70%)`,
-        }}
-      />
-      <div
-        className="absolute left-1/2 top-1/2 h-[90%] w-[38%] -translate-x-1/2 -translate-y-1/2 blur-2xl"
-        style={{
-          background: `radial-gradient(ellipse 70% 55% at center, rgb(255 210 90 / ${
-            0.22 + open * 0.3
-          }) 0%, rgb(180 83 31 / ${0.1 + open * 0.12}) 45%, transparent 72%)`,
-        }}
-      />
-
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 1200 120"
@@ -194,7 +182,83 @@ export const Pour: React.FC<PourProps> = ({
             <stop offset="50%" stopColor={brand.gold} stopOpacity="0.9" />
             <stop offset="100%" stopColor={brand.gold} stopOpacity="0" />
           </linearGradient>
+          {/*
+            The wash's two radial gradients — a wide teal one and a tighter
+            gold-to-ember one nested on top of it, same "hot centre, wide
+            falloff" idea as the div pair this replaced. objectBoundingBox
+            (the default) so each simply fills its own ellipse regardless of
+            that ellipse's size, which changes with `openness`.
+          */}
+          <radialGradient id="pour-wash-teal">
+            <stop
+              offset="0%"
+              stopColor={brand.teal}
+              stopOpacity={0.16 + open * 0.2}
+            />
+            <stop offset="70%" stopColor={brand.teal} stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="pour-wash-gold">
+            <stop
+              offset="0%"
+              stopColor={brand.gold}
+              stopOpacity={0.22 + open * 0.3}
+            />
+            <stop
+              offset="45%"
+              stopColor={warm.ember}
+              stopOpacity={0.1 + open * 0.12}
+            />
+            <stop offset="72%" stopColor={warm.ember} stopOpacity="0" />
+          </radialGradient>
+          {/*
+            Generous filter regions, well past what a blur this size needs, so
+            nothing gets clipped at the filter's own edge in any engine —
+            the same margin of safety `pour-glow` above already relies on.
+          */}
+          <filter
+            id="pour-wash-blur-teal"
+            x="-60%"
+            y="-400%"
+            width="220%"
+            height="900%"
+          >
+            <feGaussianBlur stdDeviation="18" />
+          </filter>
+          <filter
+            id="pour-wash-blur-gold"
+            x="-60%"
+            y="-400%"
+            width="220%"
+            height="900%"
+          >
+            <feGaussianBlur stdDeviation="10" />
+          </filter>
         </defs>
+
+        {/*
+          The wash. Drawn as SVG with `feGaussianBlur`, the same technology
+          the core's glow below already uses — not a CSS-blurred HTML div, see
+          this component's own doc comment for why. Sized off `gapHalf` so it
+          widens as the shell opens, and overlapping the ribbons' own mouths
+          by design rather than meeting them edge to edge.
+        */}
+        <ellipse
+          className="motion-safe:animate-drift-slower"
+          cx="600"
+          cy="58"
+          rx={washRx}
+          ry="75"
+          fill="url(#pour-wash-teal)"
+          filter="url(#pour-wash-blur-teal)"
+        />
+        <ellipse
+          cx="600"
+          cy="58"
+          rx={bloomRx}
+          ry="44"
+          fill="url(#pour-wash-gold)"
+          filter="url(#pour-wash-blur-gold)"
+        />
 
         {/*
           The shell. Two tapered ribbons rather than one dashed line — the

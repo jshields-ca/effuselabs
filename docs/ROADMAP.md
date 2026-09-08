@@ -694,6 +694,28 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
 
 **Post-MVP feedback round:**
 
+- **The Pour dividers around the founder statement still show a hard, empty
+  gap instead of continuous light — third attempt, not yet confirmed fixed.**
+  The first two fixes (a `mask-image` wrapper, then dropping clipping and
+  masking entirely) both looked correct in this environment's Chromium and
+  both still failed on Jeremy's own machine. This time he confirmed it on
+  Windows 11 Firefox, on a hard-refreshed current preview deploy — ruling out
+  caching or a stale build. Comparing his screenshot against renders taken
+  here made the actual fault visible: the shell/core ribbons (SVG,
+  `feGaussianBlur`) were rendering fine in his screenshot; the ambient wash
+  that was supposed to bridge the gap between them (two oversized HTML
+  `<div>`s, CSS `filter: blur()`) simply wasn't there. That div-based wash
+  was the one piece of this component never confirmed to render the same way
+  outside this sandbox — everything else in it was already proven, in his own
+  screenshot, to work. Rather than patch the div technique a third time
+  blind, it's gone: the wash is now two SVG `<ellipse>`s using the same
+  `feGaussianBlur` technique the core glow already relies on, sized off
+  `gapHalf` so they overlap the ribbons' own mouths instead of meeting them
+  edge to edge. One rendering technology for the whole component now, not
+  two — and the one kept is the one with actual cross-browser evidence
+  behind it. Confirming this actually fixes it on his Firefox is still
+  pending; if it doesn't, the next data point needed is whether it's
+  Firefox-general or Windows-Firefox-specific.
 - ~~The services page's "What we set up" checklist linked one named example
   per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
   Those links became redundant once `ToolShowcaseSection` shipped below the
