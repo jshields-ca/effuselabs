@@ -53,20 +53,3 @@ jobs:
           name: visual-baselines
           path: e2e/visual.spec.ts-snapshots/
           retention-days: 7
-
-      # TEMPORARY: this session's sandbox can reach the GitHub API but not the
-      # blob-storage host artifact downloads redirect to, so the artifact
-      # above is unreachable from here. Dumping each PNG as base64 into the
-      # job log is a workaround to pull the bytes back through a channel that
-      # is reachable, for this one baseline-fix pass only. Reverted once the
-      # PNGs are applied — not part of how this workflow is meant to be used
-      # normally (download the artifact, as the usage note above says).
-      - name: TEMP - dump snapshots as base64 for agent retrieval
-        if: '!cancelled()'
-        run: |
-          for f in e2e/visual.spec.ts-snapshots/*.png; do
-            echo "===FILE:$f==="
-            base64 -w0 "$f"
-            echo
-            echo "===END==="
-          done
