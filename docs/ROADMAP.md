@@ -445,6 +445,30 @@ stage 6 starts placing them.
   restraint — the shape fix reads as flow on its own, and this component
   just shipped one cross-browser animation scare already). Ambient drift on
   the glow divs is unchanged; no new motion was added.
+- ~~Hard-edged rectangle where the Pour's ambient glow meets the flat canvas
+  around it~~ — took two attempts. Both glow divs are deliberately oversized
+  (h-[260%]/h-[90%]) so the wash bleeds softly, relying on the container's
+  `overflow-hidden` to clip them back down — but each radial-gradient's own
+  fade-to-transparent is sized relative to its own oversized box, so at the
+  point the parent actually clipped it, the gradient was often still well
+  short of fully transparent, drawing a visible seam. Only obvious on a wide
+  desktop screen, where there's enough flat canvas on either side for it to
+  show up against. First fix wrapped both glow divs in a `mask-image`d
+  sibling sized to the real container; that closed the gap in this
+  environment's Chromium, but Jeremy still saw a seam on his own machine
+  after it shipped — masking a blurred, absolutely-positioned layer is
+  exactly the kind of cross-browser edge case this component already got
+  burned by once (the vector-effect/preserveAspectRatio bug above), so
+  rather than keep tuning a mask blind, the second pass drops clipping and
+  masking entirely: no `overflow-hidden`, no mask, the glow divs simply
+  bleed into the sections immediately above and below. A CSS blur has no
+  hard edge of its own — it fades to imperceptible well within a few
+  multiples of its blur radius with nothing needing to cut it off, and
+  those neighbouring sections are the same dark canvas the wash already
+  sits on, so there is nothing for a visible boundary to form against, in
+  any engine. Confirmed no bleed-through onto neighbouring section content
+  either — the gradient's own falloff completes well before it would
+  reach far enough to be visible over adjacent text.
 
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
@@ -459,11 +483,18 @@ finding, not just the current clean state):
   in the footer heading, which is exactly where Jeremy suggested it. Held
   up cleanly checked down to 16px, so it's a real favicon candidate too —
   not done here, since swapping the actual favicon/apple-touch-icon set is
-  a brand-identity call, not a footer decoration. The source silhouette is
-  one continuous shape, not two overlapping regions, so this is a single
-  colour; a two-tone shell/gold-core version (matching the real logo's
-  colour split) would mean inventing a dividing line that isn't actually in
-  the drawing — worth its own pass if the flat mark earns a bigger role.
+  a brand-identity call, not a footer decoration.
+  Follow-up: measuring the source PNG's alpha mask row by row found that it
+  isn't actually one continuous shape — it's two lobes (a small flame-tail
+  and the main body) that stay separate until they merge into one rounded
+  base about 90% of the way down, at a gap that sits at a nearly constant x
+  the whole way. That's a real, already-there dividing line, not an
+  invented one, so `EffuseMark` now takes a `variant="twoTone"` prop that
+  traces each lobe separately (teal shell, gold flame) — the merged base
+  encloses a real hole, landing close to the "shell around a core" idea the
+  glossy logo renders explicitly. Not wired in anywhere by default; sent
+  Jeremy a comparison at every size down to 16px for him to decide if/where
+  it's used, per his "nice to have as an option" framing.
 - ~~Privacy policy silent on Resend~~ — the "Third parties" section said,
   flatly, "we don't share your information with anyone else," which became
   false the moment real contact-form delivery went live through Resend.

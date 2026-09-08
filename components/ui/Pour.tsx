@@ -93,7 +93,7 @@ export const Pour: React.FC<PourProps> = ({
     <div
       aria-hidden="true"
       className={cn(
-        'pointer-events-none relative isolate h-32 w-full overflow-hidden sm:h-44',
+        'pointer-events-none relative isolate h-32 w-full sm:h-44',
         flip && 'scale-y-[-1]',
         className
       )}
@@ -104,39 +104,43 @@ export const Pour: React.FC<PourProps> = ({
         a light *source* rather than a coloured smudge: the hot centre is small
         and the falloff is large.
 
-        Both glow divs are deliberately oversized (h-[260%]/h-[90%]) so the
-        wash bleeds softly rather than reading as a bounded shape, and rely on
-        this container's `overflow-hidden` to clip them back down. The
-        problem: each radial-gradient's own fade-to-transparent is sized
-        relative to its *own* oversized box, so at the point where the parent
-        actually clips it, the gradient is often still well short of fully
-        transparent — which draws a hard-edged rectangle exactly at the clip
-        line. Jeremy caught this on a wide desktop screen, where the flat
-        canvas on either side of the wash gives that seam a lot of empty
-        space to show up against. Wrapping both in a sibling div sized to
-        exactly this container (not the oversized glow boxes) and masking
-        *that* wrapper's edges means the fade is already at zero opacity by
-        the time the real clip happens, regardless of how the glow divs
-        inside it are sized.
+        This container used to clip both glow divs with `overflow-hidden`,
+        because they were deliberately oversized (h-[260%]/h-[90%]) relative
+        to it. That combination is exactly what drew a hard-edged rectangle at
+        the clip line on a wide desktop screen: each radial-gradient's own
+        fade-to-transparent is sized relative to its *own* oversized box, so
+        at the point the parent actually clipped it, the gradient was often
+        still well short of fully transparent. A `mask-image` fix on a
+        wrapper closed the gap in this environment's Chromium, but Jeremy
+        still saw a seam on his own machine after that shipped — masking a
+        blurred, absolutely-positioned layer is exactly the kind of
+        cross-browser edge case this component already got burned by once
+        (the vector-effect/preserveAspectRatio bug a few commits back), so
+        rather than keep tuning a mask blind, this drops clipping and masking
+        entirely: no `overflow-hidden` on this container, no mask on the glow
+        divs. A CSS blur has no hard edge of its own — it fades to
+        imperceptible well within a few multiples of its blur radius with
+        nothing needing to cut it off. The oversized boxes now simply bleed a
+        little into the sections immediately above and below, which are the
+        same dark canvas the wash already sits on, so there is nothing for a
+        visible boundary to form against, in any engine.
       */}
-      <div className="absolute inset-0 [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-        <div
-          className="motion-safe:animate-drift-slower absolute left-1/2 top-1/2 h-[260%] w-[85%] -translate-x-1/2 -translate-y-1/2 blur-3xl"
-          style={{
-            background: `radial-gradient(ellipse 60% 50% at center, rgb(34 197 195 / ${
-              0.16 + open * 0.2
-            }) 0%, transparent 70%)`,
-          }}
-        />
-        <div
-          className="absolute left-1/2 top-1/2 h-[90%] w-[38%] -translate-x-1/2 -translate-y-1/2 blur-2xl"
-          style={{
-            background: `radial-gradient(ellipse 70% 55% at center, rgb(255 210 90 / ${
-              0.22 + open * 0.3
-            }) 0%, rgb(180 83 31 / ${0.1 + open * 0.12}) 45%, transparent 72%)`,
-          }}
-        />
-      </div>
+      <div
+        className="motion-safe:animate-drift-slower absolute left-1/2 top-1/2 h-[260%] w-[85%] -translate-x-1/2 -translate-y-1/2 blur-3xl"
+        style={{
+          background: `radial-gradient(ellipse 60% 50% at center, rgb(34 197 195 / ${
+            0.16 + open * 0.2
+          }) 0%, transparent 70%)`,
+        }}
+      />
+      <div
+        className="absolute left-1/2 top-1/2 h-[90%] w-[38%] -translate-x-1/2 -translate-y-1/2 blur-2xl"
+        style={{
+          background: `radial-gradient(ellipse 70% 55% at center, rgb(255 210 90 / ${
+            0.22 + open * 0.3
+          }) 0%, rgb(180 83 31 / ${0.1 + open * 0.12}) 45%, transparent 72%)`,
+        }}
+      />
 
       <svg
         className="absolute inset-0 h-full w-full"
