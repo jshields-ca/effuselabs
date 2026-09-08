@@ -34,6 +34,9 @@ export type {
 export { AccentBar } from './AccentBar'
 export type { AccentBarProps, AccentBarVariant } from './AccentBar'
 
+export { EffuseMark } from './EffuseMark'
+export type { EffuseMarkProps } from './EffuseMark'
+
 // The luminous field and the scroll reveal are both CSS-only server
 // components — see their files for why neither ships JavaScript.
 export { LuminousField } from './LuminousField'

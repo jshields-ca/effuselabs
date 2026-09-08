@@ -18,8 +18,8 @@ export default function PrivacyPage() {
           understand traffic patterns and page performance. Both are
           privacy-focused: they don&apos;t use cookies and don&apos;t track you
           across other sites. If you email us or fill out a contact form, we
-          receive whatever you send us — name, email address, and message
-          content.
+          receive whatever you send us — name, email address, business (if you
+          give one), and message content.
         </Text>
       </div>
 
@@ -37,8 +37,12 @@ export default function PrivacyPage() {
         <H2 className="text-effuse-parchment">Third parties</H2>
         <Text>
           This site is hosted on Vercel, which processes traffic and performance
-          data on our behalf under its own privacy commitments. We don&apos;t
-          share your information with anyone else.
+          data on our behalf under its own privacy commitments. Messages sent
+          through the contact form are delivered using Resend, an email delivery
+          service — it processes your name, email address, business (if
+          provided) and message solely to send that message to us. Neither
+          Vercel nor Resend gets to do anything else with it, and we don&apos;t
+          share your information with anyone beyond that.
         </Text>
       </div>
 

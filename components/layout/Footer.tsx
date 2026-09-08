@@ -1,4 +1,4 @@
-import { Container, H4, Small } from '@/components/ui'
+import { Container, EffuseMark, H4, Small } from '@/components/ui'
 import { brand, contact, footerGroups, socialLinks } from '@/content/site'
 import React from 'react'
 
@@ -81,7 +81,10 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h3 className="mb-6 text-2xl font-bold text-white">{brand.name}</h3>
+            <h3 className="mb-6 flex items-center gap-2 text-2xl font-bold text-white">
+              <EffuseMark className="h-6 w-auto text-effuse-teal" />
+              {brand.name}
+            </h3>
 
             {/*
               A "Location:" and "Email:" block used to sit here, duplicating

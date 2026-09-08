@@ -449,6 +449,29 @@ stage 6 starts placing them.
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
 
+- ~~No SVG mark; the only logo asset was a glossy 3D render~~ — Jeremy drew
+  a flat droplet/flame silhouette (same idea as `public/logo-800x800.png`'s
+  shell-around-a-core, but as one flat shape rather than something with
+  gradients and specular highlights that turn to mud at small sizes).
+  Traced it with `potrace` into a clean vector path
+  (`components/ui/EffuseMark.tsx`, `fill="currentColor"`, same convention
+  Footer.tsx's social icons already use) and placed it beside "Effuse Labs"
+  in the footer heading, which is exactly where Jeremy suggested it. Held
+  up cleanly checked down to 16px, so it's a real favicon candidate too —
+  not done here, since swapping the actual favicon/apple-touch-icon set is
+  a brand-identity call, not a footer decoration. The source silhouette is
+  one continuous shape, not two overlapping regions, so this is a single
+  colour; a two-tone shell/gold-core version (matching the real logo's
+  colour split) would mean inventing a dividing line that isn't actually in
+  the drawing — worth its own pass if the flat mark earns a bigger role.
+- ~~Privacy policy silent on Resend~~ — the "Third parties" section said,
+  flatly, "we don't share your information with anyone else," which became
+  false the moment real contact-form delivery went live through Resend.
+  Named it alongside Vercel as a processor acting on Effuse Labs' behalf,
+  scoped to only what it needs to deliver the message. Caught by Jeremy
+  right after confirming the first real email landed — exactly the kind of
+  gap that's obvious in hindsight and easy to miss when the code and the
+  policy describing it are reviewed at different times.
 - ~~No link to the Lumina repo on its own product page~~ — added a "View on
   GitHub" secondary CTA to `ProductHero` (a new optional
   `secondaryCtaLabel`/`secondaryCtaHref` pair, only rendered when both are
