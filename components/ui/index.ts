@@ -31,16 +31,19 @@ export type {
   CardProps,
 } from './Card'
 
-export { SectionDivider } from './SectionDivider'
-export type { SectionDividerProps } from './SectionDivider'
-
 export { AccentBar } from './AccentBar'
 export type { AccentBarProps, AccentBarVariant } from './AccentBar'
+
+export { EffuseMark } from './EffuseMark'
+export type { EffuseMarkProps } from './EffuseMark'
 
 // The luminous field and the scroll reveal are both CSS-only server
 // components — see their files for why neither ships JavaScript.
 export { LuminousField } from './LuminousField'
 export { Reveal } from './Reveal'
+
+/** The signature element. See the file for what it is and why. */
+export { Pour } from './Pour'
 
 export { default as ScrollIndicator } from './ScrollIndicator'
 export type { ScrollIndicatorProps } from './ScrollIndicator'

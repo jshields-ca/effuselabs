@@ -18,7 +18,6 @@ export interface FeatureBreakdownSectionProps {
   screenshotSrc?: string
   screenshotAlt?: string
   variant?: 'grid' | 'checklist'
-  background?: 'light' | 'dark'
 }
 
 const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
@@ -29,30 +28,15 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
   screenshotSrc,
   screenshotAlt = 'Product screenshot',
   variant = 'grid',
-  background = 'light',
 }) => {
-  const isDark = background === 'dark'
-
   return (
-    <SectionContainer
-      id={id}
-      background={isDark ? 'base' : 'white'}
-      padding="lg"
-    >
+    <SectionContainer id={id} background="base" padding="lg">
       <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <H2
-              className={`mb-4 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
-            >
-              {heading}
-            </H2>
-            <Text
-              className={`max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-light-grey' : 'text-effuse-off-black/75'
-              }`}
-            >
+            <H2 className="mb-4 text-effuse-parchment">{heading}</H2>
+            <Text className="max-w-2xl mx-auto text-effuse-parchment">
               {subheading}
             </Text>
           </div>
@@ -87,33 +71,19 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                         </span>
                       </div>
                       <div className="flex-1">
-                        <H3
-                          className={`text-lg mb-2 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
-                        >
+                        <H3 className="text-lg mb-2 text-effuse-parchment">
                           {item.title}
                         </H3>
-                        <Text
-                          className={
-                            isDark
-                              ? 'text-effuse-light-grey'
-                              : 'text-effuse-off-black/75'
-                          }
-                        >
+                        <Text className="text-effuse-parchment">
                           {item.description}
                         </Text>
                       </div>
                     </div>
                   ) : (
                     /* Grid Variant */
-                    <div
-                      className={`h-full rounded-xl p-6 transition-all duration-300 ${
-                        isDark
-                          ? 'bg-surface-raised border border-surface-border hover:bg-slate-800/70 hover:shadow-lg'
-                          : 'bg-effuse-light-grey/60 border border-effuse-light-neutral shadow-sm hover:shadow-lg hover:border-effuse-teal/20 hover:bg-white'
-                      }`}
-                    >
+                    <div className="h-full rounded-xl border border-surface-border bg-surface-raised p-6 transition-all duration-300 hover:bg-surface-raised/70 hover:shadow-lg">
                       <div className="mb-4">
-                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-effuse-teal/10 text-effuse-slate ring-1 ring-effuse-teal/25">
+                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
                           <item.icon
                             className="h-6 w-6"
                             aria-hidden="true"
@@ -121,18 +91,10 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                           />
                         </span>
                       </div>
-                      <H3
-                        className={`mb-3 ${isDark ? 'text-white' : 'text-effuse-off-black'}`}
-                      >
+                      <H3 className="mb-3 text-effuse-parchment">
                         {item.title}
                       </H3>
-                      <Text
-                        className={
-                          isDark
-                            ? 'text-effuse-light-grey'
-                            : 'text-effuse-off-black/75'
-                        }
-                      >
+                      <Text className="text-effuse-parchment">
                         {item.description}
                       </Text>
                     </div>

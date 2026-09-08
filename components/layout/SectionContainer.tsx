@@ -37,13 +37,13 @@ export const SectionContainer: React.FC<SectionContainerProps> = ({
    * override applied on top of light defaults.
    */
   const backgroundClasses = {
-    deep: 'bg-surface-deep text-effuse-light-grey',
-    base: 'bg-surface-base text-effuse-light-grey',
-    raised: 'bg-surface-raised text-effuse-light-grey',
+    deep: 'bg-surface-deep text-effuse-parchment',
+    base: 'bg-surface-base text-effuse-parchment',
+    raised: 'bg-surface-raised text-effuse-parchment',
     white: 'bg-white text-effuse-off-black',
     light: 'bg-effuse-light-grey text-effuse-off-black',
     gradient:
-      'bg-gradient-to-b from-surface-deep to-surface-base text-effuse-light-grey',
+      'bg-gradient-to-b from-surface-deep to-surface-base text-effuse-parchment',
   }
 
   const props: React.HTMLAttributes<HTMLElement> = {

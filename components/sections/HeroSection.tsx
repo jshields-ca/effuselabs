@@ -55,12 +55,12 @@ export function HeroSection({
 
           <h1
             id="hero-heading"
-            className="motion-safe:animate-slide-up text-display font-bold text-effuse-white"
+            className="motion-safe:animate-slide-up font-display text-display font-semibold text-effuse-parchment"
           >
             {title}
           </h1>
 
-          <p className="motion-safe:animate-slide-up mt-8 max-w-2xl text-body-lg text-effuse-light-grey [animation-delay:120ms] [animation-fill-mode:backwards]">
+          <p className="motion-safe:animate-slide-up mt-8 max-w-2xl text-body-lg text-effuse-parchment [animation-delay:120ms] [animation-fill-mode:backwards]">
             {description}
           </p>
 
@@ -74,7 +74,7 @@ export function HeroSection({
             </Button>
           </div>
 
-          <p className="motion-safe:animate-fade-in mt-12 text-body-sm text-effuse-light-grey/70 [animation-delay:400ms] [animation-fill-mode:backwards]">
+          <p className="motion-safe:animate-fade-in mt-12 text-body-sm text-effuse-parchment/70 [animation-delay:400ms] [animation-fill-mode:backwards]">
             {brand.name} · Winnipeg, Manitoba
           </p>
         </div>

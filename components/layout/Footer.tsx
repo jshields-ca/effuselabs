@@ -1,4 +1,4 @@
-import { Container, H4, Small, Text } from '@/components/ui'
+import { Container, EffuseMark, H4, Small } from '@/components/ui'
 import { brand, contact, footerGroups, socialLinks } from '@/content/site'
 import React from 'react'
 
@@ -16,6 +16,22 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   GitHub: (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+    </svg>
+  ),
+  Twitter: (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  ),
+  /*
+   * A simple abstract mark rather than a traced copy of Bluesky's actual
+   * butterfly logo — brand press assets weren't sourced, and an imprecise
+   * copy of a real mark is worse than an honest placeholder. Swap for the
+   * real logo asset once it's on hand.
+   */
+  Bluesky: (
+    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 8.5c-1.6-2.6-4.7-5.1-7.2-5.9-1.7-.5-2.3.4-2.3 1.6 0 1.3.2 4.4 1 5.7.9 1.6 3 2 4.6 1.7-2.4.4-4.5 1.5-1.7 4.5 3.1 3.2 4.4-.6 5-2.7.6 2.1 1.6 5.8 4.9 2.7 2.6-2.7.7-4.1-1.7-4.5 1.6.3 3.7-.1 4.6-1.7.8-1.3 1-4.4 1-5.7 0-1.2-.6-2.1-2.3-1.6-2.5.8-5.6 3.4-7.2 5.9" />
     </svg>
   ),
 }
@@ -65,28 +81,18 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {brand.name}
-              </h3>
-              <Text className="text-slate-300 mb-4">{brand.blurb}</Text>
-            </div>
+            <h3 className="mb-6 flex items-center gap-2 text-2xl font-bold text-white">
+              <EffuseMark variant="twoTone" className="h-6 w-auto" />
+              {brand.name}
+            </h3>
 
-            {/* Contact Info */}
-            <div className="mb-6">
-              <Text className="text-slate-300">
-                <strong>Location:</strong> {contact.location}
-              </Text>
-              <Text className="text-slate-300">
-                <strong>Email:</strong>{' '}
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md"
-                >
-                  {contact.email}
-                </a>
-              </Text>
-            </div>
+            {/*
+              A "Location:" and "Email:" block used to sit here, duplicating
+              the location already in the bottom bar ("Built with care in
+              Winnipeg, Manitoba") and the email already reachable via the
+              homepage contact form and the Connect With Us icons below.
+              Jeremy asked to cut both once he noticed the repetition.
+            */}
 
             {/* Social Links */}
             <div>
@@ -120,30 +126,28 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-effuse-medium-grey">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <Small className="text-effuse-light-grey">
+          {/*
+            This used to be a copyright line, then a second full-width
+            centered line below it reading "Built with care in Winnipeg,
+            Manitoba" — its own row, competing for the same visual weight as
+            the copyright rather than reading as part of it. The Legal group
+            above already gives Privacy/Terms/Accessibility a real home, so
+            this row only ever had one thing in it. Putting the location on
+            the same row (opposite-justified on desktop, stacked on the
+            narrow mobile width where there's no room for two columns) reads
+            as one unobtrusive line of small print instead of two, and keeps
+            the "built by a real, local firm" signal without asking for its
+            own line of attention. Sourced from `contact.location` rather
+            than restated here, so the fact lives in one place — it used to
+            also appear as its own line in the Company Info column above and
+            after the homepage contact form, both removed as duplicates.
+          */}
+          <div className="flex flex-col items-center gap-1 text-center md:flex-row md:justify-between md:text-left">
+            <Small className="text-effuse-parchment">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
-
-            {/*
-              Privacy Policy, Terms of Service and Accessibility links lived
-              here pointing at /privacy, /terms and /accessibility — none of
-              which exist, so all three were hard 404s. They return when those
-              routes are actually built.
-            */}
-          </div>
-
-          {/*
-            This read "Built with ❤️ in Winnipeg, Manitoba 🇨🇦". The sentiment
-            stays; the emoji do not. Emoji are the most environment-variable
-            glyphs on a page — the font differs by platform and version, and
-            here they were shifting line height enough to make the visual
-            regression baselines disagree between this machine and CI. Set in
-            words, it renders identically everywhere and reads the same aloud.
-          */}
-          <div className="mt-6 text-center">
             <Small className="text-effuse-medium-grey">
-              Built with care in Winnipeg, Manitoba
+              Built with care in {contact.location}
             </Small>
           </div>
         </div>

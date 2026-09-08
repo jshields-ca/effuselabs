@@ -33,17 +33,25 @@ export interface SocialLink {
   href: string
 }
 
+/*
+ * These anchors resolve on the homepage. Now that /products/lumina exists as
+ * a second real route, a bare `#contact` would try to scroll the current
+ * page — a dead link from anywhere but home. `/#contact` always routes to
+ * the homepage section first.
+ */
+
 /** Primary navigation, left to right. */
 export const navLinks: NavLink[] = [
-  { label: 'Products', href: '#products' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 /** The single call to action in the header. */
 export const headerCta: NavLink = {
   label: 'Get in Touch',
-  href: '#contact',
+  href: '/#contact',
 }
 
 export const brand = {
@@ -53,7 +61,7 @@ export const brand = {
 } as const
 
 export const contact = {
-  email: 'hello@effuse.io',
+  email: 'jeremy@effuse.io',
   location: 'Winnipeg, Manitoba, Canada',
 } as const
 
@@ -64,8 +72,9 @@ export const contact = {
  * Reference, Documentation, Support and a Blog — six anchors that pointed at
  * IDs present on no page — plus /privacy, /terms and /accessibility, which
  * were hard 404s. Every link here resolves to something that exists today.
- * The legal pages and the rest return as real routes when the site's
- * information architecture is built.
+ * The legal pages are real routes now (draft copy, pending legal review —
+ * see components/layout/LegalPageLayout.tsx); Careers/News/etc. return when
+ * there is something real to say on them.
  */
 export const footerGroups: FooterLinkGroup[] = [
   {
@@ -74,18 +83,45 @@ export const footerGroups: FooterLinkGroup[] = [
   },
   {
     heading: 'Company',
-    links: [{ label: 'Contact', href: '#contact' }],
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Services', href: '/services' },
+      { label: 'Contact', href: '/#contact' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Accessibility', href: '/accessibility' },
+    ],
   },
 ]
 
 /**
- * Social profiles.
+ * Social profiles. All four confirmed real by Jeremy (2026-09-08 GitHub,
+ * 2026-09-08 the other three) — no placeholders left.
  *
- * These are unverified — they were hardcoded into the footer and have never
- * been confirmed to exist. Confirm each account before launch, and delete any
- * that do not: a footer icon leading to a 404 reads worse than no icon.
+ * Bluesky's handle is the custom domain @effuse.io rather than a
+ * bsky.social handle, which only resolves once effuse.io's DNS is set up
+ * for domain verification — not done yet as of this writing. The profile
+ * URL itself (bsky.app/profile/effuse.io) is stable regardless of that;
+ * Bluesky resolves the domain handle to the same account either way once
+ * verification completes, so this is the real, final link, not a guess.
  */
 export const socialLinks: SocialLink[] = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/company/effuselabs' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/effuse-labs' },
+  { label: 'Twitter', href: 'https://x.com/effuselabs' },
+  { label: 'Bluesky', href: 'https://bsky.app/profile/effuse.io' },
   { label: 'GitHub', href: 'https://github.com/effuselabs' },
 ]
+
+/**
+ * Per-product repo links — confirmed real, same source as socialLinks above.
+ * Lives here rather than inline on the product page so any future page that
+ * wants to point at the repo (About, footer) reads from one place.
+ */
+export const repos = {
+  lumina: 'https://github.com/effuselabs/lumina',
+} as const

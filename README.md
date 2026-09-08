@@ -20,7 +20,7 @@ behind a closed repository.
 | ------------ | --------------------------------------------------------------------------------------------------------------- |
 | **Products** | [Lumina](https://effuse.io/products/lumina) — booking, clients, staff and financials for salons and barbershops |
 | **Services** | Vertical SaaS development · self-hosted and open-source setup and support                                       |
-| **Contact**  | [hello@effuse.io](mailto:hello@effuse.io)                                                                       |
+| **Contact**  | [jeremy@effuse.io](mailto:jeremy@effuse.io)                                                                     |
 
 ## Stack
 
@@ -37,7 +37,11 @@ npm ci
 npm run dev      # http://localhost:3000
 ```
 
-No environment variables are required to run the site locally.
+No environment variables are required to run the site locally. In production,
+an optional `RESEND_API_KEY` enables real delivery for the homepage contact
+form (`app/api/contact/route.ts`) via [Resend](https://resend.com); without
+it, the form falls back to opening the visitor's own mail client, so nothing
+breaks in its absence.
 
 ## Commands
 
@@ -96,7 +100,7 @@ on interactive elements; `jsx-a11y` linting; and automated `axe` scanning per
 route (landing with the content work — see the roadmap).
 
 If you hit an accessibility barrier on effuse.io, mail
-[hello@effuse.io](mailto:hello@effuse.io) and it will be treated as a bug.
+[jeremy@effuse.io](mailto:jeremy@effuse.io) and it will be treated as a bug.
 
 ## Status
 

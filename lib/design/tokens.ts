@@ -74,6 +74,27 @@ export const surface = {
 } as const
 
 /**
+ * Warm tones.
+ *
+ * `parchment` is the body-text colour on dark. It replaces a cool grey
+ * (#F1F3F5): cool grey on a cool canvas beside a warm serif is what makes a
+ * dark theme read as clinical, and a few degrees of warmth changes the
+ * temperature of the whole page for nothing.
+ *
+ * `ember` gives gold somewhere to fall off to, so light has depth rather than
+ * sitting flat on the surface.
+ *
+ * `ember` is NOT a text colour. Measured against the canvas it reaches 3.65:1
+ * — large text only — so it is reserved for shadow, glow falloff and edge
+ * light beneath gold. `check:tokens` holds it to that by never declaring it as
+ * a body pair.
+ */
+export const warm = {
+  parchment: '#EDE8DF',
+  ember: '#B4531F',
+} as const
+
+/**
  * Emission — colour used as *light* rather than as fill.
  *
  * The brand name is effundere, "to pour out", and the logo is a shell peeling
@@ -159,15 +180,30 @@ export const gradients = {
 /**
  * Typography.
  *
- * Inter carries everything. Poppins is the logotype only — it is a graphic
- * asset, not a UI face. IBM Plex Mono was previously loaded on every page for a
- * single `Code` component that no route renders; it is not declared here.
+ * Bricolage Grotesque for display, Public Sans for everything read at length.
+ * Both are loaded through `next/font` in app/layout.tsx and referenced here by
+ * their CSS variables, so there is one place a face can change.
+ *
+ * Inter and Poppins are both gone. Inter was carrying display *and* body, and
+ * it is the default typeface of nearly every generated site — using it for
+ * both roles is most of why the previous pass read as templated. Poppins was
+ * the logotype only, and the wordmark now sets in the display face with the
+ * rest of the display type. IBM Plex Mono went earlier, with the `Code`
+ * component that was its only consumer.
+ *
+ * The display face was Fraunces for one stage — a warm serif, on the
+ * argument that warmth mattered given the founder's story and the
+ * accessibility mission. In practice it read as editorial rather than a
+ * software company. Warmth now comes from the parchment/ember color tokens
+ * instead of the display face, freeing the face itself to read as technical.
+ * See docs/DESIGN_PLAN.md.
  */
 export const typography = {
   fontFamily: {
-    sans: ['Inter', 'system-ui', 'sans-serif'],
-    /** Logotype only. */
-    display: ['Poppins', 'Inter', 'sans-serif'],
+    /** Body and utility. Everything a person reads at length. */
+    sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+    /** Display only, at large sizes. Never body copy. */
+    display: ['var(--font-display)', 'system-ui', 'sans-serif'],
   },
   fontWeight: {
     normal: '400',
@@ -254,6 +290,28 @@ export const contrastPairs: ReadonlyArray<{
     name: 'body on white',
     foreground: neutral.offBlack,
     background: neutral.white,
+  },
+
+  // Parchment — the body colour on every dark surface it will actually sit on.
+  {
+    name: 'parchment on deep canvas',
+    foreground: warm.parchment,
+    background: surface.deep,
+  },
+  {
+    name: 'parchment on base canvas',
+    foreground: warm.parchment,
+    background: surface.base,
+  },
+  {
+    name: 'parchment on raised card',
+    foreground: warm.parchment,
+    background: surface.raised,
+  },
+  {
+    name: 'parchment on slate',
+    foreground: warm.parchment,
+    background: brand.slate,
   },
 
   // Dark canvas. Every one of these is a surface real copy sits on, so all are

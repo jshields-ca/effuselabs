@@ -31,6 +31,32 @@ const nextConfig = {
           },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            /*
+             * Scoped to what this site actually loads: `next/font` self-hosts
+             * Google Fonts (so no external font-src is needed). Analytics is
+             * self-hosted Umami at analytics.sctr.tech (see app/layout.tsx) —
+             * both the pageview script and the session-replay recorder load
+             * from and report to that origin, so it's on script-src and
+             * connect-src. `unsafe-inline` on style-src stays because Next
+             * inlines critical CSS and this repo has no nonce plumbing yet —
+             * the safer version of that is stage-7 follow-up work, not this
+             * pass.
+             */
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' https://analytics.sctr.tech",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data:",
+              "font-src 'self'",
+              "connect-src 'self' https://analytics.sctr.tech wss://analytics.sctr.tech",
+              "frame-ancestors 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "object-src 'none'",
+            ].join('; '),
+          },
         ],
       },
     ]

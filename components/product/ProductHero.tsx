@@ -7,12 +7,22 @@ export interface ProductHeroProps {
   id?: string
   logoSrc?: string
   logoAlt?: string
+  /**
+   * The logo's real pixel width and height, so `next/image` preserves its
+   * actual aspect ratio instead of forcing a square. Defaults assume a
+   * roughly square mark; pass the source file's real dimensions for
+   * anything wider or taller than that.
+   */
+  logoWidth?: number
+  logoHeight?: number
   productName?: string
   headline: string
   subheadline?: string
   primaryCtaLabel: string
   primaryCtaHref: string
-  background?: 'light' | 'dark'
+  /** e.g. a link to the product's public GitHub repo. Opens in a new tab. */
+  secondaryCtaLabel?: string
+  secondaryCtaHref?: string
   accentGradient?: { from: string; to: string }
 }
 
@@ -20,22 +30,19 @@ const ProductHero: React.FC<ProductHeroProps> = ({
   id = 'product-hero',
   logoSrc,
   logoAlt = 'Product logo',
+  logoWidth = 48,
+  logoHeight = 48,
   productName,
   headline,
   subheadline,
   primaryCtaLabel,
   primaryCtaHref,
-  background = 'light',
+  secondaryCtaLabel,
+  secondaryCtaHref,
   accentGradient,
 }) => {
-  const isDark = background === 'dark'
-
   return (
-    <SectionContainer
-      id={id}
-      background={isDark ? 'base' : 'white'}
-      padding="lg"
-    >
+    <SectionContainer id={id} background="base" padding="lg">
       {accentGradient ? (
         <div
           className="-mt-6 -mb-8 -mx-0 h-1.5 rounded-t-lg"
@@ -50,45 +57,37 @@ const ProductHero: React.FC<ProductHeroProps> = ({
         <div className="max-w-5xl mx-auto text-center">
           {logoSrc ? (
             <div className="mb-6 flex justify-center">
-              {/* decorative product logo; alt is provided for screen readers */}
               <Image
                 src={logoSrc}
                 alt={logoAlt}
-                width={48}
-                height={48}
+                width={logoWidth}
+                height={logoHeight}
                 className="h-12 w-auto"
               />
             </div>
           ) : null}
 
           {productName ? (
-            <H2 className={isDark ? 'text-white mb-2' : 'mb-2'}>
-              {productName}
-            </H2>
+            <H2 className="text-effuse-parchment mb-2">{productName}</H2>
           ) : null}
 
-          <H1 className={isDark ? 'text-white mb-4' : 'mb-4'}>{headline}</H1>
+          <H1 className="text-effuse-parchment mb-4">{headline}</H1>
 
           {subheadline ? (
-            <Text
-              className={
-                isDark
-                  ? 'text-slate-300 mb-8 max-w-3xl mx-auto'
-                  : 'text-effuse-medium-grey mb-8 max-w-3xl mx-auto'
-              }
-            >
+            <Text className="text-effuse-parchment/80 mb-8 max-w-3xl mx-auto">
               {subheadline}
             </Text>
           ) : null}
 
-          <div className="flex justify-center">
-            <Button
-              variant={isDark ? 'primary' : 'primary'}
-              size="lg"
-              href={primaryCtaHref}
-            >
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button variant="primary" size="lg" href={primaryCtaHref}>
               {primaryCtaLabel}
             </Button>
+            {secondaryCtaLabel && secondaryCtaHref ? (
+              <Button variant="secondary" size="lg" href={secondaryCtaHref}>
+                {secondaryCtaLabel}
+              </Button>
+            ) : null}
           </div>
         </div>
       </Reveal>

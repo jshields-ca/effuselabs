@@ -4,9 +4,18 @@ import React from 'react'
 
 export interface FinalCTASectionProps {
   id?: string
-  heading?: string
-  description?: string
-  primaryCta?: {
+  /*
+   * No defaults for heading/description/primaryCta: a default here is a
+   * landmine, not a convenience. This component's own defaults used to claim
+   * "thousands of businesses already growing" on a pre-launch product and
+   * pointed the primary CTA at `#signup`, which exists nowhere — the exact
+   * dead-anchor shape CLAUDE.md's non-negotiable #2 already names twice.
+   * Neither call site used them, but nothing stopped a future one from
+   * inheriting silently. Every call site now supplies real content instead.
+   */
+  heading: string
+  description: string
+  primaryCta: {
     label: string
     href: string
   }
@@ -14,52 +23,37 @@ export interface FinalCTASectionProps {
     label: string
     href: string
   }
-  background?: 'light' | 'dark' | 'gradient'
 }
 
+/*
+ * `background` used to take 'light' | 'dark' | 'gradient', but every call
+ * site across the site has only ever passed 'gradient' — the closing CTA is
+ * the one section this design system always ends a page on the brand
+ * gradient, per docs/DESIGN_PLAN.md, so the other two branches were dead
+ * weight carried for a choice no page makes. Same class of near-duplicated
+ * ternary Jeremy flagged in PainSolutionSection, FeatureBreakdownSection,
+ * PricingSection and ProductHero, all of which were already collapsed the
+ * same way; this was the one left over.
+ */
 const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   id = 'final-cta',
-  heading = 'Ready to get started?',
-  description = 'Join thousands of businesses already growing with our platform.',
-  primaryCta = { label: 'Get Started', href: '#signup' },
+  heading,
+  description,
+  primaryCta,
   secondaryCta,
-  background = 'gradient',
 }) => {
-  const isGradient = background === 'gradient'
-  const isDark = background === 'dark'
-
-  const containerBackground = isGradient
-    ? 'gradient'
-    : isDark
-      ? 'deep'
-      : 'white'
-
   return (
     <SectionContainer
       id={id}
-      background={containerBackground}
+      background="gradient"
       padding="xl"
-      className={
-        isGradient ? 'bg-gradient-to-r from-effuse-teal to-effuse-slate' : ''
-      }
+      className="bg-gradient-to-r from-effuse-teal to-effuse-slate"
     >
       <Reveal>
         <div className="max-w-4xl mx-auto text-center">
-          <H2
-            className={`mb-4 ${
-              isGradient || isDark ? 'text-white' : 'text-effuse-off-black'
-            }`}
-          >
-            {heading}
-          </H2>
+          <H2 className="mb-4 text-white">{heading}</H2>
 
-          <Text
-            className={`text-lg mb-8 max-w-2xl mx-auto ${
-              isGradient || isDark
-                ? 'text-effuse-light-grey'
-                : 'text-effuse-off-black/75'
-            }`}
-          >
+          <Text className="text-lg mb-8 max-w-2xl mx-auto text-effuse-parchment">
             {description}
           </Text>
 
@@ -68,9 +62,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
               variant="primary"
               size="lg"
               href={primaryCta.href}
-              className={
-                isGradient ? 'bg-effuse-gold hover:bg-effuse-gold/90' : ''
-              }
+              className="bg-effuse-gold hover:bg-effuse-gold/90"
             >
               {primaryCta.label}
             </Button>
@@ -80,11 +72,7 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
                 variant="secondary"
                 size="lg"
                 href={secondaryCta.href}
-                className={
-                  isGradient
-                    ? 'border-white text-white hover:bg-white hover:text-effuse-slate'
-                    : ''
-                }
+                className="border-white text-white hover:bg-white hover:text-effuse-slate"
               >
                 {secondaryCta.label}
               </Button>

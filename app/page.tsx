@@ -1,9 +1,10 @@
 import { SectionContainer } from '@/components/layout'
 import {
+  ContactForm,
   FounderStatementSection,
+  HeroSection,
   PhilosophySection,
 } from '@/components/sections'
-import { HeroSection } from '@/components/sections/HeroSection'
 import { contact } from '@/content/site'
 import {
   AccentBar,
@@ -15,10 +16,11 @@ import {
   H3,
   LuminousField,
   Reveal,
-  SectionDivider,
+  Pour,
   Text,
 } from '@/components/ui'
-import { ArrowRight, Check, Lightbulb, Scissors } from 'lucide-react'
+import { Check, Server } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -29,17 +31,23 @@ export default function Home() {
       {/* Philosophy Section */}
       <PhilosophySection id="features" />
 
-      {/* Elegant section divider */}
-      <SectionDivider size="md" animated />
+      {/*
+        The shell parts a little more at each boundary — see components/ui/Pour.
+      */}
+      <Pour openness={0.3} />
 
       {/* Founder Statement (dark) */}
-      <FounderStatementSection />
+      <FounderStatementSection
+        signatureSrc="/brand/jeremy-signature.png"
+        signatureAlt="Jeremy Shields's signature"
+        signatureWidth={1385}
+        signatureHeight={780}
+      />
 
-      {/* Section divider with subtle styling */}
-      <SectionDivider size="lg" variant="subtle" />
+      <Pour openness={0.55} flip />
 
       {/* Products Section */}
-      <SectionContainer id="products" background="white" padding="lg">
+      <SectionContainer id="products" background="raised" padding="lg">
         <Reveal>
           <div className="text-center mb-12">
             <AccentBar
@@ -48,8 +56,8 @@ export default function Home() {
               position="center"
               className="mb-6"
             />
-            <H2 className="mb-4 text-effuse-off-black">Our Products</H2>
-            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed">
+            <H2 className="mb-4 text-effuse-parchment">Our Products</H2>
+            <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed">
               Intelligent software solutions designed to turn operational
               burdens into your greatest strengths.
             </Text>
@@ -60,7 +68,7 @@ export default function Home() {
             <Card
               id="lumina"
               variant="elevated"
-              className="p-8 bg-gradient-to-br from-lumina-gradient-start/5 to-lumina-gradient-end/5 border border-lumina-gradient-start/20 hover:border-lumina-gradient-start/40 transition-all duration-500 ease-out hover:shadow-gold-glow"
+              className="p-8 bg-surface-base bg-gradient-to-br from-lumina-gradient-start/10 to-lumina-gradient-end/10 border border-surface-border hover:border-lumina-gradient-start/40 transition-all duration-500 ease-out hover:shadow-gold-glow"
             >
               <div
                 className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
@@ -68,8 +76,8 @@ export default function Home() {
               />
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <H3 className="mb-4 text-effuse-off-black">Lumina</H3>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed font-normal">
+                  <H3 className="mb-4 text-effuse-parchment">Lumina</H3>
+                  <Text className="mb-6 text-effuse-parchment leading-relaxed font-normal">
                     An all-in-one, AI-powered platform for salons and
                     barbershops. Lumina replaces a patchwork of apps with a
                     single, elegant solution to manage bookings, financials, and
@@ -83,7 +91,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Intelligent dashboard with AI insights
                       </Text>
                     </li>
@@ -93,7 +101,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Flexible financials for commission & chair rental
                       </Text>
                     </li>
@@ -103,7 +111,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Seamless online booking integration
                       </Text>
                     </li>
@@ -113,7 +121,7 @@ export default function Home() {
                         aria-hidden="true"
                         strokeWidth={2.5}
                       />
-                      <Text className="text-sm text-effuse-off-black">
+                      <Text className="text-sm text-effuse-parchment">
                         Unified POS & CRM system
                       </Text>
                     </li>
@@ -126,14 +134,26 @@ export default function Home() {
                     Learn More About Lumina
                   </Button>
                 </div>
-                <div className="rounded-lg bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end p-8 text-center text-effuse-off-black">
-                  <Lightbulb
-                    className="mx-auto mb-4 h-14 w-14"
+                {/*
+                  The real Lumina mark, replacing the generic Lightbulb icon
+                  placeholder. Icon-only, not the full lockup with the baked-
+                  in "LUMINA" wordmark — that wordmark is rendered in black,
+                  which disappears on this site's dark canvas. Live text
+                  below does that job instead: real text beats text baked
+                  into an image, for the same reason a screen reader can read
+                  one and not the other.
+                */}
+                <div className="flex flex-col items-center justify-center rounded-lg bg-surface-deep p-8 text-center">
+                  <Image
+                    src="/brand/lumina-mark.png"
+                    alt=""
                     aria-hidden="true"
-                    strokeWidth={1.5}
+                    width={800}
+                    height={558}
+                    className="h-20 w-auto"
                   />
-                  <H3 className="mb-2 text-effuse-off-black">Lumina</H3>
-                  <Text className="text-effuse-off-black/80">
+                  <H3 className="mt-4 text-effuse-parchment">Lumina</H3>
+                  <Text className="mt-2 text-effuse-parchment/70">
                     Illuminating Business Growth
                   </Text>
                 </div>
@@ -143,41 +163,56 @@ export default function Home() {
         </Reveal>
       </SectionContainer>
 
-      {/* Solutions Section */}
-      <SectionContainer id="solutions" background="light" padding="lg">
+      {/*
+        Solutions Section
+
+        This used to re-pitch Lumina under a vaguer header, immediately after
+        the Products section already pitched Lumina — the same offering
+        twice, which a design-committee content review flagged as the
+        biggest structural gap on the site: Effuse Labs has two real lines
+        of business (Lumina, and self-hosting/open-source support for other
+        businesses), and the second one appeared nowhere but a hero eyebrow
+        tag. Rewritten in place — same component, same slot, no new route or
+        nav change, since that's stage-6 scope — to actually describe it.
+
+        Copy here is draft, per docs/ROADMAP.md's placeholder-content
+        policy: written to read as real copy, not lorem ipsum, but not
+        final — the real pass is stage 6, with Jeremy's own words.
+      */}
+      <SectionContainer id="solutions" background="base" padding="lg">
         <Reveal>
           <div className="text-center mb-12">
-            <H2 className="mb-4 text-effuse-off-black">
-              Built for the Builders
+            <H2 className="mb-4 text-effuse-parchment">
+              Own Your Tools, Not Rent Them
             </H2>
-            <Text className="text-effuse-medium-grey max-w-2xl mx-auto text-lg leading-relaxed font-normal">
-              Our tools are crafted for the passionate creators and service
-              providers who are the cornerstones of our communities.
+            <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed font-normal">
+              Not every business needs software built from scratch. Sometimes
+              the right fix is taking back control of the tools you already pay
+              for, month after month.
             </Text>
           </div>
 
-          {/* Single column while Lumina is the only product. */}
           <Grid cols={1} gap="lg" className="max-w-2xl mx-auto">
             <GridItem>
               <Card
                 variant="elevated"
-                className="h-full p-8 text-center shadow-xl border-black/10"
+                className="h-full p-8 text-center bg-surface-raised border-surface-border"
               >
                 <div
-                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
+                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-effuse-slate to-effuse-teal"
                   aria-hidden
                 />
                 <div className="flex flex-col h-full">
                   <div className="mb-4 flex flex-col items-center justify-center md:min-h-[140px]">
-                    <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-slate ring-1 ring-effuse-teal/25">
-                      <Scissors
+                    <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
+                      <Server
                         className="h-7 w-7"
                         aria-hidden="true"
                         strokeWidth={1.75}
                       />
                     </span>
-                    <H3 className="text-effuse-off-black text-center text-xl font-semibold">
-                      Salons & Barbershops
+                    <H3 className="text-effuse-parchment text-center text-xl font-semibold">
+                      Open-Source & Self-Hosted Software
                     </H3>
                   </div>
                   <ul className="space-y-2 mb-4 text-left min-h-[120px]">
@@ -194,8 +229,8 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Commission & chair rental management
+                      <Text as="span" className="text-sm text-effuse-parchment">
+                        No per-seat fees that creep every year
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
@@ -211,8 +246,8 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Client booking & relationship management
+                      <Text as="span" className="text-sm text-effuse-parchment">
+                        Your data stays on infrastructure you control
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
@@ -228,25 +263,25 @@ export default function Home() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <Text as="span" className="text-sm text-effuse-off-black">
-                        Service pricing & inventory tracking
+                      <Text as="span" className="text-sm text-effuse-parchment">
+                        Setup, migration, and ongoing support included
                       </Text>
                     </li>
                   </ul>
-                  <Text className="mb-6 text-effuse-off-black leading-relaxed">
-                    You’re more than a stylist; you&apos;re an artist, a
-                    confidant, and a community hub. You build relationships and
-                    transform your clients&apos; confidence, one appointment at
-                    a time. Your craft deserves to be the focus, not the endless
-                    paperwork that comes with it.
+                  <Text className="mb-6 text-effuse-parchment leading-relaxed">
+                    Subscription software adds up, and the moment you stop
+                    paying, you lose access to your own data. We set up,
+                    configure, and support self-hosted, open-source alternatives
+                    to the tools you&apos;re renting — so you own what you run,
+                    and pay only for the support you actually use.
                   </Text>
                   <Button
                     variant="primary"
                     size="sm"
-                    href="/products/lumina"
+                    href="/services"
                     className="mt-auto"
                   >
-                    Explore Lumina
+                    Learn More About Our Services
                   </Button>
                 </div>
               </Card>
@@ -270,38 +305,32 @@ export default function Home() {
             position="center"
             className="mb-6"
           />
-          <H2 className="mb-6 text-effuse-white">
+          <H2 className="mb-6 text-effuse-parchment">
             Ready to build with clarity?
           </H2>
-          <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-light-grey">
+          <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-parchment">
             Tell us what your business is wrestling with. Whether that is
             software we build for you, or open-source tools we set up and keep
             running, the first conversation is free and there is no script.
           </Text>
 
           {/*
-            These were a "Get Started" and a "Schedule Demo" button with no href
-            and no onClick — inert elements styled to look like the primary
-            action on the page. A mailto: is not the eventual answer, but it
-            works today, which an inert button never did. The contact form
-            replaces it.
+            Submits to /api/contact (Resend, once RESEND_API_KEY is set) and
+            falls back to a mailto: handoff if that isn't configured yet or
+            the request fails — see components/sections/ContactForm.tsx and
+            app/api/contact/route.ts.
           */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              variant="primary"
-              size="lg"
-              href={`mailto:${contact.email}`}
-            >
-              Email {contact.email}
-              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-            </Button>
-            <Button variant="secondary" size="lg" href="/products/lumina">
-              See what we have built
-            </Button>
-          </div>
+          <ContactForm />
 
-          <Text className="mt-10 text-body-sm text-effuse-light-grey/70">
-            {contact.location}
+          <Text className="mt-8 text-body-sm text-effuse-parchment/60">
+            Prefer email directly? Reach us at{' '}
+            <a
+              href={`mailto:${contact.email}`}
+              className="text-effuse-teal underline underline-offset-2"
+            >
+              {contact.email}
+            </a>
+            .
           </Text>
         </Reveal>
       </SectionContainer>

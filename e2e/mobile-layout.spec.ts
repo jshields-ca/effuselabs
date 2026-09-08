@@ -79,8 +79,8 @@ for (const route of ROUTES) {
 
       expect(
         fontFamily,
-        'h1 is not rendering in Inter — the next/font variable is not reaching it'
-      ).toContain('Inter')
+        'h1 is not rendering in Bricolage Grotesque — the next/font display variable is not reaching it'
+      ).toContain('Bricolage')
     })
 
     test('renders the dark canvas', async ({ page }) => {

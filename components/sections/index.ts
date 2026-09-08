@@ -1,4 +1,5 @@
-// HatchingCoreHeroSection removed - replaced by DynamicHeroSection
+export { HeroSection } from './HeroSection'
+export { default as ContactForm } from './ContactForm'
 export { default as FounderStatementSection } from './FounderStatementSection'
 export { default as PhilosophySection } from './PhilosophySection'
 
@@ -7,3 +8,8 @@ export { default as FeatureBreakdownSection } from './FeatureBreakdownSection'
 export { default as FinalCTASection } from './FinalCTASection'
 export { default as PainSolutionSection } from './PainSolutionSection'
 export { default as PricingSection } from './PricingSection'
+export { default as ToolShowcaseSection } from './ToolShowcaseSection'
+export type {
+  ShowcaseTool,
+  ToolShowcaseSectionProps,
+} from './ToolShowcaseSection'

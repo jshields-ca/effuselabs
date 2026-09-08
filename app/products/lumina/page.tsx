@@ -1,10 +1,10 @@
 import ProductPageTemplate from '@/components/product/ProductPageTemplate'
+import { contact, repos } from '@/content/site'
 import { product } from '@/lib/design/tokens'
 import {
   FeatureBreakdownSection,
   FinalCTASection,
   PainSolutionSection,
-  PricingSection,
 } from '@/components/sections'
 import {
   CalendarDays,
@@ -27,13 +27,18 @@ export default function LuminaProductPage() {
   return (
     <ProductPageTemplate
       hero={{
+        logoSrc: '/brand/lumina-mark.png',
+        logoAlt: '',
+        logoWidth: 800,
+        logoHeight: 558,
         productName: 'Lumina',
         headline: 'Illuminate your growth with an all‑in‑one platform',
         subheadline:
           'Replace the patchwork of apps with a single, elegant system for bookings, financials, and client relationships.',
-        primaryCtaLabel: 'Join the Waitlist',
-        primaryCtaHref: '#waitlist',
-        background: 'light',
+        primaryCtaLabel: 'Start a Conversation',
+        primaryCtaHref: '/#contact',
+        secondaryCtaLabel: 'View on GitHub',
+        secondaryCtaHref: repos.lumina,
         accentGradient: {
           from: product.lumina.gold,
           to: product.lumina.coral,
@@ -59,7 +64,6 @@ export default function LuminaProductPage() {
           'Get real-time insights across your business',
           'Scale without adding complexity',
         ]}
-        background="light"
       />
 
       <FeatureBreakdownSection
@@ -104,32 +108,30 @@ export default function LuminaProductPage() {
           },
         ]}
         variant="grid"
-        background="dark"
       />
 
-      <PricingSection
-        placeholder={{
-          heading: 'Coming Soon',
-          description:
-            'Lumina is currently in development. Join our waitlist to be the first to know when we launch and get exclusive early-bird pricing.',
-          ctaLabel: 'Join the Waitlist',
-          ctaHref: '#waitlist',
-        }}
-        background="light"
-      />
-
+      {/*
+        This used to be two back-to-back blocks — a "Coming Soon" pricing
+        placeholder and a "Ready to transform your salon?" final CTA — each
+        with its own "Get in Touch" button pointed at the same anchor. Jeremy
+        flagged the repetition after a mobile read-through: two consecutive
+        sections asking the same question reads as unfinished, not thorough.
+        Folded into one: the AGPL/self-hosting fact (which the page still
+        needs to state explicitly for the technical evaluator this design
+        plan names as a secondary audience) now lives inside the closing
+        CTA's own description instead of a separate section above it.
+      */}
       <FinalCTASection
         heading="Ready to transform your salon?"
-        description="Join the waitlist and be among the first to experience the future of salon management."
+        description="Lumina is open-source and self-hostable under AGPL-3.0 — run it yourself for free, or let us host and support it for you. We're in active development: get in touch to be among the first to experience it."
         primaryCta={{
-          label: 'Join the Waitlist',
-          href: '#waitlist',
+          label: 'Get in Touch',
+          href: '/#contact',
         }}
         secondaryCta={{
           label: 'Learn More',
-          href: 'mailto:hello@effuse.io',
+          href: `mailto:${contact.email}`,
         }}
-        background="gradient"
       />
     </ProductPageTemplate>
   )
