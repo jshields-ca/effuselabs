@@ -198,38 +198,31 @@ export default function ServicesPage() {
 
       <FeatureBreakdownSection
         heading="What we set up and support"
-        subheading="A starting point, not a limit — if it's self-hostable, we can probably run it for you."
+        subheading="The core categories most businesses start with."
         items={[
           {
             icon: HardDrive,
             title: 'File storage and sharing',
             description:
               'Self-hosted alternatives to cloud drive subscriptions, with the same sync and sharing experience your team already expects.',
-            example: { label: 'Nextcloud', href: 'https://nextcloud.com' },
           },
           {
             icon: MessagesSquare,
             title: 'Team communication and docs',
             description:
               "Chat, wikis, and shared documents that live on your own infrastructure instead of a third party's.",
-            example: { label: 'Mattermost', href: 'https://mattermost.com' },
           },
           {
             icon: Database,
             title: 'Business and CRM tooling',
             description:
               "Client records, invoicing, and line-of-business software you can extend, instead of waiting on a vendor's roadmap.",
-            example: { label: 'ERPNext', href: 'https://frappe.io/erpnext' },
           },
           {
             icon: Users,
             title: 'Analytics without third-party tracking',
             description:
               "Understand how your site or app is used without handing every visitor's data to an ad network.",
-            example: {
-              label: 'Plausible Analytics',
-              href: 'https://plausible.io',
-            },
           },
         ]}
         variant="checklist"
