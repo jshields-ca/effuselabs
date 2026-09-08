@@ -350,11 +350,21 @@ stage 6 starts placing them.
   (The founder statement's own layout work is done — see below.)
 - Motion is under review after live feedback that the original restrained
   approach reads as under-designed rather than disciplined. A design-committee
-  pass (proposal + independent critique) ran before anything shipped; the
-  result was that almost none of the proposed flourishes survived the
-  critique, and the two that did (a real mobile-menu transition, native page
-  cross-fades) are built. Anything bolder than that, per the committee, should
-  spend its budget on the Pour rather than open new independent effects.
+  pass (proposal + independent critique) ran before anything shipped; almost
+  none of the proposed flourishes survived the critique. Two did:
+  - The mobile menu's open/close transition — **built.**
+  - Native page cross-fades between routes, via the browser's
+    `document.startViewTransition()` — **not built.** The critique's
+    preferred version (Next's own `experimental.viewTransition` flag,
+    wired through React's `ViewTransition` component) needs React's
+    experimental/canary channel; this repo runs stable React 19, which does
+    not export it. The fallback — hand-wrapping `router.push` in
+    `startViewTransition` directly — is exactly the version the critique
+    flagged as needing "real load-bearing browser testing" before shipping,
+    and this pass didn't have the room to do that properly. Left for a
+    dedicated pass rather than shipped half-verified.
+    Anything bolder than either, per the committee, should spend its budget on
+    the Pour rather than open new independent effects.
 - No illustration system yet, and no SVG logo; `public/` currently holds only
   PNGs.
 - A real signature for the founder statement: five candidate crops from
