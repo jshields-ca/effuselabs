@@ -58,8 +58,7 @@ export default function TermsPage() {
         <H2 className="text-effuse-parchment">Changes</H2>
         <Text>
           We may update these terms as the business changes. Material changes
-          will be reflected by an updated date on this page once this draft
-          becomes final.
+          will be reflected by an updated date on this page.
         </Text>
       </div>
 

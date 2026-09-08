@@ -4,11 +4,13 @@
 every route responds, every internal link resolves to somewhere real, the
 two real lines of business both have pages, and the full gate
 (`type-check`, `lint`, `format:check`, `check:tokens`, `build`, the complete
-Playwright suite) is green. What's left is explicitly not code: real
-copywriting in Jeremy's own words, legal sign-off on the draft `/privacy`
-and `/terms` language, the real LinkedIn/Twitter/Bluesky URLs, and the
-`jeremyshields.ca` redirect this session can't reach. See "Known outstanding"
-for the complete, current list. Last updated 8 September 2026.
+Playwright suite) is green. `/privacy` and `/terms` are no longer marked
+draft — Jeremy reviewed the language and approved it as live copy, not a
+placeholder. What's left is explicitly not code: real copywriting in
+Jeremy's own words for `/about` and `/services`, the real
+LinkedIn/Twitter/Bluesky URLs, and the `jeremyshields.ca` redirect this
+session can't reach. See "Known outstanding" for the complete, current
+list. Last updated 8 September 2026.
 
 This site was built through 2025 across a mix of AI coding tools and left
 untouched for about a year. In August 2026 it went through a full audit. This
@@ -566,11 +568,17 @@ finding, not just the current clean state):
 
 **Still open, not blocking an MVP:**
 
-- All draft copy on `/about`, `/services`, `/privacy`, `/terms` and
-  `/accessibility` needs a real pass — Jeremy's own words, and the legal
-  pages specifically need his sign-off on final language before they're
-  anything more than a placeholder. Every one of them says so visibly on the
-  page itself in the meantime.
+- ~~`/privacy`, `/terms` and `/accessibility` marked draft, pending legal
+  sign-off~~ — **resolved.** Jeremy reviewed the language on all three and
+  approved it as live copy rather than a placeholder; the "Draft, not
+  final" notice in `LegalPageLayout.tsx` is gone, and the one stray "once
+  this draft becomes final" line in `/terms`'s Changes section is gone with
+  it.
+- `/about` and `/services` still carry draft copy that needs a real pass in
+  Jeremy's own words — these are marketing/positioning copy, not legal
+  text, so they weren't part of the sign-off above and aren't visibly
+  flagged as draft on the page (per the placeholder-content policy, they
+  read like real copy but shouldn't be treated as final).
 - LinkedIn, Twitter/X and Bluesky in the footer are confirmed-real accounts
   with placeholder URLs, not verified addresses — swap in the real ones when
   they arrive. GitHub is confirmed real as of 2026-09-08.
