@@ -47,6 +47,10 @@ next-env.d.ts
 /reports/
 /.cursor/
 
+# Claude Code local tooling — isolated worktrees for background subagents,
+# not project content. Never commit a full nested checkout of the repo.
+/.claude/
+
 # Nested node_modules (e.g., studio or workspaces)
 **/node_modules/
 
