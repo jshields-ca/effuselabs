@@ -1,6 +1,14 @@
 # Roadmap
 
-**Status:** building toward a full MVP. Last updated 7 September 2026.
+**Status:** the initial MVP is built. All seven stages below are complete —
+every route responds, every internal link resolves to somewhere real, the
+two real lines of business both have pages, and the full gate
+(`type-check`, `lint`, `format:check`, `check:tokens`, `build`, the complete
+Playwright suite) is green. What's left is explicitly not code: real
+copywriting in Jeremy's own words, legal sign-off on the draft `/privacy`
+and `/terms` language, the real LinkedIn/Twitter/Bluesky URLs, and the
+`jeremyshields.ca` redirect this session can't reach. See "Known outstanding"
+for the complete, current list. Last updated 8 September 2026.
 
 This site was built through 2025 across a mix of AI coding tools and left
 untouched for about a year. In August 2026 it went through a full audit. This
@@ -80,15 +88,15 @@ Six pull requests, each small enough to review, landing in dependency order.
 Every automated check ships in the same pull request as the fix that makes it
 pass. A gate that lands red teaches everyone to ignore it.
 
-|     |                                                   | Status         |
-| --- | ------------------------------------------------- | -------------- |
-| 1   | CI, Playwright smoke suite, Node pinned           | ✅ merged      |
-| 2   | Stack upgrade, dead code removed, design tokens   | ✅ merged      |
-| 3   | Documentation reset                               | ✅ merged      |
-| 4   | Design **system** — surfaces, type scale, a11y    | ✅ merged      |
-| 5   | Design **identity** — the distinctive visual pass | ✅ complete    |
-| 6   | Information architecture, content, contact        | ✅ complete    |
-| 7   | SEO, deployment hardening                         | ← you are here |
+|     |                                                   | Status      |
+| --- | ------------------------------------------------- | ----------- |
+| 1   | CI, Playwright smoke suite, Node pinned           | ✅ merged   |
+| 2   | Stack upgrade, dead code removed, design tokens   | ✅ merged   |
+| 3   | Documentation reset                               | ✅ merged   |
+| 4   | Design **system** — surfaces, type scale, a11y    | ✅ merged   |
+| 5   | Design **identity** — the distinctive visual pass | ✅ complete |
+| 6   | Information architecture, content, contact        | ✅ complete |
+| 7   | SEO, deployment hardening                         | ✅ complete |
 
 ### 1 — Quality gates ✅
 
@@ -338,7 +346,7 @@ The `jeremyshields.ca` redirect itself is still separate work, out of reach
 from this session — but `/services` now exists and is worth linking to,
 which was the blocker on that redirect making sense.
 
-### 7 — SEO and deployment ← current
+### 7 — SEO and deployment ✅
 
 `robots.ts`, a complete sitemap, per-route Open Graph images, structured data,
 and a tightened Content Security Policy.
