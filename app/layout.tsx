@@ -42,10 +42,14 @@ const publicSans = Public_Sans({
  * CLAUDE.md itself uses to describe the company — this is a factual fix,
  * not a copywriting pass; real marketing copy is stage 6.
  */
+const SITE_TITLE =
+  'Effuse Labs - Intelligent Software for Small Business Growth'
+const SITE_DESCRIPTION =
+  'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and hands-on support setting up self-hosted, open-source tools for businesses that would rather own their software than rent it.'
+
 export const metadata: Metadata = {
-  title: 'Effuse Labs - Intelligent Software for Small Business Growth',
-  description:
-    'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and hands-on support setting up self-hosted, open-source tools for businesses that would rather own their software than rent it.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
     'small business software',
     'salon management',
@@ -66,6 +70,29 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   manifest: '/site.webmanifest',
+  /*
+   * A square logo, not a designed 1200x630 social card — this repo has no
+   * wide OG image yet. `summary` (not `summary_large_image`) is the right
+   * Twitter card type for a square image; using the large-image card with a
+   * square asset would letterbox it. A real per-route OG image is stage-7
+   * follow-up work, tracked in docs/ROADMAP.md rather than faked here.
+   */
+  openGraph: {
+    type: 'website',
+    siteName: 'Effuse Labs',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: 'https://www.effuse.io',
+    images: [
+      { url: '/logo-800x800.png', width: 800, height: 800, alt: 'Effuse Labs' },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ['/logo-800x800.png'],
+  },
 }
 
 // Viewport is a dedicated export rather than metadata.viewport, per Next 16.
@@ -73,6 +100,22 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+}
+
+/*
+ * Organization structured data. Named accounts only — the social profile
+ * URLs in content/site.ts still include LinkedIn/Twitter/Bluesky
+ * placeholders pending Jeremy sending the real ones (see docs/ROADMAP.md),
+ * and a `sameAs` claim search engines treat as fact shouldn't point at a
+ * guessed URL. GitHub is confirmed real, so it's the only one listed here.
+ */
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Effuse Labs',
+  url: 'https://www.effuse.io',
+  logo: 'https://www.effuse.io/logo-800x800.png',
+  sameAs: ['https://github.com/effuselabs'],
 }
 
 export default function RootLayout({
@@ -86,6 +129,12 @@ export default function RootLayout({
       className={`scroll-smooth ${bricolage.variable} ${publicSans.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         <PageWrapper>{children}</PageWrapper>
         <SpeedInsights />
         <Analytics />

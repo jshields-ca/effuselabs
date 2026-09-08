@@ -31,6 +31,31 @@ const nextConfig = {
           },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            /*
+             * Scoped to what this site actually loads: `next/font` self-hosts
+             * Google Fonts (so no external font-src is needed), and
+             * @vercel/analytics + @vercel/speed-insights load their script and
+             * send their beacon same-origin, proxied through Vercel's edge
+             * rather than a third-party domain. `unsafe-inline` on style-src
+             * stays because Next inlines critical CSS and this repo has no
+             * nonce plumbing yet — the safer version of that is stage-7
+             * follow-up work, not this pass.
+             */
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data:",
+              "font-src 'self'",
+              "connect-src 'self' https://vitals.vercel-insights.com",
+              "frame-ancestors 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "object-src 'none'",
+            ].join('; '),
+          },
         ],
       },
     ]

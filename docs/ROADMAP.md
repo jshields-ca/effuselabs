@@ -87,8 +87,8 @@ pass. A gate that lands red teaches everyone to ignore it.
 | 3   | Documentation reset                               | ✅ merged      |
 | 4   | Design **system** — surfaces, type scale, a11y    | ✅ merged      |
 | 5   | Design **identity** — the distinctive visual pass | ✅ complete    |
-| 6   | Information architecture, content, contact        | ← you are here |
-| 7   | SEO, deployment hardening                         |                |
+| 6   | Information architecture, content, contact        | ✅ complete    |
+| 7   | SEO, deployment hardening                         | ← you are here |
 
 ### 1 — Quality gates ✅
 
@@ -314,22 +314,31 @@ out of scope until then per `DESIGN_PLAN.md`):
   through visual-baseline review deliberately rather than riding along with
   a content fix.
 
-### 6 — Information architecture and content
+### 6 — Information architecture and content ✅
 
-Real routes for `/about`, `/services`, `/contact` and the legal pages, and a
-working contact form — replacing every dead call to action. Gated by a test
-asserting that every internal link resolves to a route that exists, plus `axe`
-accessibility scanning per route and a Lighthouse budget.
+Real routes landed for `/about`, `/services`, `/privacy`, `/terms` and
+`/accessibility` — every one of them was either a dead anchor scrolling to a
+section that didn't exist, or a footer link removed rather than left as a 404. Nav "Solutions" is "Services" now and points at the real route; "About"
+joined it. The homepage contact section has a structured form
+(`components/sections/ContactForm.tsx`) instead of a bare "email us" button
+— it builds a proper `mailto:` from the fields rather than faking a backend
+this repo has no credentials to build honestly.
 
-This is also where the site needs to be a real destination rather than a
-placeholder for the other end of a planned redirect: `jeremyshields.ca`'s
-"available for work" self-hosting/DevOps block is meant to point here instead
-of standing on its own. That repository isn't in reach from this session, so
-the redirect itself is separate work — but `/services` (or wherever that
-offer lands) needs to exist and be worth linking to before that redirect
-makes sense.
+All five new routes are in `e2e/routes.ts`, so smoke checks, contrast checks
+and visual baselines cover them the same as every existing route — this is
+exactly how a real defect got caught during the pass: `/about` shipped with
+zero `<h1>` elements (the page title was set as an `H2`) until the per-route
+heading-outline check in `smoke.spec.ts` failed on it.
 
-### 7 — SEO and deployment
+Copy on all five routes is draft, per the placeholder-content policy — see
+"Known outstanding" below for what that means concretely (real copywriting,
+the legal pages' final language, real social URLs).
+
+The `jeremyshields.ca` redirect itself is still separate work, out of reach
+from this session — but `/services` now exists and is worth linking to,
+which was the blocker on that redirect making sense.
+
+### 7 — SEO and deployment ← current
 
 `robots.ts`, a complete sitemap, per-route Open Graph images, structured data,
 and a tightened Content Security Policy.
@@ -399,17 +408,27 @@ finding, not just the current clean state):
   `docs/DESIGN_PLAN.md` rather than the two-column grid it sat in.
 - ~~The mobile menu had no open/close transition at all~~ — fixed; see stage
   5's motion note above.
+- ~~There was no contact form; the homepage CTA was a bare `mailto:`~~ —
+  replaced with a structured form that builds a proper `mailto:` from the
+  fields.
+- ~~`/privacy`, `/terms` and `/accessibility` didn't exist~~ — real routes
+  now, draft copy, restored to the footer.
+- ~~`/about` and `/services` didn't exist~~ — real routes now; nav
+  "Solutions" is "Services" and points at the real one.
 
-**Still open, stage 6:**
+**Still open, not blocking an MVP:**
 
-- There is no contact form; the homepage CTA is a `mailto:`.
-- `/privacy`, `/terms` and `/accessibility` do not exist. The footer links to
-  them were removed rather than left as 404s; the pages arrive here.
-- `/services` (or equivalent) doesn't exist yet, and is the landing point for
-  the planned `jeremyshields.ca` redirect — see stage 6 above.
+- All draft copy on `/about`, `/services`, `/privacy`, `/terms` and
+  `/accessibility` needs a real pass — Jeremy's own words, and the legal
+  pages specifically need his sign-off on final language before they're
+  anything more than a placeholder. Every one of them says so visibly on the
+  page itself in the meantime.
 - LinkedIn, Twitter/X and Bluesky in the footer are confirmed-real accounts
   with placeholder URLs, not verified addresses — swap in the real ones when
   they arrive. GitHub is confirmed real as of 2026-09-08.
+- The `jeremyshields.ca` redirect is separate work in a repository outside
+  this session's reach — `/services` now exists and is worth linking to,
+  which was the actual blocker.
 
 **Stage 7:**
 
