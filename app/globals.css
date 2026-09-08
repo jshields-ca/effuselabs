@@ -263,6 +263,75 @@
 
 /*
  * ----------------------------------------------------------------------------
+ * Mobile menu panel and backdrop
+ * ----------------------------------------------------------------------------
+ * The panel used to unmount entirely while closed (`if (!isOpen) return
+ * null`), so opening and closing it was an instant swap — the one navigation
+ * surface on the site with no transition at all, on the one surface most of
+ * this audience will actually tap.
+ *
+ * It now stays mounted and `inert` while closed, and visibility is driven by
+ * these classes so both open *and* close can animate — unmounting on close
+ * would skip the exit transition entirely. `display` is toggled through
+ * `transition-behavior: allow-discrete` + `@starting-style`, which is the
+ * only way to `display: none` a closed panel (out of the tab order, not
+ * paintable) while still letting it play an animation, rather than choosing
+ * between "invisible but interactive" (opacity only) or "instant" (display
+ * only).
+ *
+ * The base rules below are the entire fallback for a browser without
+ * `allow-discrete` support: plain instant `display` toggling, i.e. exactly
+ * today's behaviour. The transition itself lives only inside the `@supports`
+ * block so an unsupported browser never sees the risky properties at all.
+ */
+@layer components {
+  .mobile-menu-backdrop {
+    display: none;
+  }
+  .mobile-menu-backdrop-open {
+    display: block;
+  }
+
+  .mobile-menu-panel {
+    display: none;
+    transform: translateX(100%);
+  }
+  .mobile-menu-panel-open {
+    display: block;
+    transform: translateX(0);
+  }
+}
+
+@supports (transition-behavior: allow-discrete) {
+  @layer components {
+    .mobile-menu-backdrop {
+      opacity: 0;
+      transition:
+        opacity 300ms ease-out,
+        display 300ms allow-discrete;
+    }
+    .mobile-menu-backdrop-open {
+      opacity: 1;
+      @starting-style {
+        opacity: 0;
+      }
+    }
+
+    .mobile-menu-panel {
+      transition:
+        transform 300ms ease-out,
+        display 300ms allow-discrete;
+    }
+    .mobile-menu-panel-open {
+      @starting-style {
+        transform: translateX(100%);
+      }
+    }
+  }
+}
+
+/*
+ * ----------------------------------------------------------------------------
  * Reduced motion
  * ----------------------------------------------------------------------------
  * `motion-safe:` already gates every animation above. This is the backstop for

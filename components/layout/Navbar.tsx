@@ -89,8 +89,6 @@ const MobileMenu: React.FC<{
 }> = ({ isOpen, onClose, links }) => {
   const panelRef = useFocusTrap<HTMLDivElement>(isOpen)
 
-  if (!isOpen) return null
-
   return (
     <>
       {/*
@@ -101,10 +99,20 @@ const MobileMenu: React.FC<{
         could never fire, because Escape is handled at the document level in
         useNavigation. Every dismissal path it offers is also on the close
         button.
+
+        Stays mounted rather than unmounting while closed, so it and the panel
+        below can transition out, not just in — see the `mobile-menu-*`
+        classes in globals.css. `inert` while closed keeps it (and everything
+        under it) out of the tab order and off the accessibility tree during
+        the exit animation, without waiting on the transition to finish.
       */}
       <div
         aria-hidden="true"
-        className="fixed inset-0 z-40 bg-surface-deep/80 backdrop-blur-sm md:hidden"
+        inert={!isOpen}
+        className={cn(
+          'mobile-menu-backdrop fixed inset-0 z-40 bg-surface-deep/80 backdrop-blur-sm md:hidden',
+          isOpen && 'mobile-menu-backdrop-open'
+        )}
         onClick={onClose}
       />
 
@@ -113,7 +121,11 @@ const MobileMenu: React.FC<{
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className="fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] border-l border-surface-border bg-surface-base shadow-2xl md:hidden"
+        inert={!isOpen}
+        className={cn(
+          'mobile-menu-panel fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] border-l border-surface-border bg-surface-base shadow-2xl md:hidden',
+          isOpen && 'mobile-menu-panel-open'
+        )}
       >
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between border-b border-surface-border p-6">
