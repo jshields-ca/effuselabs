@@ -36,7 +36,12 @@ export default function Home() {
       <Pour openness={0.3} />
 
       {/* Founder Statement (dark) */}
-      <FounderStatementSection />
+      <FounderStatementSection
+        signatureSrc="/brand/jeremy-signature.png"
+        signatureAlt="Jeremy Shields's signature"
+        signatureWidth={1209}
+        signatureHeight={1059}
+      />
 
       <Pour openness={0.55} flip />
 
