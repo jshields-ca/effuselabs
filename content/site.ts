@@ -100,21 +100,20 @@ export const footerGroups: FooterLinkGroup[] = [
 ]
 
 /**
- * Social profiles.
+ * Social profiles. All four confirmed real by Jeremy (2026-09-08 GitHub,
+ * 2026-09-08 the other three) — no placeholders left.
  *
- * GitHub is confirmed real (Jeremy, 2026-09-08): https://github.com/effuselabs,
- * with Lumina's own repo at https://github.com/effuselabs/lumina.
- *
- * LinkedIn, Twitter/X and Bluesky are confirmed as real accounts Effuse Labs
- * will have, but the actual URLs haven't been sent yet — these three hrefs
- * are placeholders per the placeholder-content policy in docs/ROADMAP.md,
- * not verified addresses. Replace with the real URLs when they arrive; don't
- * ship these to production first.
+ * Bluesky's handle is the custom domain @effuse.io rather than a
+ * bsky.social handle, which only resolves once effuse.io's DNS is set up
+ * for domain verification — not done yet as of this writing. The profile
+ * URL itself (bsky.app/profile/effuse.io) is stable regardless of that;
+ * Bluesky resolves the domain handle to the same account either way once
+ * verification completes, so this is the real, final link, not a guess.
  */
 export const socialLinks: SocialLink[] = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/company/effuselabs' },
-  { label: 'Twitter', href: 'https://twitter.com/effuselabs' },
-  { label: 'Bluesky', href: 'https://bsky.app/profile/effuselabs.bsky.social' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/effuse-labs' },
+  { label: 'Twitter', href: 'https://x.com/effuselabs' },
+  { label: 'Bluesky', href: 'https://bsky.app/profile/effuse.io' },
   { label: 'GitHub', href: 'https://github.com/effuselabs' },
 ]
 

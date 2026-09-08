@@ -4,7 +4,9 @@ import {
   FeatureBreakdownSection,
   FinalCTASection,
   PainSolutionSection,
+  ToolShowcaseSection,
 } from '@/components/sections'
+import type { ShowcaseTool } from '@/components/sections'
 import {
   Cloud,
   Database,
@@ -28,6 +30,135 @@ export const metadata: Metadata = {
   description:
     'We set up, configure, and support self-hosted, open-source alternatives to the subscription software your business already depends on.',
 }
+
+/*
+ * A deliberately wide sample, not an exhaustive one — see
+ * ToolShowcaseSection's own comment for why breadth is the point. Icons
+ * live in public/icons/services/, fetched once from the dashboard-icons
+ * project rather than pulled from a third-party CDN at request time.
+ */
+const SHOWCASE_TOOLS: ShowcaseTool[] = [
+  {
+    name: 'Paperless-ngx',
+    category: 'Document archiving',
+    href: 'https://docs.paperless-ngx.com',
+    icon: 'paperless-ngx.svg',
+  },
+  {
+    name: 'Stirling PDF',
+    category: 'PDF tools',
+    href: 'https://www.stirlingpdf.com',
+    icon: 'stirling-pdf.svg',
+  },
+  {
+    name: 'Vaultwarden',
+    category: 'Password management',
+    href: 'https://github.com/dani-garcia/vaultwarden',
+    icon: 'vaultwarden.svg',
+  },
+  {
+    name: 'Outline',
+    category: 'Wiki & knowledge base',
+    href: 'https://www.getoutline.com',
+    icon: 'outline.svg',
+  },
+  {
+    name: 'Linkwarden',
+    category: 'Bookmark management',
+    href: 'https://linkwarden.app',
+    icon: 'linkwarden.png',
+  },
+  {
+    name: 'AFFiNE',
+    category: 'Notes & knowledge',
+    href: 'https://affine.pro',
+    icon: 'affine.svg',
+  },
+  {
+    name: 'Plane',
+    category: 'Project management',
+    href: 'https://plane.so',
+    icon: 'plane.svg',
+  },
+  {
+    name: 'OpenProject',
+    category: 'Project management',
+    href: 'https://www.openproject.org',
+    icon: 'openproject.svg',
+  },
+  {
+    name: 'Odoo',
+    category: 'ERP & business apps',
+    href: 'https://www.odoo.com',
+    icon: 'odoo.svg',
+  },
+  {
+    name: 'Rocket.Chat',
+    category: 'Team communication',
+    href: 'https://www.rocket.chat',
+    icon: 'rocket-chat.svg',
+  },
+  {
+    name: 'Umami',
+    category: 'Privacy-first analytics',
+    href: 'https://umami.is',
+    icon: 'umami.svg',
+  },
+  {
+    name: 'Postiz',
+    category: 'Social media scheduling',
+    href: 'https://postiz.com',
+    icon: 'postiz.svg',
+  },
+  {
+    name: 'Nextcloud',
+    category: 'Cloud storage & files',
+    href: 'https://nextcloud.com',
+    icon: 'nextcloud.svg',
+  },
+  {
+    name: 'Formbricks',
+    category: 'Surveys & feedback',
+    href: 'https://formbricks.com',
+    icon: 'formbricks.svg',
+  },
+  {
+    name: 'Akaunting',
+    category: 'Accounting & invoicing',
+    href: 'https://akaunting.com',
+    icon: 'akaunting.svg',
+  },
+  {
+    name: 'Habitica',
+    category: 'Habit & task tracking',
+    href: 'https://habitica.com',
+    icon: 'habitica.svg',
+  },
+  {
+    name: 'Grocy',
+    category: 'Household inventory',
+    href: 'https://grocy.info',
+    icon: 'grocy.svg',
+  },
+  {
+    name: 'Actual Budget',
+    category: 'Personal finance',
+    href: 'https://actualbudget.org',
+    icon: 'actual-budget.svg',
+  },
+  {
+    name: 'InvenTree',
+    category: 'Inventory management',
+    href: 'https://docs.inventree.org',
+    icon: 'inventree.svg',
+  },
+  {
+    name: 'Planka',
+    category: 'Kanban boards',
+    href: 'https://planka.app',
+    icon: 'planka.svg',
+  },
+]
 
 export default function ServicesPage() {
   return (
@@ -103,6 +234,8 @@ export default function ServicesPage() {
         ]}
         variant="checklist"
       />
+
+      <ToolShowcaseSection tools={SHOWCASE_TOOLS} />
 
       {/*
         This used to be two back-to-back blocks — a "How engagements work"

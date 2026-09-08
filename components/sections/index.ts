@@ -8,3 +8,8 @@ export { default as FeatureBreakdownSection } from './FeatureBreakdownSection'
 export { default as FinalCTASection } from './FinalCTASection'
 export { default as PainSolutionSection } from './PainSolutionSection'
 export { default as PricingSection } from './PricingSection'
+export { default as ToolShowcaseSection } from './ToolShowcaseSection'
+export type {
+  ShowcaseTool,
+  ToolShowcaseSectionProps,
+} from './ToolShowcaseSection'

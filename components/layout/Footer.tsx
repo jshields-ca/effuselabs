@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <h3 className="mb-6 flex items-center gap-2 text-2xl font-bold text-white">
-              <EffuseMark className="h-6 w-auto text-effuse-teal" />
+              <EffuseMark variant="twoTone" className="h-6 w-auto" />
               {brand.name}
             </h3>
 

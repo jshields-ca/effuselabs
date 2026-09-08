@@ -103,11 +103,13 @@ export const viewport: Viewport = {
 }
 
 /*
- * Organization structured data. Named accounts only — the social profile
- * URLs in content/site.ts still include LinkedIn/Twitter/Bluesky
- * placeholders pending Jeremy sending the real ones (see docs/ROADMAP.md),
- * and a `sameAs` claim search engines treat as fact shouldn't point at a
- * guessed URL. GitHub is confirmed real, so it's the only one listed here.
+ * Organization structured data. All of GitHub, LinkedIn and Twitter/X are
+ * confirmed-real accounts (see content/site.ts). Bluesky is left out here
+ * even though the handle is real too — @effuse.io is a custom-domain
+ * handle that only resolves once effuse.io's DNS is set up for domain
+ * verification, which hasn't happened yet, so the profile isn't reliably
+ * reachable by that handle right now. A `sameAs` claim search engines
+ * treat as fact shouldn't point at something not yet live.
  */
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -115,7 +117,11 @@ const organizationJsonLd = {
   name: 'Effuse Labs',
   url: 'https://www.effuse.io',
   logo: 'https://www.effuse.io/logo-800x800.png',
-  sameAs: ['https://github.com/effuselabs'],
+  sameAs: [
+    'https://github.com/effuselabs',
+    'https://www.linkedin.com/company/effuse-labs',
+    'https://x.com/effuselabs',
+  ],
 }
 
 export default function RootLayout({

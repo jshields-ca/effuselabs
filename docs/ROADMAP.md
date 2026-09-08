@@ -6,10 +6,11 @@ two real lines of business both have pages, and the full gate
 (`type-check`, `lint`, `format:check`, `check:tokens`, `build`, the complete
 Playwright suite) is green. `/privacy` and `/terms` are no longer marked
 draft — Jeremy reviewed the language and approved it as live copy, not a
-placeholder. What's left is explicitly not code: real copywriting in
-Jeremy's own words for `/about` and `/services`, the real
-LinkedIn/Twitter/Bluesky URLs, and the `jeremyshields.ca` redirect this
-session can't reach. See "Known outstanding" for the complete, current
+placeholder. LinkedIn, Twitter/X and Bluesky are now real, confirmed URLs
+too — no social placeholders left. What's left is explicitly not code: real
+copywriting in Jeremy's own words for `/about` and `/services`, and the
+`jeremyshields.ca` redirect this session can't reach. See "Known
+outstanding" for the complete, current
 list. Last updated 8 September 2026.
 
 This site was built through 2025 across a mix of AI coding tools and left
@@ -473,6 +474,44 @@ stage 6 starts placing them.
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
 
+- ~~`/services` only named four categories, each with one example~~ — Jeremy
+  asked for the page to convey real breadth: there's a mature, stable
+  self-hosted option for far more than file storage, chat, CRM and
+  analytics. New `ToolShowcaseSection` (`components/sections/
+ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
+  four-category checklist doesn't touch at all — document archiving,
+  password management, wikis, bookmarks, notes, project management, ERP,
+  team chat, surveys, accounting, habit tracking, household inventory,
+  personal finance, inventory management, kanban boards — closing with "if
+  it's self-hostable, there's probably already a good answer for it."
+  Icons come from the dashboard-icons project, fetched once into
+  `public/icons/services/` rather than pulled from a third-party CDN at
+  request time — this is the page making the case for owning your own
+  infrastructure, so it shouldn't quietly depend on someone else's for its
+  own images. Every tile sits on a light card regardless of the source
+  logo's colours; several (Umami, Vaultwarden) are dark line-art that read
+  as nearly invisible smudges directly on the dark canvas otherwise.
+- ~~Footer used the single-colour mark~~ — swapped to `variant="twoTone"`
+  now that it exists, per Jeremy's call once he saw the comparison.
+- ~~Social links were confirmed-real but URLs were placeholders~~ —
+  resolved, see the "Known outstanding" entry above for the specifics.
+- ~~No downloadable brand assets outside the component code~~ — Jeremy
+  asked for the icon as standalone files to keep for himself, not just as
+  React source. Exported both `EffuseMark` variants as plain SVG and a
+  high-resolution transparent PNG into `public/brand/`
+  (`effuse-mark-mono.{svg,png}`, `effuse-mark-twotone.{svg,png}`) and sent
+  them directly.
+- ~~No LinkedIn cover or X header image, and the existing logo shows up on
+  a white background on X~~ — built `public/brand/linkedin-cover.png`
+  (1128×191) and `public/brand/x-header.png` (1500×500) from the same
+  teal/gold radial-glow-on-dark language `LuminousField.tsx` already uses
+  for the hero, tuned per aspect ratio rather than the same percentages
+  naively reused — the first pass at each left a visible dead patch where
+  the glows didn't actually overlap by their visible cores, not just their
+  blur haze. No typography, per Jeremy's brief. Also composited the
+  existing transparent `logo-800x800.png` onto a `surface.deep` background
+  (`public/brand/logo-800x800-solid-bg.png`) for the X profile photo, since
+  a transparent PNG there renders on white regardless of site theme.
 - ~~No SVG mark; the only logo asset was a glossy 3D render~~ — Jeremy drew
   a flat droplet/flame silhouette (same idea as `public/logo-800x800.png`'s
   shell-around-a-core, but as one flat shape rather than something with
@@ -633,9 +672,15 @@ finding, not just the current clean state):
   text, so they weren't part of the sign-off above and aren't visibly
   flagged as draft on the page (per the placeholder-content policy, they
   read like real copy but shouldn't be treated as final).
-- LinkedIn, Twitter/X and Bluesky in the footer are confirmed-real accounts
-  with placeholder URLs, not verified addresses — swap in the real ones when
-  they arrive. GitHub is confirmed real as of 2026-09-08.
+- ~~LinkedIn, Twitter/X and Bluesky in the footer were confirmed-real
+  accounts with placeholder URLs, not verified addresses~~ — **resolved.**
+  All four social links (GitHub included) are now real, Jeremy-confirmed
+  URLs: `linkedin.com/company/effuse-labs`, `x.com/effuselabs`,
+  `bsky.app/profile/effuse.io`. `organizationJsonLd` in `app/layout.tsx`
+  now lists LinkedIn and Twitter alongside GitHub in `sameAs`; Bluesky is
+  deliberately left out of that structured-data claim until effuse.io's DNS
+  is set up for domain verification (the handle is real, but not yet
+  reliably resolvable by search engines as this account).
 - The `jeremyshields.ca` redirect is separate work in a repository outside
   this session's reach — `/services` now exists and is worth linking to,
   which was the actual blocker.
