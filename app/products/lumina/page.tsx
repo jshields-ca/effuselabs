@@ -27,6 +27,10 @@ export default function LuminaProductPage() {
   return (
     <ProductPageTemplate
       hero={{
+        logoSrc: '/brand/lumina-mark.png',
+        logoAlt: '',
+        logoWidth: 800,
+        logoHeight: 558,
         productName: 'Lumina',
         headline: 'Illuminate your growth with an all‑in‑one platform',
         subheadline:

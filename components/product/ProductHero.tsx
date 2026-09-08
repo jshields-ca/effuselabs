@@ -7,6 +7,14 @@ export interface ProductHeroProps {
   id?: string
   logoSrc?: string
   logoAlt?: string
+  /**
+   * The logo's real pixel width and height, so `next/image` preserves its
+   * actual aspect ratio instead of forcing a square. Defaults assume a
+   * roughly square mark; pass the source file's real dimensions for
+   * anything wider or taller than that.
+   */
+  logoWidth?: number
+  logoHeight?: number
   productName?: string
   headline: string
   subheadline?: string
@@ -19,6 +27,8 @@ const ProductHero: React.FC<ProductHeroProps> = ({
   id = 'product-hero',
   logoSrc,
   logoAlt = 'Product logo',
+  logoWidth = 48,
+  logoHeight = 48,
   productName,
   headline,
   subheadline,
@@ -42,12 +52,11 @@ const ProductHero: React.FC<ProductHeroProps> = ({
         <div className="max-w-5xl mx-auto text-center">
           {logoSrc ? (
             <div className="mb-6 flex justify-center">
-              {/* decorative product logo; alt is provided for screen readers */}
               <Image
                 src={logoSrc}
                 alt={logoAlt}
-                width={48}
-                height={48}
+                width={logoWidth}
+                height={logoHeight}
                 className="h-12 w-auto"
               />
             </div>

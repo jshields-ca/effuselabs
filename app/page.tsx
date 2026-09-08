@@ -18,7 +18,8 @@ import {
   Pour,
   Text,
 } from '@/components/ui'
-import { ArrowRight, Check, Lightbulb, Server } from 'lucide-react'
+import { ArrowRight, Check, Server } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -127,14 +128,26 @@ export default function Home() {
                     Learn More About Lumina
                   </Button>
                 </div>
-                <div className="rounded-lg bg-gradient-to-br from-lumina-gradient-start to-lumina-gradient-end p-8 text-center text-effuse-off-black">
-                  <Lightbulb
-                    className="mx-auto mb-4 h-14 w-14"
+                {/*
+                  The real Lumina mark, replacing the generic Lightbulb icon
+                  placeholder. Icon-only, not the full lockup with the baked-
+                  in "LUMINA" wordmark — that wordmark is rendered in black,
+                  which disappears on this site's dark canvas. Live text
+                  below does that job instead: real text beats text baked
+                  into an image, for the same reason a screen reader can read
+                  one and not the other.
+                */}
+                <div className="flex flex-col items-center justify-center rounded-lg bg-surface-deep p-8 text-center">
+                  <Image
+                    src="/brand/lumina-mark.png"
+                    alt=""
                     aria-hidden="true"
-                    strokeWidth={1.5}
+                    width={800}
+                    height={558}
+                    className="h-20 w-auto"
                   />
-                  <H3 className="mb-2 text-effuse-off-black">Lumina</H3>
-                  <Text className="text-effuse-off-black/80">
+                  <H3 className="mt-4 text-effuse-parchment">Lumina</H3>
+                  <Text className="mt-2 text-effuse-parchment/70">
                     Illuminating Business Growth
                   </Text>
                 </div>
