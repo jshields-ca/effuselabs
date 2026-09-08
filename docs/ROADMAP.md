@@ -223,6 +223,85 @@ Still open in this stage:
 
 The accessibility constraints above are not relaxed for any of it.
 
+**Content and component correctness pass (design-committee reviewed).**
+A second committee pass — full-site audit, then an independent critique of
+that audit — reviewed content, information architecture, layout, and
+component quality with no restrictions ("everything is changeable"). The
+headline finding, confirmed by both agents independently: the site
+represents only one of Effuse Labs' two real lines of business. Lumina
+(the open-source, self-hostable vertical SaaS for salons/barbershops) has
+a whole page and two homepage sections; the self-hosting/open-source
+consulting line — setting up and supporting self-hosted OSS generally, for
+businesses that would rather own their tools than rent them — appears in
+exactly two places on the entire site (a hero eyebrow tag and one clause
+in the contact paragraph).
+
+The critique pass also caught the first pass reaching too far for an MVP —
+a full new section, route, and nav rename is stage-6 scope, not this pass
+— and sharpened what's genuinely a live defect versus what's a copy-quality
+question for the real copywriting pass later. Landing now, scoped down:
+
+- `FinalCTASection`'s defaults are a dead-CTA landmine of the exact shape
+  CLAUDE.md's non-negotiable #2 already names twice (`#waitlist`): a
+  default `description` claiming customers Lumina doesn't have yet, and a
+  default `primaryCta` pointing at `#signup`, which exists nowhere. Neither
+  current call site uses the defaults, but nothing stops a future one.
+  Made both required — no default to fall back on.
+- The `<meta description>` — the one piece of copy a search engine or an
+  LLM actually reads to summarize the company — claimed Lumina "transforms
+  salon and barber operations" in the present tense, before Lumina has
+  launched, and described only one of two business lines. Fixed to be
+  honest about both.
+- The Lumina product page never once said Lumina is open-source, AGPL, or
+  self-hostable — no licence, no repo link — while its pricing section read
+  as ordinary closed SaaS ("exclusive early-bird pricing"). For the
+  technical evaluator DESIGN_PLAN.md names as this site's secondary
+  audience, that's the single largest missing credibility signal on the
+  page. Added one factual sentence, not a section redesign.
+- The homepage's "Solutions" section wasn't a second offering — it was
+  Lumina, pitched a second time under a vaguer header, immediately after
+  the section that already pitched it. Rewritten in place (same component,
+  same slot, no new route or nav change) to actually describe the
+  self-hosting/OSS-consulting line, marked as draft per the placeholder
+  policy above, CTA pointed at the real `/#contact` rather than a `/services`
+  route that doesn't exist yet.
+- A handful of drive-by fixes surfaced along the way, bundled into the same
+  small pass rather than each getting its own cycle: a dead ternary
+  (`ProductHero.tsx`, both branches of a variant conditional returned the
+  same value), a comment referencing a `DynamicHeroSection` that doesn't
+  exist anywhere in the repo, `HeroSection` missing from the sections
+  barrel export, and an unused `SectionDivider` component with zero
+  consumers now that `Pour` replaced it.
+- The `'light'` background variant was quietly still the _default_ on four
+  components (`PainSolutionSection`, `FeatureBreakdownSection`,
+  `PricingSection`, `ProductHero`), even though nothing calls it today —
+  exactly the kind of dormant option that resurrects the white-section
+  defect the moment a future call site omits the prop. Removed the option
+  from the type entirely rather than trusting convention to avoid it.
+
+**Deferred to stage 6, deliberately** (the critique pass's case: this is
+real IA work, bigger than an MVP correctness pass, and copy is explicitly
+out of scope until then per `DESIGN_PLAN.md`):
+
+- A real `/services` route and an `/about` "how we build" page — nothing
+  today shows a visitor the engineering discipline this repo actually
+  practices (WCAG AA gated in CI, a design-token guard, a production-build
+  Playwright suite).
+- Renaming the nav label "Solutions" → "Services" — only once `/services`
+  is a real destination; renaming it sooner repeats the exact "promise a
+  destination that isn't there" pattern non-negotiable #2 exists to catch.
+- Full real copywriting for both business lines, including verifying
+  whether `github.com/effuselabs` (currently flagged in `content/site.ts`
+  as unverified) is real and, if so, surfacing it somewhere more load-bearing
+  than a footer icon.
+- The 15+ near-duplicated `isDark ? 'parchment' : 'off-black'` ternaries
+  across the same four components, which re-implement a colour decision
+  `Typography.tsx` already documents as the surface's job, not the
+  component's. Real debt, not urgent — nothing is visibly broken today —
+  and it touches visual output across several components, so it goes
+  through visual-baseline review deliberately rather than riding along with
+  a content fix.
+
 ### 6 — Information architecture and content
 
 Real routes for `/about`, `/services`, `/contact` and the legal pages, and a

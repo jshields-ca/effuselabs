@@ -1,9 +1,9 @@
 import { SectionContainer } from '@/components/layout'
 import {
   FounderStatementSection,
+  HeroSection,
   PhilosophySection,
 } from '@/components/sections'
-import { HeroSection } from '@/components/sections/HeroSection'
 import { contact } from '@/content/site'
 import {
   AccentBar,
@@ -18,7 +18,7 @@ import {
   Pour,
   Text,
 } from '@/components/ui'
-import { ArrowRight, Check, Lightbulb, Scissors } from 'lucide-react'
+import { ArrowRight, Check, Lightbulb, Server } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -144,20 +144,35 @@ export default function Home() {
         </Reveal>
       </SectionContainer>
 
-      {/* Solutions Section */}
+      {/*
+        Solutions Section
+
+        This used to re-pitch Lumina under a vaguer header, immediately after
+        the Products section already pitched Lumina — the same offering
+        twice, which a design-committee content review flagged as the
+        biggest structural gap on the site: Effuse Labs has two real lines
+        of business (Lumina, and self-hosting/open-source support for other
+        businesses), and the second one appeared nowhere but a hero eyebrow
+        tag. Rewritten in place — same component, same slot, no new route or
+        nav change, since that's stage-6 scope — to actually describe it.
+
+        Copy here is draft, per docs/ROADMAP.md's placeholder-content
+        policy: written to read as real copy, not lorem ipsum, but not
+        final — the real pass is stage 6, with Jeremy's own words.
+      */}
       <SectionContainer id="solutions" background="base" padding="lg">
         <Reveal>
           <div className="text-center mb-12">
             <H2 className="mb-4 text-effuse-parchment">
-              Built for the Builders
+              Own Your Tools, Not Rent Them
             </H2>
             <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed font-normal">
-              Our tools are crafted for the passionate creators and service
-              providers who are the cornerstones of our communities.
+              Not every business needs software built from scratch. Sometimes
+              the right fix is taking back control of the tools you already pay
+              for, month after month.
             </Text>
           </div>
 
-          {/* Single column while Lumina is the only product. */}
           <Grid cols={1} gap="lg" className="max-w-2xl mx-auto">
             <GridItem>
               <Card
@@ -165,20 +180,20 @@ export default function Home() {
                 className="h-full p-8 text-center bg-surface-raised border-surface-border"
               >
                 <div
-                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-lumina-gradient-start to-lumina-gradient-end"
+                  className="-mx-8 -mt-8 mb-6 h-1.5 rounded-t-lg bg-gradient-to-r from-effuse-slate to-effuse-teal"
                   aria-hidden
                 />
                 <div className="flex flex-col h-full">
                   <div className="mb-4 flex flex-col items-center justify-center md:min-h-[140px]">
                     <span className="mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-effuse-teal/10 text-effuse-teal ring-1 ring-effuse-teal/25">
-                      <Scissors
+                      <Server
                         className="h-7 w-7"
                         aria-hidden="true"
                         strokeWidth={1.75}
                       />
                     </span>
                     <H3 className="text-effuse-parchment text-center text-xl font-semibold">
-                      Salons & Barbershops
+                      Open-Source & Self-Hosted Software
                     </H3>
                   </div>
                   <ul className="space-y-2 mb-4 text-left min-h-[120px]">
@@ -196,7 +211,7 @@ export default function Home() {
                         />
                       </svg>
                       <Text as="span" className="text-sm text-effuse-parchment">
-                        Commission & chair rental management
+                        No per-seat fees that creep every year
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
@@ -213,7 +228,7 @@ export default function Home() {
                         />
                       </svg>
                       <Text as="span" className="text-sm text-effuse-parchment">
-                        Client booking & relationship management
+                        Your data stays on infrastructure you control
                       </Text>
                     </li>
                     <li className="flex items-start gap-2">
@@ -230,24 +245,24 @@ export default function Home() {
                         />
                       </svg>
                       <Text as="span" className="text-sm text-effuse-parchment">
-                        Service pricing & inventory tracking
+                        Setup, migration, and ongoing support included
                       </Text>
                     </li>
                   </ul>
                   <Text className="mb-6 text-effuse-parchment leading-relaxed">
-                    You’re more than a stylist; you&apos;re an artist, a
-                    confidant, and a community hub. You build relationships and
-                    transform your clients&apos; confidence, one appointment at
-                    a time. Your craft deserves to be the focus, not the endless
-                    paperwork that comes with it.
+                    Subscription software adds up, and the moment you stop
+                    paying, you lose access to your own data. We set up,
+                    configure, and support self-hosted, open-source alternatives
+                    to the tools you&apos;re renting — so you own what you run,
+                    and pay only for the support you actually use.
                   </Text>
                   <Button
                     variant="primary"
                     size="sm"
-                    href="/products/lumina"
+                    href="/#contact"
                     className="mt-auto"
                   >
-                    Explore Lumina
+                    Talk About Your Stack
                   </Button>
                 </div>
               </Card>

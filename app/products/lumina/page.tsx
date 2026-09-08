@@ -33,7 +33,6 @@ export default function LuminaProductPage() {
           'Replace the patchwork of apps with a single, elegant system for bookings, financials, and client relationships.',
         primaryCtaLabel: 'Start a Conversation',
         primaryCtaHref: '/#contact',
-        background: 'dark',
         accentGradient: {
           from: product.lumina.gold,
           to: product.lumina.coral,
@@ -59,7 +58,6 @@ export default function LuminaProductPage() {
           'Get real-time insights across your business',
           'Scale without adding complexity',
         ]}
-        background="dark"
       />
 
       <FeatureBreakdownSection
@@ -104,18 +102,23 @@ export default function LuminaProductPage() {
           },
         ]}
         variant="grid"
-        background="dark"
       />
 
+      {/*
+        Lumina is AGPL and self-hostable, but nothing on this page said so
+        until now — for the technical evaluator this site's design plan
+        names as a secondary audience, that's a bigger credibility gap than
+        the missing pricing tiers. One factual sentence, not a pricing
+        redesign.
+      */}
       <PricingSection
         placeholder={{
           heading: 'Coming Soon',
           description:
-            'Lumina is currently in development. Get in touch to be the first to know when we launch and get exclusive early-bird pricing.',
+            "Lumina is open-source and self-hostable under AGPL-3.0 — run it yourself for free, or let us host and support it for you. We're in active development; get in touch to be the first to know when we launch.",
           ctaLabel: 'Get in Touch',
           ctaHref: '/#contact',
         }}
-        background="dark"
       />
 
       <FinalCTASection

@@ -1,4 +1,4 @@
-// HatchingCoreHeroSection removed - replaced by DynamicHeroSection
+export { HeroSection } from './HeroSection'
 export { default as FounderStatementSection } from './FounderStatementSection'
 export { default as PhilosophySection } from './PhilosophySection'
 

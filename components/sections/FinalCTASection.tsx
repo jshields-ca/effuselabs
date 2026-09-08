@@ -4,9 +4,18 @@ import React from 'react'
 
 export interface FinalCTASectionProps {
   id?: string
-  heading?: string
-  description?: string
-  primaryCta?: {
+  /*
+   * No defaults for heading/description/primaryCta: a default here is a
+   * landmine, not a convenience. This component's own defaults used to claim
+   * "thousands of businesses already growing" on a pre-launch product and
+   * pointed the primary CTA at `#signup`, which exists nowhere — the exact
+   * dead-anchor shape CLAUDE.md's non-negotiable #2 already names twice.
+   * Neither call site used them, but nothing stopped a future one from
+   * inheriting silently. Every call site now supplies real content instead.
+   */
+  heading: string
+  description: string
+  primaryCta: {
     label: string
     href: string
   }
@@ -19,9 +28,9 @@ export interface FinalCTASectionProps {
 
 const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   id = 'final-cta',
-  heading = 'Ready to get started?',
-  description = 'Join thousands of businesses already growing with our platform.',
-  primaryCta = { label: 'Get Started', href: '#signup' },
+  heading,
+  description,
+  primaryCta,
   secondaryCta,
   background = 'gradient',
 }) => {

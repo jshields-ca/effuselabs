@@ -31,9 +31,6 @@ export type {
   CardProps,
 } from './Card'
 
-export { SectionDivider } from './SectionDivider'
-export type { SectionDividerProps } from './SectionDivider'
-
 export { AccentBar } from './AccentBar'
 export type { AccentBarProps, AccentBarVariant } from './AccentBar'
 

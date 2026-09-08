@@ -33,10 +33,19 @@ const publicSans = Public_Sans({
   display: 'swap',
 })
 
+/*
+ * This description is what a search engine or an LLM crawler actually reads
+ * to summarize the company — it was claiming Lumina "transforms salon and
+ * barber operations" in the present tense on a product that hasn't launched
+ * (see docs/ROADMAP.md), and it described only one of Effuse Labs' two real
+ * lines of business. Corrected to be honest about both, in the same terms
+ * CLAUDE.md itself uses to describe the company — this is a factual fix,
+ * not a copywriting pass; real marketing copy is stage 6.
+ */
 export const metadata: Metadata = {
   title: 'Effuse Labs - Intelligent Software for Small Business Growth',
   description:
-    'Effuse Labs builds AI-powered business management solutions for small and medium-sized businesses. Our flagship product, Lumina, transforms salon and barber operations.',
+    'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and hands-on support setting up self-hosted, open-source tools for businesses that would rather own their software than rent it.',
   keywords: [
     'small business software',
     'salon management',
@@ -59,7 +68,7 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 }
 
-// Next.js 14: configure viewport via dedicated export instead of metadata.viewport
+// Viewport is a dedicated export rather than metadata.viewport, per Next 16.
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,

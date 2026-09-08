@@ -16,7 +16,6 @@ export interface PainSolutionSectionProps {
     icon?: LucideIcon
   }
   bullets?: string[]
-  background?: 'light' | 'dark'
 }
 
 const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
@@ -24,16 +23,9 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
   problem,
   solution,
   bullets = [],
-  background = 'light',
 }) => {
-  const isDark = background === 'dark'
-
   return (
-    <SectionContainer
-      id={id}
-      background={isDark ? 'base' : 'white'}
-      padding="lg"
-    >
+    <SectionContainer id={id} background="base" padding="lg">
       <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Problem & Solution Grid */}
@@ -51,16 +43,8 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                   </span>
                 </div>
               )}
-              <H3
-                className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-              >
-                {problem.heading}
-              </H3>
-              <Text
-                className={
-                  isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
-                }
-              >
+              <H3 className="mb-4 text-effuse-parchment">{problem.heading}</H3>
+              <Text className="text-effuse-parchment">
                 {problem.description}
               </Text>
             </div>
@@ -78,16 +62,8 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                   </span>
                 </div>
               )}
-              <H3
-                className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-              >
-                {solution.heading}
-              </H3>
-              <Text
-                className={
-                  isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
-                }
-              >
+              <H3 className="mb-4 text-effuse-parchment">{solution.heading}</H3>
+              <Text className="text-effuse-parchment">
                 {solution.description}
               </Text>
             </div>
@@ -97,19 +73,11 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
           {bullets.length > 0 && (
             <Reveal order={2}>
               <div className="text-center">
-                <H2 className={`mb-8 ${isDark ? 'text-effuse-parchment' : ''}`}>
-                  Key Benefits
-                </H2>
+                <H2 className="mb-8 text-effuse-parchment">Key Benefits</H2>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
                   {bullets.map((bullet, index) => (
                     <Reveal key={index} order={2}>
-                      <div
-                        className={`p-4 rounded-lg ${
-                          isDark
-                            ? 'bg-surface-raised border border-surface-border'
-                            : 'bg-effuse-light-grey/60 border border-effuse-light-neutral'
-                        }`}
-                      >
+                      <div className="p-4 rounded-lg bg-surface-raised border border-surface-border">
                         <div className="flex items-center gap-3">
                           <div className="text-xl text-effuse-gold" aria-hidden>
                             <Check
@@ -118,13 +86,7 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                               strokeWidth={2.5}
                             />
                           </div>
-                          <Text
-                            className={`flex-1 text-sm ${
-                              isDark
-                                ? 'text-effuse-parchment'
-                                : 'text-effuse-off-black'
-                            }`}
-                          >
+                          <Text className="flex-1 text-sm text-effuse-parchment">
                             {bullet}
                           </Text>
                         </div>

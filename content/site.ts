@@ -60,7 +60,7 @@ export const brand = {
 } as const
 
 export const contact = {
-  email: 'hello@effuse.io',
+  email: 'jeremy@effuse.io',
   location: 'Winnipeg, Manitoba, Canada',
 } as const
 
@@ -88,11 +88,18 @@ export const footerGroups: FooterLinkGroup[] = [
 /**
  * Social profiles.
  *
- * These are unverified — they were hardcoded into the footer and have never
- * been confirmed to exist. Confirm each account before launch, and delete any
- * that do not: a footer icon leading to a 404 reads worse than no icon.
+ * GitHub is confirmed real (Jeremy, 2026-09-08): https://github.com/effuselabs,
+ * with Lumina's own repo at https://github.com/effuselabs/lumina.
+ *
+ * LinkedIn, Twitter/X and Bluesky are confirmed as real accounts Effuse Labs
+ * will have, but the actual URLs haven't been sent yet — these three hrefs
+ * are placeholders per the placeholder-content policy in docs/ROADMAP.md,
+ * not verified addresses. Replace with the real URLs when they arrive; don't
+ * ship these to production first.
  */
 export const socialLinks: SocialLink[] = [
   { label: 'LinkedIn', href: 'https://linkedin.com/company/effuselabs' },
+  { label: 'Twitter', href: 'https://twitter.com/effuselabs' },
+  { label: 'Bluesky', href: 'https://bsky.app/profile/effuselabs.bsky.social' },
   { label: 'GitHub', href: 'https://github.com/effuselabs' },
 ]

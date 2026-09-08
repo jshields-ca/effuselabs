@@ -35,7 +35,6 @@ export interface PricingSectionProps {
     ctaLabel?: string
     ctaHref?: string
   }
-  background?: 'light' | 'dark'
 }
 
 const PricingSection: React.FC<PricingSectionProps> = ({
@@ -44,30 +43,17 @@ const PricingSection: React.FC<PricingSectionProps> = ({
   subheading = 'Choose the plan that works for your business.',
   tiers,
   placeholder,
-  background = 'light',
 }) => {
-  const isDark = background === 'dark'
-
   // Show placeholder if no tiers provided
   if (!tiers && placeholder) {
     return (
-      <SectionContainer
-        id={id}
-        background={isDark ? 'base' : 'white'}
-        padding="lg"
-      >
+      <SectionContainer id={id} background="base" padding="lg">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
-            <H2
-              className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-            >
+            <H2 className="mb-4 text-effuse-parchment">
               {placeholder.heading}
             </H2>
-            <Text
-              className={`text-lg mb-8 max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
-              }`}
-            >
+            <Text className="text-lg mb-8 max-w-2xl mx-auto text-effuse-parchment">
               {placeholder.description}
             </Text>
 
@@ -84,25 +70,13 @@ const PricingSection: React.FC<PricingSectionProps> = ({
 
   // Show pricing tiers if provided
   return (
-    <SectionContainer
-      id={id}
-      background={isDark ? 'base' : 'white'}
-      padding="lg"
-    >
+    <SectionContainer id={id} background="base" padding="lg">
       <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <H2
-              className={`mb-4 ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-            >
-              {heading}
-            </H2>
-            <Text
-              className={`max-w-2xl mx-auto ${
-                isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'
-              }`}
-            >
+            <H2 className="mb-4 text-effuse-parchment">{heading}</H2>
+            <Text className="max-w-2xl mx-auto text-effuse-parchment">
               {subheading}
             </Text>
           </div>
@@ -120,14 +94,10 @@ const PricingSection: React.FC<PricingSectionProps> = ({
             {tiers?.map((tier, index) => (
               <Reveal key={tier.name} order={index}>
                 <Card
-                  className={`h-full relative ${
+                  className={`h-full relative bg-effuse-slate/20 border-white/10 ${
                     tier.highlighted
                       ? 'ring-2 ring-effuse-gold shadow-lg transform scale-105'
                       : ''
-                  } ${
-                    isDark
-                      ? 'bg-effuse-slate/20 border-white/10'
-                      : 'bg-white border-black/10'
                   }`}
                 >
                   {tier.highlighted && (
@@ -139,34 +109,22 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                   )}
 
                   <CardHeader>
-                    <H3
-                      className={`text-center ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-                    >
+                    <H3 className="text-center text-effuse-parchment">
                       {tier.name}
                     </H3>
                     {tier.price && (
                       <div className="text-center mt-4">
-                        <div
-                          className={`text-4xl font-bold ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black'}`}
-                        >
+                        <div className="text-4xl font-bold text-effuse-parchment">
                           {tier.price}
                         </div>
                         {tier.period && (
-                          <Text
-                            className={`text-sm ${isDark ? 'text-effuse-parchment' : 'text-effuse-off-black/75'}`}
-                          >
+                          <Text className="text-sm text-effuse-parchment">
                             {tier.period}
                           </Text>
                         )}
                       </div>
                     )}
-                    <Text
-                      className={`text-center mt-4 ${
-                        isDark
-                          ? 'text-effuse-parchment'
-                          : 'text-effuse-off-black/75'
-                      }`}
-                    >
+                    <Text className="text-center mt-4 text-effuse-parchment">
                       {tier.description}
                     </Text>
                   </CardHeader>
@@ -190,13 +148,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({
                               />
                             </span>
                           </div>
-                          <Text
-                            className={`flex-1 ${
-                              isDark
-                                ? 'text-effuse-parchment'
-                                : 'text-effuse-off-black'
-                            }`}
-                          >
+                          <Text className="flex-1 text-effuse-parchment">
                             {feature}
                           </Text>
                         </li>
