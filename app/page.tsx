@@ -40,8 +40,8 @@ export default function Home() {
       <FounderStatementSection
         signatureSrc="/brand/jeremy-signature.png"
         signatureAlt="Jeremy Shields's signature"
-        signatureWidth={1209}
-        signatureHeight={1059}
+        signatureWidth={1385}
+        signatureHeight={780}
       />
 
       <Pour openness={0.55} flip />

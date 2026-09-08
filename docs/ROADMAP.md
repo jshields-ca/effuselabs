@@ -314,13 +314,25 @@ out of scope until then per `DESIGN_PLAN.md`):
   whether `github.com/effuselabs` (currently flagged in `content/site.ts`
   as unverified) is real and, if so, surfacing it somewhere more load-bearing
   than a footer icon.
-- The 15+ near-duplicated `isDark ? 'parchment' : 'off-black'` ternaries
-  across the same four components, which re-implement a colour decision
-  `Typography.tsx` already documents as the surface's job, not the
-  component's. Real debt, not urgent — nothing is visibly broken today —
-  and it touches visual output across several components, so it goes
-  through visual-baseline review deliberately rather than riding along with
-  a content fix.
+- ~~The 15+ near-duplicated `isDark ? 'parchment' : 'off-black'` ternaries
+  across `PainSolutionSection`, `FeatureBreakdownSection`, `PricingSection`
+  and `ProductHero`~~ — **closed.** The mechanical `'light'`-variant removal
+  above (stage 5) collapsed every one of these to its always-dark branch
+  rather than leaving the conditional in place with one arm dead; there is
+  no live ternary of this shape left in any of the four. Jeremy asked about
+  this directly after a mobile read-through and a fifth instance turned up
+  under the same question: `FinalCTASection`'s `background: 'light' | 'dark'
+| 'gradient'` prop had the identical shape (every call site passes
+  `'gradient'`; the other two branches were dead), missed in the original
+  pass because it wasn't one of the four named components. Collapsed the
+  same way. What legitimately remains is not a ternary but plain
+  repetition — many components separately write literal
+  `text-effuse-parchment` classes rather than inheriting colour from
+  `Typography.tsx` as its own contract intends. That's a real style-guide
+  question (should color really come from the surface, enforced by a lint
+  rule, rather than by convention?) but it cannot silently render off-brand
+  output the way a stray `isDark` branch can, so it's noted rather than
+  scheduled.
 
 ### 6 — Information architecture and content ✅
 
@@ -383,13 +395,64 @@ stage 6 starts placing them.
     the Pour rather than open new independent effects.
 - No illustration system yet, and no SVG logo; `public/` currently holds only
   PNGs.
-- A real signature for the founder statement: five candidate crops from
-  Jeremy's photo are with him for a pick as of this writing. The section
-  supports one (`signatureSrc`) and renders nothing until it's supplied.
+- ~~A real signature for the founder statement~~ — **done.** Jeremy's chosen
+  candidate needed re-deskewing: the first pass leveled the _letters_ by eye
+  (44°) and left the underline flourish still running diagonally through
+  the name, which Jeremy correctly read as "sideways" on a real device. A
+  Hough-transform line fit on the ink pixels found the true angle of the
+  long straight underline stroke itself (64.25°) rather than guessing from
+  the cursive letterforms, which are a much noisier signal — rotating to
+  that angle leveled both the underline _and_ the text in the same pass.
+  Re-rendered larger in `FounderStatementSection` (`h-16` → `h-24`/`h-28`).
+- Two Pour dividers around the founder statement rendered with visible
+  jagged diagonal fragments on Jeremy's real mobile device (screenshot
+  supplied), which this environment's Chromium-only Playwright could not
+  reproduce. Removed `vector-effect="non-scaling-stroke"` from both paths in
+  `components/ui/Pour.tsx` — combined with `preserveAspectRatio="none"`'s
+  anisotropic scaling (a 1200×120 viewBox stretched into a ~390×130 mobile
+  box), that attribute is a known cross-engine rendering ambiguity, and it
+  wasn't load-bearing for the visual design. This is a spec-reasoning fix,
+  not a reproduced-and-verified one — there is no WebKit available in this
+  environment to confirm against. Please check on your device after the
+  next deploy; if it still looks wrong, screenshot it and we'll look at the
+  `preserveAspectRatio` behavior next.
 
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
 
+- ~~Redundant back-to-back CTA blocks~~ — `/products/lumina` had a "Coming
+  Soon" pricing placeholder immediately followed by a "Ready to transform
+  your salon?" final CTA, both asking for the same `/#contact` click;
+  `/services` had the identical pattern with "How engagements work." Jeremy
+  flagged both after a mobile read-through. Folded each pair into the one
+  `FinalCTASection` that already closes the page, moving the placeholder's
+  factual content (Lumina is AGPL/self-hostable; services engagements have
+  no fixed package) into that section's own description. `PricingSection`
+  itself wasn't deleted — it still has a real `tiers` mode for whenever
+  Lumina has actual pricing to show — it's just not wired into either route
+  as a placeholder today.
+- ~~Stale `mailto:hello@effuse.io` on the Lumina page~~ — every other mailto
+  on the site already used `contact.email` (`jeremy@effuse.io`) from
+  `content/site.ts`; this one call site didn't. Fixed while touching that
+  section for the CTA merge above.
+- ~~Developer jargon in `/about`'s "How we build" copy~~ — "a contrast check
+  runs in CI," "fails the build," "declared colour pairs" spoke the
+  vocabulary of this repository's tooling, not the small-business owner
+  reading the page. No marketing-copy skill is currently enabled on this
+  account to hand this to (checked; none was available to add either) — this
+  was a manual pass. Each of the three "How we build" practices, plus the
+  founder-section aside, now leads with the plain-language outcome first and
+  keeps the specific, checkable claim as a supporting clause rather than the
+  headline. `/accessibility` keeps its explicit "WCAG 2.1 Level AA" language
+  unchanged — that page is closer to a compliance statement, where the
+  precise standard name is the point.
+- ~~Footer's "Built with care in Winnipeg, Manitoba" as its own centered line
+  below the copyright~~ — Jeremy asked whether that was the best spot for
+  it. Two full-width stacked lines gave it equal visual weight to the
+  copyright notice, which is more attention than a location aside needs.
+  Moved onto the same row as the copyright (opposite-justified on desktop,
+  stacked centered on the narrow mobile width where there's no room for two
+  columns) so it reads as one quiet line of small print instead of two.
 - ~~Sections cut from dark to pure white~~ — Products and Solutions on the
   homepage and the entire `/products/lumina` page now sit on the dark
   elevation ramp.

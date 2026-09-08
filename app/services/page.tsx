@@ -4,7 +4,6 @@ import {
   FeatureBreakdownSection,
   FinalCTASection,
   PainSolutionSection,
-  PricingSection,
 } from '@/components/sections'
 import {
   Cloud,
@@ -98,24 +97,22 @@ export default function ServicesPage() {
         variant="checklist"
       />
 
-      <PricingSection
-        placeholder={{
-          heading: 'How engagements work',
-          description:
-            "There's no fixed package yet — every business's stack is different. Tell us what you're running (or what you'd like to stop paying for), and we'll scope a plan together.",
-          ctaLabel: 'Start the conversation',
-          ctaHref: '/#contact',
-        }}
-      />
-
+      {/*
+        This used to be two back-to-back blocks — a "How engagements work"
+        pricing placeholder and a "Ready to own your stack?" final CTA —
+        each with its own "get in touch" button pointed at the same anchor.
+        Jeremy flagged the same repetition here as on the Lumina page.
+        Folded into one: there's no fixed package yet, and that's now said
+        inside the closing CTA's own description rather than a section of
+        its own above it.
+      */}
       <FinalCTASection
         heading="Ready to own your stack?"
-        description="Tell us what you're running today. The first conversation is free, and there's no obligation."
+        description="There's no fixed package — every business's stack is different. Tell us what you're running today (or what you'd like to stop paying for); the first conversation is free, with no obligation."
         primaryCta={{
           label: 'Get in touch',
           href: '/#contact',
         }}
-        background="gradient"
       />
     </ProductPageTemplate>
   )

@@ -135,7 +135,6 @@ export const Pour: React.FC<PourProps> = ({
           pathLength={1}
           strokeDasharray={`${drawn} ${gap} ${drawn}`}
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
         />
 
         {/*
@@ -150,7 +149,6 @@ export const Pour: React.FC<PourProps> = ({
           pathLength={1}
           strokeDasharray={`0 ${drawn} ${gap} ${drawn}`}
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
           opacity={0.55 + open * 0.45}
           filter="url(#pour-glow)"
         />

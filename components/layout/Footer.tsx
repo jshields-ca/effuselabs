@@ -136,28 +136,22 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-effuse-medium-grey">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          {/*
+            This used to be a copyright line, then a second full-width
+            centered line below it reading "Built with care in Winnipeg,
+            Manitoba" — its own row, competing for the same visual weight as
+            the copyright rather than reading as part of it. The Legal group
+            above already gives Privacy/Terms/Accessibility a real home, so
+            this row only ever had one thing in it. Setting the location as a
+            quiet inline suffix, separated by a middot, reads as one
+            unobtrusive line of small print instead of two, and keeps the
+            "built by a real, local firm" signal without asking for its own
+            line of attention.
+          */}
+          <div className="flex flex-col items-center gap-1 text-center md:flex-row md:justify-between md:text-left">
             <Small className="text-effuse-parchment">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
-
-            {/*
-              Privacy Policy, Terms of Service and Accessibility links lived
-              here pointing at /privacy, /terms and /accessibility — none of
-              which exist, so all three were hard 404s. They return when those
-              routes are actually built.
-            */}
-          </div>
-
-          {/*
-            This read "Built with ❤️ in Winnipeg, Manitoba 🇨🇦". The sentiment
-            stays; the emoji do not. Emoji are the most environment-variable
-            glyphs on a page — the font differs by platform and version, and
-            here they were shifting line height enough to make the visual
-            regression baselines disagree between this machine and CI. Set in
-            words, it renders identically everywhere and reads the same aloud.
-          */}
-          <div className="mt-6 text-center">
             <Small className="text-effuse-medium-grey">
               Built with care in Winnipeg, Manitoba
             </Small>

@@ -66,7 +66,7 @@ const FounderStatementSection: React.FC<FounderStatementSectionProps> = ({
                 alt={signatureAlt}
                 width={signatureWidth}
                 height={signatureHeight}
-                className="h-16 w-auto"
+                className="h-24 w-auto sm:h-28"
               />
             ) : null}
             <Text className="text-effuse-parchment/70">— {attribution}</Text>

@@ -24,21 +24,30 @@ export const metadata: Metadata = {
     'Effuse Labs is a Winnipeg-based software firm building open-source, accessible tools for small businesses — and helping others own their software instead of renting it.',
 }
 
+/*
+ * Marketing-tone pass: these used to speak in the vocabulary of the build
+ * pipeline itself — "runs in CI," "fails the build," "declared colour
+ * pairs." Jeremy's feedback was direct: it reads as expertise to another
+ * developer and as noise to the small-business owner this site is actually
+ * for. Each one now leads with the plain-language outcome and keeps the
+ * verifiable, specific claim (still true, still checkable) as the proof
+ * point rather than the headline.
+ */
 const practices = [
   {
     icon: ShieldCheck,
-    title: 'Accessibility is gated, not requested',
-    copy: 'Every dark surface on this site meets WCAG AA, and a contrast check runs in CI against the declared colour pairs — not a manual review someone might skip under deadline.',
+    title: 'Accessible by default, not by request',
+    copy: 'Every dark section of this site is checked automatically for readability every time we make a change — not a manual review someone could skip under deadline.',
   },
   {
     icon: GitBranch,
-    title: 'One source of truth for design',
-    copy: 'Every colour, radius, shadow and font in this codebase lives in one file. A build fails on a raw hex value anywhere else, or a colour pair that falls short of contrast standards.',
+    title: 'One consistent look, enforced automatically',
+    copy: "Every colour, shape and font on this site comes from a single source. A page that strays from it, or falls short of accessibility standards, doesn't go live until it's fixed.",
   },
   {
     icon: CheckCircle2,
-    title: 'Shipped means tested',
-    copy: 'A production build runs through an automated check before anything merges — every route responds, every internal link resolves to somewhere real, and reduced-motion is honoured everywhere motion exists.',
+    title: 'Nothing ships untested',
+    copy: 'Before any update to this site goes live, it is checked end to end automatically: every page loads, every link goes somewhere real, and visitors who prefer less motion get a calm, still page instead of animation.',
   },
 ]
 
@@ -103,8 +112,8 @@ export default function AboutPage() {
               liberation, not frustration — badly designed software builds
               barriers, and this firm exists to stop doing that. It shows up as
               a rule, not a slogan: every dark surface on this site is checked
-              against WCAG AA in an automated build, not left to a
-              reviewer&apos;s judgement.
+              automatically against recognized accessibility standards (WCAG
+              AA), not left to a reviewer&apos;s judgement.
             </Text>
           </div>
         </Reveal>
@@ -119,8 +128,8 @@ export default function AboutPage() {
             </H2>
             <Text className="text-effuse-parchment">
               This is not a claim you have to take on faith — every rule below
-              is enforced by an automated check in this very repository, and it
-              fails the build when broken.
+              is enforced automatically, every time we update this site, not
+              simply promised.
             </Text>
           </div>
           <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-3">
