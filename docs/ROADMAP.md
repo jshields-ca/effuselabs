@@ -691,3 +691,39 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   assertions instead, because cross-machine glyph rendering made pixel
   comparison unreliable at that width. Pinning CI to the official Playwright
   container would fix it properly.
+
+**Post-MVP feedback round:**
+
+- ~~The services page's "What we set up" checklist linked one named example
+  per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
+  Those links became redundant once `ToolShowcaseSection` shipped below the
+  checklist with twenty real, linked projects across categories; the
+  `example` field was dead weight duplicating a section directly beneath it,
+  so it was removed from `FeatureItem` entirely rather than left unused. The
+  checklist's own subheading was retitled from a promise ("if it's
+  self-hostable, we can probably run it") to a scope statement ("the core
+  categories most businesses start with") so it doesn't restate what the
+  showcase section says one heading later.
+- ~~Analytics was `@vercel/analytics` + `@vercel/speed-insights`~~ —
+  **resolved.** Both packages, their `<Analytics />`/`<SpeedInsights />`
+  components, and the `vitals.vercel-insights.com` CSP entry are gone.
+  `app/layout.tsx` now loads Jeremy's self-hosted Umami instance
+  (`analytics.sctr.tech`) via two `next/script` tags: the pageview script
+  and the session-replay/heatmap recorder. `next.config.js`'s CSP adds that
+  origin to `script-src` and `connect-src` (`wss://` included on
+  `connect-src` since the recorder's replay stream may use a WebSocket —
+  this sandbox has no network route to `analytics.sctr.tech` to confirm
+  that directly, so it's worth watching after deploy; drop it if Jeremy
+  never sees a CSP violation for it). `app/privacy/page.tsx`'s "What this
+  site collects," "How we use it" and "Third parties" sections were rewritten
+  to name Umami specifically and disclose session replay and heatmap capture
+  as what they are, not just "analytics." `e2e/smoke.spec.ts`'s console-error
+  ignore-list (previously scoped to Vercel's `/_vercel/*` paths) now covers
+  `analytics.sctr.tech` instead, on the same reasoning: a CI sandbox with no
+  route to a self-hosted domain failing to load it is an environment gap, not
+  a site defect. No new Vercel environment variable is needed — the
+  `data-website-id` in the script tags is a public identifier, not a secret —
+  but the project's own "Analytics" and "Speed Insights" toggles in the
+  Vercel dashboard are separate from the removed npm packages and are worth
+  turning off there too, since they're billing/feature flags Vercel controls
+  independently of what the code ships.

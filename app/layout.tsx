@@ -1,9 +1,20 @@
 import { PageWrapper } from '@/components/layout/PageWrapper'
-import { Analytics } from '@vercel/analytics/next'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
 import { Bricolage_Grotesque, Public_Sans } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
+
+/*
+ * Self-hosted Umami, replacing @vercel/analytics + @vercel/speed-insights —
+ * see docs/ROADMAP.md for why. `data-website-id` is a public identifier, not
+ * a secret, so it's safe to inline here rather than plumb through an env
+ * var. `recorder.js` additionally captures session replay and heatmap data;
+ * that's disclosed in the privacy policy's "What this site collects"
+ * section, not just the script tag.
+ */
+const UMAMI_SCRIPT_SRC = 'https://analytics.sctr.tech/script.js'
+const UMAMI_RECORDER_SRC = 'https://analytics.sctr.tech/recorder.js'
+const UMAMI_WEBSITE_ID = '9dc66a3c-b7bd-40ee-8b8a-96792963ce59'
 
 /**
  * Display. A grotesk with enough character in its letterforms (the
@@ -142,8 +153,16 @@ export default function RootLayout({
           }}
         />
         <PageWrapper>{children}</PageWrapper>
-        <SpeedInsights />
-        <Analytics />
+        <Script
+          src={UMAMI_SCRIPT_SRC}
+          data-website-id={UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
+        <Script
+          src={UMAMI_RECORDER_SRC}
+          data-website-id={UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

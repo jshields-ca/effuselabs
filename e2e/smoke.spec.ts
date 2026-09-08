@@ -6,10 +6,12 @@ import { ROUTES } from './routes'
  * justified — every entry is a check we are choosing not to perform.
  */
 const IGNORED_CONSOLE_PATTERNS = [
-  // @vercel/analytics and @vercel/speed-insights load their scripts from
-  // /_vercel/*, which is injected by Vercel's edge and does not exist anywhere
-  // else. Both 404 when running locally or in CI, which is expected.
-  /\/_vercel\/(insights|speed-insights)\//,
+  // Umami (self-hosted analytics + session replay, see app/layout.tsx) lives
+  // on Jeremy's own infrastructure at analytics.sctr.tech. Most dev sandboxes
+  // and CI runners have no network route to it, so the script and recorder
+  // tags fail to load there — a reachability gap in the test environment, not
+  // a defect in the site.
+  /analytics\.sctr\.tech/,
 ]
 
 /**

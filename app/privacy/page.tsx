@@ -14,35 +14,45 @@ export default function PrivacyPage() {
       <div>
         <H2 className="text-effuse-parchment">What this site collects</H2>
         <Text>
-          This site uses Vercel Analytics and Vercel Speed Insights to
-          understand traffic patterns and page performance. Both are
-          privacy-focused: they don&apos;t use cookies and don&apos;t track you
-          across other sites. If you email us or fill out a contact form, we
-          receive whatever you send us — name, email address, business (if you
-          give one), and message content.
+          This site uses Umami, an analytics tool we run ourselves rather than a
+          third party&apos;s, to understand how the site is used. It
+          doesn&apos;t use cookies and doesn&apos;t track you across other
+          sites. Beyond page views, it records session replay and heatmap data —
+          a recording of how you move, scroll, and click on this site, and an
+          aggregate map of where visitors click most — so we can see where the
+          site is confusing or slow, not just that it is. If you email us or
+          fill out a contact form, we receive whatever you send us — name, email
+          address, business (if you give one), and message content.
         </Text>
       </div>
 
       <div>
         <H2 className="text-effuse-parchment">How we use it</H2>
         <Text>
-          Analytics data helps us understand which pages are useful and where
-          the site is slow. Contact information is used only to respond to you —
-          we don&apos;t sell it, rent it, or use it for marketing you
-          haven&apos;t asked for.
+          Analytics and session-replay data help us find pages that are
+          confusing, slow, or broken — the honest goal is a site that&apos;s
+          easier to use, including for the accessibility work this firm exists
+          to do. We don&apos;t use it to identify individual visitors, and we
+          don&apos;t combine it with anything you send us through the contact
+          form. Contact information is used only to respond to you — we
+          don&apos;t sell it, rent it, or use it for marketing you haven&apos;t
+          asked for.
         </Text>
       </div>
 
       <div>
         <H2 className="text-effuse-parchment">Third parties</H2>
         <Text>
-          This site is hosted on Vercel, which processes traffic and performance
-          data on our behalf under its own privacy commitments. Messages sent
-          through the contact form are delivered using Resend, an email delivery
-          service — it processes your name, email address, business (if
-          provided) and message solely to send that message to us. Neither
-          Vercel nor Resend gets to do anything else with it, and we don&apos;t
-          share your information with anyone beyond that.
+          This site is hosted on Vercel, which processes traffic on our behalf
+          under its own privacy commitments. Analytics, including session replay
+          and heatmaps, runs on Umami, self-hosted on infrastructure we control
+          — that data does not pass through or get shared with a third-party
+          analytics vendor. Messages sent through the contact form are delivered
+          using Resend, an email delivery service — it processes your name,
+          email address, business (if provided) and message solely to send that
+          message to us. None of Vercel, Umami, or Resend gets to do anything
+          else with your information, and we don&apos;t share it with anyone
+          beyond that.
         </Text>
       </div>
 
