@@ -11,6 +11,8 @@
 export const ROUTES = [
   { path: '/', name: 'home' },
   { path: '/products/lumina', name: 'Lumina product page' },
+  { path: '/about', name: 'about' },
+  { path: '/services', name: 'services' },
 ] as const
 
 export type Route = (typeof ROUTES)[number]

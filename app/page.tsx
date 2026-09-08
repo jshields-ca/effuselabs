@@ -277,10 +277,10 @@ export default function Home() {
                   <Button
                     variant="primary"
                     size="sm"
-                    href="/#contact"
+                    href="/services"
                     className="mt-auto"
                   >
-                    Talk About Your Stack
+                    Learn More About Our Services
                   </Button>
                 </div>
               </Card>

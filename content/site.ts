@@ -43,7 +43,8 @@ export interface SocialLink {
 /** Primary navigation, left to right. */
 export const navLinks: NavLink[] = [
   { label: 'Products', href: '/#products' },
-  { label: 'Solutions', href: '/#solutions' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/#contact' },
 ]
 
