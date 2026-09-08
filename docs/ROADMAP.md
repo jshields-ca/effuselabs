@@ -86,8 +86,8 @@ pass. A gate that lands red teaches everyone to ignore it.
 | 2   | Stack upgrade, dead code removed, design tokens   | ✅ merged      |
 | 3   | Documentation reset                               | ✅ merged      |
 | 4   | Design **system** — surfaces, type scale, a11y    | ✅ merged      |
-| 5   | Design **identity** — the distinctive visual pass | ← you are here |
-| 6   | Information architecture, content, contact        |                |
+| 5   | Design **identity** — the distinctive visual pass | ✅ complete    |
+| 6   | Information architecture, content, contact        | ← you are here |
 | 7   | SEO, deployment hardening                         |                |
 
 ### 1 — Quality gates ✅
@@ -162,7 +162,7 @@ specific rather than vague:
   eyebrows are a plain gradient rule that means nothing.
 - **No signature element, and no aesthetic risk taken anywhere.**
 
-### 5 — Design identity ← current
+### 5 — Design identity ✅
 
 The distinctive pass, and the one that decides whether the site is memorable.
 Worked in two passes, plan then critique, before any code, written down in
@@ -209,15 +209,14 @@ Done in this stage so far:
   had been recorded as removed here once already while still live in the
   code; that gap between what this document claimed and what the code did
   is exactly the failure mode this whole audit exists to catch, so it's
-  worth naming rather than quietly fixing. A real signature is close: five
-  candidate crops are with Jeremy for a pick as of this writing, and
-  wiring the chosen one in is the very next thing that lands.
+  worth naming rather than quietly fixing. The real signature (Jeremy's
+  pick, from five auto-extracted candidates) is wired in.
+- The philosophy blocks are offset and unnumbered now, matching
+  `docs/DESIGN_PLAN.md`'s layout section — real labels (Accessibility,
+  Performance, Longevity) carry the information the numbers pretended to.
 
-Still open in this stage:
+Stage 5 is functionally complete. Still open, not blocking:
 
-- **Layout**: the offset, unnumbered philosophy blocks from
-  `docs/DESIGN_PLAN.md` are designed but not built. (The full-bleed founder
-  statement half of this is done — see above.)
 - **Motion and interaction.** The original plan was deliberately restrained —
   "extra animation is what makes a design feel generated" — on the theory
   that a firm selling accessibility should not lean on motion. Direct
