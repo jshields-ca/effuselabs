@@ -72,8 +72,9 @@ export const contact = {
  * Reference, Documentation, Support and a Blog — six anchors that pointed at
  * IDs present on no page — plus /privacy, /terms and /accessibility, which
  * were hard 404s. Every link here resolves to something that exists today.
- * The legal pages and the rest return as real routes when the site's
- * information architecture is built.
+ * The legal pages are real routes now (draft copy, pending legal review —
+ * see components/layout/LegalPageLayout.tsx); Careers/News/etc. return when
+ * there is something real to say on them.
  */
 export const footerGroups: FooterLinkGroup[] = [
   {
@@ -82,7 +83,19 @@ export const footerGroups: FooterLinkGroup[] = [
   },
   {
     heading: 'Company',
-    links: [{ label: 'Contact', href: '/#contact' }],
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Services', href: '/services' },
+      { label: 'Contact', href: '/#contact' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+      { label: 'Accessibility', href: '/accessibility' },
+    ],
   },
 ]
 
