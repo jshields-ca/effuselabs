@@ -74,13 +74,32 @@ interface PourProps {
  * part — the ribbons, the core's `feGaussianBlur` glow — was visibly present
  * and correct in that same screenshot.
  *
- * So the wash is now drawn the same way the core's glow already is: as SVG,
- * with `feGaussianBlur`, not a CSS-blurred HTML div. Same technology
- * throughout the component, rather than two different blur implementations
- * that only one of them was ever shown to survive contact with a real
- * browser. The two ellipses below are centred on the gap and sized to
- * overlap the ribbons' own thick "mouth" ends, so the seam between
- * SVG-drawn-ribbon and SVG-drawn-wash has no room to reappear as its own gap.
+ * So the wash was first rewritten as SVG using `feGaussianBlur`, the same
+ * technique the core's glow already used. That was progress — it went from
+ * completely absent on Jeremy's Windows 11 Firefox to visibly present, just
+ * far smaller and dimmer than the identical shapes rendered here — but two
+ * rounds of making the shapes larger and brighter still left a visible gap
+ * in his screenshots. The likely reason, confirmed against MDN and the SVG
+ * spec rather than guessed: `feGaussianBlur` and every other filter
+ * primitive composite in **linearRGB** by default
+ * (`color-interpolation-filters`'s initial value), while gradients, fills and
+ * everything else on the page use **sRGB**. Browsers have a documented history
+ * of disagreeing on exactly this — different engines have shipped different
+ * defaults for filter color primitives (feFlood, in one cited case) — so the
+ * same low-opacity gradient, run through the same blur, can composite to a
+ * visibly different brightness and effective reach depending on which colour
+ * space the engine actually used.
+ *
+ * Rather than keep tuning size and opacity against a variable I can't see
+ * (no Firefox in this sandbox to compare against), the wash no longer uses a
+ * blur filter at all. A radial gradient with several colour stops is already
+ * smooth — the blur was adding extra diffusion on top of that, not the only
+ * source of its softness — so removing it removes the entire class of bug,
+ * rather than trying to patch around it a third time. The core ribbon edges
+ * still use `feGaussianBlur` (a thin line genuinely needs it to read as
+ * glowing light rather than a stroke), and that filter now pins
+ * `color-interpolation-filters="sRGB"` explicitly so it can't fall back to
+ * a colour space that's inconsistently implemented.
  *
  * Decorative: hidden from assistive technology.
  */
@@ -117,18 +136,10 @@ export const Pour: React.FC<PourProps> = ({
   // one, same idea as the old div pair (hot centre small, falloff large).
   // Both are sized off `gapHalf` and extend well past it so they overlap the
   // ribbons' thick mouth ends rather than meeting them edge-to-edge, which is
-  // what keeps this from reintroducing a visible seam of its own.
-  //
-  // Sized much larger than the geometry alone calls for. The first version of
-  // this (rx = gapHalf + 220 / + 90) covered the gap completely in every
-  // render taken in this environment, but on Jeremy's actual Windows 11
-  // Firefox it showed up as a small, dim blob nowhere near wide enough to
-  // reach the ribbons — the same feGaussianBlur construct, on his machine,
-  // produces a visibly smaller and fainter result than it does here. Rather
-  // than chase the exact reason blind (no Firefox available in this sandbox
-  // to compare against), this over-provisions size and opacity generously
-  // enough that even a noticeably tighter, dimmer render should still bridge
-  // the gap.
+  // what keeps this from reintroducing a visible seam of its own. Kept at the
+  // generous size from the last (blur-based) attempt rather than scaled back
+  // down now that blur is gone — there's no cost to the margin of safety and
+  // real cost to being wrong again.
   const washRx = gapHalf + 480
   const bloomRx = gapHalf + 260
 
@@ -153,7 +164,14 @@ export const Pour: React.FC<PourProps> = ({
             reads as a stray line; with it, it reads as the thing emitting the
             light in the spill above.
           */}
-          <filter id="pour-glow" x="-20%" y="-200%" width="140%" height="500%">
+          <filter
+            id="pour-glow"
+            x="-20%"
+            y="-200%"
+            width="140%"
+            height="500%"
+            colorInterpolationFilters="sRGB"
+          >
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -221,37 +239,15 @@ export const Pour: React.FC<PourProps> = ({
             />
             <stop offset="85%" stopColor={warm.ember} stopOpacity="0" />
           </radialGradient>
-          {/*
-            Generous filter regions, well past what a blur this size needs, so
-            nothing gets clipped at the filter's own edge in any engine —
-            the same margin of safety `pour-glow` above already relies on.
-          */}
-          <filter
-            id="pour-wash-blur-teal"
-            x="-60%"
-            y="-400%"
-            width="220%"
-            height="900%"
-          >
-            <feGaussianBlur stdDeviation="12" />
-          </filter>
-          <filter
-            id="pour-wash-blur-gold"
-            x="-60%"
-            y="-400%"
-            width="220%"
-            height="900%"
-          >
-            <feGaussianBlur stdDeviation="7" />
-          </filter>
         </defs>
 
         {/*
-          The wash. Drawn as SVG with `feGaussianBlur`, the same technology
-          the core's glow below already uses — not a CSS-blurred HTML div, see
-          this component's own doc comment for why. Sized off `gapHalf` so it
-          widens as the shell opens, and overlapping the ribbons' own mouths
-          by design rather than meeting them edge to edge.
+          The wash. No blur filter — a multi-stop radial gradient is already
+          smooth on its own, and this sidesteps a real, documented Firefox/
+          Chrome inconsistency in how filter primitives composite colour (see
+          this component's own doc comment). Sized off `gapHalf` so it widens
+          as the shell opens, and overlapping the ribbons' own mouths by
+          design rather than meeting them edge to edge.
         */}
         <ellipse
           className="motion-safe:animate-drift-slower"
@@ -260,7 +256,6 @@ export const Pour: React.FC<PourProps> = ({
           rx={washRx}
           ry="75"
           fill="url(#pour-wash-teal)"
-          filter="url(#pour-wash-blur-teal)"
         />
         <ellipse
           cx="600"
@@ -268,7 +263,6 @@ export const Pour: React.FC<PourProps> = ({
           rx={bloomRx}
           ry="44"
           fill="url(#pour-wash-gold)"
-          filter="url(#pour-wash-blur-gold)"
         />
 
         {/*

@@ -716,10 +716,10 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   behind it.
 
   Fourth attempt: the SVG rewrite above was progress, not a fix — Jeremy's
-  next screenshot (same Windows 11 Firefox, resized window, still no ad
-  blocker) showed the wash actually rendering for the first time, but as a
-  small, dim blob sitting alone in the centre, well short of the ribbons on
-  either side. The same `gapHalf`-derived sizing that produces full,
+  next screenshots (same Windows 11 Firefox, at full width and resized
+  narrower; uBlock disabled first, confirmed no difference) showed the wash
+  actually rendering for the first time, but as a small, dim blob sitting
+  alone in the centre, well short of the ribbons on either side. The same `gapHalf`-derived sizing that produces full,
   seamless coverage in every render taken in this environment produces a
   visibly smaller and fainter result on his machine — a real, reproducible
   gap between this sandbox's Chromium and his Firefox in how much of a
@@ -732,9 +732,38 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   gradients, the falloff point pushed from 70-72% out to 85% so more of each
   ellipse stays visible before fading, and both blur radii trimmed (18→12,
   10→7) so the blur softens the edge without diffusing the whole shape
-  toward invisibility. Still reads as a soft wash rather than a hard shape in
-  every render taken here. Confirming this actually closes the gap on his
-  Firefox is still pending.
+  toward invisibility.
+
+  Fifth attempt, and the first with an actual documented cause rather than
+  another guess: Jeremy's next screenshot showed the wash bigger and
+  brighter than before — real progress — but still visibly short of the
+  ribbons on both sides, which ruled out "just needs to be bigger" as the
+  whole story. Looked up
+  rather than guessed this time: `feGaussianBlur`, and every SVG filter
+  primitive, composites in **linearRGB** by default
+  (`color-interpolation-filters`'s spec-defined initial value), while
+  gradients and fills default to **sRGB**. MDN and the W3C's own SVG working
+  group mail archive both document real historical disagreement between
+  engines on exactly this class of colour-space default for filter
+  primitives. That's a plausible, evidence-backed explanation for why the
+  same numbers — same gradient stops, same blur radius — produced a
+  dramatically different visible result in his Firefox than in this
+  sandbox's Chromium, no matter how much the earlier attempts inflated size
+  and opacity to compensate.
+
+  Rather than pin the colour space and hope, the wash's blur filters are
+  gone entirely: a multi-stop radial gradient is already smooth without one,
+  so removing the filter removes the whole class of bug rather than trying
+  to configure around it. `pour-glow`, the one blur this component still
+  has a real use for (the core ribbon edges — a thin line needs a genuine
+  blur to read as glowing, unlike the wash), now sets
+  `color-interpolation-filters="sRGB"` explicitly instead of relying on a
+  default two engines have disagreed about. Confirmed the wash still reads
+  as soft rather than a hard-edged shape at every width checked here.
+  Confirming this actually closes the gap on Jeremy's Firefox is still
+  pending — if it doesn't, the next useful data point is whether the gap has
+  gotten smaller, which would tell us this was a real contributing factor
+  even if not the only one.
 
 - ~~The services page's "What we set up" checklist linked one named example
   per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
