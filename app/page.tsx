@@ -1,5 +1,6 @@
 import { SectionContainer } from '@/components/layout'
 import {
+  ContactForm,
   FounderStatementSection,
   HeroSection,
   PhilosophySection,
@@ -18,7 +19,7 @@ import {
   Pour,
   Text,
 } from '@/components/ui'
-import { ArrowRight, Check, Server } from 'lucide-react'
+import { Check, Server } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Home() {
@@ -314,27 +315,27 @@ export default function Home() {
           </Text>
 
           {/*
-            These were a "Get Started" and a "Schedule Demo" button with no href
-            and no onClick — inert elements styled to look like the primary
-            action on the page. A mailto: is not the eventual answer, but it
-            works today, which an inert button never did. The contact form
-            replaces it.
+            This used to be a bare "Email {address}" button — real, unlike the
+            inert "Get Started" / "Schedule Demo" buttons it originally
+            replaced, but still just a link. The form below constructs a
+            proper mailto: with the fields filled in, rather than a backend
+            this repo doesn't have credentials to build honestly — see
+            components/sections/ContactForm.tsx.
           */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              variant="primary"
-              size="lg"
-              href={`mailto:${contact.email}`}
-            >
-              Email {contact.email}
-              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-            </Button>
-            <Button variant="secondary" size="lg" href="/products/lumina">
-              See what we have built
-            </Button>
-          </div>
+          <ContactForm />
 
-          <Text className="mt-10 text-body-sm text-effuse-parchment/70">
+          <Text className="mt-8 text-body-sm text-effuse-parchment/60">
+            Prefer email directly? Reach us at{' '}
+            <a
+              href={`mailto:${contact.email}`}
+              className="text-effuse-teal underline underline-offset-2"
+            >
+              {contact.email}
+            </a>
+            .
+          </Text>
+
+          <Text className="mt-6 text-body-sm text-effuse-parchment/70">
             {contact.location}
           </Text>
         </Reveal>

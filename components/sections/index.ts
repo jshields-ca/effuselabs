@@ -1,4 +1,5 @@
 export { HeroSection } from './HeroSection'
+export { default as ContactForm } from './ContactForm'
 export { default as FounderStatementSection } from './FounderStatementSection'
 export { default as PhilosophySection } from './PhilosophySection'
 
