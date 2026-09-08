@@ -200,11 +200,24 @@ Done in this stage so far:
 - Two live non-negotiable violations found while doing the above and fixed
   alongside it: the `#waitlist` dead anchors, and cross-page nav links
   (`#contact` etc.) that only resolved from the homepage.
+- The homepage's second business line: "Solutions" was Lumina pitched
+  twice, rewritten in place to actually describe self-hosting/open-source
+  support — see the content-and-component-correctness entry below.
+- The real Lumina logo, replacing the Lightbulb icon placeholder.
+- The founder statement is full-bleed now, matching `docs/DESIGN_PLAN.md`'s
+  layout section — and the fake signature squiggle is actually gone. It
+  had been recorded as removed here once already while still live in the
+  code; that gap between what this document claimed and what the code did
+  is exactly the failure mode this whole audit exists to catch, so it's
+  worth naming rather than quietly fixing. A real signature is close: five
+  candidate crops are with Jeremy for a pick as of this writing, and
+  wiring the chosen one in is the very next thing that lands.
 
 Still open in this stage:
 
-- **Layout**: the offset, unnumbered philosophy blocks and the full-bleed
-  founder statement from `docs/DESIGN_PLAN.md` are designed but not built.
+- **Layout**: the offset, unnumbered philosophy blocks from
+  `docs/DESIGN_PLAN.md` are designed but not built. (The full-bleed founder
+  statement half of this is done — see above.)
 - **Motion and interaction.** The original plan was deliberately restrained —
   "extra animation is what makes a design feel generated" — on the theory
   that a firm selling accessibility should not lean on motion. Direct
@@ -332,19 +345,21 @@ stage 6 starts placing them.
 
 **Still open, stage 5:**
 
-- The philosophy section still carries numbered 1/2/3 markers and the founder
-  statement is still a two-column grid rather than the offset/full-bleed
-  layout `docs/DESIGN_PLAN.md` describes. Not yet built.
+- The philosophy section still carries numbered 1/2/3 markers rather than the
+  offset, unnumbered layout `docs/DESIGN_PLAN.md` describes. Not yet built.
+  (The founder statement's own layout work is done — see below.)
 - Motion is under review after live feedback that the original restrained
   approach reads as under-designed rather than disciplined. A design-committee
-  pass (proposal + independent critique) is running before anything ships, so
-  the result is argued rather than asserted.
-- The founder statement has no signature or portrait. The decorative squiggle
-  that stood in for one was not a signature at all, and was removed rather
-  than left to imply something untrue. It stays empty until a real signature
-  arrives — that is a deliberate absence, not an oversight.
+  pass (proposal + independent critique) ran before anything shipped; the
+  result was that almost none of the proposed flourishes survived the
+  critique, and the two that did (a real mobile-menu transition, native page
+  cross-fades) are built. Anything bolder than that, per the committee, should
+  spend its budget on the Pour rather than open new independent effects.
 - No illustration system yet, and no SVG logo; `public/` currently holds only
   PNGs.
+- A real signature for the founder statement: five candidate crops from
+  Jeremy's photo are with him for a pick as of this writing. The section
+  supports one (`signatureSrc`) and renders nothing until it's supplied.
 
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
@@ -362,6 +377,19 @@ finding, not just the current clean state):
   reported.
 - ~~Fraunces read as editorial rather than technical~~ — replaced with
   Bricolage Grotesque; see stage 5.
+- ~~The site represented only one of two business lines~~ — the homepage's
+  "Solutions" section was Lumina pitched a second time; rewritten in place to
+  describe self-hosting/open-source support, the site's actual second
+  offering.
+- ~~Lumina had no real logo, just a generic Lightbulb icon~~ — the real mark
+  is wired into the homepage Products card and the Lumina hero.
+- ~~The founder statement's squiggle was still live~~, despite an earlier
+  version of this document claiming it had been removed. It hadn't — the
+  claim was written before the fix, not after, and nobody caught the gap
+  until this pass. Now actually gone, and the section is full-bleed per
+  `docs/DESIGN_PLAN.md` rather than the two-column grid it sat in.
+- ~~The mobile menu had no open/close transition at all~~ — fixed; see stage
+  5's motion note above.
 
 **Still open, stage 6:**
 
@@ -370,7 +398,9 @@ finding, not just the current clean state):
   them were removed rather than left as 404s; the pages arrive here.
 - `/services` (or equivalent) doesn't exist yet, and is the landing point for
   the planned `jeremyshields.ca` redirect — see stage 6 above.
-- The social profile links in the footer have never been verified to exist.
+- LinkedIn, Twitter/X and Bluesky in the footer are confirmed-real accounts
+  with placeholder URLs, not verified addresses — swap in the real ones when
+  they arrive. GitHub is confirmed real as of 2026-09-08.
 
 **Stage 7:**
 
