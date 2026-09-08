@@ -8,6 +8,13 @@ export interface FeatureItem {
   icon: LucideIcon
   title: string
   description: string
+  /**
+   * A concrete, named example backing the category claim — e.g. linking
+   * "File storage and sharing" to Nextcloud. Optional: Lumina's own feature
+   * list has nothing to link to yet, so this only renders when supplied.
+   * Opens in a new tab since it always points off-site.
+   */
+  example?: { label: string; href: string }
 }
 
 export interface FeatureBreakdownSectionProps {
@@ -77,6 +84,16 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                         <Text className="text-effuse-parchment">
                           {item.description}
                         </Text>
+                        {item.example ? (
+                          <a
+                            href={item.example.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-2 inline-block text-body-sm text-effuse-teal underline underline-offset-2 hover:text-effuse-parchment"
+                          >
+                            For example: {item.example.label}
+                          </a>
+                        ) : null}
                       </div>
                     </div>
                   ) : (
@@ -97,6 +114,16 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
                       <Text className="text-effuse-parchment">
                         {item.description}
                       </Text>
+                      {item.example ? (
+                        <a
+                          href={item.example.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-block text-body-sm text-effuse-teal underline underline-offset-2 hover:text-effuse-parchment"
+                        >
+                          For example: {item.example.label}
+                        </a>
+                      ) : null}
                     </div>
                   )}
                 </Reveal>

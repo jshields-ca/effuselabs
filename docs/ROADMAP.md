@@ -395,6 +395,23 @@ stage 6 starts placing them.
     the Pour rather than open new independent effects.
 - No illustration system yet, and no SVG logo; `public/` currently holds only
   PNGs.
+- Jeremy asked whether the site's icons (plain `lucide-react` glyphs in a
+  teal-ring badge, used everywhere — feature lists, "How we build," pricing
+  checkmarks) read as generic, and whether custom iconography is worth
+  pursuing. Recommendation, not yet actioned: leave the library alone, but
+  it's real design debt alongside the missing illustration system above —
+  both are "we borrowed a stock visual vocabulary and never gave it a
+  distinct treatment." A full bespoke icon set is a real investment (every
+  icon across every section, redrawn and maintained) for a component that's
+  support cast, not the lead — the Pour is what should look unmistakably
+  Effuse Labs, and it just got the redesign to earn that. A cheaper
+  middle path exists if a second opinion wants it: keep `lucide-react` for
+  the glyphs themselves but restyle the badge that holds them (the brand
+  gradient as a ring or fill instead of flat teal-tint, a shape other than a
+  plain rounded square) so the _frame_ is distinctly Effuse Labs even where
+  the glyph inside it is a common one. Bringing this to Jeremy rather than
+  just picking one: it's a cost/reward call across the whole site, not a
+  single component fix.
 - ~~A real signature for the founder statement~~ — **done.** Jeremy's chosen
   candidate needed re-deskewing: the first pass leveled the _letters_ by eye
   (44°) and left the underline flourish still running diagonally through
@@ -404,21 +421,81 @@ stage 6 starts placing them.
   the cursive letterforms, which are a much noisier signal — rotating to
   that angle leveled both the underline _and_ the text in the same pass.
   Re-rendered larger in `FounderStatementSection` (`h-16` → `h-24`/`h-28`).
-- Two Pour dividers around the founder statement rendered with visible
-  jagged diagonal fragments on Jeremy's real mobile device (screenshot
-  supplied), which this environment's Chromium-only Playwright could not
-  reproduce. Removed `vector-effect="non-scaling-stroke"` from both paths in
-  `components/ui/Pour.tsx` — combined with `preserveAspectRatio="none"`'s
-  anisotropic scaling (a 1200×120 viewBox stretched into a ~390×130 mobile
-  box), that attribute is a known cross-engine rendering ambiguity, and it
-  wasn't load-bearing for the visual design. This is a spec-reasoning fix,
-  not a reproduced-and-verified one — there is no WebKit available in this
-  environment to confirm against. Please check on your device after the
-  next deploy; if it still looks wrong, screenshot it and we'll look at the
-  `preserveAspectRatio` behavior next.
+- ~~Two Pour dividers around the founder statement rendered with visible
+  jagged diagonal fragments on Jeremy's real mobile device~~ — superseded by
+  a full shape redesign, see below. The immediate fix (removing
+  `vector-effect="non-scaling-stroke"`, a suspected cross-engine rendering
+  ambiguity with `preserveAspectRatio="none"`'s non-uniform scaling) is
+  still in place but is no longer the interesting change: Jeremy's follow-up
+  feedback ("these just look like glowing lines... I don't get the sense of
+  flow, or liquid, or effuse") asked for more than a bugfix, and a filled
+  shape has no stroke width to scale unevenly in the first place, so the
+  whole bug class no longer applies regardless.
+- ~~`Pour` reading as static glowing lines rather than a pour~~ — **done,**
+  after a design-committee pass (proposal + independent critique) on this
+  one component. The shell and core are now filled, tapered ribbons —
+  near-invisible for most of their length, gathering into a wide mouth right
+  at the opening, the way a stream thickens as it nears where it spills —
+  rather than uniform-width strokes. Considered and cut: a single continuous
+  ribbon spanning the whole divider (loses the "shell parting to reveal
+  light" idea this component exists to encode) and a droplet/dash-travel
+  animation on top of the shape change (a second animated layer, cut for
+  restraint — the shape fix reads as flow on its own, and this component
+  just shipped one cross-browser animation scare already). Ambient drift on
+  the glow divs is unchanged; no new motion was added.
 
 **Fixed since the last update** (kept here briefly so the record shows the
 finding, not just the current clean state):
+
+- ~~No link to the Lumina repo on its own product page~~ — added a "View on
+  GitHub" secondary CTA to `ProductHero` (a new optional
+  `secondaryCtaLabel`/`secondaryCtaHref` pair, only rendered when both are
+  supplied), pointing at `repos.lumina` — a small new export in
+  `content/site.ts` alongside `socialLinks`, so any future page that wants
+  to link the repo reads from one place rather than a hardcoded URL.
+- ~~The founder's disability mentioned twice~~ — once in the founder
+  statement on the homepage, again in `/about`'s "Why it exists" section.
+  Jeremy asked for it once, not repeated across the site. The About page
+  now speaks to the lived experience ("spent years working around software
+  that wasn't built with him in mind") and points back at the founder
+  statement for the fuller account, rather than restating the specific
+  language a second time.
+- ~~No concrete examples on `/services`, just category descriptions~~ —
+  added a `for example:` link under each of the four
+  `FeatureBreakdownSection` items (Nextcloud, Mattermost, ERPNext, Plausible
+  Analytics), via a new optional `example` field on `FeatureItem`. Picked
+  for being the most recognized, actively maintained project in each
+  category — not an exhaustive list, and swappable if Jeremy prefers
+  different flagships (Odoo Community instead of ERPNext, Umami instead of
+  Plausible, etc. were the runners-up).
+- ~~Footer repeated the same facts three times~~ — "Location: Winnipeg,
+  Manitoba, Canada" and "Email: jeremy@effuse.io" sat in the Company Info
+  column, duplicating the location in the bottom bar and the email already
+  reachable via the homepage contact form and the Connect With Us icons.
+  Removed both. The homepage contact section had its own redundant
+  `contact.location` line below the "prefer email directly?" mailto — also
+  removed. The bottom bar's location line is now sourced from
+  `contact.location` directly (`Built with care in {contact.location}`)
+  rather than a separately hardcoded string, so the fact lives in one place
+  now that it isn't restated elsewhere.
+- ~~The contact form only ever opened a mail client~~ — real delivery,
+  gracefully degrading. `app/api/contact/route.ts` (new) sends via Resend's
+  HTTP API when `RESEND_API_KEY` is set; `ContactForm.tsx` shows an inline
+  "message sent" confirmation on success, and falls back to the same
+  `mailto:` handoff it always used if the key isn't configured yet or the
+  request fails for any reason — so nothing regresses in the meantime. The
+  now-unnecessary "This opens your email app... nothing is sent until you
+  do" helper text is gone, since the button does send something once
+  configured. Provisioning the Resend account, verifying `effuse.io` as a
+  sending domain, and setting `RESEND_API_KEY` in Vercel is Jeremy's action
+  — adding a paid dependency or service isn't mine to decide silently, per
+  CLAUDE.md — everything else is built and inert until then.
+- ~~Stale `hello@effuse.io` in four places~~ — `app/products/lumina/page.tsx`'s
+  secondary CTA, and three mentions in `README.md`/`NOTICE` — every one of
+  them predating the real `jeremy@effuse.io` address Jeremy confirmed
+  earlier this session. Same class of bug as the Sanity `demo` project ID
+  non-negotiable #3 exists to warn about: a value that was never updated
+  after the real one arrived.
 
 - ~~Redundant back-to-back CTA blocks~~ — `/products/lumina` had a "Coming
   Soon" pricing placeholder immediately followed by a "Ready to transform

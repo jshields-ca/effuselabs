@@ -106,12 +106,11 @@ export default function AboutPage() {
               Accessibility is autobiography here, not positioning
             </H2>
             <Text className="text-effuse-parchment">
-              Jeremy Shields, the founder, is a developer and a
-              federally-recognized person with a disability. He started Effuse
-              Labs on the belief that technology should be a source of
-              liberation, not frustration — badly designed software builds
-              barriers, and this firm exists to stop doing that. It shows up as
-              a rule, not a slogan: every dark surface on this site is checked
+              Jeremy Shields, the founder, spent years working around software
+              that wasn&apos;t built with him in mind before he decided to stop
+              working around it and start building the alternative — the founder
+              statement above tells that story directly. Here, it shows up as a
+              rule, not a slogan: every dark surface on this site is checked
               automatically against recognized accessibility standards (WCAG
               AA), not left to a reviewer&apos;s judgement.
             </Text>

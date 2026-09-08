@@ -20,6 +20,9 @@ export interface ProductHeroProps {
   subheadline?: string
   primaryCtaLabel: string
   primaryCtaHref: string
+  /** e.g. a link to the product's public GitHub repo. Opens in a new tab. */
+  secondaryCtaLabel?: string
+  secondaryCtaHref?: string
   accentGradient?: { from: string; to: string }
 }
 
@@ -34,6 +37,8 @@ const ProductHero: React.FC<ProductHeroProps> = ({
   subheadline,
   primaryCtaLabel,
   primaryCtaHref,
+  secondaryCtaLabel,
+  secondaryCtaHref,
   accentGradient,
 }) => {
   return (
@@ -74,10 +79,15 @@ const ProductHero: React.FC<ProductHeroProps> = ({
             </Text>
           ) : null}
 
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button variant="primary" size="lg" href={primaryCtaHref}>
               {primaryCtaLabel}
             </Button>
+            {secondaryCtaLabel && secondaryCtaHref ? (
+              <Button variant="secondary" size="lg" href={secondaryCtaHref}>
+                {secondaryCtaLabel}
+              </Button>
+            ) : null}
           </div>
         </div>
       </Reveal>

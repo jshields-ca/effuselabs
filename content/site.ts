@@ -117,3 +117,12 @@ export const socialLinks: SocialLink[] = [
   { label: 'Bluesky', href: 'https://bsky.app/profile/effuselabs.bsky.social' },
   { label: 'GitHub', href: 'https://github.com/effuselabs' },
 ]
+
+/**
+ * Per-product repo links — confirmed real, same source as socialLinks above.
+ * Lives here rather than inline on the product page so any future page that
+ * wants to point at the repo (About, footer) reads from one place.
+ */
+export const repos = {
+  lumina: 'https://github.com/effuselabs/lumina',
+} as const

@@ -1,5 +1,5 @@
 import ProductPageTemplate from '@/components/product/ProductPageTemplate'
-import { contact } from '@/content/site'
+import { contact, repos } from '@/content/site'
 import { product } from '@/lib/design/tokens'
 import {
   FeatureBreakdownSection,
@@ -37,6 +37,8 @@ export default function LuminaProductPage() {
           'Replace the patchwork of apps with a single, elegant system for bookings, financials, and client relationships.',
         primaryCtaLabel: 'Start a Conversation',
         primaryCtaHref: '/#contact',
+        secondaryCtaLabel: 'View on GitHub',
+        secondaryCtaHref: repos.lumina,
         accentGradient: {
           from: product.lumina.gold,
           to: product.lumina.coral,

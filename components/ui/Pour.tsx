@@ -34,15 +34,29 @@ interface PourProps {
  *
  * CONSTRUCTION
  *
- * Two SVG arcs and a blurred radial spill. No WebGL, no canvas, no animation
- * frame loop — it costs one composited layer and works with JavaScript
- * disabled. The stroke uses `pathLength="1"` so dash values are expressed as
- * fractions and the geometry stays legible rather than being tuned by
- * magic numbers.
+ * This used to be two uniform-width strokes with a dash gap in the middle —
+ * geometrically correct, but Jeremy's read on it (after living with it) was
+ * exact: "these just look like glowing lines... I don't get the sense of
+ * flow, or liquid, or effuse." A stroke of constant width doesn't behave like
+ * a fluid; nothing about it narrows, gathers or pours. So the shell and core
+ * are now each two *filled* ribbons — tapering to a near-invisible point at
+ * the outer edges and widening into a curved mouth at the opening, the way a
+ * stream gathers as it approaches where it spills. A design-committee pass
+ * (proposal + independent critique) considered a single continuous ribbon
+ * spanning the whole divider and a droplet/dash-travel animation on top of
+ * it; both were cut — the former loses the "shell parting to reveal light"
+ * idea this component exists to encode, and the latter is a second animated
+ * layer earning its keep only if the shape fix alone isn't enough. Filled
+ * shapes also sidestep the bug this component just shipped a fix for:
+ * `vector-effect="non-scaling-stroke"` combined with `preserveAspectRatio=
+ * "none"`'s non-uniform scaling was the suspected cause of jagged rendering
+ * on a real mobile browser this environment couldn't reproduce. A fill has no
+ * stroke width to scale unevenly in the first place, so the whole class of
+ * bug no longer applies here.
  *
- * Ambient drift is the only motion, and it is `motion-safe:` gated. Under
- * reduced motion the arcs are static and fully formed — a composition, not an
- * animation that stopped.
+ * Ambient drift on the glow is the only motion, and it is `motion-safe:`
+ * gated. Under reduced motion the ribbons are static and fully formed — a
+ * composition, not an animation that stopped.
  *
  * Decorative: hidden from assistive technology.
  */
@@ -53,9 +67,27 @@ export const Pour: React.FC<PourProps> = ({
 }) => {
   const open = Math.max(0, Math.min(1, openness))
 
-  // The gap the light comes through, as a fraction of the arc's length.
-  const gap = 0.08 + open * 0.34
-  const drawn = (1 - gap) / 2
+  // Half the width of the opening, in viewBox units. Widening this is what
+  // "opens" the shell — same idea as the old dash gap, expressed as geometry
+  // instead of a stroke-dasharray fraction.
+  const gapHalf = 60 + open * 180
+  const leftEnd = 600 - gapHalf
+  const rightStart = 600 + gapHalf
+
+  // Shell ribbon: a near-invisible tail (top and bottom edges 1 unit apart)
+  // for most of its length, gathering sharply in the final stretch before
+  // the opening into a wide mouth — the way a stream stays thin until it
+  // nears the spout, then swells right before it pours. Control points sit
+  // close to the mouth end on purpose, so the flare happens late and reads
+  // as a gather rather than a gradual, even widening.
+  const shellLeft = `M0 90 C ${leftEnd * 0.55} 89, ${leftEnd * 0.88} 62, ${leftEnd} 4 L ${leftEnd} 55 C ${leftEnd * 0.88} 78, ${leftEnd * 0.55} 91, 0 91 Z`
+  const shellRight = `M1200 90 C ${1200 - (1200 - rightStart) * 0.55} 89, ${1200 - (1200 - rightStart) * 0.88} 62, ${rightStart} 4 L ${rightStart} 55 C ${1200 - (1200 - rightStart) * 0.88} 78, ${1200 - (1200 - rightStart) * 0.55} 91, 1200 91 Z`
+
+  // Core ribbon: the same gathering shape, smaller throughout, sitting a
+  // little lower so it reads as the light running along the inside of the
+  // shell rather than a second copy of it.
+  const coreLeft = `M0 101 C ${leftEnd * 0.6} 100, ${leftEnd * 0.9} 78, ${leftEnd} 26 L ${leftEnd} 42 C ${leftEnd * 0.9} 90, ${leftEnd * 0.6} 102, 0 102 Z`
+  const coreRight = `M1200 101 C ${1200 - (1200 - rightStart) * 0.6} 100, ${1200 - (1200 - rightStart) * 0.9} 78, ${rightStart} 26 L ${rightStart} 42 C ${1200 - (1200 - rightStart) * 0.9} 90, ${1200 - (1200 - rightStart) * 0.6} 102, 1200 102 Z`
 
   return (
     <div
@@ -108,14 +140,35 @@ export const Pour: React.FC<PourProps> = ({
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <linearGradient id="pour-shell" x1="0" x2="1" y1="0" y2="0">
+          {/*
+            userSpaceOnUse, spanning the full 0-1200 viewBox, rather than each
+            ribbon's own bounding box. That way the left and right ribbons
+            sample opposite ends of one continuous ramp instead of each
+            re-running the same gradient independently — they read as one
+            shell pulled apart, not two unrelated shapes that happen to match.
+          */}
+          <linearGradient
+            id="pour-shell"
+            gradientUnits="userSpaceOnUse"
+            x1="0"
+            x2="1200"
+            y1="0"
+            y2="0"
+          >
             <stop offset="0%" stopColor={brand.slate} stopOpacity="0" />
             <stop offset="28%" stopColor={surface.border} stopOpacity="1" />
             <stop offset="50%" stopColor={brand.teal} stopOpacity="1" />
             <stop offset="72%" stopColor={surface.border} stopOpacity="1" />
             <stop offset="100%" stopColor={brand.slate} stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="pour-core" x1="0" x2="1" y1="0" y2="0">
+          <linearGradient
+            id="pour-core"
+            gradientUnits="userSpaceOnUse"
+            x1="0"
+            x2="1200"
+            y1="0"
+            y2="0"
+          >
             <stop offset="0%" stopColor={brand.gold} stopOpacity="0" />
             <stop offset="50%" stopColor={brand.gold} stopOpacity="0.9" />
             <stop offset="100%" stopColor={brand.gold} stopOpacity="0" />
@@ -123,32 +176,27 @@ export const Pour: React.FC<PourProps> = ({
         </defs>
 
         {/*
-          The shell. A single arc split by a dash gap at its centre — the gap
-          is the opening, so widening it opens the shell rather than drawing a
-          second shape.
+          The shell. Two tapered ribbons rather than one dashed line — the
+          opening between them is the gap itself, so widening it opens the
+          shell rather than drawing a second shape.
         */}
-        <path
-          d="M0 88 Q 600 8 1200 88"
-          fill="none"
-          stroke="url(#pour-shell)"
-          strokeWidth="2.5"
-          pathLength={1}
-          strokeDasharray={`${drawn} ${gap} ${drawn}`}
-          strokeLinecap="round"
-        />
+        <path d={shellLeft} fill="url(#pour-shell)" />
+        <path d={shellRight} fill="url(#pour-shell)" />
 
         {/*
-          The core edge, sitting just below the opening and visible only across
-          the gap. This is the golden line a visitor reads as the light source.
+          The core edge, sitting just inside the shell and visible only near
+          the opening. This is the golden ribbon a visitor reads as the light
+          source pouring through.
         */}
         <path
-          d="M0 100 Q 600 20 1200 100"
-          fill="none"
-          stroke="url(#pour-core)"
-          strokeWidth="3"
-          pathLength={1}
-          strokeDasharray={`0 ${drawn} ${gap} ${drawn}`}
-          strokeLinecap="round"
+          d={coreLeft}
+          fill="url(#pour-core)"
+          opacity={0.55 + open * 0.45}
+          filter="url(#pour-glow)"
+        />
+        <path
+          d={coreRight}
+          fill="url(#pour-core)"
           opacity={0.55 + open * 0.45}
           filter="url(#pour-glow)"
         />

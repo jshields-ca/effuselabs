@@ -88,21 +88,13 @@ export const Footer: React.FC = () => {
               <Text className="text-slate-300 mb-4">{brand.blurb}</Text>
             </div>
 
-            {/* Contact Info */}
-            <div className="mb-6">
-              <Text className="text-slate-300">
-                <strong>Location:</strong> {contact.location}
-              </Text>
-              <Text className="text-slate-300">
-                <strong>Email:</strong>{' '}
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="hover:text-effuse-teal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-gold focus-visible:ring-offset-2 rounded-md"
-                >
-                  {contact.email}
-                </a>
-              </Text>
-            </div>
+            {/*
+              A "Location:" and "Email:" block used to sit here, duplicating
+              the location already in the bottom bar ("Built with care in
+              Winnipeg, Manitoba") and the email already reachable via the
+              homepage contact form and the Connect With Us icons below.
+              Jeremy asked to cut both once he noticed the repetition.
+            */}
 
             {/* Social Links */}
             <div>
@@ -142,18 +134,22 @@ export const Footer: React.FC = () => {
             Manitoba" — its own row, competing for the same visual weight as
             the copyright rather than reading as part of it. The Legal group
             above already gives Privacy/Terms/Accessibility a real home, so
-            this row only ever had one thing in it. Setting the location as a
-            quiet inline suffix, separated by a middot, reads as one
-            unobtrusive line of small print instead of two, and keeps the
-            "built by a real, local firm" signal without asking for its own
-            line of attention.
+            this row only ever had one thing in it. Putting the location on
+            the same row (opposite-justified on desktop, stacked on the
+            narrow mobile width where there's no room for two columns) reads
+            as one unobtrusive line of small print instead of two, and keeps
+            the "built by a real, local firm" signal without asking for its
+            own line of attention. Sourced from `contact.location` rather
+            than restated here, so the fact lives in one place — it used to
+            also appear as its own line in the Company Info column above and
+            after the homepage contact form, both removed as duplicates.
           */}
           <div className="flex flex-col items-center gap-1 text-center md:flex-row md:justify-between md:text-left">
             <Small className="text-effuse-parchment">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
             <Small className="text-effuse-medium-grey">
-              Built with care in Winnipeg, Manitoba
+              Built with care in {contact.location}
             </Small>
           </div>
         </div>

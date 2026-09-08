@@ -315,12 +315,10 @@ export default function Home() {
           </Text>
 
           {/*
-            This used to be a bare "Email {address}" button — real, unlike the
-            inert "Get Started" / "Schedule Demo" buttons it originally
-            replaced, but still just a link. The form below constructs a
-            proper mailto: with the fields filled in, rather than a backend
-            this repo doesn't have credentials to build honestly — see
-            components/sections/ContactForm.tsx.
+            Submits to /api/contact (Resend, once RESEND_API_KEY is set) and
+            falls back to a mailto: handoff if that isn't configured yet or
+            the request fails — see components/sections/ContactForm.tsx and
+            app/api/contact/route.ts.
           */}
           <ContactForm />
 
@@ -333,10 +331,6 @@ export default function Home() {
               {contact.email}
             </a>
             .
-          </Text>
-
-          <Text className="mt-6 text-body-sm text-effuse-parchment/70">
-            {contact.location}
           </Text>
         </Reveal>
       </SectionContainer>
