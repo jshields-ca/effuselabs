@@ -694,8 +694,8 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
 
 **Post-MVP feedback round:**
 
-- **The Pour dividers around the founder statement still show a hard, empty
-  gap instead of continuous light — third attempt, not yet confirmed fixed.**
+- ~~The Pour dividers around the founder statement showed a hard, empty gap
+  instead of continuous light~~ — **resolved, fifth attempt.**
   The first two fixes (a `mask-image` wrapper, then dropping clipping and
   masking entirely) both looked correct in this environment's Chromium and
   both still failed on Jeremy's own machine. This time he confirmed it on
@@ -760,10 +760,37 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   `color-interpolation-filters="sRGB"` explicitly instead of relying on a
   default two engines have disagreed about. Confirmed the wash still reads
   as soft rather than a hard-edged shape at every width checked here.
-  Confirming this actually closes the gap on Jeremy's Firefox is still
-  pending — if it doesn't, the next useful data point is whether the gap has
-  gotten smaller, which would tell us this was a real contributing factor
-  even if not the only one.
+
+  **Confirmed fixed.** Jeremy sent two more screenshots after this shipped —
+  one from Windows 11 Firefox (the original problem browser) showing a
+  continuous, seamless band with no gap; then, unprompted, two from an
+  iPhone confirming the same fix holds on iOS/WebKit and at mobile width,
+  something never explicitly tested through any of the earlier four
+  attempts. Three independent rendering engines (Chromium, Firefox/
+  WebRender, WebKit) now agree, which is a meaningfully stronger claim than
+  "looks right in this sandbox" ever was. The root cause was real:
+  `feGaussianBlur`'s undocumented (to most authors) linearRGB default was
+  producing a visibly different result across engines for the exact same
+  markup, and removing the dependency on blur for the wash — rather than
+  continuing to tune size and opacity against a browser this sandbox
+  couldn't run — is what actually closed it.
+
+  **Redesigned anyway, once confirmed working.** With the ribbon-and-wash
+  version finally verified correct everywhere, Jeremy asked for a design
+  committee to see whether a different treatment could carry the same brief
+  without that inherited five-round history. Two exploratory concepts were
+  built in isolated agent worktrees and rendered for direct comparison: a
+  single continuous stream (one unbroken path, no gap to fail to meet by
+  construction) and "the bead" — pouring staged as one drop of light landing
+  on a hairline seam and rippling outward, rather than a curtain parting.
+  Jeremy picked the bead. `components/ui/Pour.tsx` now ships that design;
+  the ribbon-and-wash version and its full bug history live only in that
+  file's own doc comment and in this document's history above. The
+  replacement carries the lesson forward structurally, not just as caution:
+  zero SVG filter primitives anywhere in the new component, so the specific
+  `color-interpolation-filters` bug class that took five rounds to fix does
+  not apply to it at all. `docs/DESIGN_PLAN.md`'s "signature element" section
+  is updated to match.
 
 - ~~The services page's "What we set up" checklist linked one named example
   per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
