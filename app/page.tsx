@@ -32,7 +32,7 @@ export default function Home() {
       <PhilosophySection id="features" />
 
       {/*
-        The shell parts a little more at each boundary — see components/ui/Pour.
+        The ripple widens a little more at each boundary — see components/ui/Pour.
       */}
       <Pour openness={0.3} />
 

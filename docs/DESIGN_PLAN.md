@@ -111,27 +111,43 @@ together.
 
 One bold thing, and everything else quiet around it.
 
-Between sections, light **pours** from one into the next. Concretely: a
-full-width device where the Hatching Core arc opens and a band of teal-to-gold
-light spills through the gap, bleeding into the section below. It is a
-structural divider that carries the brand's own idea, and it is the thing a
-visitor remembers.
+Between sections, light **pours** from one into the next. It is a structural
+divider that carries the brand's own idea, and it is the thing a visitor
+remembers. It is not decoration bolted on: it encodes something true — one
+section giving way to the next — which is exactly what a divider is for.
 
-It is not decoration bolted on. It encodes something true — one section giving
-way to the next — which is exactly what a divider is for. And it derives from
-the logo, so the site and the mark reinforce each other instead of coexisting.
+**Revision, after the first version shipped.** The original design staged
+this as a parting curtain: two ribbons peeled apart around a soft wash filling
+the gap, echoing the logo's shell-peels-back-to-reveal-a-core shape directly.
+It took five rounds of real cross-engine bugs to actually render correctly
+everywhere (`feGaussianBlur`, and every SVG filter primitive, composites in a
+different, engine-inconsistent colour space by spec default — see
+`components/ui/Pour.tsx`'s doc comment and `docs/ROADMAP.md` for the full
+history). Once confirmed working, a design-committee comparison pass explored
+whether a different treatment could carry the same idea without that
+inherited risk. It could: the current version — "the bead" — stages pouring
+as a single event instead of a curtain.
 
 ```
-   ────────────────────────╮
-                            ╲        ← the shell edge, slate → teal
-      ░░▒▒▓▓ light spill ▓▓▒▒░░       ← teal → gold, blurred, low alpha
-                            ╱
-   ────────────────────────╯
+   ─────────────────·─────────────────     ← the seam, always present
+              )  )  ( (                    ← the ripple, teal, widening
+                  ◆                        ← the bead: teal shell, gold core
 ```
 
-The arc opens further down the page. At the top it is nearly closed; by the
-contact section it is fully open and the light is at its brightest. The page
-itself performs the hatching.
+One drop of light gathers at the seam between two sections and sends a ripple
+out along the full width. The seam (a hairline) is constant; `openness` grows
+the bead and brightens/widens the ripple, so the divider still reads as more
+"arrived" further down the page — nearly a pinprick near the top, a wide,
+bright ripple by the closing call to action. The bead's own fill is teal
+above, gold below — shell, then core, the same order `EffuseMark`'s two-tone
+split uses — so the brand hierarchy still holds even though the shape is a
+drop rather than a traced silhouette.
+
+It is also deliberately the leaner of the two treatments compared: line work
+(a hairline, four ring outlines, one bead) rather than a filled atmospheric
+wash, and zero SVG filter primitives — the specific class of bug the first
+version spent five rounds fixing does not apply here at all, by construction
+rather than by caution.
 
 Everything else — cards, buttons, nav — stays disciplined and plain so this
 device is the only thing shouting.

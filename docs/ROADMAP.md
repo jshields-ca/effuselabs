@@ -775,6 +775,23 @@ ToolShowcaseSection.tsx`) is a 20-item logo wall spanning categories the
   continuing to tune size and opacity against a browser this sandbox
   couldn't run — is what actually closed it.
 
+  **Redesigned anyway, once confirmed working.** With the ribbon-and-wash
+  version finally verified correct everywhere, Jeremy asked for a design
+  committee to see whether a different treatment could carry the same brief
+  without that inherited five-round history. Two exploratory concepts were
+  built in isolated agent worktrees and rendered for direct comparison: a
+  single continuous stream (one unbroken path, no gap to fail to meet by
+  construction) and "the bead" — pouring staged as one drop of light landing
+  on a hairline seam and rippling outward, rather than a curtain parting.
+  Jeremy picked the bead. `components/ui/Pour.tsx` now ships that design;
+  the ribbon-and-wash version and its full bug history live only in that
+  file's own doc comment and in this document's history above. The
+  replacement carries the lesson forward structurally, not just as caution:
+  zero SVG filter primitives anywhere in the new component, so the specific
+  `color-interpolation-filters` bug class that took five rounds to fix does
+  not apply to it at all. `docs/DESIGN_PLAN.md`'s "signature element" section
+  is updated to match.
+
 - ~~The services page's "What we set up" checklist linked one named example
   per category (Nextcloud, Mattermost, ERPNext, Plausible)~~ — **resolved.**
   Those links became redundant once `ToolShowcaseSection` shipped below the

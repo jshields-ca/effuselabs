@@ -23,6 +23,10 @@ const config = [
       'playwright-report/**',
       'test-results/**',
       'next-env.d.ts',
+      // Background-agent worktrees (see .gitignore) — full nested checkouts
+      // of the repo, not project content. Without this, `eslint .` recurses
+      // into them and reports thousands of unrelated errors.
+      '.claude/**',
     ],
   },
 
