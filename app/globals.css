@@ -133,6 +133,24 @@
   }
 }
 
+/*
+ * Vertical-only, for small precise elements that must stay centred on a
+ * horizontal axis — the Pour bead sits exactly on the ripple rings'
+ * centreline, so any horizontal component in its drift pulls it visibly off
+ * that axis. `drift-slow`/`-reverse`/`-slower` above move on both axes,
+ * which reads as atmosphere on `LuminousField`'s large diffuse blobs but
+ * reads as a wandering bug on something small and precisely placed.
+ */
+@keyframes drift-vertical {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4%, 0);
+  }
+}
+
 @utility animate-drift-slow {
   animation: drift-slow 26s ease-in-out infinite;
   will-change: transform;
@@ -145,6 +163,11 @@
 
 @utility animate-drift-slower {
   animation: drift-slower 38s ease-in-out infinite;
+  will-change: transform;
+}
+
+@utility animate-drift-vertical {
+  animation: drift-vertical 38s ease-in-out infinite;
   will-change: transform;
 }
 

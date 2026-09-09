@@ -70,10 +70,14 @@ interface PourProps {
  *
  * Ambient motion is a small vertical drift on the bead only — one source of
  * motion, per the design plan's "one ambient motion is atmosphere, two is a
- * screensaver" — reusing the `animate-drift-slower` keyframe this file and
- * `LuminousField` already share, gated on `motion-safe:`. Under reduced
- * motion the bead sits at rest against the hairline: a finished composition,
- * not a drop frozen mid-fall.
+ * screensaver" — using `animate-drift-vertical` (`app/globals.css`), gated
+ * on `motion-safe:`. That keyframe exists specifically for this: the
+ * shared `drift-slow`/`-reverse`/`-slower` keyframes `LuminousField` uses
+ * all move on both axes, which reads as atmosphere on a large diffuse blob
+ * but reads as a wandering bug on something this small sitting exactly on
+ * the ripple rings' centreline — a horizontal component would visibly pull
+ * the bead off that axis. Under reduced motion the bead sits at rest against
+ * the hairline: a finished composition, not a drop frozen mid-fall.
  *
  * Decorative: hidden from assistive technology.
  */
@@ -197,7 +201,7 @@ export const Pour: React.FC<PourProps> = ({
         ))}
 
         {/* The bead and its glow — the one thing that moves. */}
-        <g className="motion-safe:animate-drift-slower">
+        <g className="motion-safe:animate-drift-vertical">
           <ellipse
             cx={cx}
             cy={seamY}
