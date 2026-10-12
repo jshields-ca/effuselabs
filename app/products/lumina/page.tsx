@@ -22,7 +22,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = pageMetadata({
   title: 'Lumina — Effuse Labs',
   description:
-    'Lumina is an all-in-one, AI-powered platform for salons and barbershops.',
+    'Lumina is an open-source platform for salons and barbershops, now in development at Effuse Labs.',
   path: '/products/lumina',
 })
 
