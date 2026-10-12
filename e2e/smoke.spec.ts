@@ -74,6 +74,35 @@ for (const route of ROUTES) {
       const content = await description.getAttribute('content')
       expect(content?.trim().length ?? 0).toBeGreaterThan(0)
     })
+
+    /*
+     * A shared link to effuse.io showed no preview image: the only og:image
+     * was a square transparent logo, and pages below the root inherited the
+     * homepage's og:title and og:url. This pins what a link preview needs —
+     * a wide card that actually loads, and Open Graph fields for this page.
+     */
+    test('has a 1200x630 share image and its own Open Graph URL', async ({
+      page,
+      request,
+    }) => {
+      await page.goto(route.path)
+      const meta = (property: string) =>
+        page
+          .locator(`meta[property="${property}"], meta[name="${property}"]`)
+          .getAttribute('content')
+
+      expect(await meta('og:image:width')).toBe('1200')
+      expect(await meta('og:image:height')).toBe('630')
+      expect(await meta('twitter:card')).toBe('summary_large_image')
+      expect(new URL((await meta('og:url'))!).pathname).toBe(route.path)
+
+      // og:image is absolute against the production domain; fetch it from
+      // the server under test instead.
+      const image = new URL((await meta('og:image'))!)
+      const response = await request.get(image.pathname + image.search)
+      expect(response.status()).toBe(200)
+      expect(response.headers()['content-type']).toBe('image/png')
+    })
   })
 }
 

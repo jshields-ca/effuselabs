@@ -1,12 +1,14 @@
 import { LegalPageLayout } from '@/components/layout/LegalPageLayout'
 import { H2, Text } from '@/components/ui'
 import { contact } from '@/content/site'
+import { pageMetadata } from '@/lib/metadata'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Privacy Policy — Effuse Labs',
   description: 'How Effuse Labs collects, uses, and protects information.',
-}
+  path: '/privacy',
+})
 
 export default function PrivacyPage() {
   return (

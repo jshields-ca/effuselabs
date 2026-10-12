@@ -1,4 +1,5 @@
 import { PageWrapper } from '@/components/layout/PageWrapper'
+import { pageMetadata } from '@/lib/metadata'
 import type { Metadata, Viewport } from 'next'
 import { Bricolage_Grotesque, Public_Sans } from 'next/font/google'
 import Script from 'next/script'
@@ -59,8 +60,11 @@ const SITE_DESCRIPTION =
   'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and hands-on support setting up self-hosted, open-source tools for businesses that would rather own their software than rent it.'
 
 export const metadata: Metadata = {
-  title: SITE_TITLE,
-  description: SITE_DESCRIPTION,
+  ...pageMetadata({
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    path: '/',
+  }),
   keywords: [
     'small business software',
     'salon management',
@@ -81,29 +85,8 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   manifest: '/site.webmanifest',
-  /*
-   * A square logo, not a designed 1200x630 social card — this repo has no
-   * wide OG image yet. `summary` (not `summary_large_image`) is the right
-   * Twitter card type for a square image; using the large-image card with a
-   * square asset would letterbox it. A real per-route OG image is stage-7
-   * follow-up work, tracked in docs/ROADMAP.md rather than faked here.
-   */
-  openGraph: {
-    type: 'website',
-    siteName: 'Effuse Labs',
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    url: 'https://www.effuse.io',
-    images: [
-      { url: '/logo-800x800.png', width: 800, height: 800, alt: 'Effuse Labs' },
-    ],
-  },
-  twitter: {
-    card: 'summary',
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    images: ['/logo-800x800.png'],
-  },
+  // The share image is app/opengraph-image.tsx, not a field here — see
+  // lib/og/renderShareCard.tsx for why the old square logo didn't work.
 }
 
 // Viewport is a dedicated export rather than metadata.viewport, per Next 16.

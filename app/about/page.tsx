@@ -9,6 +9,7 @@ import {
   Reveal,
   Text,
 } from '@/components/ui'
+import { pageMetadata } from '@/lib/metadata'
 import { CheckCircle2, GitBranch, ShieldCheck } from 'lucide-react'
 import type { Metadata } from 'next'
 
@@ -18,11 +19,12 @@ import type { Metadata } from 'next'
  * "who is Effuse Labs," not because the words below are final. Jeremy's own
  * account of the company, in his own words, is stage-6 copywriting work.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'About — Effuse Labs',
   description:
     'Effuse Labs is a Winnipeg-based software firm building open-source, accessible tools for small businesses — and helping others own their software instead of renting it.',
-}
+  path: '/about',
+})
 
 /*
  * Marketing-tone pass: these used to speak in the vocabulary of the build

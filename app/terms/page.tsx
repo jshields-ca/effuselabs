@@ -1,12 +1,14 @@
 import { LegalPageLayout } from '@/components/layout/LegalPageLayout'
 import { H2, Text } from '@/components/ui'
 import { contact } from '@/content/site'
+import { pageMetadata } from '@/lib/metadata'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Terms of Service — Effuse Labs',
   description: 'The terms governing use of the Effuse Labs website.',
-}
+  path: '/terms',
+})
 
 export default function TermsPage() {
   return (
