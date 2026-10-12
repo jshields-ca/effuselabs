@@ -7,6 +7,7 @@ import {
   ToolShowcaseSection,
 } from '@/components/sections'
 import type { ShowcaseTool } from '@/components/sections'
+import { pageMetadata } from '@/lib/metadata'
 import {
   Cloud,
   Database,
@@ -25,11 +26,12 @@ import type { Metadata } from 'next'
  * two lines of business. Real copywriting is stage-6 work; this proves the
  * structure.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Services — Effuse Labs',
   description:
     'We set up, configure, and support self-hosted, open-source alternatives to the subscription software your business already depends on.',
-}
+  path: '/services',
+})
 
 /*
  * A deliberately wide sample, not an exhaustive one — see

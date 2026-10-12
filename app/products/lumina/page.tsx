@@ -6,6 +6,7 @@ import {
   FinalCTASection,
   PainSolutionSection,
 } from '@/components/sections'
+import { pageMetadata } from '@/lib/metadata'
 import {
   CalendarDays,
   ChartLine,
@@ -16,12 +17,14 @@ import {
   Sparkles,
   Users,
 } from 'lucide-react'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Lumina — Effuse Labs',
   description:
     'Lumina is an all-in-one, AI-powered platform for salons and barbershops.',
-}
+  path: '/products/lumina',
+})
 
 export default function LuminaProductPage() {
   return (
