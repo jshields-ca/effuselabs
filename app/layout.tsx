@@ -1,5 +1,7 @@
 import { PageWrapper } from '@/components/layout/PageWrapper'
 import { pageMetadata } from '@/lib/metadata'
+import { brand } from '@/content/site'
+import { surface } from '@/lib/design/tokens'
 import type { Metadata, Viewport } from 'next'
 import { Bricolage_Grotesque, Public_Sans } from 'next/font/google'
 import Script from 'next/script'
@@ -46,23 +48,17 @@ const publicSans = Public_Sans({
 })
 
 /*
- * This description is what a search engine or an LLM crawler actually reads
- * to summarize the company — it was claiming Lumina "transforms salon and
- * barber operations" in the present tense on a product that hasn't launched
- * (see docs/ROADMAP.md), and it described only one of Effuse Labs' two real
- * lines of business. Corrected to be honest about both, in the same terms
- * CLAUDE.md itself uses to describe the company — this is a factual fix,
- * not a copywriting pass; real marketing copy is stage 6.
+ * The description is what a search engine or an LLM crawler actually reads
+ * to summarize the company. It lives in content/site.ts so the manifest and
+ * the structured data below say the same thing.
  */
 const SITE_TITLE =
   'Effuse Labs - Software for Small Business, Self-Hosted and Fully Managed'
-const SITE_DESCRIPTION =
-  'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and self-hosted, open-source tools we set up, host and manage for businesses that would rather own their software than rent it.'
 
 export const metadata: Metadata = {
   ...pageMetadata({
     title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
+    description: brand.description,
     path: '/',
   }),
   keywords: [
@@ -85,7 +81,6 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
-  manifest: '/site.webmanifest',
   // The share image is app/opengraph-image.tsx, not a field here — see
   // lib/og/renderShareCard.tsx for why the old square logo didn't work.
 }
@@ -95,6 +90,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  // Mobile browser chrome matches the page canvas instead of flashing white.
+  themeColor: surface.deep,
 }
 
 /*
@@ -109,7 +106,8 @@ export const viewport: Viewport = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Effuse Labs',
+  name: brand.name,
+  description: brand.description,
   url: 'https://www.effuse.io',
   logo: 'https://www.effuse.io/logo-800x800.png',
   sameAs: [

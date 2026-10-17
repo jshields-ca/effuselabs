@@ -1,5 +1,7 @@
 import { expect, test, type ConsoleMessage } from '@playwright/test'
+import { brand } from '../content/site'
 import { shareCards } from '../content/social'
+import { surface } from '../lib/design/tokens'
 import { ROUTES } from './routes'
 
 /**
@@ -128,6 +130,31 @@ for (const route of ROUTES) {
     })
   })
 }
+
+/*
+ * The static manifest shipped with an empty name and a white theme, so "Add
+ * to Home Screen" gave an unlabelled icon that launched with a white flash.
+ * It is a route built from brand and tokens now; this keeps it that way.
+ */
+test('web app manifest names the site and uses the dark canvas', async ({
+  page,
+  request,
+}) => {
+  await page.goto('/')
+  const href = await page.locator('link[rel="manifest"]').getAttribute('href')
+  expect(href, 'no <link rel="manifest">').toBeTruthy()
+
+  const response = await request.get(href!)
+  expect(response.status()).toBe(200)
+  const manifest = await response.json()
+  expect(manifest.name).toBe(brand.name)
+  expect(manifest.short_name).toBe(brand.name)
+  expect(manifest.description).toBe(brand.description)
+  expect(manifest.theme_color.toLowerCase()).toBe(surface.deep.toLowerCase())
+  expect(manifest.background_color.toLowerCase()).toBe(
+    surface.deep.toLowerCase()
+  )
+})
 
 test('unknown routes return 404', async ({ page }) => {
   const response = await page.goto('/this-route-does-not-exist')

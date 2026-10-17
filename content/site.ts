@@ -56,8 +56,15 @@ export const headerCta: NavLink = {
 
 export const brand = {
   name: 'Effuse Labs',
-  tagline: 'Intelligent Software for Small Business Growth',
-  blurb: 'Effuse Labs: Pouring out potential for small business.',
+  /*
+   * One description of the company, read by the meta description, the web
+   * app manifest and the Organization structured data. It used to live only
+   * in app/layout.tsx, beside an unused `tagline` here still promising
+   * "Intelligent Software for Small Business Growth" — positioning the site
+   * had already moved away from, waiting for the next component to pick up.
+   */
+  description:
+    'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and self-hosted, open-source tools we set up, host and manage for businesses that would rather own their software than rent it.',
 } as const
 
 export const contact = {
