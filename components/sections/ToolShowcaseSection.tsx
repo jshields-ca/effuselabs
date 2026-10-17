@@ -81,7 +81,7 @@ const ToolShowcaseSection: React.FC<ToolShowcaseSectionProps> = ({
               <span className="text-center text-body-sm font-medium text-effuse-parchment group-hover:text-effuse-teal">
                 {tool.name}
               </span>
-              <span className="text-center text-xs text-effuse-parchment/50">
+              <span className="text-center text-xs text-effuse-parchment/70">
                 {tool.category}
               </span>
             </a>

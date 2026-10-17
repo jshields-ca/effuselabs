@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
             <Small className="text-effuse-parchment">
               © {currentYear} {brand.name}. All rights reserved.
             </Small>
-            <Small className="text-effuse-medium-grey">
+            <Small className="text-effuse-parchment/70">
               Built with care in {contact.location}
             </Small>
           </div>

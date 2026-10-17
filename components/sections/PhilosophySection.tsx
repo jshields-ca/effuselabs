@@ -78,17 +78,20 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({
           aria-label="Effuse Labs philosophy principles"
         >
           {items.map((item, index) => (
-            <Reveal key={item.label} order={index}>
-              <li className={`max-w-xl ${OFFSETS[index]}`}>
-                <Eyebrow className="mb-3 flex items-center gap-3 text-effuse-teal">
-                  <AccentBar size="sm" variant="effuse" />
-                  {item.label}
-                </Eyebrow>
-                <H3 className="mb-3 font-medium text-effuse-parchment">
-                  {item.title}
-                </H3>
-                <Text className="text-effuse-parchment">{item.copy}</Text>
-              </li>
+            <Reveal
+              as="li"
+              key={item.label}
+              order={index}
+              className={`max-w-xl ${OFFSETS[index]}`}
+            >
+              <Eyebrow className="mb-3 flex items-center gap-3 text-effuse-teal">
+                <AccentBar size="sm" variant="effuse" />
+                {item.label}
+              </Eyebrow>
+              <H3 className="mb-3 font-medium text-effuse-parchment">
+                {item.title}
+              </H3>
+              <Text className="text-effuse-parchment">{item.copy}</Text>
             </Reveal>
           ))}
         </ul>
