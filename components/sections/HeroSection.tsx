@@ -23,9 +23,9 @@ interface HeroSectionProps {
  * is what every site template produces, and it is what this hero did before.
  */
 export function HeroSection({
-  eyebrow = 'Vertical SaaS · Self-hosted & open source',
-  title = 'Intelligent software for small business growth.',
-  description = 'We pour out innovative solutions that turn operational burdens into competitive strengths — for the businesses larger vendors overlook.',
+  eyebrow = 'Software for small business · Self-hosted, fully managed',
+  title = "Own your software. We'll keep it running.",
+  description = "We build industry-specific tools and set up open-source alternatives to the subscriptions you're renting — then handle the updates, backups and support, so owning it never becomes another job.",
   primaryCta = { label: 'Start a conversation', href: '#contact' },
   secondaryCta = { label: 'See our work', href: '#products' },
 }: HeroSectionProps) {

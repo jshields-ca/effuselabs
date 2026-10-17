@@ -18,6 +18,8 @@ export interface FeatureBreakdownSectionProps {
   screenshotSrc?: string
   screenshotAlt?: string
   variant?: 'grid' | 'checklist'
+  /** Lets adjacent sections alternate elevation rather than run together. */
+  background?: 'base' | 'raised'
 }
 
 const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
@@ -28,9 +30,10 @@ const FeatureBreakdownSection: React.FC<FeatureBreakdownSectionProps> = ({
   screenshotSrc,
   screenshotAlt = 'Product screenshot',
   variant = 'grid',
+  background = 'base',
 }) => {
   return (
-    <SectionContainer id={id} background="base" padding="lg">
+    <SectionContainer id={id} background={background} padding="lg">
       <Reveal>
         <div className="max-w-6xl mx-auto">
           {/* Header */}

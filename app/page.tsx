@@ -58,8 +58,8 @@ export default function Home() {
             />
             <H2 className="mb-4 text-effuse-parchment">Our Products</H2>
             <Text className="text-effuse-parchment/70 max-w-2xl mx-auto text-lg leading-relaxed">
-              Intelligent software solutions designed to turn operational
-              burdens into your greatest strengths.
+              Software built for one industry at a time — open source, yours to
+              own, and run for you if you&apos;d rather not run it yourself.
             </Text>
           </div>
 
@@ -78,11 +78,11 @@ export default function Home() {
                 <div>
                   <H3 className="mb-4 text-effuse-parchment">Lumina</H3>
                   <Text className="mb-6 text-effuse-parchment leading-relaxed font-normal">
-                    An all-in-one, AI-powered platform for salons and
-                    barbershops. Lumina replaces a patchwork of apps with a
-                    single, elegant solution to manage bookings, financials, and
-                    client relationships, illuminating the path to sustainable
-                    growth.
+                    An all-in-one platform for salons and barbershops. Lumina
+                    replaces a patchwork of apps with one place to manage
+                    bookings, financials and client relationships. It&apos;s
+                    open source and free to run yourself — or we host and manage
+                    it for you.
                   </Text>
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-center">
@@ -264,16 +264,17 @@ export default function Home() {
                         />
                       </svg>
                       <Text as="span" className="text-sm text-effuse-parchment">
-                        Setup, migration, and ongoing support included
+                        Updates, backups and monitoring handled for you
                       </Text>
                     </li>
                   </ul>
                   <Text className="mb-6 text-effuse-parchment leading-relaxed">
                     Subscription software adds up, and the moment you stop
-                    paying, you lose access to your own data. We set up,
-                    configure, and support self-hosted, open-source alternatives
-                    to the tools you&apos;re renting — so you own what you run,
-                    and pay only for the support you actually use.
+                    paying, you lose access to your own data. We set up
+                    open-source alternatives to the tools you&apos;re renting,
+                    host them on a server sourced to fit your needs — in Canada
+                    if you prefer — and keep them running on a monthly retainer.
+                    You own what you run, without having to run it yourself.
                   </Text>
                   <Button
                     variant="primary"
@@ -306,12 +307,12 @@ export default function Home() {
             className="mb-6"
           />
           <H2 className="mb-6 text-effuse-parchment">
-            Ready to build with clarity?
+            Let&apos;s talk about your business.
           </H2>
           <Text className="mx-auto mb-10 max-w-2xl text-body-lg text-effuse-parchment">
             Tell us what your business is wrestling with. Whether that is
-            software we build for you, or open-source tools we set up and keep
-            running, the first conversation is free and there is no script.
+            software we build for you, or open-source tools we set up, host and
+            keep running, the first conversation is free and there is no script.
           </Text>
 
           {/*

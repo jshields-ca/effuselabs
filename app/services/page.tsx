@@ -9,10 +9,14 @@ import {
 import type { ShowcaseTool } from '@/components/sections'
 import { pageMetadata } from '@/lib/metadata'
 import {
+  ArrowRightLeft,
   Cloud,
   Database,
   HardDrive,
+  LifeBuoy,
   MessagesSquare,
+  Search,
+  ServerCog,
   ShieldCheck,
   Users,
 } from 'lucide-react'
@@ -29,7 +33,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = pageMetadata({
   title: 'Services — Effuse Labs',
   description:
-    'We set up, configure, and support self-hosted, open-source alternatives to the subscription software your business already depends on.',
+    'We set up, host and manage open-source alternatives to the subscription software your business depends on — you own it, we keep it running.',
   path: '/services',
 })
 
@@ -63,12 +67,6 @@ const SHOWCASE_TOOLS: ShowcaseTool[] = [
     category: 'Wiki & knowledge base',
     href: 'https://www.getoutline.com',
     icon: 'outline.svg',
-  },
-  {
-    name: 'Linkwarden',
-    category: 'Bookmark management',
-    href: 'https://linkwarden.app',
-    icon: 'linkwarden.png',
   },
   {
     name: 'AFFiNE',
@@ -131,22 +129,28 @@ const SHOWCASE_TOOLS: ShowcaseTool[] = [
     icon: 'akaunting.svg',
   },
   {
-    name: 'Habitica',
-    category: 'Habit & task tracking',
-    href: 'https://habitica.com',
-    icon: 'habitica.svg',
+    name: 'Invoice Ninja',
+    category: 'Invoicing & payments',
+    href: 'https://invoiceninja.com',
+    icon: 'invoice-ninja.svg',
   },
   {
-    name: 'Grocy',
-    category: 'Household inventory',
-    href: 'https://grocy.info',
-    icon: 'grocy.svg',
+    name: 'Zammad',
+    category: 'Helpdesk & ticketing',
+    href: 'https://zammad.org',
+    icon: 'zammad.svg',
   },
   {
-    name: 'Actual Budget',
-    category: 'Personal finance',
-    href: 'https://actualbudget.org',
-    icon: 'actual-budget.svg',
+    name: 'Documenso',
+    category: 'E-signatures',
+    href: 'https://documenso.com',
+    icon: 'documenso.svg',
+  },
+  {
+    name: 'Cal.com',
+    category: 'Appointment scheduling',
+    href: 'https://cal.com',
+    icon: 'cal-com.svg',
   },
   {
     name: 'InvenTree',
@@ -166,9 +170,9 @@ export default function ServicesPage() {
   return (
     <ProductPageTemplate
       hero={{
-        headline: 'Own your software instead of renting it',
+        headline: 'Own your software. Skip the upkeep.',
         subheadline:
-          "We set up, configure, and support self-hosted, open-source alternatives to the tools you're already paying a subscription for.",
+          "We replace the subscriptions you're renting with open-source software you own — then handle the updates, backups and support, so owning it never becomes another job.",
         primaryCtaLabel: 'Talk about your stack',
         primaryCtaHref: '/#contact',
         accentGradient: {
@@ -185,20 +189,62 @@ export default function ServicesPage() {
           icon: Cloud,
         }}
         solution={{
-          heading: 'Software you actually own',
+          heading: 'Software you own, managed for you',
           description:
-            'We migrate you to self-hosted, open-source alternatives — same job done, except the software and the data are yours, running on infrastructure you control.',
+            "We move you to open-source alternatives that do the same job — except the software and the data are yours. Self-hosting has always had a catch: someone has to look after it. That's us.",
           icon: ShieldCheck,
         }}
         bullets={[
           'No per-seat fees that creep every year',
           'Your data stays on infrastructure you control',
-          'Setup, migration, and ongoing support included',
+          'Updates, backups and monitoring handled for you',
+          'Leave any time, with everything — no lock-in, including to us',
+          'Canadian hosting available',
           'Works alongside Lumina, or entirely on its own',
         ]}
       />
 
+      {/*
+        Self-hosting's honest objection is "who maintains it?" — this section
+        is the answer, and the reason to hire someone rather than follow a
+        tutorial. Grid variant, four steps, so it never leaves an orphan
+        card in the two-column layout.
+      */}
       <FeatureBreakdownSection
+        id="how-it-works"
+        background="raised"
+        heading="How it works"
+        subheading="Self-hosted doesn't have to mean self-managed. You get the control; we take the maintenance."
+        items={[
+          {
+            icon: Search,
+            title: 'Look',
+            description:
+              "We review what you're paying for today, what your team actually uses, and what's worth replacing — and what isn't.",
+          },
+          {
+            icon: ServerCog,
+            title: 'Host',
+            description:
+              'We source a server sized to your needs and requirements — including Canadian hosting if you want your data to stay in Canada.',
+          },
+          {
+            icon: ArrowRightLeft,
+            title: 'Move',
+            description:
+              'We set up the open-source replacement, migrate your data, and get your team comfortable with it before anything is switched off.',
+          },
+          {
+            icon: LifeBuoy,
+            title: 'Run',
+            description:
+              'On a monthly retainer, we keep it updated, patched, backed up and monitored — and we test that the backups actually restore. You have one number to call.',
+          },
+        ]}
+      />
+
+      <FeatureBreakdownSection
+        id="what-we-run"
         heading="What we set up and support"
         subheading="The core categories most businesses start with."
         items={[
@@ -243,7 +289,7 @@ export default function ServicesPage() {
       */}
       <FinalCTASection
         heading="Ready to own your stack?"
-        description="There's no fixed package — every business's stack is different. Tell us what you're running today (or what you'd like to stop paying for); the first conversation is free, with no obligation."
+        description="Every business's stack is different, so there's no fixed package: setup is scoped to what you're moving, and ongoing management is a monthly retainer sized to what we run for you. Tell us what you're paying for today — the first conversation is free, with no obligation."
         primaryCta={{
           label: 'Get in touch',
           href: '/#contact',

@@ -30,7 +30,12 @@ export default function AccessibilityPage() {
           This site is built to meet WCAG 2.1 Level AA. That&apos;s checked
           automatically, not just claimed: every colour pairing used for text on
           this site is measured for contrast, and the build fails if one falls
-          short.
+          short. Every colour, shape and font comes from a single source, so a
+          page can&apos;t quietly drift away from those checked pairings. And
+          before any update goes live, the whole site is tested end to end:
+          every page loads, every link goes somewhere real, and the still,
+          reduced-motion version of each page is compared against a reviewed
+          baseline.
         </Text>
       </div>
 
