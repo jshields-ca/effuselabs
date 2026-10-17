@@ -148,6 +148,11 @@ Each of these is here because it already went wrong in this repo.
   routes — only reproduce in the output that ships.
 - Add new routes to `ROUTES` in `e2e/routes.ts` rather than writing new
   per-route tests.
+- `e2e/a11y.spec.ts` runs axe-core (WCAG 2.0/2.1/2.2 A and AA, plus
+  best-practice) on every route; any violation fails. `e2e/rendered-contrast.spec.ts`
+  measures every visible text node and placeholder, compositing alpha and
+  checking every gradient stop. Don't loosen either to get green — fix the
+  page.
 - `e2e/visual.spec.ts` holds screenshot baselines, taken with reduced motion
   forced so they are deterministic. An intentional visual change fails it by
   design: look at the diff image, confirm it is what you meant, then

@@ -68,7 +68,7 @@ const ContactForm: React.FC = () => {
   }
 
   const fieldClasses =
-    'w-full rounded-lg border border-surface-border bg-surface-raised px-4 py-3 text-effuse-parchment placeholder:text-effuse-parchment/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal'
+    'w-full rounded-lg border border-surface-border bg-surface-raised px-4 py-3 text-effuse-parchment placeholder:text-effuse-parchment/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-effuse-teal'
 
   if (status === 'sent') {
     return (

@@ -1,3 +1,5 @@
+import type { shareCards } from '../content/social'
+
 /**
  * The route inventory.
  *
@@ -7,15 +9,22 @@
  *
  * This lives outside `*.spec.ts` because Playwright refuses to let one test
  * file import another, and both suites need it.
+ *
+ * `card` names the route's entry in `shareCards` (content/social.ts), so the
+ * smoke suite can check the share card still says what the page says.
  */
 export const ROUTES = [
-  { path: '/', name: 'home' },
-  { path: '/products/lumina', name: 'Lumina product page' },
-  { path: '/about', name: 'about' },
-  { path: '/services', name: 'services' },
-  { path: '/privacy', name: 'privacy' },
-  { path: '/terms', name: 'terms' },
-  { path: '/accessibility', name: 'accessibility' },
-] as const
+  { path: '/', name: 'home', card: 'home' },
+  { path: '/products/lumina', name: 'Lumina product page', card: 'lumina' },
+  { path: '/about', name: 'about', card: 'about' },
+  { path: '/services', name: 'services', card: 'services' },
+  { path: '/privacy', name: 'privacy', card: 'privacy' },
+  { path: '/terms', name: 'terms', card: 'terms' },
+  { path: '/accessibility', name: 'accessibility', card: 'accessibility' },
+] as const satisfies ReadonlyArray<{
+  path: string
+  name: string
+  card: keyof typeof shareCards
+}>
 
 export type Route = (typeof ROUTES)[number]

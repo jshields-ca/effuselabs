@@ -45,7 +45,7 @@ const ProductHero: React.FC<ProductHeroProps> = ({
     <SectionContainer id={id} background="base" padding="lg">
       {accentGradient ? (
         <div
-          className="-mt-6 -mb-8 -mx-0 h-1.5 rounded-t-lg"
+          className="-mt-6 mb-10 h-1.5 rounded-t-lg"
           style={{
             background: `linear-gradient(90deg, ${accentGradient.from}, ${accentGradient.to})`,
           }}

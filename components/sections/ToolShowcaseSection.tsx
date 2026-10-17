@@ -26,8 +26,11 @@ export interface ToolShowcaseSectionProps {
  * "is that really all?" The honest answer is no, by a wide margin, and the
  * only way to show that convincingly is breadth, not more prose. Twenty
  * real, actively maintained projects across categories nobody would have
- * guessed (personal finance, inventory, habit tracking) says more than any
- * paragraph could about how mature this space already is.
+ * guessed (e-signatures, helpdesk, inventory) says more than any paragraph
+ * could about how mature this space already is. Every pick is something a
+ * small business would actually run — household and personal tools (budgets,
+ * habit trackers) read as a homelab list, not a client offer, and were
+ * swapped out for that reason.
  *
  * Icons come from the dashboard-icons project (github.com/homarr-labs/
  * dashboard-icons), fetched once into public/icons/services/ rather than
@@ -47,7 +50,7 @@ const ToolShowcaseSection: React.FC<ToolShowcaseSectionProps> = ({
   heading = "A sample of what's out there",
   subheading = "This is a fraction of what's mature and stable today, across categories that go well beyond the obvious. If it's self-hostable, there's probably already a good answer for it.",
   tools,
-  closingNote = "Don't see your tool, or running something more niche? Ask — chances are there's a self-hosted answer for it too.",
+  closingNote = "Don't see your tool, or running something more niche? Ask — chances are there's a self-hosted answer for it too, and we'll run it for you the same way.",
 }) => {
   return (
     <SectionContainer id={id} background="raised" padding="lg">
@@ -78,7 +81,7 @@ const ToolShowcaseSection: React.FC<ToolShowcaseSectionProps> = ({
               <span className="text-center text-body-sm font-medium text-effuse-parchment group-hover:text-effuse-teal">
                 {tool.name}
               </span>
-              <span className="text-center text-xs text-effuse-parchment/50">
+              <span className="text-center text-xs text-effuse-parchment/70">
                 {tool.category}
               </span>
             </a>

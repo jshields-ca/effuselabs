@@ -43,7 +43,9 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                   </span>
                 </div>
               )}
-              <H3 className="mb-4 text-effuse-parchment">{problem.heading}</H3>
+              <H3 as="h2" className="mb-4 text-effuse-parchment">
+                {problem.heading}
+              </H3>
               <Text className="text-effuse-parchment">
                 {problem.description}
               </Text>
@@ -62,7 +64,9 @@ const PainSolutionSection: React.FC<PainSolutionSectionProps> = ({
                   </span>
                 </div>
               )}
-              <H3 className="mb-4 text-effuse-parchment">{solution.heading}</H3>
+              <H3 as="h2" className="mb-4 text-effuse-parchment">
+                {solution.heading}
+              </H3>
               <Text className="text-effuse-parchment">
                 {solution.description}
               </Text>

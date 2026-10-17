@@ -1,5 +1,5 @@
 import { SectionContainer } from '@/components/layout/SectionContainer'
-import { Button, H2, Reveal, Text } from '@/components/ui'
+import { Button, H2, LuminousField, Reveal, Text } from '@/components/ui'
 import React from 'react'
 
 export interface FinalCTASectionProps {
@@ -26,14 +26,14 @@ export interface FinalCTASectionProps {
 }
 
 /*
- * `background` used to take 'light' | 'dark' | 'gradient', but every call
- * site across the site has only ever passed 'gradient' — the closing CTA is
- * the one section this design system always ends a page on the brand
- * gradient, per docs/DESIGN_PLAN.md, so the other two branches were dead
- * weight carried for a choice no page makes. Same class of near-duplicated
- * ternary Jeremy flagged in PainSolutionSection, FeatureBreakdownSection,
- * PricingSection and ProductHero, all of which were already collapsed the
- * same way; this was the one left over.
+ * Ends the page the way the homepage does: the deep surface with the luminous
+ * field glowing through it. This used to override its section with a flat,
+ * full-strength teal-to-slate gradient — the one place the site painted
+ * light as a solid block, against the rule in lib/design/tokens.ts that
+ * gradients are emitted light over the dark canvas — and the heading and
+ * body text sat at 1.75–2.13:1 against the teal end. The contrast spec only
+ * measured a gradient's last stop at the time, so it never saw that end;
+ * it now checks every stop.
  */
 const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   id = 'final-cta',
@@ -45,35 +45,26 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   return (
     <SectionContainer
       id={id}
-      background="gradient"
+      background="deep"
       padding="xl"
-      className="bg-gradient-to-r from-effuse-teal to-effuse-slate"
+      className="relative isolate overflow-hidden"
     >
-      <Reveal>
+      <LuminousField intensity="section" />
+      <Reveal className="relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <H2 className="mb-4 text-white">{heading}</H2>
+          <H2 className="mb-4 text-effuse-parchment">{heading}</H2>
 
           <Text className="text-lg mb-8 max-w-2xl mx-auto text-effuse-parchment">
             {description}
           </Text>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              variant="primary"
-              size="lg"
-              href={primaryCta.href}
-              className="bg-effuse-gold hover:bg-effuse-gold/90"
-            >
+            <Button variant="primary" size="lg" href={primaryCta.href}>
               {primaryCta.label}
             </Button>
 
             {secondaryCta && (
-              <Button
-                variant="secondary"
-                size="lg"
-                href={secondaryCta.href}
-                className="border-white text-white hover:bg-white hover:text-effuse-slate"
-              >
+              <Button variant="secondary" size="lg" href={secondaryCta.href}>
                 {secondaryCta.label}
               </Button>
             )}
