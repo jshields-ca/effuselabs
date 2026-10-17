@@ -55,9 +55,9 @@ const publicSans = Public_Sans({
  * not a copywriting pass; real marketing copy is stage 6.
  */
 const SITE_TITLE =
-  'Effuse Labs - Intelligent Software for Small Business Growth'
+  'Effuse Labs - Software for Small Business, Self-Hosted and Fully Managed'
 const SITE_DESCRIPTION =
-  'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and hands-on support setting up self-hosted, open-source tools for businesses that would rather own their software than rent it.'
+  'Effuse Labs builds accessible software for small businesses: Lumina, an open-source platform for salons and barbershops now in development, and self-hosted, open-source tools we set up, host and manage for businesses that would rather own their software than rent it.'
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -68,8 +68,9 @@ export const metadata: Metadata = {
   keywords: [
     'small business software',
     'salon management',
-    'AI-powered insights',
-    'business growth',
+    'self-hosted software',
+    'managed open-source hosting',
+    'Canadian hosting',
   ],
   authors: [{ name: 'Effuse Labs' }],
   creator: 'Effuse Labs',

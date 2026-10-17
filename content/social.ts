@@ -4,8 +4,9 @@
  *
  * Every string here is lifted from copy already on the page it represents
  * (the hero eyebrow, the page headline), not written for the card. A share
- * card is a preview of the page, so it should say what the page says; when
- * the page's headline changes, change it here too.
+ * card is a preview of the page, so it should say what the page says.
+ * e2e/smoke.spec.ts fails if a card's title no longer appears on its page —
+ * the home and Services cards drifted exactly that way once already.
  *
  * `variant` follows the brand hierarchy in CLAUDE.md: Effuse Labs' own pages
  * use the firm's slate → teal; only Lumina's page uses Lumina's gold → coral.
@@ -23,15 +24,15 @@ export interface ShareCard {
 
 export const shareCards = {
   home: {
-    eyebrow: 'Vertical SaaS · Self-hosted & open source',
-    title: 'Intelligent software for small business growth.',
-    alt: 'Effuse Labs — Intelligent software for small business growth.',
+    eyebrow: 'Self-hosted, fully managed',
+    title: "Own your software. We'll keep it running.",
+    alt: "Effuse Labs — Own your software. We'll keep it running.",
     variant: 'effuse',
   },
   services: {
     eyebrow: 'Services',
-    title: 'Own your software instead of renting it',
-    alt: 'Effuse Labs Services — Own your software instead of renting it',
+    title: 'Own your software. Skip the upkeep.',
+    alt: 'Effuse Labs Services — Own your software. Skip the upkeep.',
     variant: 'effuse',
   },
   about: {

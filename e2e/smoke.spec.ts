@@ -1,4 +1,5 @@
 import { expect, test, type ConsoleMessage } from '@playwright/test'
+import { shareCards } from '../content/social'
 import { ROUTES } from './routes'
 
 /**
@@ -102,6 +103,28 @@ for (const route of ROUTES) {
       const response = await request.get(image.pathname + image.search)
       expect(response.status()).toBe(200)
       expect(response.headers()['content-type']).toBe('image/png')
+    })
+
+    /*
+     * Share cards copy each page's headline by hand (content/social.ts), so
+     * a page rewrite leaves the card behind with nothing to notice: the home
+     * and Services cards kept advertising headlines the pages had dropped.
+     * The card's title must still appear, verbatim, on the page it previews.
+     */
+    test("share card title matches the page's own copy", async ({ page }) => {
+      await page.goto(route.path)
+      const normalise = (text: string) =>
+        text
+          .replace(/[\u2010\u2011]/g, '-')
+          .replace(/[\u2018\u2019]/g, "'")
+          .replace(/\s+/g, ' ')
+          .trim()
+      const pageText = normalise(await page.locator('main').innerText())
+      const { title } = shareCards[route.card]
+      expect(
+        pageText,
+        `share card "${route.card}" says "${title}", which is no longer on ${route.path}`
+      ).toContain(normalise(title))
     })
   })
 }
